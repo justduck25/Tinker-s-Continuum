@@ -56,3 +56,6 @@ options.txt
 /ops.json
 /whitelist.json
 src/generated/resources/.cache/*
+
+#local-only art assets
+/art/
