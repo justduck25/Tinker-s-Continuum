@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:casting_table_tipped_clearing",
+  "cooling_time": 20,
+  "fluid": {
+    "amount": 50,
+    "tag": "mantle:water"
+  },
+  "id": "tconstruct:tools/modifiers/slotless/ammo_tip_clearing",
+  "modifier": "tconstruct:tipped",
+  "tools": "#tconstruct:modifiable/ammo"
+}

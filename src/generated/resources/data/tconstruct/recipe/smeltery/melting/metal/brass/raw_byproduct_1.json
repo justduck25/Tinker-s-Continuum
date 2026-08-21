@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:raw_materials/brass"
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 90,
+      "rate": "metal",
+      "tag": "c:molten_copper"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/brass/raw_byproduct_1",
+  "ingredient": "#c:raw_materials/brass",
+  "rate": "metal",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_brass"
+  },
+  "temperature": 605,
+  "time": 80
+}

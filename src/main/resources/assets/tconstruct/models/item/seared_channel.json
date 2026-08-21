@@ -1,0 +1,8 @@
+{
+  "parent": "tconstruct:block/template/channel/inventory",
+  "textures": {
+    "particle": "tconstruct:block/smeltery/seared/stone",
+    "texture": "tconstruct:block/smeltery/seared/stone",
+    "layer0": "tconstruct:block/smeltery/seared/stone"
+  }
+}

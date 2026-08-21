@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "id": "tconstruct:smeltery/casts/sand/builder_cast/pick_head",
+  "pattern": "tconstruct:pick_head",
+  "pattern_item": "#tconstruct:casts/sand",
+  "result": "tconstruct:pick_head_sand_cast"
+}

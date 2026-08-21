@@ -1,0 +1,28 @@
+{
+  "name": "minecraft:chests/trial_chambers/supply",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:ancient"
+                },
+                {
+                  "type": "tconstruct:ancient"
+                }
+              ]
+            }
+          ],
+          "name": "tconstruct:arrow",
+          "weight": 12
+        }
+      ],
+      "name": "main"
+    }
+  ]
+}

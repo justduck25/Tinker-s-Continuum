@@ -1,0 +1,158 @@
+package slimeknights.tconstruct.library.tools.nbt;
+
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.resources.Identifier;
+
+import javax.annotation.Nullable;
+import java.util.function.BiFunction;
+
+/**
+ * NBT representing extra data on the tool for modifiers, with a wrapper around the compound for to enforce namespacing data.
+ * On a typical tool, there are two copies of this class, one for persistent data, and one that rebuilds when the modifiers refresh.
+ * Note unlike other NBT classes, the data inside this one is mutable as most of it is directly used by the tools.
+ */
+public class ModDataNBT implements IModDataView {
+  /** Compound representing modifier data */
+  private final CompoundTag data;
+
+  protected ModDataNBT(CompoundTag data) {
+    this.data = data;
+  }
+
+  protected CompoundTag getData() {
+    return data;
+  }
+
+  /**
+   * Creates a new mod data containing empty data
+   */
+  public ModDataNBT() {
+    this(new CompoundTag());
+  }
+
+  @Override
+  public <T> T get(Identifier name, BiFunction<CompoundTag,String,T> function) {
+    return function.apply(data, name.toString());
+  }
+
+  @Override
+  public ListTag getList(Identifier name, int type) {
+    // save generation of the extra lambda object
+    return data.getList(name.toString()).orElseGet(ListTag::new);
+  }
+
+  @Override
+  public boolean contains(Identifier name) {
+    return data.contains(name.toString());
+  }
+
+  @Override
+  public boolean contains(Identifier name, int type) {
+    Tag value = data.get(name.toString());
+    if (value == null) {
+      return false;
+    }
+    int id = value.getId();
+    if (id == type) {
+      return true;
+    }
+    // TAG_ANY_NUMERIC
+    return type == 99 && id >= 1 && id <= 6;
+  }
+
+  /**
+   * Sets the given NBT into the data
+   * @param name  Key name
+   * @param nbt   NBT value
+   */
+  public void put(Identifier name, Tag nbt) {
+    data.put(name.toString(), nbt);
+  }
+
+  /**
+   * Sets an integer from the mod data
+   * @param name  Name
+   * @param value  Integer value
+   */
+  public void putInt(Identifier name, int value) {
+    data.putInt(name.toString(), value);
+  }
+
+  /**
+   * Sets an boolean from the mod data
+   * @param name  Name
+   * @param value  Boolean value
+   */
+  public void putBoolean(Identifier name, boolean value) {
+    data.putBoolean(name.toString(), value);
+  }
+
+  /**
+   * Sets an float from the mod data
+   * @param name  Name
+   * @param value  Float value
+   */
+  public void putFloat(Identifier name, float value) {
+    data.putFloat(name.toString(), value);
+  }
+
+  /**
+   * Reads a string from the mod data
+   * @param name  Name
+   * @param value  String value
+   */
+  public void putString(Identifier name, String value) {
+    data.putString(name.toString(), value);
+  }
+
+  /**
+   * Removes the given key from the NBT
+   * @param name  Key to remove
+   */
+  public void remove(Identifier name) {
+    data.remove(name.toString());
+  }
+
+
+  /* Networking */
+
+  /** Gets a copy of the internal data, generally should only be used for syncing, no reason to call directly */
+  public CompoundTag getCopy() {
+    return data.copy();
+  }
+
+  /**
+   * Called to merge this NBT data from another
+   * @param data  data
+   */
+  public void copyFrom(CompoundTag data) {
+    for (String key : new java.util.ArrayList<>(this.data.keySet())) {
+      this.data.remove(key);
+    }
+    this.data.merge(data);
+  }
+
+  /**
+   * Parses the data from NBT
+   * @param data  data
+   * @return  Parsed mod data
+   */
+  public static ModDataNBT readFromNBT(CompoundTag data) {
+    return new ModDataNBT(data);
+  }
+
+  @Override
+  public boolean equals(@Nullable Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ModDataNBT that = (ModDataNBT) o;
+    return data.equals(that.data);
+  }
+
+  @Override
+  public int hashCode() {
+    return data.hashCode();
+  }
+}

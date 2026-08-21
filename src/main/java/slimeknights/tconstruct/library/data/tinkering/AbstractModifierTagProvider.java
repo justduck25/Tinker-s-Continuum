@@ -1,0 +1,14 @@
+package slimeknights.tconstruct.library.data.tinkering;
+
+import net.minecraft.data.PackOutput;
+import slimeknights.tconstruct.library.data.AbstractTagProvider;
+import slimeknights.tconstruct.library.modifiers.Modifier;
+import slimeknights.tconstruct.library.modifiers.ModifierManager;
+
+/** Tag provider to generate modifier tags */
+public abstract class AbstractModifierTagProvider extends AbstractTagProvider<Modifier> {
+  protected AbstractModifierTagProvider(PackOutput packOutput, String modId) {
+    // TODO: we don't fire modifier event during datagen, should we?
+    super(packOutput, modId, ModifierManager.TAG_FOLDER, modifier -> modifier.getId().getId(), id -> true);
+  }
+}

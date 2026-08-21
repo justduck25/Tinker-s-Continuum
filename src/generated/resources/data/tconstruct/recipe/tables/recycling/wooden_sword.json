@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:part_builder_recycling",
+  "id": "tconstruct:tables/recycling/wooden_sword",
+  "pattern": "tconstruct:venom_bottle",
+  "results": {
+    "tconstruct:rod": {
+      "count": 5,
+      "item": "minecraft:stick"
+    }
+  },
+  "tool": [
+    "minecraft:wooden_sword",
+    "minecraft:wooden_hoe"
+  ]
+}

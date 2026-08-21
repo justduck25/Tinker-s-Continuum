@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:table_casting_material",
+  "cast": "#tconstruct:casts/multi_use/tough_handle",
+  "id": "tconstruct:tools/parts/casting/tough_handle_gold_cast",
+  "item_cost": 3,
+  "result": "tconstruct:tough_handle"
+}

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "tconstruct:melting/lead/tools_costing_2"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/lead/sword",
+  "ingredient": "#tconstruct:melting/lead/tools_costing_2",
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_lead",
+    "unit_size": 10
+  },
+  "temperature": 330,
+  "time": 61
+}

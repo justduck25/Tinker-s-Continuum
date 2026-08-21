@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_combination_filled",
+      "ignore": "tconstruct:non_singular_ore_rates",
+      "match": [
+        "c:ores/lead"
+      ]
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 180,
+      "rate": "metal",
+      "tag": "c:molten_gold"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/lead/ore_singular_byproduct_1",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#c:ores/lead",
+    "subtracted": "#tconstruct:non_singular_ore_rates"
+  },
+  "rate": "metal",
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_lead"
+  },
+  "temperature": 330,
+  "time": 109
+}

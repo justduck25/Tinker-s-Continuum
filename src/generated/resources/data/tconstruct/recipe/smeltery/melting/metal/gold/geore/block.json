@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:geore_blocks/gold"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/gold/geore/block",
+  "ingredient": "#c:geore_blocks/gold",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_gold"
+  },
+  "temperature": 700,
+  "time": 114
+}

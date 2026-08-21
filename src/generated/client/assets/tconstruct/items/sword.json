@@ -1,0 +1,123 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/sword/blocking",
+            "modifier_maps": [
+              "tconstruct:sword"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/sword/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 1,
+                "name": "handle"
+              },
+              {
+                "index": 0,
+                "name": "head"
+              },
+              {
+                "index": 2,
+                "name": "guard"
+              }
+            ],
+            "textures": {
+              "guard": "tconstruct:item/tool/sword/guard",
+              "handle": "tconstruct:item/tool/sword/handle",
+              "head": "tconstruct:item/tool/sword/blade",
+              "layer0": "tconstruct:item/tool/sword/blade",
+              "particle": "tconstruct:item/tool/sword/blade"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:range_dispatch",
+        "entries": [
+          {
+            "model": {
+              "type": "minecraft:model",
+              "model": "tconstruct:item/tool/sword/throwing"
+            },
+            "threshold": 1.75
+          }
+        ],
+        "fallback": {
+          "type": "tconstruct:tool",
+          "model": "tconstruct:item/sword",
+          "modifier_maps": [
+            "tconstruct:sword"
+          ],
+          "modifier_roots": [
+            "tconstruct:item/tool/sword/modifiers/"
+          ],
+          "parts": [
+            {
+              "index": 1,
+              "name": "handle"
+            },
+            {
+              "index": 0,
+              "name": "head"
+            },
+            {
+              "index": 2,
+              "name": "guard"
+            }
+          ],
+          "textures": {
+            "guard": "tconstruct:item/tool/sword/guard",
+            "handle": "tconstruct:item/tool/sword/handle",
+            "head": "tconstruct:item/tool/sword/blade",
+            "layer0": "tconstruct:item/tool/sword/blade",
+            "particle": "tconstruct:item/tool/sword/blade"
+          }
+        },
+        "property": "tconstruct:charging"
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/sword/broken",
+      "modifier_maps": [
+        "tconstruct:sword_broken",
+        "tconstruct:sword"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/sword/modifiers/broken/",
+        "tconstruct:item/tool/sword/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "handle"
+        },
+        {
+          "index": 0,
+          "name": "head"
+        },
+        {
+          "index": 2,
+          "name": "guard"
+        }
+      ],
+      "textures": {
+        "guard": "tconstruct:item/tool/sword/guard",
+        "handle": "tconstruct:item/tool/sword/handle",
+        "head": "tconstruct:item/tool/sword/blade_broken",
+        "layer0": "tconstruct:item/tool/sword/blade",
+        "particle": "tconstruct:item/tool/sword/blade"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

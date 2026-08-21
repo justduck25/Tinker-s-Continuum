@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/constantan"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/constantan/plate",
+  "ingredient": "#c:plates/constantan",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_constantan"
+  },
+  "temperature": 920,
+  "time": 64
+}

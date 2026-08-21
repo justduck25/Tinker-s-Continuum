@@ -1,0 +1,19 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/mossy",
+  "inputs": [
+    {
+      "ingredient": "tconstruct:ball_of_moss"
+    },
+    {
+      "ingredient": "tconstruct:ball_of_moss"
+    }
+  ],
+  "level": 1,
+  "result": "tconstruct:mossy",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/durability"
+}

@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:part_builder_recycling",
+  "id": "tconstruct:tables/recycling/stone_sword",
+  "pattern": "tconstruct:venom_bottle",
+  "results": {
+    "tconstruct:block": {
+      "count": 2,
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "tool": [
+    "minecraft:stone_sword",
+    "minecraft:stone_hoe"
+  ]
+}

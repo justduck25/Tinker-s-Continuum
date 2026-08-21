@@ -1,0 +1,39 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/swasher/pulling_1",
+    "modifier_maps": [
+      "tconstruct:swasher/1",
+      "tconstruct:swasher"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/swasher/modifiers/1/",
+      "tconstruct:item/tool/swasher/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "handle"
+      },
+      {
+        "index": 0,
+        "name": "blade"
+      },
+      {
+        "index": 2,
+        "name": "barrel"
+      },
+      {
+        "name": "tank"
+      }
+    ],
+    "textures": {
+      "barrel": "tconstruct:item/tool/swasher/barrel_1",
+      "blade": "tconstruct:item/tool/swasher/blade",
+      "handle": "tconstruct:item/tool/swasher/handle",
+      "layer0": "tconstruct:item/tool/swasher/blade",
+      "particle": "tconstruct:item/tool/swasher/blade",
+      "tank": "tconstruct:item/tool/swasher/tank"
+    }
+  }
+}

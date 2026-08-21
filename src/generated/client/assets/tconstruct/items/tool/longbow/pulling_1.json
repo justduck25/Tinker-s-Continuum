@@ -1,0 +1,68 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "ammo": {
+      "flip": true,
+      "key": "tconstruct:drawback_ammo",
+      "large_offset": [
+        -2.0,
+        -2.0
+      ],
+      "left": true,
+      "small_offset": [
+        -3.0,
+        -4.0
+      ]
+    },
+    "large": true,
+    "large_offset": [
+      -7,
+      9
+    ],
+    "model": "tconstruct:item/tool/longbow/pulling_1",
+    "modifier_maps": [
+      "tconstruct:longbow/1",
+      "tconstruct:longbow"
+    ],
+    "modifier_roots": {
+      "large": [
+        "tconstruct:item/tool/longbow/large/modifiers/1/",
+        "tconstruct:item/tool/longbow/large/modifiers/"
+      ],
+      "small": [
+        "tconstruct:item/tool/longbow/modifiers/1/",
+        "tconstruct:item/tool/longbow/modifiers/"
+      ]
+    },
+    "parts": [
+      {
+        "index": 0,
+        "name": "limb_bottom"
+      },
+      {
+        "index": 1,
+        "name": "limb_top"
+      },
+      {
+        "index": 3,
+        "name": "bowstring"
+      },
+      {
+        "index": 2,
+        "name": "grip"
+      }
+    ],
+    "textures": {
+      "bowstring": "tconstruct:item/tool/longbow/bowstring_1",
+      "grip": "tconstruct:item/tool/longbow/grip",
+      "large_bowstring": "tconstruct:item/tool/longbow/large/bowstring_1",
+      "large_grip": "tconstruct:item/tool/longbow/large/grip",
+      "large_limb_bottom": "tconstruct:item/tool/longbow/large/limb_bottom_1",
+      "large_limb_top": "tconstruct:item/tool/longbow/large/limb_top_1",
+      "layer0": "tconstruct:item/tool/longbow/limb_bottom",
+      "limb_bottom": "tconstruct:item/tool/longbow/limb_bottom_1",
+      "limb_top": "tconstruct:item/tool/longbow/limb_top_1",
+      "particle": "tconstruct:item/tool/longbow/limb_bottom"
+    }
+  }
+}

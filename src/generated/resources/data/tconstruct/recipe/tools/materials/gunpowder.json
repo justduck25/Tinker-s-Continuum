@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/gunpowder",
+  "ingredient": "#c:gunpowders",
+  "material": "tconstruct:gunpowder",
+  "needed": 4,
+  "value": 1
+}

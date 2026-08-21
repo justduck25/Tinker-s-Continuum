@@ -1,0 +1,28 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "cuirass": "tconstruct:item/tool/armor/travelers/pants/cuirass_broken",
+    "metal": "tconstruct:item/tool/armor/travelers/pants/metal_broken",
+    "layer0": "tconstruct:item/tool/armor/travelers/pants/cuirass",
+    "particle": "tconstruct:item/tool/armor/travelers/pants/cuirass"
+  },
+  "modifier_maps": [
+    "tconstruct:travelers/pants_broken",
+    "tconstruct:travelers/pants"
+  ],
+  "first_modifiers": [
+    "tconstruct:dyed",
+    "tconstruct:trim"
+  ],
+  "parts": [
+    {
+      "name": "cuirass",
+      "index": 1
+    },
+    {
+      "name": "metal",
+      "index": 0
+    }
+  ]
+}

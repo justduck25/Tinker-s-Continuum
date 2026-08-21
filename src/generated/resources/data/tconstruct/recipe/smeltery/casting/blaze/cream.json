@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "#c:slimeball/earth",
+  "cast_consumed": true,
+  "cooling_time": 60,
+  "fluid": {
+    "amount": 50,
+    "fluid": "tconstruct:blazing_blood"
+  },
+  "id": "tconstruct:smeltery/casting/blaze/cream",
+  "result": "minecraft:magma_cream"
+}

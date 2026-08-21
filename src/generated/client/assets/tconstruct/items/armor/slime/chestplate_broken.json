@@ -1,0 +1,29 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "first_modifiers": [
+      "tconstruct:trim"
+    ],
+    "model": "tconstruct:item/armor/slime/chestplate_broken",
+    "modifier_maps": [
+      "tconstruct:slime/chestplate_broken",
+      "tconstruct:slime/chestplate"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "slime"
+      },
+      {
+        "index": 0,
+        "name": "ribcage"
+      }
+    ],
+    "textures": {
+      "layer0": "tconstruct:item/tool/armor/slime/chestplate/slime",
+      "particle": "tconstruct:item/tool/armor/slime/chestplate/slime",
+      "ribcage": "tconstruct:item/tool/armor/slime/chestplate/ribcage_broken",
+      "slime": "tconstruct:item/tool/armor/slime/chestplate/slime_broken"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:toggle_interaction",
+  "id": "tconstruct:tools/modifiers/worktable/toggle_interaction_modifier",
+  "inputs": [
+    {
+      "ingredient": "minecraft:lever"
+    }
+  ],
+  "tools": "#tconstruct:modifiable/interactable/dual"
+}

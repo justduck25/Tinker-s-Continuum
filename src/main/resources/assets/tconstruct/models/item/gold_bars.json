@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:block/gold_bars",
+    "particle": "tconstruct:block/gold_bars"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/ingot",
+  "cooling_time": 60,
+  "fluid": {
+    "amount": 90,
+    "fluid": "tconstruct:molten_pig_iron"
+  },
+  "id": "tconstruct:smeltery/casting/metal/pig_iron/ingot_gold_cast",
+  "result": {
+    "tag": "c:ingots/pig_iron"
+  }
+}

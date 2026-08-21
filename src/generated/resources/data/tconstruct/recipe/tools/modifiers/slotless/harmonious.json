@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/slotless/harmonious",
+  "inputs": [
+    {
+      "ingredient": "#c:music_discs"
+    }
+  ],
+  "level": 1,
+  "result": "tconstruct:harmonious",
+  "tools": "#tconstruct:modifiable/bonus_slots"
+}

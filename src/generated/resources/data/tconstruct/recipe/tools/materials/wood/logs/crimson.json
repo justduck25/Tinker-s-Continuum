@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/wood/logs/crimson",
+  "ingredient": "#minecraft:crimson_stems",
+  "leftover": "minecraft:crimson_planks",
+  "material": "tconstruct:wood#crimson",
+  "needed": 1,
+  "value": 4
+}

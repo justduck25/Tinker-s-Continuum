@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:modifier_salvage",
+  "id": "tconstruct:tools/modifiers/salvage/upgrade/knockback",
+  "modifier": "tconstruct:knockback",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      "#tconstruct:modifiable/melee",
+      "#tconstruct:modifiable/armor/chestplate"
+    ]
+  }
+}

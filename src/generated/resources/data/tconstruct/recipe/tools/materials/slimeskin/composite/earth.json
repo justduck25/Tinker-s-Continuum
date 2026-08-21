@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 250,
+    "tag": "c:slime"
+  },
+  "id": "tconstruct:tools/materials/slimeskin/composite/earth",
+  "input": "tconstruct:leather",
+  "output": "tconstruct:slimeskin",
+  "temperature": 50
+}

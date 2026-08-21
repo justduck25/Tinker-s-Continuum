@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:block/slime/sapling/blood",
+    "particle": "tconstruct:block/slime/sapling/blood"
+  }
+}

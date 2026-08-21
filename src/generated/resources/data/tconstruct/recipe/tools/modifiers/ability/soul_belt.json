@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/soul_belt",
+  "inputs": [
+    {
+      "ingredient": "minecraft:leather"
+    },
+    {
+      "ingredient": "minecraft:recovery_compass"
+    },
+    {
+      "ingredient": "minecraft:leather"
+    }
+  ],
+  "level": 1,
+  "result": "tconstruct:soul_belt",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/leggings"
+}

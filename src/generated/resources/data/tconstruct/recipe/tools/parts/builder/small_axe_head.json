@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 2,
+  "id": "tconstruct:tools/parts/builder/small_axe_head",
+  "pattern": "tconstruct:small_axe_head",
+  "pattern_item": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      "#tconstruct:patterns/default",
+      "tconstruct:small_axe_head_cast"
+    ]
+  },
+  "result": {
+    "item": "tconstruct:small_axe_head"
+  }
+}

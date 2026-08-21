@@ -1,0 +1,25 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/shuriken",
+    "modifier_maps": [
+      "tconstruct:shuriken"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "bottom"
+      },
+      {
+        "index": 0,
+        "name": "top"
+      }
+    ],
+    "textures": {
+      "bottom": "tconstruct:item/tool/ammo/shuriken_bottom",
+      "layer0": "tconstruct:item/tool/ammo/shuriken_top",
+      "particle": "tconstruct:item/tool/ammo/shuriken_top",
+      "top": "tconstruct:item/tool/ammo/shuriken_top"
+    }
+  }
+}

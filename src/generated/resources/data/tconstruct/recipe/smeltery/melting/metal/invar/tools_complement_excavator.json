@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/invar/tools_complement_excavator",
+  "ingredient": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "tools_complement:invar_excavator"
+    ]
+  },
+  "result": {
+    "amount": 990,
+    "tag": "c:molten_invar",
+    "unit_size": 10
+  },
+  "temperature": 900,
+  "time": 210
+}

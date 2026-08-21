@@ -1,0 +1,61 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "tconstruct:tool",
+      "first_modifiers": [
+        "tconstruct:dyed",
+        "tconstruct:trim"
+      ],
+      "model": "tconstruct:item/travelers_boots",
+      "modifier_maps": [
+        "tconstruct:travelers/boots"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "cuirass"
+        },
+        {
+          "index": 0,
+          "name": "metal"
+        }
+      ],
+      "textures": {
+        "cuirass": "tconstruct:item/tool/armor/travelers/boots/cuirass",
+        "layer0": "tconstruct:item/tool/armor/travelers/boots/cuirass",
+        "metal": "tconstruct:item/tool/armor/travelers/boots/metal",
+        "particle": "tconstruct:item/tool/armor/travelers/boots/cuirass"
+      }
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "first_modifiers": [
+        "tconstruct:dyed",
+        "tconstruct:trim"
+      ],
+      "model": "tconstruct:item/armor/travelers/boots_broken",
+      "modifier_maps": [
+        "tconstruct:travelers/boots_broken",
+        "tconstruct:travelers/boots"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "cuirass"
+        },
+        {
+          "index": 0,
+          "name": "metal"
+        }
+      ],
+      "textures": {
+        "cuirass": "tconstruct:item/tool/armor/travelers/boots/cuirass_broken",
+        "layer0": "tconstruct:item/tool/armor/travelers/boots/cuirass",
+        "metal": "tconstruct:item/tool/armor/travelers/boots/metal_broken",
+        "particle": "tconstruct:item/tool/armor/travelers/boots/cuirass"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:item/bottle/ender_slime_contents",
+    "layer1": "item/potion",
+    "particle": "tconstruct:item/bottle/ender_slime_contents"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": "minecraft:egg",
+    "M": "tconstruct:magma_bucket",
+    "S": "#c:dusts/glowstone",
+    "W": "minecraft:crimson_roots"
+  },
+  "pattern": [
+    "MMM",
+    "SES",
+    "WWW"
+  ],
+  "result": {
+    "id": "tconstruct:magma_cake"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:retextured_casting_basin",
+  "cast": "#tconstruct:smeltery_bricks",
+  "cast_consumed": true,
+  "cooling_time": 100,
+  "fluid": {
+    "amount": 360,
+    "tag": "c:molten_copper"
+  },
+  "id": "tconstruct:smeltery/casting/seared/smeltery_controller",
+  "result": "tconstruct:smeltery_controller"
+}

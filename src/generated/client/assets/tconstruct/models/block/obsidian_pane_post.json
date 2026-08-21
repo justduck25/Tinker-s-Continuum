@@ -1,0 +1,44 @@
+{
+  "parent": "tconstruct:block/template/pane/post",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#edge",
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#edge",
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ]
+        }
+      },
+      "from": [
+        7,
+        0,
+        7
+      ],
+      "to": [
+        9,
+        16,
+        9
+      ]
+    }
+  ],
+  "render_type": "minecraft:solid",
+  "textures": {
+    "edge": "minecraft:block/obsidian",
+    "pane": "minecraft:block/obsidian"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:severing",
+  "entity": {
+    "type": "minecraft:husk"
+  },
+  "id": "tconstruct:tools/severing/husk_head",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "tconstruct:husk_head"
+}

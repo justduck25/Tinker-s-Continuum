@@ -1,0 +1,35 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/fishing_rod/broken",
+    "modifier_maps": [
+      "tconstruct:fishing_rod/broken",
+      "tconstruct:fishing_rod"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/fishing_rod/modifiers/broken/",
+      "tconstruct:item/tool/fishing_rod/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 0,
+        "name": "rod"
+      },
+      {
+        "index": 1,
+        "name": "string"
+      },
+      {
+        "index": 2,
+        "name": "hook"
+      }
+    ],
+    "textures": {
+      "hook": "tconstruct:item/tool/fishing_rod/hook_broken",
+      "layer0": "tconstruct:item/tool/fishing_rod/rod",
+      "particle": "tconstruct:item/tool/fishing_rod/rod",
+      "rod": "tconstruct:item/tool/fishing_rod/rod",
+      "string": "tconstruct:item/tool/fishing_rod/string_broken"
+    }
+  }
+}

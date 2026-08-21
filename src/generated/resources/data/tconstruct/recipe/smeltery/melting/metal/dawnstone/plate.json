@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "registry": "minecraft:fluid",
+      "tag": "c:molten_dawnstone"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/dawnstone"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/dawnstone/plate",
+  "ingredient": "#c:plates/dawnstone",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_dawnstone"
+  },
+  "temperature": 900,
+  "time": 63
+}

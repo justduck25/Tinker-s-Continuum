@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/lead/allomancy_flakes",
+  "ingredient": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "allomancy:lead_flakes"
+    ]
+  },
+  "result": {
+    "amount": 30,
+    "tag": "c:molten_lead"
+  },
+  "temperature": 330,
+  "time": 25
+}

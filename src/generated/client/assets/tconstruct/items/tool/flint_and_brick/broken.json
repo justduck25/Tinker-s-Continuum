@@ -1,0 +1,19 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/flint_and_brick/broken",
+    "modifier_maps": [
+      "tconstruct:flint_and_brick_broken",
+      "tconstruct:flint_and_brick"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/flint_and_bronze/modifiers/broken/",
+      "tconstruct:item/tool/flint_and_bronze/modifiers/"
+    ],
+    "textures": {
+      "layer0": "tconstruct:item/tool/flint_and_brick/tool",
+      "particle": "tconstruct:item/tool/flint_and_brick/tool",
+      "tool": "tconstruct:item/tool/flint_and_brick/tool_broken"
+    }
+  }
+}

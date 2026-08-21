@@ -1,0 +1,35 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/kama/broken",
+    "modifier_maps": [
+      "tconstruct:kama_broken",
+      "tconstruct:kama"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/kama/modifiers/broken/",
+      "tconstruct:item/tool/kama/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "handle"
+      },
+      {
+        "index": 0,
+        "name": "head"
+      },
+      {
+        "index": 2,
+        "name": "binding"
+      }
+    ],
+    "textures": {
+      "binding": "tconstruct:item/tool/kama/binding",
+      "handle": "tconstruct:item/tool/pickaxe/handle",
+      "head": "tconstruct:item/tool/kama/head_broken",
+      "layer0": "tconstruct:item/tool/kama/head",
+      "particle": "tconstruct:item/tool/kama/head"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:severing",
+  "entity": {
+    "type": "minecraft:iron_golem"
+  },
+  "id": "tconstruct:tools/severing/iron_golem_head",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "minecraft:carved_pumpkin"
+}

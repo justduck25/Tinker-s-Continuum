@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:part_builder_tool_recycling",
+  "id": "tconstruct:tools/recycling/general",
+  "pattern": "tconstruct:venom_bottle",
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#tconstruct:modifiable/multipart",
+    "subtracted": "#tconstruct:modifiable/unrecyclable"
+  }
+}

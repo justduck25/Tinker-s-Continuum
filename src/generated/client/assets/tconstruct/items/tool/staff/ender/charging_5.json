@@ -1,0 +1,34 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "first_modifiers": [
+      "tconstruct:dyed",
+      "tconstruct:embellishment"
+    ],
+    "large": true,
+    "model": "tconstruct:item/tool/staff/ender/charging_5",
+    "modifier_maps": [
+      "tconstruct:staff/ender/5",
+      "tconstruct:staff/ender",
+      "tconstruct:staff"
+    ],
+    "modifier_roots": {
+      "large": [
+        "tconstruct:item/tool/staff/large_modifiers/ender/5/",
+        "tconstruct:item/tool/staff/large_modifiers/ender/",
+        "tconstruct:item/tool/staff/large_modifiers/"
+      ],
+      "small": [
+        "tconstruct:item/tool/staff/modifiers/ender/5/",
+        "tconstruct:item/tool/staff/modifiers/ender/",
+        "tconstruct:item/tool/staff/modifiers/"
+      ]
+    },
+    "textures": {
+      "large_tool": "tconstruct:item/tool/staff/ender_large_5",
+      "layer0": "tconstruct:item/tool/staff/ender",
+      "particle": "tconstruct:item/tool/staff/ender",
+      "tool": "tconstruct:item/tool/staff/ender_5"
+    }
+  }
+}

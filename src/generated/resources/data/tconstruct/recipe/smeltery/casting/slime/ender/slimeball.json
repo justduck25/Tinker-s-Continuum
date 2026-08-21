@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:casting_table",
+  "cooling_time": 53,
+  "fluid": {
+    "amount": 250,
+    "fluid": "tconstruct:ender_slime"
+  },
+  "id": "tconstruct:smeltery/casting/slime/ender/slimeball",
+  "result": "tconstruct:ender_slime_ball"
+}

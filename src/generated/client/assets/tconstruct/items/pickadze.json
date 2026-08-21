@@ -1,0 +1,110 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/pickadze/blocking",
+            "modifier_maps": [
+              "tconstruct:pickadze"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/pickadze/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 1,
+                "name": "handle"
+              },
+              {
+                "index": 0,
+                "name": "pick"
+              },
+              {
+                "index": 2,
+                "name": "adze"
+              }
+            ],
+            "textures": {
+              "adze": "tconstruct:item/tool/pickadze/adze",
+              "handle": "tconstruct:item/tool/pickaxe/handle",
+              "layer0": "tconstruct:item/tool/pickadze/adze",
+              "particle": "tconstruct:item/tool/pickadze/adze",
+              "pick": "tconstruct:item/tool/pickadze/pick"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "tconstruct:tool",
+        "model": "tconstruct:item/pickadze",
+        "modifier_maps": [
+          "tconstruct:pickadze"
+        ],
+        "modifier_roots": [
+          "tconstruct:item/tool/pickadze/modifiers/"
+        ],
+        "parts": [
+          {
+            "index": 1,
+            "name": "handle"
+          },
+          {
+            "index": 0,
+            "name": "pick"
+          },
+          {
+            "index": 2,
+            "name": "adze"
+          }
+        ],
+        "textures": {
+          "adze": "tconstruct:item/tool/pickadze/adze",
+          "handle": "tconstruct:item/tool/pickaxe/handle",
+          "layer0": "tconstruct:item/tool/pickadze/adze",
+          "particle": "tconstruct:item/tool/pickadze/adze",
+          "pick": "tconstruct:item/tool/pickadze/pick"
+        }
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/pickadze/broken",
+      "modifier_maps": [
+        "tconstruct:pickadze_broken",
+        "tconstruct:pickadze"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/pickadze/modifiers/broken/",
+        "tconstruct:item/tool/pickadze/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "handle"
+        },
+        {
+          "index": 0,
+          "name": "pick"
+        },
+        {
+          "index": 2,
+          "name": "adze"
+        }
+      ],
+      "textures": {
+        "adze": "tconstruct:item/tool/pickadze/adze",
+        "handle": "tconstruct:item/tool/pickaxe/handle",
+        "layer0": "tconstruct:item/tool/pickadze/adze",
+        "particle": "tconstruct:item/tool/pickadze/adze",
+        "pick": "tconstruct:item/tool/pickadze/pick_broken"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

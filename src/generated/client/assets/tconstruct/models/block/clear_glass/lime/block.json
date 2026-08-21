@@ -1,0 +1,76 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "colors": [
+    {
+      "color": "FF7FCC19"
+    }
+  ],
+  "connection": {
+    "textures": {
+      "all": "cornerless_full"
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "neoforge_data": {
+            "color": "FF7FCC19"
+          },
+          "texture": "#all"
+        },
+        "east": {
+          "cullface": "east",
+          "neoforge_data": {
+            "color": "FF7FCC19"
+          },
+          "texture": "#all"
+        },
+        "north": {
+          "cullface": "north",
+          "neoforge_data": {
+            "color": "FF7FCC19"
+          },
+          "texture": "#all"
+        },
+        "south": {
+          "cullface": "south",
+          "neoforge_data": {
+            "color": "FF7FCC19"
+          },
+          "texture": "#all"
+        },
+        "up": {
+          "cullface": "up",
+          "neoforge_data": {
+            "color": "FF7FCC19"
+          },
+          "texture": "#all"
+        },
+        "west": {
+          "cullface": "west",
+          "neoforge_data": {
+            "color": "FF7FCC19"
+          },
+          "texture": "#all"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "loader": "mantle:connected",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "all": "tconstruct:block/clear_stained_glass"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/tin"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_tin"
+  },
+  "id": "tconstruct:tools/materials/composite/whitestone_from_tin",
+  "input": "tconstruct:rock",
+  "output": "tconstruct:whitestone#composite",
+  "temperature": 225
+}

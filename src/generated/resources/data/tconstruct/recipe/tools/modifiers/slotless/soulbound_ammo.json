@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/slotless/soulbound_ammo",
+  "inputs": [
+    {
+      "ingredient": "minecraft:sculk_vein"
+    }
+  ],
+  "level": 1,
+  "result": "tconstruct:soulbound",
+  "tools": "#tconstruct:modifiable/single_use"
+}

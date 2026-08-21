@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": {
+      "model": "tconstruct:block/wood/nahuatl/slab"
+    },
+    "type=bottom,waterlogged=true": {
+      "model": "tconstruct:block/wood/nahuatl/slab"
+    },
+    "type=double,waterlogged=false": {
+      "model": "tconstruct:block/wood/nahuatl/planks"
+    },
+    "type=double,waterlogged=true": {
+      "model": "tconstruct:block/wood/nahuatl/planks"
+    },
+    "type=top,waterlogged=false": {
+      "model": "tconstruct:block/wood/nahuatl/slab_top"
+    },
+    "type=top,waterlogged=true": {
+      "model": "tconstruct:block/wood/nahuatl/slab_top"
+    }
+  }
+}

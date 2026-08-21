@@ -1,0 +1,37 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/war_pick/firework",
+    "modifier_maps": [
+      "tconstruct:war_pick"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/war_pick/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "body"
+      },
+      {
+        "index": 2,
+        "name": "bowstring"
+      },
+      {
+        "index": 0,
+        "name": "limb"
+      },
+      {
+        "name": "ammo"
+      }
+    ],
+    "textures": {
+      "ammo": "tconstruct:item/tool/war_pick/firework",
+      "body": "tconstruct:item/tool/war_pick/body",
+      "bowstring": "tconstruct:item/tool/war_pick/bowstring_3",
+      "layer0": "tconstruct:item/tool/war_pick/limb",
+      "limb": "tconstruct:item/tool/war_pick/limb",
+      "particle": "tconstruct:item/tool/war_pick/limb"
+    }
+  }
+}

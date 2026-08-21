@@ -1,0 +1,24 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/smelting",
+  "inputs": [
+    {
+      "ingredient": "minecraft:campfire"
+    }
+  ],
+  "level": {
+    "max": 4
+  },
+  "result": "tconstruct:smelting",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      "#tconstruct:modifiable/interactable",
+      "#tconstruct:modifiable/armor/worn"
+    ]
+  }
+}

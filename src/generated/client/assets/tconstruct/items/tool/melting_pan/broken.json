@@ -1,0 +1,30 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/melting_pan/broken",
+    "modifier_maps": [
+      "tconstruct:melting_pan/broken",
+      "tconstruct:melting_pan"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/melting_pan/modifiers/broken/",
+      "tconstruct:item/tool/melting_pan/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "handle"
+      },
+      {
+        "index": 0,
+        "name": "head"
+      }
+    ],
+    "textures": {
+      "handle": "tconstruct:item/tool/melting_pan/handle",
+      "head": "tconstruct:item/tool/melting_pan/head_broken",
+      "layer0": "tconstruct:item/tool/melting_pan/head",
+      "particle": "tconstruct:item/tool/melting_pan/head"
+    }
+  }
+}

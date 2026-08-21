@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/nicrosil"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/nugget",
+  "cooling_time": 23,
+  "fluid": {
+    "amount": 10,
+    "tag": "c:molten_nicrosil"
+  },
+  "id": "tconstruct:smeltery/casting/metal/nicrosil/nugget_gold_cast",
+  "result": {
+    "tag": "c:nuggets/nicrosil"
+  }
+}

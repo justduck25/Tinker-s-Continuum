@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 250,
+    "fluid": "tconstruct:venom"
+  },
+  "id": "tconstruct:tools/materials/composite/venombone",
+  "input": "tconstruct:bone",
+  "output": "tconstruct:venombone",
+  "temperature": 10
+}

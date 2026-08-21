@@ -1,0 +1,28 @@
+{
+  "name": "minecraft:chests/desert_pyramid",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:ancient"
+                },
+                {
+                  "type": "tconstruct:ancient"
+                }
+              ]
+            }
+          ],
+          "name": "tconstruct:battlesign",
+          "weight": 8
+        }
+      ],
+      "name": "main"
+    }
+  ]
+}

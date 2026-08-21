@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/ice/blue",
+  "ingredient": "minecraft:blue_ice",
+  "material": "tconstruct:ice",
+  "needed": 1,
+  "value": 9
+}

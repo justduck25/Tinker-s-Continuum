@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "tconstruct:pattern",
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "id": "tconstruct:tools/modifiers/gold_reinforcement",
+  "result": "tconstruct:gold_reinforcement"
+}

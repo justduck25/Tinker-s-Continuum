@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "minecraft:glowstone",
+  "cast_consumed": true,
+  "cooling_time": 166,
+  "fluid": {
+    "amount": 1000,
+    "fluid": "tconstruct:scorched_stone"
+  },
+  "id": "tconstruct:smeltery/casting/scorched/lamp",
+  "result": "tconstruct:scorched_lamp"
+}

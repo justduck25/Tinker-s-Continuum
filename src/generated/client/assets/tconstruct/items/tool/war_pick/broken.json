@@ -1,0 +1,35 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/war_pick/broken",
+    "modifier_maps": [
+      "tconstruct:war_pick/broken",
+      "tconstruct:war_pick"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/war_pick/modifiers/broken/",
+      "tconstruct:item/tool/war_pick/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "body"
+      },
+      {
+        "index": 2,
+        "name": "bowstring"
+      },
+      {
+        "index": 0,
+        "name": "limb"
+      }
+    ],
+    "textures": {
+      "body": "tconstruct:item/tool/war_pick/body",
+      "bowstring": "tconstruct:item/tool/war_pick/bowstring_broken",
+      "layer0": "tconstruct:item/tool/war_pick/limb",
+      "limb": "tconstruct:item/tool/war_pick/limb",
+      "particle": "tconstruct:item/tool/war_pick/limb"
+    }
+  }
+}

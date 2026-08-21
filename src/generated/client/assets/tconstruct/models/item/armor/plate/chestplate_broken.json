@@ -1,0 +1,28 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "plating": "tconstruct:item/tool/armor/plate/chestplate/plating_broken",
+    "maille": "tconstruct:item/tool/armor/plate/chestplate/maille_broken",
+    "layer0": "tconstruct:item/tool/armor/plate/chestplate/plating",
+    "particle": "tconstruct:item/tool/armor/plate/chestplate/plating"
+  },
+  "modifier_maps": [
+    "tconstruct:plate/chestplate_broken",
+    "tconstruct:plate/chestplate"
+  ],
+  "first_modifiers": [
+    "tconstruct:dyed",
+    "tconstruct:trim"
+  ],
+  "parts": [
+    {
+      "name": "plating",
+      "index": 0
+    },
+    {
+      "name": "maille",
+      "index": 1
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:armors/leggings/nickel"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/nickel/leggings",
+  "ingredient": "#c:armors/leggings/nickel",
+  "result": {
+    "amount": 630,
+    "tag": "c:molten_nickel",
+    "unit_size": 10
+  },
+  "temperature": 950,
+  "time": 171
+}

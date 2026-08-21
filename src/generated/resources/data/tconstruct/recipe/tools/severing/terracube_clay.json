@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:severing",
+  "entity": {
+    "type": "tconstruct:terracube"
+  },
+  "id": "tconstruct:tools/severing/terracube_clay",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "minecraft:clay_ball"
+}

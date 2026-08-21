@@ -1,0 +1,28 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "neoforge:item/default-tool",
+  "textures": {
+    "head": "tconstruct:item/tool/melting_pan/head_broken",
+    "handle": "tconstruct:item/tool/melting_pan/handle",
+    "layer0": "tconstruct:item/tool/melting_pan/head",
+    "particle": "tconstruct:item/tool/melting_pan/head"
+  },
+  "modifier_maps": [
+    "tconstruct:melting_pan/broken",
+    "tconstruct:melting_pan"
+  ],
+  "modifier_roots": [
+    "tconstruct:item/tool/melting_pan/modifiers/broken/",
+    "tconstruct:item/tool/melting_pan/modifiers/"
+  ],
+  "parts": [
+    {
+      "name": "handle",
+      "index": 1
+    },
+    {
+      "name": "head",
+      "index": 0
+    }
+  ]
+}

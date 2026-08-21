@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/mangrove_roots",
+  "textures": {
+    "particle": "#side",
+    "side": "tconstruct:block/wood/enderbark/roots/ichor",
+    "top": "tconstruct:block/wood/enderbark/roots/ichor_top"
+  }
+}

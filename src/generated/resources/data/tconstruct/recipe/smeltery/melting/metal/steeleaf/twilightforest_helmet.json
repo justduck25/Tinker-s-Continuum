@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/steeleaf/twilightforest_helmet",
+  "ingredient": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "twilightforest:steeleaf_helmet"
+    ]
+  },
+  "result": {
+    "amount": 450,
+    "fluid": "tconstruct:molten_steeleaf",
+    "unit_size": 10
+  },
+  "temperature": 934,
+  "time": 144
+}

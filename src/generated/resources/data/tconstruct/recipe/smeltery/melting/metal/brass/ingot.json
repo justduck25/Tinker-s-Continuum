@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/brass"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/brass/ingot",
+  "ingredient": "#c:ingots/brass",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_brass"
+  },
+  "temperature": 605,
+  "time": 54
+}

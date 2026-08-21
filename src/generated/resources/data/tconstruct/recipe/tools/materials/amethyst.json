@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/amethyst",
+  "ingredient": "#c:gems/amethyst",
+  "material": "tconstruct:amethyst",
+  "needed": 1,
+  "value": 1
+}

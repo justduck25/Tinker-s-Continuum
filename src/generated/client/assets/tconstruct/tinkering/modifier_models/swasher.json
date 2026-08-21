@@ -1,0 +1,17 @@
+{
+  "constant": {
+    "fluid": {
+      "type": "tconstruct:tank",
+      "full": "tconstruct:item/tool/swasher/fluid_full",
+      "partial": "tconstruct:item/tool/swasher/fluid_partial"
+    }
+  },
+  "modifiers": {
+    "tconstruct:mossy": {
+      "type": "tconstruct:mossy",
+      "texture_1": "tconstruct:item/tool/swasher/modifiers/tconstruct_mossy_1",
+      "texture_2": "tconstruct:item/tool/swasher/modifiers/tconstruct_mossy_2",
+      "texture_3": "tconstruct:item/tool/swasher/modifiers/tconstruct_mossy_3"
+    }
+  }
+}

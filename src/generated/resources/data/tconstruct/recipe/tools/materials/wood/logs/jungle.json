@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/wood/logs/jungle",
+  "ingredient": "#minecraft:jungle_logs",
+  "leftover": "minecraft:jungle_planks",
+  "material": "tconstruct:wood",
+  "needed": 1,
+  "value": 4
+}

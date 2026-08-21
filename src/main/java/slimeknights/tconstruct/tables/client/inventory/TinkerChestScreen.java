@@ -1,0 +1,91 @@
+package slimeknights.tconstruct.tables.client.inventory;
+
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.input.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import slimeknights.tconstruct.tables.block.entity.chest.AbstractChestBlockEntity;
+import slimeknights.tconstruct.tables.client.inventory.module.ScalingChestScreen;
+import slimeknights.tconstruct.tables.menu.TabbedContainerMenu;
+import slimeknights.tconstruct.tables.menu.TinkerChestContainerMenu;
+
+public class TinkerChestScreen extends BaseTabbedScreen<AbstractChestBlockEntity,TabbedContainerMenu<AbstractChestBlockEntity>> {
+  // TODO: can this safely be removed? its unused
+  //protected static final ScalableElementScreen BACKGROUND = new ScalableElementScreen(7 + 18, 7, 18, 18);
+  public ScalingChestScreen<AbstractChestBlockEntity> scalingChestScreen;
+
+  public TinkerChestScreen(TabbedContainerMenu<AbstractChestBlockEntity> container, Inventory playerInventory, Component title) {
+    super(container, playerInventory, title, 176, 184);
+
+    this.realHeight = 184;
+    TinkerChestContainerMenu.DynamicChestInventory chestContainer = container.getSubContainer(TinkerChestContainerMenu.DynamicChestInventory.class);
+    if (chestContainer != null) {
+      this.scalingChestScreen = new ScalingChestScreen<>(this, chestContainer, playerInventory, title);
+      this.scalingChestScreen.addHeight(18);
+      this.addModule(scalingChestScreen);
+    }
+  }
+
+  @Override
+  public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    this.drawBackground(graphics, BLANK_BACK_PLUS_1);
+
+    if (this.scalingChestScreen != null) {
+      this.scalingChestScreen.update(mouseX, mouseY);
+    }
+
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
+  }
+
+  @Override
+  public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+    if (this.scalingChestScreen == null) {
+      return false;
+    }
+
+    if (this.scalingChestScreen.handleMouseClicked(event.x(), event.y(), event.button())) {
+      return false;
+    }
+
+    return super.mouseClicked(event, doubleClick);
+  }
+
+  @Override
+  public boolean mouseDragged(MouseButtonEvent event, double dx, double dy) {
+    if (this.scalingChestScreen == null) {
+      return false;
+    }
+
+    if (this.scalingChestScreen.handleMouseClickMove(event.x(), event.y(), event.button(), dx)) {
+      return false;
+    }
+
+    return super.mouseDragged(event, dx, dy);
+  }
+
+  @Override
+  public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
+    if (this.scalingChestScreen == null) {
+      return false;
+    }
+
+    if (this.scalingChestScreen.handleMouseScrolled(mouseX, mouseY, scrollY)) {
+      return false;
+    }
+
+    return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
+  }
+
+  @Override
+  public boolean mouseReleased(MouseButtonEvent event) {
+    if (this.scalingChestScreen == null) {
+      return false;
+    }
+
+    if (this.scalingChestScreen.handleMouseReleased(event.x(), event.y(), event.button())) {
+      return false;
+    }
+
+    return super.mouseReleased(event);
+  }
+}

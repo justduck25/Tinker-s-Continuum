@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 250,
+    "tag": "c:magma"
+  },
+  "id": "tconstruct:tools/materials/casting/magma",
+  "output": "tconstruct:magma",
+  "temperature": 300
+}

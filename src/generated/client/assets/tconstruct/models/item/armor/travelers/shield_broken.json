@@ -1,0 +1,31 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "tconstruct:item/base/shield",
+  "textures": {
+    "cuirass": "tconstruct:item/tool/armor/travelers/shield/cuirass_broken",
+    "wood": "tconstruct:item/tool/armor/travelers/shield/wood_broken",
+    "layer0": "tconstruct:item/tool/armor/travelers/shield/cuirass",
+    "particle": "tconstruct:item/tool/armor/travelers/shield/cuirass"
+  },
+  "modifier_maps": [
+    "tconstruct:travelers/shield_broken",
+    "tconstruct:travelers/shield"
+  ],
+  "modifier_roots": [
+    "tconstruct:item/tool/armor/travelers/shield/modifiers/broken/",
+    "tconstruct:item/tool/armor/travelers/shield/modifiers/"
+  ],
+  "first_modifiers": [
+    "tconstruct:dyed"
+  ],
+  "parts": [
+    {
+      "name": "wood",
+      "index": 0
+    },
+    {
+      "name": "cuirass",
+      "index": 1
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "minecraft:dirt",
+  "cast_consumed": true,
+  "cooling_time": 68,
+  "fluid": {
+    "amount": 500,
+    "fluid": "tconstruct:sky_slime"
+  },
+  "id": "tconstruct:smeltery/casting/slime/sky/dirt",
+  "result": "tconstruct:sky_slime_dirt"
+}

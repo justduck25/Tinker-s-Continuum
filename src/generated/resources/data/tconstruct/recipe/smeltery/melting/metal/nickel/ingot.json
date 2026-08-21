@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/nickel"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/nickel/ingot",
+  "ingredient": "#c:ingots/nickel",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_nickel"
+  },
+  "temperature": 950,
+  "time": 65
+}

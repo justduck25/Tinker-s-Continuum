@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:severing",
+  "entity": {
+    "type": "tconstruct:sky_slime"
+  },
+  "id": "tconstruct:tools/severing/skyslime_ball",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "tconstruct:sky_slime_ball"
+}

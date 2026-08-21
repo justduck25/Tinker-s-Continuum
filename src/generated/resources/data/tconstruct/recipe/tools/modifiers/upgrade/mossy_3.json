@@ -1,0 +1,28 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/mossy_3",
+  "inputs": [
+    {
+      "ingredient": "tconstruct:ball_of_moss"
+    },
+    {
+      "ingredient": "tconstruct:ball_of_moss"
+    },
+    {
+      "ingredient": "tconstruct:ball_of_moss"
+    },
+    {
+      "ingredient": "#c:ingots/netherite"
+    },
+    {
+      "ingredient": "#c:ingots/netherite"
+    }
+  ],
+  "level": 3,
+  "result": "tconstruct:mossy",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/durability"
+}

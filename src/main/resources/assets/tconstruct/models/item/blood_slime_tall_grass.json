@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:block/slime/foliage/nether_grass",
+    "particle": "tconstruct:block/slime/foliage/nether_grass"
+  }
+}

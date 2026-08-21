@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/red_sand/molding/nuggets",
+  "material": "#tconstruct:casts/red_sand",
+  "pattern": "#c:nuggets",
+  "result": "tconstruct:nugget_red_sand_cast"
+}

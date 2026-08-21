@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": {
+      "model": "tconstruct:block/wood/skyroot/slab"
+    },
+    "type=bottom,waterlogged=true": {
+      "model": "tconstruct:block/wood/skyroot/slab"
+    },
+    "type=double,waterlogged=false": {
+      "model": "tconstruct:block/wood/skyroot/planks"
+    },
+    "type=double,waterlogged=true": {
+      "model": "tconstruct:block/wood/skyroot/planks"
+    },
+    "type=top,waterlogged=false": {
+      "model": "tconstruct:block/wood/skyroot/slab_top"
+    },
+    "type=top,waterlogged=true": {
+      "model": "tconstruct:block/wood/skyroot/slab_top"
+    }
+  }
+}

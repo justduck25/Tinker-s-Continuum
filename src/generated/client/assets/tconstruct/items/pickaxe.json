@@ -1,0 +1,110 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/pickaxe/blocking",
+            "modifier_maps": [
+              "tconstruct:pickaxe"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/pickaxe/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 1,
+                "name": "handle"
+              },
+              {
+                "index": 0,
+                "name": "head"
+              },
+              {
+                "index": 2,
+                "name": "binding"
+              }
+            ],
+            "textures": {
+              "binding": "tconstruct:item/tool/pickaxe/binding",
+              "handle": "tconstruct:item/tool/pickaxe/handle",
+              "head": "tconstruct:item/tool/pickaxe/head",
+              "layer0": "tconstruct:item/tool/pickaxe/head",
+              "particle": "tconstruct:item/tool/pickaxe/head"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "tconstruct:tool",
+        "model": "tconstruct:item/pickaxe",
+        "modifier_maps": [
+          "tconstruct:pickaxe"
+        ],
+        "modifier_roots": [
+          "tconstruct:item/tool/pickaxe/modifiers/"
+        ],
+        "parts": [
+          {
+            "index": 1,
+            "name": "handle"
+          },
+          {
+            "index": 0,
+            "name": "head"
+          },
+          {
+            "index": 2,
+            "name": "binding"
+          }
+        ],
+        "textures": {
+          "binding": "tconstruct:item/tool/pickaxe/binding",
+          "handle": "tconstruct:item/tool/pickaxe/handle",
+          "head": "tconstruct:item/tool/pickaxe/head",
+          "layer0": "tconstruct:item/tool/pickaxe/head",
+          "particle": "tconstruct:item/tool/pickaxe/head"
+        }
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/pickaxe/broken",
+      "modifier_maps": [
+        "tconstruct:pickaxe_broken",
+        "tconstruct:pickaxe"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/pickaxe/modifiers/broken/",
+        "tconstruct:item/tool/pickaxe/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "handle"
+        },
+        {
+          "index": 0,
+          "name": "head"
+        },
+        {
+          "index": 2,
+          "name": "binding"
+        }
+      ],
+      "textures": {
+        "binding": "tconstruct:item/tool/pickaxe/binding",
+        "handle": "tconstruct:item/tool/pickaxe/handle",
+        "head": "tconstruct:item/tool/pickaxe/head_broken",
+        "layer0": "tconstruct:item/tool/pickaxe/head",
+        "particle": "tconstruct:item/tool/pickaxe/head"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

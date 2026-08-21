@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_combination_filled",
+      "match": [
+        "c:ores/emerald",
+        "c:ore_rates/sparse"
+      ]
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 50,
+      "fluid": "tconstruct:molten_diamond",
+      "rate": "gem"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/emerald/ore_sparse",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#c:ores/emerald",
+      "#c:ore_rates/sparse"
+    ]
+  },
+  "rate": "gem",
+  "result": {
+    "amount": 50,
+    "fluid": "tconstruct:molten_emerald"
+  },
+  "temperature": 934,
+  "time": 96
+}

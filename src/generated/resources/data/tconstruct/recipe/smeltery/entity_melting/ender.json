@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:entity_melting",
+  "damage": 2,
+  "entity": {
+    "types": [
+      "minecraft:enderman",
+      "minecraft:endermite",
+      "minecraft:ender_dragon"
+    ]
+  },
+  "id": "tconstruct:smeltery/entity_melting/ender",
+  "result": {
+    "amount": 25,
+    "tag": "c:ender"
+  }
+}

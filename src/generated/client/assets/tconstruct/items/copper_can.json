@@ -1,0 +1,15 @@
+{
+  "model": {
+    "type": "neoforge:fluid_container",
+    "apply_fluid_luminosity": true,
+    "cover_is_mask": true,
+    "fluid": "minecraft:empty",
+    "force_opaque_fluid": true,
+    "textures": {
+      "base": "tconstruct:item/copper_can",
+      "fluid": "tconstruct:item/copper_can_fluid",
+      "layer0": "tconstruct:item/copper_can",
+      "particle": "tconstruct:item/copper_can"
+    }
+  }
+}

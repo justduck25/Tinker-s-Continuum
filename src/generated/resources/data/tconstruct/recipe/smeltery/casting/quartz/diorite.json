@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "minecraft:andesite",
+  "cast_consumed": true,
+  "cooling_time": 41,
+  "fluid": {
+    "amount": 50,
+    "fluid": "tconstruct:molten_quartz"
+  },
+  "id": "tconstruct:smeltery/casting/quartz/diorite",
+  "result": "minecraft:diorite"
+}

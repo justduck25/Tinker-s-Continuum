@@ -1,0 +1,37 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "first_modifiers": [
+      "tconstruct:dyed",
+      "tconstruct:embellishment"
+    ],
+    "large": true,
+    "model": "tconstruct:item/tool/staff/earth/broken",
+    "modifier_maps": [
+      "tconstruct:staff/earth/broken",
+      "tconstruct:staff/earth",
+      "tconstruct:staff/broken",
+      "tconstruct:staff"
+    ],
+    "modifier_roots": {
+      "large": [
+        "tconstruct:item/tool/staff/large_modifiers/earth/broken/",
+        "tconstruct:item/tool/staff/large_modifiers/earth/",
+        "tconstruct:item/tool/staff/large_modifiers/broken/",
+        "tconstruct:item/tool/staff/large_modifiers/"
+      ],
+      "small": [
+        "tconstruct:item/tool/staff/modifiers/earth/broken/",
+        "tconstruct:item/tool/staff/modifiers/earth/",
+        "tconstruct:item/tool/staff/modifiers/broken/",
+        "tconstruct:item/tool/staff/modifiers/"
+      ]
+    },
+    "textures": {
+      "large_tool": "tconstruct:item/tool/staff/earth_large_broken",
+      "layer0": "tconstruct:item/tool/staff/earth",
+      "particle": "tconstruct:item/tool/staff/earth",
+      "tool": "tconstruct:item/tool/staff/earth_broken"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "map=false": { "model": "tconstruct:block/frame/gold" },
+        "map=true": { "model": "tconstruct:block/frame/gold_map" }
+    }
+}

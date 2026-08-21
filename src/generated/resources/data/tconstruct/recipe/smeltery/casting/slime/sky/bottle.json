@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:glass_bottle",
+  "cast_consumed": true,
+  "cooling_time": 1,
+  "fluid": {
+    "amount": 250,
+    "fluid": "tconstruct:sky_slime"
+  },
+  "id": "tconstruct:smeltery/casting/slime/sky/bottle",
+  "result": "tconstruct:sky_slime_bottle"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_copper"
+  },
+  "id": "tconstruct:tools/materials/casting/copper",
+  "output": "tconstruct:copper",
+  "temperature": 500
+}

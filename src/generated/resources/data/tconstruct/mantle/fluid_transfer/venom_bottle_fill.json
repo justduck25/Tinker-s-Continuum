@@ -1,0 +1,9 @@
+{
+  "type": "mantle:fill_item",
+  "fluid": {
+    "amount": 250,
+    "fluid": "tconstruct:venom"
+  },
+  "input": "minecraft:glass_bottle",
+  "result": "tconstruct:venom_bottle"
+}

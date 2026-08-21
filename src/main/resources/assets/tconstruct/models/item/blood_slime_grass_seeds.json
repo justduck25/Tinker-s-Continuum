@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tconstruct:item/blood_slime_grass_seeds",
+    "particle": "tconstruct:item/blood_slime_grass_seeds"
+  }
+}

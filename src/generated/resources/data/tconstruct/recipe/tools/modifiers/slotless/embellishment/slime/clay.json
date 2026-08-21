@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/slime/clay",
+  "inputs": [
+    {
+      "ingredient": "minecraft:clay"
+    },
+    {
+      "ingredient": "minecraft:clay_ball"
+    },
+    {
+      "ingredient": "minecraft:clay"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:clay"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/slime",
+  "variant_formatter": "tconstruct:material"
+}

@@ -1,0 +1,36 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_combination_filled",
+      "ignore": "tconstruct:non_singular_ore_rates",
+      "match": [
+        "c:ores/silver"
+      ]
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/lead"
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 180,
+      "rate": "metal",
+      "tag": "c:molten_lead"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/silver/ore_singular_byproduct_0",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:difference",
+    "base": "#c:ores/silver",
+    "subtracted": "#tconstruct:non_singular_ore_rates"
+  },
+  "rate": "metal",
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_silver"
+  },
+  "temperature": 790,
+  "time": 150
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:item/generated",
+  "loader": "tconstruct:fluid_container",
+  "textures": {
+    "base": "tconstruct:item/copper_can",
+    "fluid": "tconstruct:item/copper_can_fluid",
+    "layer0": "tconstruct:item/copper_can",
+    "particle": "tconstruct:item/copper_can"
+  }
+}

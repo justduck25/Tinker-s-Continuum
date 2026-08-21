@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:geore_blocks/emerald"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/emerald/geore/block",
+  "ingredient": "#c:geore_blocks/emerald",
+  "result": {
+    "amount": 400,
+    "fluid": "tconstruct:molten_emerald"
+  },
+  "temperature": 934,
+  "time": 129
+}

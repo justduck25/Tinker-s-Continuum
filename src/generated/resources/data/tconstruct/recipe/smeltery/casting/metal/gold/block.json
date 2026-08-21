@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 171,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_gold"
+  },
+  "id": "tconstruct:smeltery/casting/metal/gold/block",
+  "result": {
+    "tag": "c:storage_blocks/gold"
+  }
+}

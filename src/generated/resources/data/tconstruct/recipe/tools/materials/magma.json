@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/magma",
+  "ingredient": "minecraft:magma_cream",
+  "material": "tconstruct:magma",
+  "needed": 1,
+  "value": 1
+}

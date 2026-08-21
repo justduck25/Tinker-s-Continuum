@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:dusts/lead"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/lead/dust",
+  "ingredient": "#c:dusts/lead",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_lead"
+  },
+  "temperature": 330,
+  "time": 33
+}

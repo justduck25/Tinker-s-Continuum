@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/red_sand/molding/large_plate",
+  "material": "#tconstruct:casts/red_sand",
+  "pattern": {
+    "neoforge:ingredient_type": "tconstruct:material",
+    "match": "tconstruct:large_plate"
+  },
+  "result": "tconstruct:large_plate_red_sand_cast"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:table_casting_material",
+  "cast": "#tconstruct:casts/multi_use/tough_binding",
+  "id": "tconstruct:tools/parts/casting/tough_binding_gold_cast",
+  "item_cost": 3,
+  "result": "tconstruct:tough_binding"
+}

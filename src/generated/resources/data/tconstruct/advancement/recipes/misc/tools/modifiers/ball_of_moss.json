@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mossy_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#tconstruct:ball_of_moss_ingredients"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tconstruct:tools/modifiers/ball_of_moss"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mossy_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tconstruct:tools/modifiers/ball_of_moss"
+    ]
+  }
+}

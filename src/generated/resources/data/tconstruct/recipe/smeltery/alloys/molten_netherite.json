@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "tconstruct:config",
+      "prop": "cheaper_netherite_alloy"
+    }
+  ],
+  "type": "tconstruct:alloy",
+  "id": "minecraft:empty",
+  "inputs": [
+    {
+      "amount": 40,
+      "fluid": "tconstruct:molten_debris"
+    },
+    {
+      "amount": 20,
+      "tag": "c:molten_gold"
+    }
+  ],
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_netherite"
+  },
+  "temperature": 1250
+}

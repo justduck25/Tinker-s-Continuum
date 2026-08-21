@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "id": "tconstruct:smeltery/casts/sand/builder_cast/repair_kit",
+  "pattern": "tconstruct:repair_kit",
+  "pattern_item": "#tconstruct:casts/sand",
+  "result": "tconstruct:repair_kit_sand_cast"
+}

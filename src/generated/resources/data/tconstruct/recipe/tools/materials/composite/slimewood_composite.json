@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 250,
+    "tag": "c:slime"
+  },
+  "id": "tconstruct:tools/materials/composite/slimewood_composite",
+  "input": "tconstruct:wood",
+  "output": "tconstruct:slimewood#composite",
+  "temperature": 50
+}

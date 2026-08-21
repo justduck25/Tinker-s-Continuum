@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:overslime_modifier",
+  "id": "tconstruct:tools/modifiers/slotless/overslime/ichor_bottle",
+  "ingredient": "tconstruct:ichor_slime_bottle",
+  "restore_amount": 100,
+  "tools": "#tconstruct:modifiable/durability"
+}

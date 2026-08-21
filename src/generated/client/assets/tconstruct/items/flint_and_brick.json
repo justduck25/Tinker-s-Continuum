@@ -1,0 +1,62 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/flint_and_brick/blocking",
+            "modifier_maps": [
+              "tconstruct:flint_and_brick"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/flint_and_bronze/modifiers/"
+            ],
+            "textures": {
+              "layer0": "tconstruct:item/tool/flint_and_brick/tool",
+              "particle": "tconstruct:item/tool/flint_and_brick/tool",
+              "tool": "tconstruct:item/tool/flint_and_brick/tool"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "tconstruct:tool",
+        "model": "tconstruct:item/flint_and_brick",
+        "modifier_maps": [
+          "tconstruct:flint_and_brick"
+        ],
+        "modifier_roots": [
+          "tconstruct:item/tool/flint_and_bronze/modifiers/"
+        ],
+        "textures": {
+          "layer0": "tconstruct:item/tool/flint_and_brick/tool",
+          "particle": "tconstruct:item/tool/flint_and_brick/tool",
+          "tool": "tconstruct:item/tool/flint_and_brick/tool"
+        }
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/flint_and_brick/broken",
+      "modifier_maps": [
+        "tconstruct:flint_and_brick_broken",
+        "tconstruct:flint_and_brick"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/flint_and_bronze/modifiers/broken/",
+        "tconstruct:item/tool/flint_and_bronze/modifiers/"
+      ],
+      "textures": {
+        "layer0": "tconstruct:item/tool/flint_and_brick/tool",
+        "particle": "tconstruct:item/tool/flint_and_brick/tool",
+        "tool": "tconstruct:item/tool/flint_and_brick/tool_broken"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

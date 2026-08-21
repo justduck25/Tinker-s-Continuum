@@ -1,0 +1,15 @@
+{
+  "model": {
+    "type": "neoforge:fluid_container",
+    "apply_fluid_luminosity": true,
+    "cover_is_mask": true,
+    "flip_gas": false,
+    "fluid": "tconstruct:molten_gold",
+    "force_opaque_fluid": true,
+    "textures": {
+      "base": "minecraft:item/bucket",
+      "fluid": "neoforge:item/mask/bucket_fluid_drip",
+      "particle": "minecraft:item/bucket"
+    }
+  }
+}

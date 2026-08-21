@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/sand/molding/tool_binding",
+  "material": "#tconstruct:casts/sand",
+  "pattern": {
+    "neoforge:ingredient_type": "tconstruct:material",
+    "match": "tconstruct:tool_binding"
+  },
+  "result": "tconstruct:tool_binding_sand_cast"
+}

@@ -1,0 +1,31 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "base": "tconstruct:item/tool/armor/travelers/goggles/base_broken",
+    "cuirass": "tconstruct:item/tool/armor/travelers/goggles/cuirass_broken",
+    "metal": "tconstruct:item/tool/armor/travelers/goggles/metal_broken",
+    "layer0": "tconstruct:item/tool/armor/travelers/goggles/base",
+    "particle": "tconstruct:item/tool/armor/travelers/goggles/base"
+  },
+  "modifier_maps": [
+    "tconstruct:travelers/goggles_broken",
+    "tconstruct:travelers/goggles"
+  ],
+  "first_modifiers": [
+    "tconstruct:dyed"
+  ],
+  "parts": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "cuirass",
+      "index": 1
+    },
+    {
+      "name": "metal",
+      "index": 0
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "color": "FFF800F8",
+  "flowing": "tconstruct:fluid/potion/flowing",
+  "fog": {
+    "end": 1.0,
+    "start": 0.25
+  },
+  "still": "tconstruct:fluid/potion/still"
+}

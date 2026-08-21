@@ -1,0 +1,51 @@
+{
+  "parent": "tconstruct:block/template/pane/post",
+  "connection": {
+    "predicate": "pane",
+    "textures": {
+      "pane": "cornerless_full"
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#edge",
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#edge",
+          "uv": [
+            7,
+            7,
+            9,
+            9
+          ]
+        }
+      },
+      "from": [
+        7,
+        0,
+        7
+      ],
+      "to": [
+        9,
+        16,
+        9
+      ]
+    }
+  ],
+  "loader": "mantle:connected",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "edge": "tconstruct:block/smeltery/seared_glass_top",
+    "pane": "tconstruct:block/smeltery/soul_glass"
+  }
+}

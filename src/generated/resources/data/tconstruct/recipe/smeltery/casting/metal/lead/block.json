@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/lead"
+    }
+  ],
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 130,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_lead"
+  },
+  "id": "tconstruct:smeltery/casting/metal/lead/block",
+  "result": {
+    "tag": "c:storage_blocks/lead"
+  }
+}

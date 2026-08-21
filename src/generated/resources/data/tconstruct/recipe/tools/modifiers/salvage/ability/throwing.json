@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:modifier_salvage",
+  "id": "tconstruct:tools/modifiers/salvage/ability/throwing",
+  "modifier": "tconstruct:throwing",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#tconstruct:modifiable/durability",
+      "#tconstruct:modifiable/interactable/charge",
+      {
+        "neoforge:ingredient_type": "neoforge:compound",
+        "children": [
+          "#tconstruct:modifiable/melee/weapon",
+          "#tconstruct:modifiable/harvest"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/minotaur_axe/blocking",
+            "modifier_maps": [
+              "tconstruct:minotaur_axe"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/minotaur_axe/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 2,
+                "name": "handle"
+              },
+              {
+                "index": 0,
+                "name": "front"
+              },
+              {
+                "index": 1,
+                "name": "back"
+              }
+            ],
+            "textures": {
+              "back": "tconstruct:item/tool/minotaur_axe/back",
+              "front": "tconstruct:item/tool/minotaur_axe/front",
+              "handle": "tconstruct:item/tool/pickaxe/handle",
+              "layer0": "tconstruct:item/tool/minotaur_axe/front",
+              "particle": "tconstruct:item/tool/minotaur_axe/front"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "tconstruct:tool",
+        "model": "tconstruct:item/minotaur_axe",
+        "modifier_maps": [
+          "tconstruct:minotaur_axe"
+        ],
+        "modifier_roots": [
+          "tconstruct:item/tool/minotaur_axe/modifiers/"
+        ],
+        "parts": [
+          {
+            "index": 2,
+            "name": "handle"
+          },
+          {
+            "index": 0,
+            "name": "front"
+          },
+          {
+            "index": 1,
+            "name": "back"
+          }
+        ],
+        "textures": {
+          "back": "tconstruct:item/tool/minotaur_axe/back",
+          "front": "tconstruct:item/tool/minotaur_axe/front",
+          "handle": "tconstruct:item/tool/pickaxe/handle",
+          "layer0": "tconstruct:item/tool/minotaur_axe/front",
+          "particle": "tconstruct:item/tool/minotaur_axe/front"
+        }
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/minotaur_axe/broken",
+      "modifier_maps": [
+        "tconstruct:minotaur_axe_broken",
+        "tconstruct:minotaur_axe"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/minotaur_axe/modifiers/broken/",
+        "tconstruct:item/tool/minotaur_axe/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 2,
+          "name": "handle"
+        },
+        {
+          "index": 0,
+          "name": "front"
+        },
+        {
+          "index": 1,
+          "name": "back"
+        }
+      ],
+      "textures": {
+        "back": "tconstruct:item/tool/minotaur_axe/back",
+        "front": "tconstruct:item/tool/minotaur_axe/front_broken",
+        "handle": "tconstruct:item/tool/pickaxe/handle",
+        "layer0": "tconstruct:item/tool/minotaur_axe/front",
+        "particle": "tconstruct:item/tool/minotaur_axe/front"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

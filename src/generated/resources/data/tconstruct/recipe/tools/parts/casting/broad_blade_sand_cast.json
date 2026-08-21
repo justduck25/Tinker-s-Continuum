@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:table_casting_material",
+  "cast": "#tconstruct:casts/single_use/broad_blade",
+  "cast_consumed": true,
+  "id": "tconstruct:tools/parts/casting/broad_blade_sand_cast",
+  "item_cost": 8,
+  "result": "tconstruct:broad_blade"
+}

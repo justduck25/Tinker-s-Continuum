@@ -1,0 +1,33 @@
+{
+  "parent": "tconstruct:world/tinkers_gadgetry",
+  "criteria": {
+    "found_island": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tconstruct:ender_slime_sapling"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tconstruct.world.ender_island.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "tconstruct:ender_slime_sapling"
+    },
+    "title": {
+      "translate": "advancements.tconstruct.world.ender_island.title"
+    }
+  },
+  "requirements": [
+    [
+      "found_island"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/slime/ender",
+  "inputs": [
+    {
+      "ingredient": "tconstruct:ender_congealed_slime"
+    },
+    {
+      "ingredient": "tconstruct:ender_slime_ball"
+    },
+    {
+      "ingredient": "tconstruct:ender_congealed_slime"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:enderslime"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/slime",
+  "variant_formatter": "tconstruct:material"
+}

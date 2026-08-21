@@ -1,0 +1,44 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "tconstruct:block/wood/enderbark/fence/post"
+      }
+    },
+    {
+      "apply": {
+        "model": "tconstruct:block/wood/enderbark/fence/side"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "tconstruct:block/wood/enderbark/fence/side",
+        "y": 90
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "tconstruct:block/wood/enderbark/fence/side",
+        "y": 180
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "tconstruct:block/wood/enderbark/fence/side",
+        "y": 270
+      },
+      "when": {
+        "west": "true"
+      }
+    }
+  ]
+}

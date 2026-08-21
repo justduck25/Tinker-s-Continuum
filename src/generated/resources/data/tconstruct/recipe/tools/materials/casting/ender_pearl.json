@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 250,
+    "tag": "c:ender"
+  },
+  "id": "tconstruct:tools/materials/casting/ender_pearl",
+  "output": "tconstruct:ender_pearl",
+  "temperature": 477
+}

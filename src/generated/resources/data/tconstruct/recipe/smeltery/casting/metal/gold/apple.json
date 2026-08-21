@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:apple",
+  "cast_consumed": true,
+  "cooling_time": 161,
+  "fluid": {
+    "amount": 720,
+    "tag": "c:molten_gold"
+  },
+  "id": "tconstruct:smeltery/casting/metal/gold/apple",
+  "result": "minecraft:golden_apple"
+}

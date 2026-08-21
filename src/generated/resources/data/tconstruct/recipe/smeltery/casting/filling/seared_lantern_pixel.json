@@ -1,0 +1,6 @@
+{
+  "type": "tconstruct:table_filling",
+  "container": "tconstruct:seared_lantern",
+  "fluid_amount": 10,
+  "id": "tconstruct:smeltery/casting/filling/seared_lantern_pixel"
+}

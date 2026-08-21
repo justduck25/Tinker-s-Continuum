@@ -1,0 +1,18 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:model",
+        "model": "tconstruct:item/scorched_fuel_tank"
+      },
+      {
+        "type": "minecraft:special",
+        "base": "tconstruct:item/scorched_fuel_tank",
+        "model": {
+          "type": "tconstruct:tank_fluid"
+        }
+      }
+    ]
+  }
+}

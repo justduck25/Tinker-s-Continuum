@@ -1,0 +1,14 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/entity_melting/heads/spider",
+  "ingredient": [
+    "tconstruct:spider_head",
+    "tconstruct:cave_spider_head"
+  ],
+  "result": {
+    "amount": 500,
+    "fluid": "tconstruct:venom"
+  },
+  "temperature": 10,
+  "time": 68
+}

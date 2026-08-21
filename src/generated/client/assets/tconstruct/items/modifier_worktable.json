@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "mantle:retextured_item",
+    "model": "tconstruct:item/modifier_worktable"
+  }
+}

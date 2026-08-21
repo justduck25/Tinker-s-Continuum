@@ -1,0 +1,34 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/melting_pan/charged",
+    "modifier_maps": [
+      "tconstruct:melting_pan/charged",
+      "tconstruct:melting_pan"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/melting_pan/modifiers/charged/",
+      "tconstruct:item/tool/melting_pan/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "handle"
+      },
+      {
+        "index": 0,
+        "name": "head"
+      },
+      {
+        "name": "overlay"
+      }
+    ],
+    "textures": {
+      "handle": "tconstruct:item/tool/melting_pan/handle",
+      "head": "tconstruct:item/tool/melting_pan/head",
+      "layer0": "tconstruct:item/tool/melting_pan/head",
+      "overlay": "tconstruct:item/tool/melting_pan/overlay_charged",
+      "particle": "tconstruct:item/tool/melting_pan/head"
+    }
+  }
+}

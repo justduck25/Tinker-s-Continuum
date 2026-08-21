@@ -1,0 +1,18 @@
+{
+  "modifiers": {
+    "tconstruct:dyed": {
+      "type": "tconstruct:dyed",
+      "texture": "tconstruct:item/tool/staff/modifiers/ender/dyed",
+      "texture_large": "tconstruct:item/tool/staff/large_modifiers/ender/dyed"
+    },
+    "tconstruct:mossy": {
+      "type": "tconstruct:mossy",
+      "texture_1": "tconstruct:item/tool/staff/ender/modifiers/tconstruct_mossy_1",
+      "texture_2": "tconstruct:item/tool/staff/ender/modifiers/tconstruct_mossy_2",
+      "texture_3": "tconstruct:item/tool/staff/ender/modifiers/tconstruct_mossy_3",
+      "texture_large_1": "tconstruct:item/tool/staff/ender/large_modifiers/tconstruct_mossy_1",
+      "texture_large_2": "tconstruct:item/tool/staff/ender/large_modifiers/tconstruct_mossy_2",
+      "texture_large_3": "tconstruct:item/tool/staff/ender/large_modifiers/tconstruct_mossy_3"
+    }
+  }
+}

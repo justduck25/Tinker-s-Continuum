@@ -1,0 +1,29 @@
+tasks.register("fixForgeModels") {
+    doLast {
+        def dir = file("src/main/resources/assets/tconstruct/models/item")
+        if (!dir.exists()) return
+
+        int count = 0
+        dir.eachFileRecurse { file ->
+            if (file.name.endsWith('.json')) {
+                String text = file.text
+                boolean changed = false
+
+                if (text.contains('"forge:item/default"')) {
+                    text = text.replace('"forge:item/default"', '"minecraft:item/generated"')
+                    changed = true
+                }
+                if (text.contains('"forge:item/default-tool"')) {
+                    text = text.replace('"forge:item/default-tool"', '"minecraft:item/handheld"')
+                    changed = true
+                }
+
+                if (changed) {
+                    file.write(text, "UTF-8")
+                    count++
+                }
+            }
+        }
+        println "Successfully updated ${count} model JSON files to remove forge:item/default!"
+    }
+}

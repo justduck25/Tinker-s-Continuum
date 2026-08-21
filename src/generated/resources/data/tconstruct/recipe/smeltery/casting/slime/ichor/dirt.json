@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "minecraft:dirt",
+  "cast_consumed": true,
+  "cooling_time": 134,
+  "fluid": {
+    "amount": 500,
+    "fluid": "tconstruct:ichor"
+  },
+  "id": "tconstruct:smeltery/casting/slime/ichor/dirt",
+  "result": "tconstruct:ichor_slime_dirt"
+}

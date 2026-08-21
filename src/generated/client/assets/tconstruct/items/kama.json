@@ -1,0 +1,110 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/kama/blocking",
+            "modifier_maps": [
+              "tconstruct:kama"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/kama/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 1,
+                "name": "handle"
+              },
+              {
+                "index": 0,
+                "name": "head"
+              },
+              {
+                "index": 2,
+                "name": "binding"
+              }
+            ],
+            "textures": {
+              "binding": "tconstruct:item/tool/kama/binding",
+              "handle": "tconstruct:item/tool/pickaxe/handle",
+              "head": "tconstruct:item/tool/kama/head",
+              "layer0": "tconstruct:item/tool/kama/head",
+              "particle": "tconstruct:item/tool/kama/head"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "tconstruct:tool",
+        "model": "tconstruct:item/kama",
+        "modifier_maps": [
+          "tconstruct:kama"
+        ],
+        "modifier_roots": [
+          "tconstruct:item/tool/kama/modifiers/"
+        ],
+        "parts": [
+          {
+            "index": 1,
+            "name": "handle"
+          },
+          {
+            "index": 0,
+            "name": "head"
+          },
+          {
+            "index": 2,
+            "name": "binding"
+          }
+        ],
+        "textures": {
+          "binding": "tconstruct:item/tool/kama/binding",
+          "handle": "tconstruct:item/tool/pickaxe/handle",
+          "head": "tconstruct:item/tool/kama/head",
+          "layer0": "tconstruct:item/tool/kama/head",
+          "particle": "tconstruct:item/tool/kama/head"
+        }
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/kama/broken",
+      "modifier_maps": [
+        "tconstruct:kama_broken",
+        "tconstruct:kama"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/kama/modifiers/broken/",
+        "tconstruct:item/tool/kama/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "handle"
+        },
+        {
+          "index": 0,
+          "name": "head"
+        },
+        {
+          "index": 2,
+          "name": "binding"
+        }
+      ],
+      "textures": {
+        "binding": "tconstruct:item/tool/kama/binding",
+        "handle": "tconstruct:item/tool/pickaxe/handle",
+        "head": "tconstruct:item/tool/kama/head_broken",
+        "layer0": "tconstruct:item/tool/kama/head",
+        "particle": "tconstruct:item/tool/kama/head"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

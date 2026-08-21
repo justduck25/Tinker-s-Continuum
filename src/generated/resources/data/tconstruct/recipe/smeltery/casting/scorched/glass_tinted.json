@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "#c:glass_blocks/tinted",
+  "cast_consumed": true,
+  "cooling_time": 166,
+  "fluid": {
+    "amount": 1000,
+    "fluid": "tconstruct:scorched_stone"
+  },
+  "id": "tconstruct:smeltery/casting/scorched/glass_tinted",
+  "result": "tconstruct:scorched_tinted_glass"
+}

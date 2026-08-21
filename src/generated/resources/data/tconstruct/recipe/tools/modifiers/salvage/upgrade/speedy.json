@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:modifier_salvage",
+  "id": "tconstruct:tools/modifiers/salvage/upgrade/speedy",
+  "modifier": "tconstruct:speedy",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/leggings"
+}

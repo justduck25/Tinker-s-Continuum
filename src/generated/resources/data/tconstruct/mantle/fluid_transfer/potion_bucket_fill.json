@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:fill_potion_bucket",
+  "fluid": {
+    "amount": 1000,
+    "tag": "c:potion"
+  },
+  "input": "minecraft:bucket",
+  "result": "tconstruct:potion_bucket"
+}

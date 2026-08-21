@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/tin"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/tin/plate",
+  "ingredient": "#c:plates/tin",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_tin"
+  },
+  "temperature": 225,
+  "time": 39
+}

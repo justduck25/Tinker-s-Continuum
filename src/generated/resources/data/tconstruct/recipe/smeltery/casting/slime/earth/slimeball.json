@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:casting_table",
+  "cooling_time": 51,
+  "fluid": {
+    "amount": 250,
+    "tag": "c:slime"
+  },
+  "id": "tconstruct:smeltery/casting/slime/earth/slimeball",
+  "result": "minecraft:slime_ball"
+}

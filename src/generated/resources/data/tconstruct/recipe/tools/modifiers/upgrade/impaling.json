@@ -1,0 +1,24 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/impaling",
+  "inputs": [
+    {
+      "ingredient": "minecraft:pointed_dripstone"
+    },
+    {
+      "ingredient": "minecraft:pointed_dripstone"
+    },
+    {
+      "ingredient": "minecraft:pointed_dripstone"
+    }
+  ],
+  "level": {
+    "max": 4
+  },
+  "result": "tconstruct:impaling",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/ranged/crossbows"
+}

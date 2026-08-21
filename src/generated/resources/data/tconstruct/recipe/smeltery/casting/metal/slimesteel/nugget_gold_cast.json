@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/nugget",
+  "cooling_time": 21,
+  "fluid": {
+    "amount": 10,
+    "fluid": "tconstruct:molten_slimesteel"
+  },
+  "id": "tconstruct:smeltery/casting/metal/slimesteel/nugget_gold_cast",
+  "result": {
+    "tag": "c:nuggets/slimesteel"
+  }
+}

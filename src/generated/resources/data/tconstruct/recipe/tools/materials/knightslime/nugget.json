@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/knightslime/nugget",
+  "ingredient": "#c:nuggets/knightslime",
+  "material": "tconstruct:knightslime",
+  "needed": 9,
+  "value": 1
+}

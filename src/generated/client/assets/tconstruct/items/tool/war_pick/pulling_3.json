@@ -1,0 +1,44 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "ammo": {
+      "flip": false,
+      "key": "tconstruct:crossbow_ammo",
+      "left": true,
+      "offset": [
+        1.0,
+        -1.0
+      ]
+    },
+    "model": "tconstruct:item/tool/war_pick/pulling_3",
+    "modifier_maps": [
+      "tconstruct:war_pick/3",
+      "tconstruct:war_pick"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/war_pick/modifiers/3/",
+      "tconstruct:item/tool/war_pick/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "body"
+      },
+      {
+        "index": 2,
+        "name": "bowstring"
+      },
+      {
+        "index": 0,
+        "name": "limb"
+      }
+    ],
+    "textures": {
+      "body": "tconstruct:item/tool/war_pick/body",
+      "bowstring": "tconstruct:item/tool/war_pick/bowstring_3",
+      "layer0": "tconstruct:item/tool/war_pick/limb",
+      "limb": "tconstruct:item/tool/war_pick/limb",
+      "particle": "tconstruct:item/tool/war_pick/limb"
+    }
+  }
+}

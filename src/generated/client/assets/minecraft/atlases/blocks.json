@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:directory",
+      "prefix": "fluid/",
+      "source": "fluid"
+    },
+    {
+      "type": "minecraft:directory",
+      "prefix": "gui/modifiers/",
+      "source": "gui/modifiers"
+    },
+    {
+      "type": "minecraft:directory",
+      "prefix": "gui/tinker_pattern/",
+      "source": "gui/tinker_pattern"
+    },
+    {
+      "type": "tconstruct:shield_banner_to_modifier",
+      "crop_height": 20,
+      "crop_width": 10,
+      "crop_x": 2,
+      "crop_y": 2,
+      "destination_prefix": "tconstruct:item/tool/armor/plate/shield/banner_large/",
+      "offset_x": 11,
+      "offset_y": 8,
+      "output_size": 32
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/slime/earth",
+  "inputs": [
+    {
+      "ingredient": "tconstruct:earth_congealed_slime"
+    },
+    {
+      "ingredient": "minecraft:slime_ball"
+    },
+    {
+      "ingredient": "tconstruct:earth_congealed_slime"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:earthslime"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/slime",
+  "variant_formatter": "tconstruct:material"
+}

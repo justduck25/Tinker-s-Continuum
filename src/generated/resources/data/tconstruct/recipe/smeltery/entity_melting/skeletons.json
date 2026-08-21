@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "registry": "minecraft:fluid",
+      "value": "minecraft:milk"
+    }
+  ],
+  "type": "tconstruct:entity_melting",
+  "damage": 2,
+  "entity": [
+    {
+      "tag": "minecraft:skeletons"
+    },
+    {
+      "type": "minecraft:skeleton_horse"
+    }
+  ],
+  "id": "tconstruct:smeltery/entity_melting/skeletons",
+  "result": {
+    "amount": 100,
+    "fluid": "minecraft:milk"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:entity_melting",
+  "damage": 2,
+  "entity": {
+    "type": "minecraft:blaze"
+  },
+  "id": "tconstruct:smeltery/entity_melting/blaze",
+  "result": {
+    "amount": 20,
+    "fluid": "tconstruct:blazing_blood"
+  }
+}

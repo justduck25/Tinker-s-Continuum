@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/string",
+  "ingredient": "#c:strings",
+  "material": "tconstruct:string",
+  "needed": 4,
+  "value": 1
+}

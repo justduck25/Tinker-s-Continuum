@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "tconstruct:enderbark_roots",
+  "cast_consumed": true,
+  "cooling_time": 106,
+  "fluid": {
+    "amount": 1000,
+    "fluid": "tconstruct:ender_slime"
+  },
+  "id": "tconstruct:smeltery/casting/slime/ender/roots",
+  "result": "tconstruct:ender_enderbark_roots"
+}

@@ -1,0 +1,108 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/dagger/blocking",
+            "modifier_maps": [
+              "tconstruct:dagger"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/dagger/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 0,
+                "name": "head"
+              },
+              {
+                "index": 1,
+                "name": "crossguard"
+              }
+            ],
+            "textures": {
+              "crossguard": "tconstruct:item/tool/dagger/crossguard",
+              "head": "tconstruct:item/tool/dagger/blade",
+              "layer0": "tconstruct:item/tool/dagger/blade",
+              "particle": "tconstruct:item/tool/dagger/blade"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:range_dispatch",
+        "entries": [
+          {
+            "model": {
+              "type": "minecraft:model",
+              "model": "tconstruct:item/tool/dagger/throwing"
+            },
+            "threshold": 1.75
+          }
+        ],
+        "fallback": {
+          "type": "tconstruct:tool",
+          "model": "tconstruct:item/dagger",
+          "modifier_maps": [
+            "tconstruct:dagger"
+          ],
+          "modifier_roots": [
+            "tconstruct:item/tool/dagger/modifiers/"
+          ],
+          "parts": [
+            {
+              "index": 0,
+              "name": "head"
+            },
+            {
+              "index": 1,
+              "name": "crossguard"
+            }
+          ],
+          "textures": {
+            "crossguard": "tconstruct:item/tool/dagger/crossguard",
+            "head": "tconstruct:item/tool/dagger/blade",
+            "layer0": "tconstruct:item/tool/dagger/blade",
+            "particle": "tconstruct:item/tool/dagger/blade"
+          }
+        },
+        "property": "tconstruct:charging"
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/dagger/broken",
+      "modifier_maps": [
+        "tconstruct:dagger_broken",
+        "tconstruct:dagger"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/dagger/modifiers/broken/",
+        "tconstruct:item/tool/dagger/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 0,
+          "name": "head"
+        },
+        {
+          "index": 1,
+          "name": "crossguard"
+        }
+      ],
+      "textures": {
+        "crossguard": "tconstruct:item/tool/dagger/crossguard",
+        "head": "tconstruct:item/tool/dagger/blade_broken",
+        "layer0": "tconstruct:item/tool/dagger/blade",
+        "particle": "tconstruct:item/tool/dagger/blade"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

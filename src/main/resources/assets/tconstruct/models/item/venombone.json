@@ -1,0 +1,7 @@
+{
+  "parent": "item/bone",
+  "textures": {
+    "layer0": "tconstruct:item/materials/venombone",
+    "particle": "tconstruct:item/materials/venombone"
+  }
+}

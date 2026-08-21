@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/gilded",
+  "inputs": [
+    {
+      "ingredient": "minecraft:gilded_blackstone"
+    }
+  ],
+  "result": "tconstruct:gilded",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#tconstruct:modifiable/bonus_slots"
+}

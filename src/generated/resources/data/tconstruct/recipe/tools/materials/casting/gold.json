@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "id": "tconstruct:tools/materials/casting/gold",
+  "output": "tconstruct:gold",
+  "temperature": 700
+}

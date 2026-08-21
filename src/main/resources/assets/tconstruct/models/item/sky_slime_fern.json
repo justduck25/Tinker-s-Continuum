@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:block/slime/foliage/fern",
+    "particle": "tconstruct:block/slime/foliage/fern"
+  }
+}

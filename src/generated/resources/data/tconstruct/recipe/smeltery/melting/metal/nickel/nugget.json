@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/nickel"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/nickel/nugget",
+  "ingredient": "#c:nuggets/nickel",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_nickel"
+  },
+  "temperature": 950,
+  "time": 22
+}

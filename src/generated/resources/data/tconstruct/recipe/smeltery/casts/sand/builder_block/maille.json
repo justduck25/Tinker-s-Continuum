@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "id": "tconstruct:smeltery/casts/sand/builder_block/maille",
+  "pattern": "tconstruct:maille",
+  "pattern_item": "#c:sands/colorless",
+  "result": {
+    "count": 4,
+    "item": "tconstruct:maille_sand_cast"
+  }
+}

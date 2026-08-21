@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:melting",
+  "byproducts": [
+    {
+      "amount": 100,
+      "tag": "c:molten_gold"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/scorched/casting_basin",
+  "ingredient": "tconstruct:scorched_basin",
+  "result": {
+    "amount": 1750,
+    "fluid": "tconstruct:scorched_stone"
+  },
+  "temperature": 500,
+  "time": 125
+}

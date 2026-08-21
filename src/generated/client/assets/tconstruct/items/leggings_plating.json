@@ -1,0 +1,8 @@
+{
+  "model": {
+    "type": "tconstruct:material",
+    "offset_x": 0,
+    "offset_y": 1,
+    "texture": "tconstruct:item/tool/armor/plate/leggings/plating"
+  }
+}

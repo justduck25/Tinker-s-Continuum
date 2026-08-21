@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/hepatizon/nugget",
+  "ingredient": "#c:nuggets/hepatizon",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_hepatizon"
+  },
+  "temperature": 1400,
+  "time": 26
+}

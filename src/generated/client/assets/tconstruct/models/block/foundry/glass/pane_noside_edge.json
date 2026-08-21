@@ -1,0 +1,33 @@
+{
+  "parent": "tconstruct:block/template/pane/noside",
+  "elements": [
+    {
+      "faces": {
+        "north": {
+          "texture": "#pane",
+          "uv": [
+            9,
+            0,
+            7,
+            16
+          ]
+        }
+      },
+      "from": [
+        7,
+        0,
+        7
+      ],
+      "to": [
+        9,
+        16,
+        9
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "edge": "tconstruct:block/foundry/glass_top",
+    "pane": "tconstruct:block/foundry/glass"
+  }
+}

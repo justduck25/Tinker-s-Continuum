@@ -1,0 +1,590 @@
+{
+  "parent": "tconstruct:tools/netherite_tier",
+  "criteria": {
+    "amethyst_bronze": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:amethyst_bronze"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "bamboo": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:bamboo"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "blazewood": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:blazewood"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "blazing_bone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:blazing_bone"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "bone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:bone"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "chorus": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:chorus"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "cinderslime": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:cinderslime"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "cobalt": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:cobalt"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "copper": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:copper"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "darkthread": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:darkthread"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "enderslime_vine": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:enderslime_vine"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "flint": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:flint"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "hepatizon": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:hepatizon"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "ichorskin": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:ichorskin"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "iron": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:iron"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "jeweled_hide": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:jeweled_hide"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "knightmetal": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:knightmetal"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "knightslime": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:knightslime"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "leather": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:leather"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "manyullyn": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:manyullyn"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "nahuatl": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:nahuatl"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "necrotic_bone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:necrotic_bone"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "pig_iron": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:pig_iron"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "queens_slime": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:queens_slime"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "rock": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:rock"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "rose_gold": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:rose_gold"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "scorched_stone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:scorched_stone"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "seared_stone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:seared_stone"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "skyslime_vine": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:skyslime_vine"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "slimeskin": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:slimeskin"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "slimesteel": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:slimesteel"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "slimewood": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:slimewood"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "string": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:string"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "twisting_vine": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:twisting_vine"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "vine": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:vine"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "weeping_vine": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:weeping_vine"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "whitestone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:whitestone"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "wood": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "tconstruct:has_material",
+            "material": "tconstruct:wood"
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tconstruct.tools.material_master.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "tconstruct:manyullyn_ingot"
+    },
+    "title": {
+      "translate": "advancements.tconstruct.tools.material_master.title"
+    }
+  },
+  "requirements": [
+    [
+      "wood"
+    ],
+    [
+      "flint"
+    ],
+    [
+      "rock"
+    ],
+    [
+      "bone"
+    ],
+    [
+      "necrotic_bone"
+    ],
+    [
+      "leather"
+    ],
+    [
+      "string"
+    ],
+    [
+      "vine"
+    ],
+    [
+      "bamboo"
+    ],
+    [
+      "chorus"
+    ],
+    [
+      "iron"
+    ],
+    [
+      "seared_stone"
+    ],
+    [
+      "scorched_stone"
+    ],
+    [
+      "copper"
+    ],
+    [
+      "slimewood"
+    ],
+    [
+      "slimeskin"
+    ],
+    [
+      "skyslime_vine"
+    ],
+    [
+      "weeping_vine"
+    ],
+    [
+      "twisting_vine"
+    ],
+    [
+      "whitestone"
+    ],
+    [
+      "rose_gold"
+    ],
+    [
+      "slimesteel"
+    ],
+    [
+      "nahuatl"
+    ],
+    [
+      "amethyst_bronze"
+    ],
+    [
+      "pig_iron"
+    ],
+    [
+      "cobalt"
+    ],
+    [
+      "darkthread"
+    ],
+    [
+      "ichorskin"
+    ],
+    [
+      "manyullyn"
+    ],
+    [
+      "hepatizon"
+    ],
+    [
+      "cinderslime"
+    ],
+    [
+      "queens_slime"
+    ],
+    [
+      "blazing_bone"
+    ],
+    [
+      "blazewood"
+    ],
+    [
+      "jeweled_hide"
+    ],
+    [
+      "knightmetal"
+    ],
+    [
+      "knightslime"
+    ],
+    [
+      "enderslime_vine"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

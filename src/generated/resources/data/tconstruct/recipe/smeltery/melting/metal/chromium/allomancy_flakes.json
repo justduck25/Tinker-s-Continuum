@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/chromium/allomancy_flakes",
+  "ingredient": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "allomancy:chromium_flakes"
+    ]
+  },
+  "result": {
+    "amount": 30,
+    "tag": "c:molten_chromium"
+  },
+  "temperature": 900,
+  "time": 37
+}

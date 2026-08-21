@@ -1,0 +1,42 @@
+﻿{
+    "variants":  {
+                     "in_structure=false,facing=west":  {
+                                                            "model":  "tconstruct:block/foundry/io/chute_inactive",
+                                                            "y":  90,
+                                                            "type":  "mantle:retextured_block"
+                                                        },
+                     "in_structure=false,facing=south":  {
+                                                             "model":  "tconstruct:block/foundry/io/chute_inactive",
+                                                             "type":  "mantle:retextured_block"
+                                                         },
+                     "in_structure=false,facing=north":  {
+                                                             "model":  "tconstruct:block/foundry/io/chute_inactive",
+                                                             "y":  180,
+                                                             "type":  "mantle:retextured_block"
+                                                         },
+                     "in_structure=false,facing=east":  {
+                                                            "model":  "tconstruct:block/foundry/io/chute_inactive",
+                                                            "y":  270,
+                                                            "type":  "mantle:retextured_block"
+                                                        },
+                     "in_structure=true,facing=west":  {
+                                                           "model":  "tconstruct:block/foundry/io/chute_active",
+                                                           "y":  90,
+                                                           "type":  "mantle:retextured_block"
+                                                       },
+                     "in_structure=true,facing=south":  {
+                                                            "model":  "tconstruct:block/foundry/io/chute_active",
+                                                            "type":  "mantle:retextured_block"
+                                                        },
+                     "in_structure=true,facing=north":  {
+                                                            "model":  "tconstruct:block/foundry/io/chute_active",
+                                                            "y":  180,
+                                                            "type":  "mantle:retextured_block"
+                                                        },
+                     "in_structure=true,facing=east":  {
+                                                           "model":  "tconstruct:block/foundry/io/chute_active",
+                                                           "y":  270,
+                                                           "type":  "mantle:retextured_block"
+                                                       }
+                 }
+}

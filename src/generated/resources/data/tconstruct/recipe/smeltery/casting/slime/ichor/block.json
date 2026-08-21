@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "tconstruct:ichor_congealed_slime",
+  "cast_consumed": true,
+  "cooling_time": 212,
+  "fluid": {
+    "amount": 1250,
+    "fluid": "tconstruct:ichor"
+  },
+  "id": "tconstruct:smeltery/casting/slime/ichor/block",
+  "result": "tconstruct:ichor_slime"
+}

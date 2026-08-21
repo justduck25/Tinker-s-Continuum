@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/tin"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/plate",
+  "cooling_time": 39,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_tin"
+  },
+  "id": "tconstruct:smeltery/casting/metal/tin/plate_gold_cast",
+  "result": {
+    "tag": "c:plates/tin"
+  }
+}

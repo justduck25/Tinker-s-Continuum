@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/slotless/shiny",
+  "inputs": [
+    {
+      "ingredient": [
+        "minecraft:enchanted_golden_apple",
+        "minecraft:nether_star"
+      ]
+    }
+  ],
+  "level": 1,
+  "result": "tconstruct:shiny",
+  "tools": "#tconstruct:modifiable"
+}

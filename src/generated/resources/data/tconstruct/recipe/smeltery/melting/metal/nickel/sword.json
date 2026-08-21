@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "tconstruct:melting/nickel/tools_costing_2"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/nickel/sword",
+  "ingredient": "#tconstruct:melting/nickel/tools_costing_2",
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_nickel",
+    "unit_size": 10
+  },
+  "temperature": 950,
+  "time": 92
+}

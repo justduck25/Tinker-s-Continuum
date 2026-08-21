@@ -1,0 +1,20 @@
+{
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/red_sand/molding/ingots",
+  "material": "#tconstruct:casts/red_sand",
+  "pattern": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      {
+        "neoforge:ingredient_type": "neoforge:difference",
+        "base": "#c:ingots",
+        "subtracted": "tconstruct:fake_ingot"
+      },
+      {
+        "neoforge:ingredient_type": "tconstruct:material",
+        "match": "tconstruct:fake_ingot"
+      }
+    ]
+  },
+  "result": "tconstruct:ingot_red_sand_cast"
+}

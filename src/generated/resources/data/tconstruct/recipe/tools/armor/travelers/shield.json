@@ -1,0 +1,26 @@
+{
+  "type": "tconstruct:crafting_shaped_materials",
+  "category": "equipment",
+  "extra_materials": [
+    "tconstruct:leather"
+  ],
+  "key": {
+    "c": {
+      "neoforge:ingredient_type": "tconstruct:material_value",
+      "material": {
+        "type": "tconstruct:stat_type",
+        "stat_type": "tconstruct:shield_core"
+      },
+      "value": 1
+    },
+    "l": "#c:leathers"
+  },
+  "parts": "c",
+  "pattern": [
+    "cl",
+    "lc"
+  ],
+  "result": {
+    "id": "tconstruct:travelers_shield"
+  }
+}

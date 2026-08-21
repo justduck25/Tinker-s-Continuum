@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:coins"
+    }
+  ],
+  "type": "tconstruct:item_part_builder",
+  "id": "tconstruct:smeltery/casts/red_sand/builder_block/coins",
+  "pattern": "tconstruct:coin",
+  "pattern_item": "#c:sands/red",
+  "result": {
+    "count": 4,
+    "item": "tconstruct:coin_red_sand_cast"
+  }
+}

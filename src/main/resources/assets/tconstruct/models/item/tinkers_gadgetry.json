@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:item/tinkers_gadgetry",
+    "particle": "tconstruct:item/tinkers_gadgetry"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/minimap",
+  "inputs": [
+    {
+      "ingredient": "minecraft:compass"
+    },
+    {
+      "ingredient": "#c:slime_balls"
+    },
+    {
+      "ingredient": "minecraft:paper"
+    }
+  ],
+  "result": "tconstruct:minimap",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/helmets"
+}

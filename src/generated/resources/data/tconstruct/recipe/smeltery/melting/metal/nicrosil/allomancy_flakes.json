@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/nicrosil/allomancy_flakes",
+  "ingredient": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "allomancy:nicrosil_flakes"
+    ]
+  },
+  "result": {
+    "amount": 30,
+    "tag": "c:molten_nicrosil"
+  },
+  "temperature": 1100,
+  "time": 40
+}

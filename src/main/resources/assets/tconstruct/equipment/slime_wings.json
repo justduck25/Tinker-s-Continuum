@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "wings": [
+      { "texture": "tconstruct:armor/layer_0" },
+      { "texture": "tconstruct:armor/layer_1" },
+      { "texture": "tconstruct:armor/layer_2" },
+      { "texture": "tconstruct:armor/layer_3" }
+    ]
+  }
+}

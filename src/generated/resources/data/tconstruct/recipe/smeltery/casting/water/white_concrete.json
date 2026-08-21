@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "minecraft:white_concrete_powder",
+  "cast_consumed": true,
+  "cooling_time": 30,
+  "fluid": {
+    "amount": 100,
+    "fluid": "minecraft:water"
+  },
+  "id": "tconstruct:smeltery/casting/water/white_concrete",
+  "result": "minecraft:white_concrete"
+}

@@ -1,0 +1,52 @@
+{
+  "type": "mantle:add_entry",
+  "conditions": [
+    {
+      "condition": "mantle:block_tag",
+      "tag": "c:ores/tin"
+    },
+    {
+      "condition": "tconstruct:tag_filled",
+      "tag": "c:nuggets/tin"
+    },
+    {
+      "condition": "tconstruct:has_modifier",
+      "modifier": "tconstruct:lustrous"
+    }
+  ],
+  "entry": {
+    "type": "mantle:tag_preference",
+    "tag": "c:nuggets/tin"
+  },
+  "functions": [
+    {
+      "type": "minecraft:set_count",
+      "add": false,
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 4.0,
+        "min": 2.0
+      }
+    },
+    {
+      "type": "tconstruct:modifier_bonus",
+      "formula": {
+        "type": "minecraft:ore_drops"
+      },
+      "include_base": false,
+      "modifier": "tconstruct:lustrous"
+    },
+    {
+      "type": "minecraft:explosion_decay"
+    }
+  ],
+  "post_conditions": [
+    {
+      "type": "mantle:inverted",
+      "condition": {
+        "type": "mantle:contains_item",
+        "ingredient": "#c:ores/tin"
+      }
+    }
+  ]
+}

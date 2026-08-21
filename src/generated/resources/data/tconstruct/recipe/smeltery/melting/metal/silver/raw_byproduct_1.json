@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:raw_materials/silver"
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 90,
+      "rate": "metal",
+      "tag": "c:molten_gold"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/silver/raw_byproduct_1",
+  "ingredient": "#c:raw_materials/silver",
+  "rate": "metal",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_silver"
+  },
+  "temperature": 790,
+  "time": 90
+}

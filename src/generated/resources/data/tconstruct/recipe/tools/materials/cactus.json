@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/cactus",
+  "ingredient": "minecraft:cactus",
+  "material": "tconstruct:cactus",
+  "needed": 1,
+  "value": 1
+}

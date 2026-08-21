@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:sheetmetals/gold"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/gold/sheetmetal",
+  "ingredient": "#c:sheetmetals/gold",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "temperature": 700,
+  "time": 57
+}

@@ -1,0 +1,61 @@
+﻿{
+    "variants":  {
+                     "in_structure=false,facing=north":  {
+                                                             "model":  "tconstruct:block/smeltery/controller/smeltery_unformed",
+                                                             "type":  "mantle:retextured_block"
+                                                         },
+                     "in_structure=false,facing=south":  {
+                                                             "model":  "tconstruct:block/smeltery/controller/smeltery_unformed",
+                                                             "y":  180,
+                                                             "type":  "mantle:retextured_block"
+                                                         },
+                     "in_structure=false,facing=west":  {
+                                                            "model":  "tconstruct:block/smeltery/controller/smeltery_unformed",
+                                                            "y":  270,
+                                                            "type":  "mantle:retextured_block"
+                                                        },
+                     "in_structure=false,facing=east":  {
+                                                            "model":  "tconstruct:block/smeltery/controller/smeltery_unformed",
+                                                            "y":  90,
+                                                            "type":  "mantle:retextured_block"
+                                                        },
+                     "in_structure=true,active=false,facing=north":  {
+                                                                         "model":  "tconstruct:block/smeltery/controller/smeltery_inactive",
+                                                                         "type":  "mantle:retextured_block"
+                                                                     },
+                     "in_structure=true,active=false,facing=south":  {
+                                                                         "model":  "tconstruct:block/smeltery/controller/smeltery_inactive",
+                                                                         "y":  180,
+                                                                         "type":  "mantle:retextured_block"
+                                                                     },
+                     "in_structure=true,active=false,facing=west":  {
+                                                                        "model":  "tconstruct:block/smeltery/controller/smeltery_inactive",
+                                                                        "y":  270,
+                                                                        "type":  "mantle:retextured_block"
+                                                                    },
+                     "in_structure=true,active=false,facing=east":  {
+                                                                        "model":  "tconstruct:block/smeltery/controller/smeltery_inactive",
+                                                                        "y":  90,
+                                                                        "type":  "mantle:retextured_block"
+                                                                    },
+                     "in_structure=true,active=true,facing=north":  {
+                                                                        "model":  "tconstruct:block/smeltery/controller/smeltery_active",
+                                                                        "type":  "mantle:retextured_block"
+                                                                    },
+                     "in_structure=true,active=true,facing=south":  {
+                                                                        "model":  "tconstruct:block/smeltery/controller/smeltery_active",
+                                                                        "y":  180,
+                                                                        "type":  "mantle:retextured_block"
+                                                                    },
+                     "in_structure=true,active=true,facing=west":  {
+                                                                       "model":  "tconstruct:block/smeltery/controller/smeltery_active",
+                                                                       "y":  270,
+                                                                       "type":  "mantle:retextured_block"
+                                                                   },
+                     "in_structure=true,active=true,facing=east":  {
+                                                                       "model":  "tconstruct:block/smeltery/controller/smeltery_active",
+                                                                       "y":  90,
+                                                                       "type":  "mantle:retextured_block"
+                                                                   }
+                 }
+}

@@ -1,0 +1,99 @@
+{
+  "parent": "tconstruct:block/template/pane/side",
+  "colors": [
+    {
+      "color": "FF4C4C4C"
+    }
+  ],
+  "connection": {
+    "predicate": "pane",
+    "textures": {
+      "pane": "cornerless_full"
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "neoforge_data": {
+            "color": "FF4C4C4C"
+          },
+          "texture": "#edge",
+          "uv": [
+            7,
+            0,
+            9,
+            7
+          ]
+        },
+        "east": {
+          "neoforge_data": {
+            "color": "FF4C4C4C"
+          },
+          "texture": "#pane",
+          "uv": [
+            9,
+            0,
+            16,
+            16
+          ]
+        },
+        "north": {
+          "cullface": "north",
+          "neoforge_data": {
+            "color": "FF4C4C4C"
+          },
+          "texture": "#edge",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "neoforge_data": {
+            "color": "FF4C4C4C"
+          },
+          "texture": "#edge",
+          "uv": [
+            7,
+            0,
+            9,
+            7
+          ]
+        },
+        "west": {
+          "neoforge_data": {
+            "color": "FF4C4C4C"
+          },
+          "texture": "#pane",
+          "uv": [
+            16,
+            0,
+            9,
+            16
+          ]
+        }
+      },
+      "from": [
+        7,
+        0,
+        0
+      ],
+      "to": [
+        9,
+        16,
+        7
+      ]
+    }
+  ],
+  "loader": "mantle:connected",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "edge": "tconstruct:block/clear_stained_glass_top",
+    "pane": "tconstruct:block/clear_stained_glass"
+  }
+}

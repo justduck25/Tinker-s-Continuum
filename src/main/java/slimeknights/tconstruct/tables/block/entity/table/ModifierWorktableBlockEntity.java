@@ -1,0 +1,314 @@
+package slimeknights.tconstruct.tables.block.entity.table;
+
+import lombok.Getter;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
+import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.library.modifiers.ModifierEntry;
+import slimeknights.tconstruct.library.recipe.RecipeResult;
+import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
+import slimeknights.tconstruct.library.recipe.worktable.IModifierWorktableRecipe;
+import slimeknights.tconstruct.library.tools.nbt.LazyToolStack;
+import slimeknights.tconstruct.shared.inventory.ConfigurableInvWrapperCapability;
+import slimeknights.tconstruct.tables.TinkerTables;
+import slimeknights.tconstruct.tables.block.entity.inventory.LazyResultContainer;
+import slimeknights.tconstruct.tables.block.entity.inventory.LazyResultContainer.ILazyCrafter;
+import slimeknights.tconstruct.tables.block.entity.inventory.ModifierWorktableContainerWrapper;
+import slimeknights.tconstruct.tables.menu.ModifierWorktableContainerMenu;
+import slimeknights.tconstruct.tables.network.UpdateModifierWorktableButtonsPacket;
+import slimeknights.tconstruct.common.network.TinkerNetwork;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
+public class ModifierWorktableBlockEntity extends RetexturedTableBlockEntity implements ILazyCrafter {
+  /** Index containing the tool */
+  public static final int TINKER_SLOT = 0;
+  /** First input slot index */
+  public static final int INPUT_START = 1;
+  /** Number of input slots */
+  public static final int INPUT_COUNT = 2;
+  /** Title for the GUI */
+  private static final Component NAME = TConstruct.makeTranslation("gui", "modifier_worktable");
+
+  /** Result inventory, lazy loads results */
+  @Getter
+  private final LazyResultContainer craftingResult;
+  /** Crafting inventory for the recipe calls */
+  @Getter
+  private final ModifierWorktableContainerWrapper inventoryWrapper;
+
+  /** If true, the last recipe is the current recipe. If false, no recipe was found. If null, have not tried recipe lookup */
+  private Boolean recipeValid;
+  /** Cache of the last recipe, may not be the current one */
+  @Nullable
+  private IModifierWorktableRecipe lastRecipe;
+  /* Current buttons to display */
+  @Nonnull
+  private List<ModifierEntry> buttons = Collections.emptyList();
+  /** Index of the currently selected modifier */
+  private int selectedModifierIndex = -1;
+
+  /** Current result, may be modified again later */
+  @Nullable @Getter
+  private LazyToolStack result = null;
+  /** Current message displayed on the screen */
+  @Getter
+  private Component currentMessage = Component.empty();
+
+  public ModifierWorktableBlockEntity(BlockPos pos, BlockState state) {
+    super(TinkerTables.modifierWorktableTile.get(), pos, state, NAME, 3);
+    this.itemHandler = new ConfigurableInvWrapperCapability(this, false, false);
+    this.inventoryWrapper = new ModifierWorktableContainerWrapper(this);
+    this.craftingResult = new LazyResultContainer(this);
+  }
+
+  /**
+   * Selects a modifier by index. Will fetch the buttons list if the index is non-negative
+   * @param index  New index
+   */
+  public void selectModifier(int index) {
+    result = null;
+    craftingResult.clearContent();
+    if (index >= 0) {
+      List<ModifierEntry> list = getCurrentButtons();
+      if (lastRecipe == null && level != null && level.isClientSide()) {
+        selectedModifierIndex = index < list.size() ? index : -1;
+        currentMessage = Component.empty();
+        return;
+      }
+      if (index < list.size()) {
+        selectedModifierIndex = index;
+        ModifierEntry entry = list.get(index);
+
+        // last recipe must be nonnull for list to be non-empty
+        assert lastRecipe != null;
+        RecipeResult<LazyToolStack> recipeResult = lastRecipe.getResult(inventoryWrapper, entry);
+        if (recipeResult.isSuccess()) {
+          result = recipeResult.getResult();
+          currentMessage = Component.empty();
+        } else if (recipeResult.hasError()) {
+          currentMessage = recipeResult.getMessage();
+        } else {
+          currentMessage = lastRecipe.getDescription(inventoryWrapper);
+        }
+        return;
+      }
+    }
+    // index is either not valid or the list is empty, so just clear
+    selectedModifierIndex = -1;
+    currentMessage = recipeValid == Boolean.TRUE && lastRecipe != null
+                     ? lastRecipe.getDescription(inventoryWrapper)
+                     : Component.empty();
+  }
+
+  /** Selects a modifier from a menu click, then refreshes clients viewing this table. */
+  public void selectModifierAndSync(int index) {
+    selectModifier(index);
+    if (level != null && !level.isClientSide()) {
+      syncButtonsToRelevantPlayers();
+      syncScreenToRelevantPlayers();
+    }
+  }
+
+  /** Gets the index of the selected pattern */
+  public int getSelectedIndex() {
+    return selectedModifierIndex;
+  }
+
+  /** Updates the selected button from menu data sync without clearing the synced client output. */
+  public void updateClientSelection(int index) {
+    if (level != null && level.isClientSide()) {
+      this.selectedModifierIndex = index >= 0 && index < buttons.size() ? index : -1;
+    } else {
+      selectModifier(index);
+    }
+  }
+
+  /** Updates the current recipe */
+  public IModifierWorktableRecipe updateRecipe(IModifierWorktableRecipe recipe) {
+    lastRecipe = recipe;
+    recipeValid = true;
+    currentMessage = lastRecipe.getDescription(inventoryWrapper);
+    buttons = recipe.getModifierOptions(inventoryWrapper);
+    if (level != null && !level.isClientSide()) {
+      syncButtonsToRelevantPlayers();
+      syncScreenToRelevantPlayers();
+    }
+
+    // clear the active modifier
+    selectModifier(-1);
+    return recipe;
+  }
+
+  /** Sends lightweight button data to one player. */
+  public void syncButtons(Player player) {
+    if (level != null && !level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+      getCurrentRecipe();
+      ItemStack resultStack = result == null ? ItemStack.EMPTY : result.getStack();
+      TinkerNetwork.getInstance().sendTo(new UpdateModifierWorktableButtonsPacket(worldPosition, buttons, selectedModifierIndex, resultStack), serverPlayer);
+    }
+  }
+
+  /** Sends lightweight button data to everyone viewing this table. */
+  private void syncButtonsToRelevantPlayers() {
+    syncToRelevantPlayers(this::syncButtons);
+  }
+
+  /** Updates client-side button data from the server. */
+  public void updateClientButtons(List<ModifierEntry> entries, int selectedIndex, ItemStack resultStack) {
+    this.buttons = List.copyOf(entries);
+    this.recipeValid = entries.isEmpty() ? null : true;
+    this.selectedModifierIndex = selectedIndex >= 0 && selectedIndex < entries.size() ? selectedIndex : -1;
+    this.currentMessage = Component.empty();
+    this.result = resultStack.isEmpty() ? null : LazyToolStack.from(resultStack);
+    this.craftingResult.setSyncedResult(resultStack);
+  }
+
+  /** Gets a full recipe manager when available; client recipe access only exposes recipe display data in MC 26.1. */
+  @Nullable
+  private RecipeManager getRecipeManager() {
+    if (level == null || level.isClientSide()) {
+      return null;
+    }
+    if (level.recipeAccess() instanceof RecipeManager manager) {
+      return manager;
+    }
+    return null;
+  }
+  /** Gets the currently active recipe */
+  @Nullable
+  public IModifierWorktableRecipe getCurrentRecipe() {
+    if (recipeValid == Boolean.TRUE) {
+      return lastRecipe;
+    }
+    if (recipeValid == null && level != null) {
+      // if the previous recipe matches, flip state to use that again
+      if (lastRecipe != null && lastRecipe.matches(inventoryWrapper, level)) {
+        return updateRecipe(lastRecipe);
+      }
+      // look for a new recipe, if it matches cache it
+      RecipeManager manager = getRecipeManager();
+      if (manager == null) {
+        return null;
+      }
+      Optional<IModifierWorktableRecipe> recipe = manager.getRecipeFor(TinkerRecipeTypes.MODIFIER_WORKTABLE.get(), inventoryWrapper, level).map(RecipeHolder::value);
+      if (recipe.isPresent()) {
+        return updateRecipe(recipe.get());
+      }
+      recipeValid = false;
+      currentMessage = Component.empty();
+      buttons = Collections.emptyList();
+      selectModifier(-1);
+    }
+    // level null or no recipe found
+    return null;
+  }
+
+  /**
+   * Gets a map of all recipes for the current inputs
+   * @return  List of recipes for the current inputs
+   */
+  public List<ModifierEntry> getCurrentButtons() {
+    if (level == null) {
+      return Collections.emptyList();
+    }
+    // if last recipe is not fetched, the buttons may be outdated
+    getCurrentRecipe();
+    return buttons;
+  }
+
+  /** Called when a slot changes to clear the current result */
+  public void onSlotChanged(int slot) {
+    this.inventoryWrapper.refreshInput(slot);
+    this.recipeValid = null;
+    this.buttons = Collections.emptyList();
+    selectModifier(-1);
+    if (level != null && !level.isClientSide()) {
+      syncButtonsToRelevantPlayers();
+      syncScreenToRelevantPlayers();
+    }
+  }
+
+  @Override
+  public void setItem(int slot, ItemStack stack) {
+    ItemStack original = getItem(slot);
+    super.setItem(slot, stack);
+    // if the stack changed, clear everything
+    if (original.getCount() != stack.getCount() || !ItemStack.isSameItemSameComponents(original, stack)) {
+      onSlotChanged(slot);
+    }
+  }
+
+  @Nullable
+  @Override
+  public AbstractContainerMenu createMenu(int menuId, Inventory playerInventory, Player playerEntity) {
+    return new ModifierWorktableContainerMenu(menuId, playerInventory, this);
+  }
+
+  @Override
+  public ItemStack calcResult(@Nullable Player player) {
+    if (selectedModifierIndex != -1) {
+      IModifierWorktableRecipe recipe = getCurrentRecipe();
+      if (recipe != null && result != null) {
+        return result.getStack();
+      }
+    }
+    return ItemStack.EMPTY;
+  }
+
+  @Override
+  public void onCraft(Player player, ItemStack resultItem, int amount) {
+    // the recipe should match if we got this far, but being null is a problem
+    LazyToolStack result = this.result;  // result is going to get cleared as we update things
+    if (amount == 0 || this.level == null || lastRecipe == null || result == null) {
+      return;
+    }
+
+    // we are definitely crafting at this point
+    resultItem.onCraftedBy(player, amount);
+    EventHooks.firePlayerCraftingEvent(player, resultItem, this.inventoryWrapper);
+    this.playCraftSound(player);
+
+    // run the recipe, will shrink inputs
+    // run both sides for the sake of shift clicking
+    this.inventoryWrapper.setPlayer(player);
+    this.lastRecipe.updateInputs(result, inventoryWrapper, getCurrentButtons().get(selectedModifierIndex), !level.isClientSide());
+    this.inventoryWrapper.setPlayer(null);
+
+    ItemStack tinkerable = this.getItem(TINKER_SLOT);
+    if (!tinkerable.isEmpty()) {
+      int shrinkToolSlot = lastRecipe.shrinkToolSlotBy(result);
+      if (tinkerable.getCount() <= shrinkToolSlot) {
+        this.setItem(TINKER_SLOT, ItemStack.EMPTY);
+      } else {
+        this.setItem(TINKER_SLOT, copyStackWithSize(tinkerable, tinkerable.getCount() - shrinkToolSlot));
+      }
+    }
+    // screen should reset back to empty now that we crafted
+    if (!level.isClientSide()) {
+      syncButtonsToRelevantPlayers();
+      syncScreenToRelevantPlayers();
+    }
+  }
+
+  private static ItemStack copyStackWithSize(ItemStack stack, int size) {
+    return stack.copyWithCount(size);
+  }
+
+
+}
+

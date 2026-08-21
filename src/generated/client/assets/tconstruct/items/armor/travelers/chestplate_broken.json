@@ -1,0 +1,30 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "first_modifiers": [
+      "tconstruct:dyed",
+      "tconstruct:trim"
+    ],
+    "model": "tconstruct:item/armor/travelers/chestplate_broken",
+    "modifier_maps": [
+      "tconstruct:travelers/vest_broken",
+      "tconstruct:travelers/vest"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "cuirass"
+      },
+      {
+        "index": 0,
+        "name": "metal"
+      }
+    ],
+    "textures": {
+      "cuirass": "tconstruct:item/tool/armor/travelers/vest/cuirass_broken",
+      "layer0": "tconstruct:item/tool/armor/travelers/vest/cuirass",
+      "metal": "tconstruct:item/tool/armor/travelers/vest/metal_broken",
+      "particle": "tconstruct:item/tool/armor/travelers/vest/cuirass"
+    }
+  }
+}

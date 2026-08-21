@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/constantan/tools_complement_hammer",
+  "ingredient": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "tools_complement:constantan_hammer"
+    ]
+  },
+  "result": {
+    "amount": 1170,
+    "tag": "c:molten_constantan",
+    "unit_size": 10
+  },
+  "temperature": 920,
+  "time": 230
+}

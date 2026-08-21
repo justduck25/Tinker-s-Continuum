@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_amethyst_bronze"
+  },
+  "id": "tconstruct:tools/materials/casting/amethyst_bronze",
+  "output": "tconstruct:amethyst_bronze",
+  "temperature": 820
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/tungsten"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/tungsten/nugget",
+  "ingredient": "#c:nuggets/tungsten",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_tungsten"
+  },
+  "temperature": 950,
+  "time": 22
+}

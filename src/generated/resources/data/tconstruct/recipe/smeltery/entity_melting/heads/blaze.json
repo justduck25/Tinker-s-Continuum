@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/entity_melting/heads/blaze",
+  "ingredient": "tconstruct:blaze_head",
+  "result": {
+    "amount": 100,
+    "fluid": "tconstruct:blazing_blood"
+  },
+  "temperature": 1000,
+  "time": 80
+}

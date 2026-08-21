@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:ore_rates/dense",
+      "required": false
+    },
+    {
+      "id": "#c:ore_rates/sparse",
+      "required": false
+    }
+  ]
+}

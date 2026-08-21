@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/lumium"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/single_use/ingot",
+  "cast_consumed": true,
+  "cooling_time": 68,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_lumium"
+  },
+  "id": "tconstruct:smeltery/casting/metal/lumium/ingot_sand_cast",
+  "result": {
+    "tag": "c:ingots/lumium"
+  }
+}

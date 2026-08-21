@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_cobalt"
+  },
+  "id": "tconstruct:tools/materials/casting/cobalt",
+  "output": "tconstruct:cobalt",
+  "temperature": 950
+}

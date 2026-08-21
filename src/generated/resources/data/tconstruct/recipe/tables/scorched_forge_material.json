@@ -1,0 +1,25 @@
+{
+  "type": "tconstruct:crafting_shaped_materials",
+  "category": "misc",
+  "key": {
+    "m": {
+      "neoforge:ingredient_type": "tconstruct:material",
+      "match": "tconstruct:fake_storage_block",
+      "material": {
+        "type": "mantle:tag",
+        "tag": "tconstruct:compatibility_metals/alloys"
+      }
+    },
+    "s": "#tconstruct:scorched_blocks",
+    "t": "tconstruct:tinker_station"
+  },
+  "parts": "m",
+  "pattern": [
+    "sss",
+    "mtm",
+    "m m"
+  ],
+  "result": {
+    "id": "tconstruct:scorched_anvil"
+  }
+}

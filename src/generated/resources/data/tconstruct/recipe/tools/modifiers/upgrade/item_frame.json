@@ -1,0 +1,21 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/item_frame",
+  "inputs": [
+    {
+      "ingredient": [
+        "tconstruct:reversed_gold_item_frame",
+        "tconstruct:diamond_item_frame",
+        "tconstruct:manyullyn_item_frame",
+        "tconstruct:gold_item_frame",
+        "tconstruct:netherite_item_frame"
+      ]
+    }
+  ],
+  "result": "tconstruct:item_frame",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/helmets"
+}

@@ -1,0 +1,27 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/ability/bulk_quiver",
+  "inputs": [
+    {
+      "ingredient": "minecraft:leather"
+    },
+    {
+      "ingredient": "tconstruct:sky_slime_vine"
+    },
+    {
+      "ingredient": "minecraft:leather"
+    },
+    {
+      "ingredient": "tconstruct:sky_slime_vine"
+    },
+    {
+      "ingredient": "tconstruct:sky_slime_vine"
+    }
+  ],
+  "result": "tconstruct:bulk_quiver",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#tconstruct:modifiable/ranged/bows"
+}

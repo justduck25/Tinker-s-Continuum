@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "tconstruct:tools/modifiers/upgrade/feather_falling",
+  "input": "minecraft:feather",
+  "level": {
+    "max": 2
+  },
+  "needed_per_level": 25,
+  "result": "tconstruct:feather_falling",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/boots"
+}

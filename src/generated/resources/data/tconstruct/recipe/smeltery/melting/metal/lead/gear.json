@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/lead"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/lead/gear",
+  "ingredient": "#c:gears/lead",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_lead"
+  },
+  "temperature": 330,
+  "time": 87
+}

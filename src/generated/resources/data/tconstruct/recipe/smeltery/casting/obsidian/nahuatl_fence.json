@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": "#minecraft:wooden_fences",
+  "cast_consumed": true,
+  "cooling_time": 111,
+  "fluid": {
+    "amount": 250,
+    "fluid": "tconstruct:molten_obsidian"
+  },
+  "id": "tconstruct:smeltery/casting/obsidian/nahuatl_fence",
+  "result": "tconstruct:nahuatl_fence"
+}

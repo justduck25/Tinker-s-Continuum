@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": {
+      "model": "tconstruct:block/wood/greenheart/slab"
+    },
+    "type=bottom,waterlogged=true": {
+      "model": "tconstruct:block/wood/greenheart/slab"
+    },
+    "type=double,waterlogged=false": {
+      "model": "tconstruct:block/wood/greenheart/planks"
+    },
+    "type=double,waterlogged=true": {
+      "model": "tconstruct:block/wood/greenheart/planks"
+    },
+    "type=top,waterlogged=false": {
+      "model": "tconstruct:block/wood/greenheart/slab_top"
+    },
+    "type=top,waterlogged=true": {
+      "model": "tconstruct:block/wood/greenheart/slab_top"
+    }
+  }
+}

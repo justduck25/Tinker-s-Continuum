@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:item/puny_smelting",
+    "particle": "tconstruct:item/puny_smelting"
+  }
+}

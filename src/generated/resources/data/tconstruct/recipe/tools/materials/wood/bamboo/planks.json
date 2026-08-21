@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/wood/bamboo/planks",
+  "ingredient": "minecraft:bamboo_planks",
+  "material": "tconstruct:bamboo",
+  "needed": 2,
+  "value": 1
+}

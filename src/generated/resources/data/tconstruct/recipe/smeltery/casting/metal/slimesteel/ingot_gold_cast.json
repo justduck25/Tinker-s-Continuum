@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/ingot",
+  "cooling_time": 63,
+  "fluid": {
+    "amount": 90,
+    "fluid": "tconstruct:molten_slimesteel"
+  },
+  "id": "tconstruct:smeltery/casting/metal/slimesteel/ingot_gold_cast",
+  "result": {
+    "tag": "c:ingots/slimesteel"
+  }
+}

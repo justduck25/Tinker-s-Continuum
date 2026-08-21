@@ -1,0 +1,47 @@
+{
+  "parent": "tconstruct:block/template/pane/noside_alt",
+  "colors": [
+    {
+      "color": "FF667F33"
+    }
+  ],
+  "connection": {
+    "predicate": "pane",
+    "textures": {
+      "pane": "cornerless_full"
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "east": {
+          "neoforge_data": {
+            "color": "FF667F33"
+          },
+          "texture": "#pane",
+          "uv": [
+            7,
+            0,
+            9,
+            16
+          ]
+        }
+      },
+      "from": [
+        7,
+        0,
+        7
+      ],
+      "to": [
+        9,
+        16,
+        9
+      ]
+    }
+  ],
+  "loader": "mantle:connected",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "pane": "tconstruct:block/clear_stained_glass"
+  }
+}

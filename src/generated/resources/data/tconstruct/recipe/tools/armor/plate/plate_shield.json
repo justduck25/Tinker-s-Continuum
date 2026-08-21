@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:table_tool_casting",
+  "cast": {
+    "neoforge:ingredient_type": "tconstruct:material",
+    "match": "tconstruct:shield_core"
+  },
+  "cast_purpose": "first_material",
+  "id": "tconstruct:tools/armor/plate/plate_shield",
+  "item_cost": 3,
+  "result": "tconstruct:plate_shield"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:tool_building",
+  "extra_materials": [
+    "tconstruct:flint",
+    "tconstruct:wood",
+    "tconstruct:feather"
+  ],
+  "extra_requirements": [
+    "minecraft:arrow"
+  ],
+  "id": "tconstruct:tools/building/arrow_from_vanilla",
+  "parts_override": [],
+  "result": "tconstruct:arrow",
+  "result_count": 1,
+  "slot_layout": "tconstruct:tinker_station"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/upgrade/punch",
+  "inputs": [
+    {
+      "ingredient": "minecraft:piston"
+    },
+    {
+      "ingredient": "tconstruct:sky_slime"
+    }
+  ],
+  "level": {
+    "max": 3
+  },
+  "result": "tconstruct:punch",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/ranged/launcher"
+}

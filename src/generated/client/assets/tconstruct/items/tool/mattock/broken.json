@@ -1,0 +1,35 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/mattock/broken",
+    "modifier_maps": [
+      "tconstruct:mattock_broken",
+      "tconstruct:mattock"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/mattock/modifiers/broken/",
+      "tconstruct:item/tool/mattock/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 1,
+        "name": "handle"
+      },
+      {
+        "index": 0,
+        "name": "axe"
+      },
+      {
+        "index": 2,
+        "name": "pick"
+      }
+    ],
+    "textures": {
+      "axe": "tconstruct:item/tool/mattock/axe_broken",
+      "handle": "tconstruct:item/tool/pickaxe/handle",
+      "layer0": "tconstruct:item/tool/mattock/axe",
+      "particle": "tconstruct:item/tool/mattock/axe",
+      "pick": "tconstruct:item/tool/mattock/pick_broken"
+    }
+  }
+}

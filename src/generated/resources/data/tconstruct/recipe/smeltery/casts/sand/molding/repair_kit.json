@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/sand/molding/repair_kit",
+  "material": "#tconstruct:casts/sand",
+  "pattern": {
+    "neoforge:ingredient_type": "tconstruct:material",
+    "match": "tconstruct:repair_kit"
+  },
+  "result": "tconstruct:repair_kit_sand_cast"
+}

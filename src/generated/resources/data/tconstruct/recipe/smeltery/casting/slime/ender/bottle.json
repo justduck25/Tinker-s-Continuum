@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:glass_bottle",
+  "cast_consumed": true,
+  "cooling_time": 1,
+  "fluid": {
+    "amount": 250,
+    "fluid": "tconstruct:ender_slime"
+  },
+  "id": "tconstruct:smeltery/casting/slime/ender/bottle",
+  "result": "tconstruct:ender_slime_bottle"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 250,
+    "fluid": "tconstruct:molten_obsidian"
+  },
+  "id": "tconstruct:tools/materials/casting/obsidian",
+  "output": "tconstruct:obsidian",
+  "temperature": 1000
+}

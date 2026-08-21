@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/knightslime/ingot",
+  "ingredient": "#c:ingots/knightslime",
+  "material": "tconstruct:knightslime",
+  "needed": 1,
+  "value": 1
+}

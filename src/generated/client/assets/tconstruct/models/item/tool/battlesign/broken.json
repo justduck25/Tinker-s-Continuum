@@ -1,0 +1,28 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "tconstruct:item/base/battlesign",
+  "textures": {
+    "head": "tconstruct:item/tool/battlesign/head_broken",
+    "handle": "tconstruct:item/tool/battlesign/handle",
+    "layer0": "tconstruct:item/tool/battlesign/head",
+    "particle": "tconstruct:item/tool/battlesign/head"
+  },
+  "modifier_maps": [
+    "tconstruct:battlesign_broken",
+    "tconstruct:battlesign"
+  ],
+  "modifier_roots": [
+    "tconstruct:item/tool/battlesign/modifiers/broken/",
+    "tconstruct:item/tool/battlesign/modifiers/"
+  ],
+  "parts": [
+    {
+      "name": "head",
+      "index": 0
+    },
+    {
+      "name": "handle",
+      "index": 1
+    }
+  ]
+}

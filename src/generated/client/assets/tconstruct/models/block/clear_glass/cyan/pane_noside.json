@@ -1,0 +1,47 @@
+{
+  "parent": "tconstruct:block/template/pane/noside",
+  "colors": [
+    {
+      "color": "FF4C7F99"
+    }
+  ],
+  "connection": {
+    "predicate": "pane",
+    "textures": {
+      "pane": "cornerless_full"
+    }
+  },
+  "elements": [
+    {
+      "faces": {
+        "north": {
+          "neoforge_data": {
+            "color": "FF4C7F99"
+          },
+          "texture": "#pane",
+          "uv": [
+            9,
+            0,
+            7,
+            16
+          ]
+        }
+      },
+      "from": [
+        7,
+        0,
+        7
+      ],
+      "to": [
+        9,
+        16,
+        9
+      ]
+    }
+  ],
+  "loader": "mantle:connected",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "pane": "tconstruct:block/clear_stained_glass"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:armors/helmets/refined_glowstone"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/refined_glowstone/helmet",
+  "ingredient": "#c:armors/helmets/refined_glowstone",
+  "result": {
+    "amount": 450,
+    "tag": "c:molten_refined_glowstone",
+    "unit_size": 10
+  },
+  "temperature": 825,
+  "time": 136
+}

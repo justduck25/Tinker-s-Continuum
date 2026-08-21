@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:flint",
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 125,
+    "fluid": "tconstruct:molten_clay"
+  },
+  "id": "tconstruct:smeltery/casting/seared/brick_composite",
+  "result": "tconstruct:seared_brick"
+}

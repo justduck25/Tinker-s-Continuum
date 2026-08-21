@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/wood/logs/cherry",
+  "ingredient": "#minecraft:cherry_logs",
+  "leftover": "minecraft:cherry_planks",
+  "material": "tconstruct:wood",
+  "needed": 1,
+  "value": 4
+}

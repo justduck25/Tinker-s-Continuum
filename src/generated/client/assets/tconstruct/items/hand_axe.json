@@ -1,0 +1,110 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/hand_axe/blocking",
+            "modifier_maps": [
+              "tconstruct:hand_axe"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/hand_axe/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 1,
+                "name": "handle"
+              },
+              {
+                "index": 0,
+                "name": "head"
+              },
+              {
+                "index": 2,
+                "name": "binding"
+              }
+            ],
+            "textures": {
+              "binding": "tconstruct:item/tool/hand_axe/binding",
+              "handle": "tconstruct:item/tool/pickaxe/handle",
+              "head": "tconstruct:item/tool/hand_axe/head",
+              "layer0": "tconstruct:item/tool/hand_axe/head",
+              "particle": "tconstruct:item/tool/hand_axe/head"
+            }
+          },
+          "threshold": 2.0
+        }
+      ],
+      "fallback": {
+        "type": "tconstruct:tool",
+        "model": "tconstruct:item/hand_axe",
+        "modifier_maps": [
+          "tconstruct:hand_axe"
+        ],
+        "modifier_roots": [
+          "tconstruct:item/tool/hand_axe/modifiers/"
+        ],
+        "parts": [
+          {
+            "index": 1,
+            "name": "handle"
+          },
+          {
+            "index": 0,
+            "name": "head"
+          },
+          {
+            "index": 2,
+            "name": "binding"
+          }
+        ],
+        "textures": {
+          "binding": "tconstruct:item/tool/hand_axe/binding",
+          "handle": "tconstruct:item/tool/pickaxe/handle",
+          "head": "tconstruct:item/tool/hand_axe/head",
+          "layer0": "tconstruct:item/tool/hand_axe/head",
+          "particle": "tconstruct:item/tool/hand_axe/head"
+        }
+      },
+      "property": "tconstruct:charging"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/hand_axe/broken",
+      "modifier_maps": [
+        "tconstruct:hand_axe_broken",
+        "tconstruct:hand_axe"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/hand_axe/modifiers/broken/",
+        "tconstruct:item/tool/hand_axe/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "handle"
+        },
+        {
+          "index": 0,
+          "name": "head"
+        },
+        {
+          "index": 2,
+          "name": "binding"
+        }
+      ],
+      "textures": {
+        "binding": "tconstruct:item/tool/hand_axe/binding",
+        "handle": "tconstruct:item/tool/pickaxe/handle",
+        "head": "tconstruct:item/tool/hand_axe/head_broken",
+        "layer0": "tconstruct:item/tool/hand_axe/head",
+        "particle": "tconstruct:item/tool/hand_axe/head"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

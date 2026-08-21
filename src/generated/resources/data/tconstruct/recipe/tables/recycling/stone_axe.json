@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:part_builder_recycling",
+  "id": "tconstruct:tables/recycling/stone_axe",
+  "pattern": "tconstruct:venom_bottle",
+  "results": {
+    "tconstruct:block": {
+      "count": 3,
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "tool": [
+    "minecraft:stone_pickaxe",
+    "minecraft:stone_axe"
+  ]
+}

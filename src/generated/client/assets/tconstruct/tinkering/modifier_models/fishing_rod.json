@@ -1,0 +1,26 @@
+{
+  "constant": {
+    "fluid": {
+      "type": "tconstruct:tank",
+      "full": "tconstruct:item/tool/fishing_rod/fluid_full",
+      "partial": "tconstruct:item/tool/fishing_rod/fluid_partial"
+    },
+    "tipped": {
+      "type": "tconstruct:trait",
+      "model": {
+        "type": "tconstruct:potion",
+        "texture": "tconstruct:item/tool/fishing_rod/modifiers/tipped"
+      },
+      "modifier": "tconstruct:tipped"
+    }
+  },
+  "modifiers": {
+    "tconstruct:mossy": {
+      "type": "tconstruct:mossy",
+      "texture_1": "tconstruct:item/tool/fishing_rod/modifiers/tconstruct_mossy_1",
+      "texture_2": "tconstruct:item/tool/fishing_rod/modifiers/tconstruct_mossy_2",
+      "texture_3": "tconstruct:item/tool/fishing_rod/modifiers/tconstruct_mossy_3"
+    },
+    "tconstruct:tank": "tconstruct:item/tool/fishing_rod/modifiers/tank"
+  }
+}

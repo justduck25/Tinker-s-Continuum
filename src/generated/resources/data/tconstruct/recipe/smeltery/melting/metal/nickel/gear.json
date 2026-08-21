@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/nickel"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/nickel/gear",
+  "ingredient": "#c:gears/nickel",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_nickel"
+  },
+  "temperature": 950,
+  "time": 130
+}

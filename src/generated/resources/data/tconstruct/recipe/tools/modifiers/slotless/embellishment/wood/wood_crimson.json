@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/wood/wood_crimson",
+  "inputs": [
+    {
+      "ingredient": "minecraft:crimson_planks"
+    },
+    {
+      "ingredient": "tconstruct:pattern"
+    },
+    {
+      "ingredient": "minecraft:crimson_planks"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:wood#crimson"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/wood",
+  "variant_formatter": "tconstruct:material"
+}

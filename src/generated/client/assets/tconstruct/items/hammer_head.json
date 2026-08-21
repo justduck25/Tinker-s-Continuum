@@ -1,0 +1,8 @@
+{
+  "model": {
+    "type": "tconstruct:material",
+    "offset_x": -3,
+    "offset_y": 3,
+    "texture": "tconstruct:item/tool/sledge_hammer/head"
+  }
+}

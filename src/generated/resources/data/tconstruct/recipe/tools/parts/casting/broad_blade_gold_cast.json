@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:table_casting_material",
+  "cast": "#tconstruct:casts/multi_use/broad_blade",
+  "id": "tconstruct:tools/parts/casting/broad_blade_gold_cast",
+  "item_cost": 8,
+  "result": "tconstruct:broad_blade"
+}

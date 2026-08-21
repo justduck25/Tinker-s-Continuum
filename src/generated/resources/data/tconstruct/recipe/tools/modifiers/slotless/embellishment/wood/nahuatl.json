@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/wood/nahuatl",
+  "inputs": [
+    {
+      "ingredient": "tconstruct:nahuatl"
+    },
+    {
+      "ingredient": "tconstruct:pattern"
+    },
+    {
+      "ingredient": "tconstruct:nahuatl"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:nahuatl"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/wood",
+  "variant_formatter": "tconstruct:material"
+}

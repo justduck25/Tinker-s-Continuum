@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 221,
+  "fluid": {
+    "amount": 1000,
+    "fluid": "tconstruct:molten_obsidian"
+  },
+  "id": "tconstruct:smeltery/casting/obsidian/block",
+  "result": "minecraft:obsidian"
+}

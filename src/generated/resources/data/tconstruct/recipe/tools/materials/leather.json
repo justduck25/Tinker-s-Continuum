@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/leather",
+  "ingredient": "#c:leathers",
+  "material": "tconstruct:leather",
+  "needed": 1,
+  "value": 1
+}

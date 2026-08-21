@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/bronze"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/bronze/gear",
+  "ingredient": "#c:gears/bronze",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_bronze"
+  },
+  "temperature": 700,
+  "time": 114
+}

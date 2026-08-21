@@ -1,0 +1,185 @@
+{
+  "name": "minecraft:chests/trial_chambers/reward_ominous_common",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 3,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                }
+              ],
+              "modifiers": [
+                {
+                  "level": 1,
+                  "name": "tconstruct:diamond"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:netherite"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:blocking"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:reinforced"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:knockback"
+                }
+              ],
+              "upgrade_slots": 4
+            }
+          ],
+          "name": "tconstruct:battlesign",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 3,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                }
+              ],
+              "modifiers": [
+                {
+                  "level": 1,
+                  "name": "tconstruct:diamond"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:netherite"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:haste"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:fortune"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:expanded"
+                }
+              ],
+              "upgrade_slots": 4
+            }
+          ],
+          "name": "tconstruct:sledge_hammer"
+        }
+      ],
+      "name": "main"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_rose_gold"
+  },
+  "id": "tconstruct:tools/materials/composite/rose_gold",
+  "input": "tconstruct:string",
+  "output": "tconstruct:rose_gold",
+  "temperature": 550
+}

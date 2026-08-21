@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:registered",
+      "registry": "minecraft:fluid",
+      "value": "minecraft:milk"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/entity_melting/heads/skeleton",
+  "ingredient": [
+    "minecraft:skeleton_skull",
+    "minecraft:wither_skeleton_skull",
+    "tconstruct:stray_head"
+  ],
+  "result": {
+    "amount": 250,
+    "fluid": "minecraft:milk"
+  },
+  "temperature": 0,
+  "time": 47
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "type": "tconstruct:material_block"
+    }
+  }
+}

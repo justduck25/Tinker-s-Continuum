@@ -1,0 +1,35 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "plating": "tconstruct:item/tool/armor/plate/leggings/plating",
+    "maille": "tconstruct:item/tool/armor/plate/leggings/maille",
+    "layer0": "tconstruct:item/tool/armor/plate/leggings/plating",
+    "particle": "tconstruct:item/tool/armor/plate/leggings/plating"
+  },
+  "modifier_maps": [
+    "tconstruct:plate/leggings"
+  ],
+  "first_modifiers": [
+    "tconstruct:dyed",
+    "tconstruct:trim"
+  ],
+  "parts": [
+    {
+      "name": "plating",
+      "index": 0
+    },
+    {
+      "name": "maille",
+      "index": 1
+    }
+  ],
+  "overrides": [
+    {
+      "predicate": {
+        "tconstruct:broken": 1
+      },
+      "model": "tconstruct:item/armor/plate/leggings_broken"
+    }
+  ]
+}

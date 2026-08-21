@@ -1,0 +1,103 @@
+package slimeknights.tconstruct.library.materials.stats;
+
+import net.neoforged.neoforge.network.handling.IPayloadContext;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.Identifier;
+import org.apache.logging.log4j.Logger;
+import slimeknights.mantle.data.loadable.Loadable;
+import slimeknights.mantle.network.packet.IThreadsafePacket;
+import slimeknights.mantle.util.typed.TypedMapBuilder;
+import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.library.materials.MaterialRegistry;
+import slimeknights.tconstruct.library.materials.definition.MaterialId;
+import slimeknights.tconstruct.library.utils.Util;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Getter
+@AllArgsConstructor
+public class UpdateMaterialStatsPacket implements IThreadsafePacket, CustomPacketPayload {
+  public static final Type<UpdateMaterialStatsPacket> TYPE = new Type<>(TConstruct.getResource("update_material_stats"));
+  public static final StreamCodec<RegistryFriendlyByteBuf, UpdateMaterialStatsPacket> STREAM_CODEC = StreamCodec.of(
+    (buffer, packet) -> packet.encode(buffer),
+    UpdateMaterialStatsPacket::new);
+
+  private static final Logger log = Util.getLogger("NetworkSync");
+
+  protected final Map<MaterialId, Collection<IMaterialStats>> materialToStats;
+
+  public UpdateMaterialStatsPacket(RegistryFriendlyByteBuf buffer) {
+    this(buffer, MaterialRegistry.getInstance().getStatTypeLoader());
+  }
+
+  public UpdateMaterialStatsPacket(RegistryFriendlyByteBuf buffer, Loadable<MaterialStatType<?>> statTypeLoader) {
+    int materialCount = buffer.readInt();
+    materialToStats = new HashMap<>(materialCount);
+    for (int i = 0; i < materialCount; i++) {
+      MaterialId id = new MaterialId(buffer.readIdentifier());
+      int statCount = buffer.readInt();
+      List<IMaterialStats> statList = new ArrayList<>();
+      for (int j = 0; j < statCount; j++) {
+        Identifier statId = null;
+        try {
+          MaterialStatType<?> statType = statTypeLoader.decode(buffer);
+          statId = statType.getId();
+          statList.add(statType.getLoadable().decode(buffer, TypedMapBuilder.builder().put(MaterialStatType.CONTEXT_KEY, statType).build()));
+        } catch (RuntimeException e) {
+          log.error("Could not deserialize stat {} for material {}. Are client and server in sync?", statId, id, e);
+          throw e;
+        }
+      }
+      materialToStats.put(id, statList);
+    }
+  }
+
+  @Override
+  public void encode(FriendlyByteBuf buffer) {
+    buffer.writeInt(materialToStats.size());
+    materialToStats.forEach((materialId, stats) -> {
+      buffer.writeIdentifier(materialId.getId());
+      buffer.writeInt(stats.size());
+      for (IMaterialStats stat : stats) {
+        encodeStat(buffer, stat, stat.getType(), materialId);
+      }
+    });
+  }
+
+  /**
+   * Encodes a single material stat
+   *
+   * @param buffer     Buffer instance
+   * @param stat       Stat to encode
+   * @param material   Material being encoded
+   */
+  @SuppressWarnings("unchecked")
+  private <T extends IMaterialStats> void encodeStat(FriendlyByteBuf buffer, IMaterialStats stat, MaterialStatType<T> type, MaterialId material) {
+    try {
+      MaterialStatsId.PARSER.encode(buffer, new MaterialStatsId(type.getId()));
+      type.getLoadable().encode(buffer, (T) stat);
+    } catch (RuntimeException e) {
+      TConstruct.LOG.error("Could not encode stat {} for material {}", stat.getIdentifier(), material, e);
+      throw e;
+    }
+  }
+
+  @Override
+  public Type<? extends CustomPacketPayload> type() {
+    return TYPE;
+  }
+
+  @Override
+  public void handleThreadsafe(IPayloadContext context) {
+    MaterialRegistry.updateMaterialStatsFromServer(this);
+  }
+}

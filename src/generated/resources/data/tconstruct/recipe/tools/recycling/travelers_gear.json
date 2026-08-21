@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:part_builder_tool_recycling",
+  "id": "tconstruct:tools/recycling/travelers_gear",
+  "parts": [
+    "tconstruct:repair_kit",
+    "tconstruct:maille"
+  ],
+  "pattern": "tconstruct:venom_bottle",
+  "tools": {
+    "ingredient": [
+      "tconstruct:travelers_helmet",
+      "tconstruct:travelers_chestplate",
+      "tconstruct:travelers_leggings",
+      "tconstruct:travelers_boots"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/ender/pearl",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      "#c:ender_pearls",
+      "minecraft:ender_eye"
+    ]
+  },
+  "result": {
+    "amount": 250,
+    "tag": "c:ender"
+  },
+  "temperature": 477,
+  "time": 49
+}

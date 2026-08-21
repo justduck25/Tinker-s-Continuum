@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/iron/chain",
+  "ingredient": "minecraft:iron_chain",
+  "result": {
+    "amount": 110,
+    "tag": "c:molten_iron"
+  },
+  "temperature": 800,
+  "time": 66
+}

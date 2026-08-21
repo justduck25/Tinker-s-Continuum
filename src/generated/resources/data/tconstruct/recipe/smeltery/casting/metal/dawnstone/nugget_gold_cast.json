@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "registry": "minecraft:fluid",
+      "tag": "c:molten_dawnstone"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/dawnstone"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/nugget",
+  "cooling_time": 21,
+  "fluid": {
+    "amount": 10,
+    "tag": "c:molten_dawnstone"
+  },
+  "id": "tconstruct:smeltery/casting/metal/dawnstone/nugget_gold_cast",
+  "result": {
+    "tag": "c:nuggets/dawnstone"
+  }
+}

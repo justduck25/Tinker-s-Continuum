@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears"
+    }
+  ],
+  "type": "tconstruct:item_part_builder",
+  "id": "tconstruct:smeltery/casts/red_sand/builder_block/gears",
+  "pattern": "tconstruct:gear",
+  "pattern_item": "#c:sands/red",
+  "result": {
+    "count": 4,
+    "item": "tconstruct:gear_red_sand_cast"
+  }
+}

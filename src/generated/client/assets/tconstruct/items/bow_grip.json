@@ -1,0 +1,8 @@
+{
+  "model": {
+    "type": "tconstruct:material",
+    "offset_x": -2,
+    "offset_y": -2,
+    "texture": "tconstruct:item/tool/crossbow/body"
+  }
+}

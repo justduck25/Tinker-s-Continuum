@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/redstone/dust",
+  "ingredient": "#c:dusts/redstone",
+  "material": "tconstruct:redstone",
+  "needed": 4,
+  "value": 1
+}

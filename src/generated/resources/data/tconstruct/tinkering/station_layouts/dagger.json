@@ -1,0 +1,23 @@
+{
+  "icon": {
+    "item": "tconstruct:dagger"
+  },
+  "input_slots": [
+    {
+      "filter": "tconstruct:small_blade",
+      "icon": "tconstruct:small_blade",
+      "translation_key": "item.tconstruct.small_blade",
+      "x": 39,
+      "y": 35
+    },
+    {
+      "filter": "tconstruct:tool_handle",
+      "icon": "tconstruct:tool_handle",
+      "translation_key": "item.tconstruct.tool_handle",
+      "x": 21,
+      "y": 53
+    }
+  ],
+  "sortIndex": 3,
+  "translation_key": "item.tconstruct.dagger"
+}

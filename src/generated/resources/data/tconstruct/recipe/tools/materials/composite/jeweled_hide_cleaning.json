@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 50,
+    "fluid": "tconstruct:venom"
+  },
+  "id": "tconstruct:tools/materials/composite/jeweled_hide_cleaning",
+  "input": "tconstruct:jeweled_hide",
+  "output": "tconstruct:leather",
+  "temperature": 10
+}

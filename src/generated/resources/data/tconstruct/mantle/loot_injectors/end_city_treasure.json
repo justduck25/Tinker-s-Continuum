@@ -1,0 +1,274 @@
+{
+  "name": "minecraft:chests/end_city_treasure",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 4,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                }
+              ],
+              "modifiers": [
+                {
+                  "level": 1,
+                  "name": "tconstruct:diamond"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:netherite"
+                },
+                {
+                  "level": 3,
+                  "name": "tconstruct:sharpness"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:looting"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:sweeping_edge"
+                }
+              ],
+              "upgrade_slots": 4
+            }
+          ],
+          "name": "tconstruct:cleaver",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 4,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                }
+              ],
+              "modifiers": [
+                {
+                  "level": 1,
+                  "name": "tconstruct:diamond"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:netherite"
+                },
+                {
+                  "level": 3,
+                  "name": "tconstruct:haste"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:fortune"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:expanded"
+                }
+              ],
+              "upgrade_slots": 4
+            }
+          ],
+          "name": "tconstruct:sledge_hammer",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 4,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "max": 4,
+                    "min": 3
+                  }
+                }
+              ],
+              "modifiers": [
+                {
+                  "level": 1,
+                  "name": "tconstruct:diamond"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:netherite"
+                },
+                {
+                  "level": 3,
+                  "name": "tconstruct:haste"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:fortune"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:expanded"
+                }
+              ],
+              "upgrade_slots": 4
+            }
+          ],
+          "name": "tconstruct:excavator",
+          "weight": 2
+        }
+      ],
+      "name": "main"
+    }
+  ]
+}

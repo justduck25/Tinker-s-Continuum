@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:casting_table",
+  "cooling_time": 33,
+  "fluid": {
+    "amount": 30,
+    "tag": "c:molten_gold"
+  },
+  "id": "tconstruct:smeltery/casting/metal/gold/bars",
+  "result": "tconstruct:gold_bars"
+}

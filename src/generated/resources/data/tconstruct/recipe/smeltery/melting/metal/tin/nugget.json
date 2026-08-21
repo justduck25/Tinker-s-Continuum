@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/tin"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/tin/nugget",
+  "ingredient": "#c:nuggets/tin",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_tin"
+  },
+  "temperature": 225,
+  "time": 13
+}

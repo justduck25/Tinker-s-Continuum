@@ -1,0 +1,1252 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:range_dispatch",
+      "entries": [
+        {
+          "model": {
+            "type": "minecraft:range_dispatch",
+            "entries": [
+              {
+                "model": {
+                  "type": "tconstruct:tool",
+                  "model": "tconstruct:item/tool/swasher/blocking_2",
+                  "modifier_maps": [
+                    "tconstruct:swasher/2",
+                    "tconstruct:swasher"
+                  ],
+                  "modifier_roots": [
+                    "tconstruct:item/tool/swasher/modifiers/2/",
+                    "tconstruct:item/tool/swasher/modifiers/"
+                  ],
+                  "parts": [
+                    {
+                      "index": 1,
+                      "name": "handle"
+                    },
+                    {
+                      "index": 0,
+                      "name": "blade"
+                    },
+                    {
+                      "index": 2,
+                      "name": "barrel"
+                    },
+                    {
+                      "name": "tank"
+                    }
+                  ],
+                  "textures": {
+                    "barrel": "tconstruct:item/tool/swasher/barrel_2",
+                    "blade": "tconstruct:item/tool/swasher/blade",
+                    "handle": "tconstruct:item/tool/swasher/handle",
+                    "layer0": "tconstruct:item/tool/swasher/blade",
+                    "particle": "tconstruct:item/tool/swasher/blade",
+                    "tank": "tconstruct:item/tool/swasher/tank"
+                  }
+                },
+                "threshold": 2.0
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:range_dispatch",
+              "entries": [
+                {
+                  "model": {
+                    "type": "minecraft:range_dispatch",
+                    "entries": [
+                      {
+                        "model": {
+                          "type": "tconstruct:tool",
+                          "model": "tconstruct:item/tool/swasher/blocking_1",
+                          "modifier_maps": [
+                            "tconstruct:swasher/1",
+                            "tconstruct:swasher"
+                          ],
+                          "modifier_roots": [
+                            "tconstruct:item/tool/swasher/modifiers/1/",
+                            "tconstruct:item/tool/swasher/modifiers/"
+                          ],
+                          "parts": [
+                            {
+                              "index": 1,
+                              "name": "handle"
+                            },
+                            {
+                              "index": 0,
+                              "name": "blade"
+                            },
+                            {
+                              "index": 2,
+                              "name": "barrel"
+                            },
+                            {
+                              "name": "tank"
+                            }
+                          ],
+                          "textures": {
+                            "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                            "blade": "tconstruct:item/tool/swasher/blade",
+                            "handle": "tconstruct:item/tool/swasher/handle",
+                            "layer0": "tconstruct:item/tool/swasher/blade",
+                            "particle": "tconstruct:item/tool/swasher/blade",
+                            "tank": "tconstruct:item/tool/swasher/tank"
+                          }
+                        },
+                        "threshold": 2.0
+                      }
+                    ],
+                    "fallback": {
+                      "type": "minecraft:range_dispatch",
+                      "entries": [
+                        {
+                          "model": {
+                            "type": "tconstruct:tool",
+                            "model": "tconstruct:item/tool/swasher/blocking",
+                            "modifier_maps": [
+                              "tconstruct:swasher"
+                            ],
+                            "modifier_roots": [
+                              "tconstruct:item/tool/swasher/modifiers/"
+                            ],
+                            "parts": [
+                              {
+                                "index": 1,
+                                "name": "handle"
+                              },
+                              {
+                                "index": 0,
+                                "name": "blade"
+                              },
+                              {
+                                "index": 2,
+                                "name": "barrel"
+                              },
+                              {
+                                "name": "tank"
+                              }
+                            ],
+                            "textures": {
+                              "barrel": "tconstruct:item/tool/swasher/barrel",
+                              "blade": "tconstruct:item/tool/swasher/blade",
+                              "handle": "tconstruct:item/tool/swasher/handle",
+                              "layer0": "tconstruct:item/tool/swasher/blade",
+                              "particle": "tconstruct:item/tool/swasher/blade",
+                              "tank": "tconstruct:item/tool/swasher/tank"
+                            }
+                          },
+                          "threshold": 2.0
+                        }
+                      ],
+                      "fallback": {
+                        "type": "minecraft:range_dispatch",
+                        "entries": [
+                          {
+                            "model": {
+                              "type": "minecraft:range_dispatch",
+                              "entries": [
+                                {
+                                  "model": {
+                                    "type": "tconstruct:tool",
+                                    "model": "tconstruct:item/tool/swasher/pulling_2",
+                                    "modifier_maps": [
+                                      "tconstruct:swasher/2",
+                                      "tconstruct:swasher"
+                                    ],
+                                    "modifier_roots": [
+                                      "tconstruct:item/tool/swasher/modifiers/2/",
+                                      "tconstruct:item/tool/swasher/modifiers/"
+                                    ],
+                                    "parts": [
+                                      {
+                                        "index": 1,
+                                        "name": "handle"
+                                      },
+                                      {
+                                        "index": 0,
+                                        "name": "blade"
+                                      },
+                                      {
+                                        "index": 2,
+                                        "name": "barrel"
+                                      },
+                                      {
+                                        "name": "tank"
+                                      }
+                                    ],
+                                    "textures": {
+                                      "barrel": "tconstruct:item/tool/swasher/barrel_2",
+                                      "blade": "tconstruct:item/tool/swasher/blade",
+                                      "handle": "tconstruct:item/tool/swasher/handle",
+                                      "layer0": "tconstruct:item/tool/swasher/blade",
+                                      "particle": "tconstruct:item/tool/swasher/blade",
+                                      "tank": "tconstruct:item/tool/swasher/tank"
+                                    }
+                                  },
+                                  "threshold": 1.0
+                                }
+                              ],
+                              "fallback": {
+                                "type": "minecraft:range_dispatch",
+                                "entries": [
+                                  {
+                                    "model": {
+                                      "type": "tconstruct:tool",
+                                      "model": "tconstruct:item/tool/swasher/pulling_1",
+                                      "modifier_maps": [
+                                        "tconstruct:swasher/1",
+                                        "tconstruct:swasher"
+                                      ],
+                                      "modifier_roots": [
+                                        "tconstruct:item/tool/swasher/modifiers/1/",
+                                        "tconstruct:item/tool/swasher/modifiers/"
+                                      ],
+                                      "parts": [
+                                        {
+                                          "index": 1,
+                                          "name": "handle"
+                                        },
+                                        {
+                                          "index": 0,
+                                          "name": "blade"
+                                        },
+                                        {
+                                          "index": 2,
+                                          "name": "barrel"
+                                        },
+                                        {
+                                          "name": "tank"
+                                        }
+                                      ],
+                                      "textures": {
+                                        "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                                        "blade": "tconstruct:item/tool/swasher/blade",
+                                        "handle": "tconstruct:item/tool/swasher/handle",
+                                        "layer0": "tconstruct:item/tool/swasher/blade",
+                                        "particle": "tconstruct:item/tool/swasher/blade",
+                                        "tank": "tconstruct:item/tool/swasher/tank"
+                                      }
+                                    },
+                                    "threshold": 1.0
+                                  }
+                                ],
+                                "fallback": {
+                                  "type": "tconstruct:tool",
+                                  "model": "tconstruct:item/swasher",
+                                  "modifier_maps": [
+                                    "tconstruct:swasher"
+                                  ],
+                                  "modifier_roots": [
+                                    "tconstruct:item/tool/swasher/modifiers/"
+                                  ],
+                                  "parts": [
+                                    {
+                                      "index": 1,
+                                      "name": "handle"
+                                    },
+                                    {
+                                      "index": 0,
+                                      "name": "blade"
+                                    },
+                                    {
+                                      "index": 2,
+                                      "name": "barrel"
+                                    },
+                                    {
+                                      "name": "tank"
+                                    }
+                                  ],
+                                  "textures": {
+                                    "barrel": "tconstruct:item/tool/swasher/barrel",
+                                    "blade": "tconstruct:item/tool/swasher/blade",
+                                    "handle": "tconstruct:item/tool/swasher/handle",
+                                    "layer0": "tconstruct:item/tool/swasher/blade",
+                                    "particle": "tconstruct:item/tool/swasher/blade",
+                                    "tank": "tconstruct:item/tool/swasher/tank"
+                                  }
+                                },
+                                "property": "tconstruct:charging"
+                              },
+                              "property": "tconstruct:charging"
+                            },
+                            "threshold": 1.0
+                          }
+                        ],
+                        "fallback": {
+                          "type": "minecraft:range_dispatch",
+                          "entries": [
+                            {
+                              "model": {
+                                "type": "tconstruct:tool",
+                                "model": "tconstruct:item/tool/swasher/pulling_1",
+                                "modifier_maps": [
+                                  "tconstruct:swasher/1",
+                                  "tconstruct:swasher"
+                                ],
+                                "modifier_roots": [
+                                  "tconstruct:item/tool/swasher/modifiers/1/",
+                                  "tconstruct:item/tool/swasher/modifiers/"
+                                ],
+                                "parts": [
+                                  {
+                                    "index": 1,
+                                    "name": "handle"
+                                  },
+                                  {
+                                    "index": 0,
+                                    "name": "blade"
+                                  },
+                                  {
+                                    "index": 2,
+                                    "name": "barrel"
+                                  },
+                                  {
+                                    "name": "tank"
+                                  }
+                                ],
+                                "textures": {
+                                  "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                                  "blade": "tconstruct:item/tool/swasher/blade",
+                                  "handle": "tconstruct:item/tool/swasher/handle",
+                                  "layer0": "tconstruct:item/tool/swasher/blade",
+                                  "particle": "tconstruct:item/tool/swasher/blade",
+                                  "tank": "tconstruct:item/tool/swasher/tank"
+                                }
+                              },
+                              "threshold": 1.0
+                            }
+                          ],
+                          "fallback": {
+                            "type": "tconstruct:tool",
+                            "model": "tconstruct:item/swasher",
+                            "modifier_maps": [
+                              "tconstruct:swasher"
+                            ],
+                            "modifier_roots": [
+                              "tconstruct:item/tool/swasher/modifiers/"
+                            ],
+                            "parts": [
+                              {
+                                "index": 1,
+                                "name": "handle"
+                              },
+                              {
+                                "index": 0,
+                                "name": "blade"
+                              },
+                              {
+                                "index": 2,
+                                "name": "barrel"
+                              },
+                              {
+                                "name": "tank"
+                              }
+                            ],
+                            "textures": {
+                              "barrel": "tconstruct:item/tool/swasher/barrel",
+                              "blade": "tconstruct:item/tool/swasher/blade",
+                              "handle": "tconstruct:item/tool/swasher/handle",
+                              "layer0": "tconstruct:item/tool/swasher/blade",
+                              "particle": "tconstruct:item/tool/swasher/blade",
+                              "tank": "tconstruct:item/tool/swasher/tank"
+                            }
+                          },
+                          "property": "tconstruct:charging"
+                        },
+                        "property": "tconstruct:charge"
+                      },
+                      "property": "tconstruct:charging"
+                    },
+                    "property": "tconstruct:charging"
+                  },
+                  "threshold": 0.05
+                }
+              ],
+              "fallback": {
+                "type": "minecraft:range_dispatch",
+                "entries": [
+                  {
+                    "model": {
+                      "type": "tconstruct:tool",
+                      "model": "tconstruct:item/tool/swasher/blocking",
+                      "modifier_maps": [
+                        "tconstruct:swasher"
+                      ],
+                      "modifier_roots": [
+                        "tconstruct:item/tool/swasher/modifiers/"
+                      ],
+                      "parts": [
+                        {
+                          "index": 1,
+                          "name": "handle"
+                        },
+                        {
+                          "index": 0,
+                          "name": "blade"
+                        },
+                        {
+                          "index": 2,
+                          "name": "barrel"
+                        },
+                        {
+                          "name": "tank"
+                        }
+                      ],
+                      "textures": {
+                        "barrel": "tconstruct:item/tool/swasher/barrel",
+                        "blade": "tconstruct:item/tool/swasher/blade",
+                        "handle": "tconstruct:item/tool/swasher/handle",
+                        "layer0": "tconstruct:item/tool/swasher/blade",
+                        "particle": "tconstruct:item/tool/swasher/blade",
+                        "tank": "tconstruct:item/tool/swasher/tank"
+                      }
+                    },
+                    "threshold": 2.0
+                  }
+                ],
+                "fallback": {
+                  "type": "minecraft:range_dispatch",
+                  "entries": [
+                    {
+                      "model": {
+                        "type": "minecraft:range_dispatch",
+                        "entries": [
+                          {
+                            "model": {
+                              "type": "tconstruct:tool",
+                              "model": "tconstruct:item/tool/swasher/pulling_2",
+                              "modifier_maps": [
+                                "tconstruct:swasher/2",
+                                "tconstruct:swasher"
+                              ],
+                              "modifier_roots": [
+                                "tconstruct:item/tool/swasher/modifiers/2/",
+                                "tconstruct:item/tool/swasher/modifiers/"
+                              ],
+                              "parts": [
+                                {
+                                  "index": 1,
+                                  "name": "handle"
+                                },
+                                {
+                                  "index": 0,
+                                  "name": "blade"
+                                },
+                                {
+                                  "index": 2,
+                                  "name": "barrel"
+                                },
+                                {
+                                  "name": "tank"
+                                }
+                              ],
+                              "textures": {
+                                "barrel": "tconstruct:item/tool/swasher/barrel_2",
+                                "blade": "tconstruct:item/tool/swasher/blade",
+                                "handle": "tconstruct:item/tool/swasher/handle",
+                                "layer0": "tconstruct:item/tool/swasher/blade",
+                                "particle": "tconstruct:item/tool/swasher/blade",
+                                "tank": "tconstruct:item/tool/swasher/tank"
+                              }
+                            },
+                            "threshold": 1.0
+                          }
+                        ],
+                        "fallback": {
+                          "type": "minecraft:range_dispatch",
+                          "entries": [
+                            {
+                              "model": {
+                                "type": "tconstruct:tool",
+                                "model": "tconstruct:item/tool/swasher/pulling_1",
+                                "modifier_maps": [
+                                  "tconstruct:swasher/1",
+                                  "tconstruct:swasher"
+                                ],
+                                "modifier_roots": [
+                                  "tconstruct:item/tool/swasher/modifiers/1/",
+                                  "tconstruct:item/tool/swasher/modifiers/"
+                                ],
+                                "parts": [
+                                  {
+                                    "index": 1,
+                                    "name": "handle"
+                                  },
+                                  {
+                                    "index": 0,
+                                    "name": "blade"
+                                  },
+                                  {
+                                    "index": 2,
+                                    "name": "barrel"
+                                  },
+                                  {
+                                    "name": "tank"
+                                  }
+                                ],
+                                "textures": {
+                                  "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                                  "blade": "tconstruct:item/tool/swasher/blade",
+                                  "handle": "tconstruct:item/tool/swasher/handle",
+                                  "layer0": "tconstruct:item/tool/swasher/blade",
+                                  "particle": "tconstruct:item/tool/swasher/blade",
+                                  "tank": "tconstruct:item/tool/swasher/tank"
+                                }
+                              },
+                              "threshold": 1.0
+                            }
+                          ],
+                          "fallback": {
+                            "type": "tconstruct:tool",
+                            "model": "tconstruct:item/swasher",
+                            "modifier_maps": [
+                              "tconstruct:swasher"
+                            ],
+                            "modifier_roots": [
+                              "tconstruct:item/tool/swasher/modifiers/"
+                            ],
+                            "parts": [
+                              {
+                                "index": 1,
+                                "name": "handle"
+                              },
+                              {
+                                "index": 0,
+                                "name": "blade"
+                              },
+                              {
+                                "index": 2,
+                                "name": "barrel"
+                              },
+                              {
+                                "name": "tank"
+                              }
+                            ],
+                            "textures": {
+                              "barrel": "tconstruct:item/tool/swasher/barrel",
+                              "blade": "tconstruct:item/tool/swasher/blade",
+                              "handle": "tconstruct:item/tool/swasher/handle",
+                              "layer0": "tconstruct:item/tool/swasher/blade",
+                              "particle": "tconstruct:item/tool/swasher/blade",
+                              "tank": "tconstruct:item/tool/swasher/tank"
+                            }
+                          },
+                          "property": "tconstruct:charging"
+                        },
+                        "property": "tconstruct:charging"
+                      },
+                      "threshold": 1.0
+                    }
+                  ],
+                  "fallback": {
+                    "type": "minecraft:range_dispatch",
+                    "entries": [
+                      {
+                        "model": {
+                          "type": "tconstruct:tool",
+                          "model": "tconstruct:item/tool/swasher/pulling_1",
+                          "modifier_maps": [
+                            "tconstruct:swasher/1",
+                            "tconstruct:swasher"
+                          ],
+                          "modifier_roots": [
+                            "tconstruct:item/tool/swasher/modifiers/1/",
+                            "tconstruct:item/tool/swasher/modifiers/"
+                          ],
+                          "parts": [
+                            {
+                              "index": 1,
+                              "name": "handle"
+                            },
+                            {
+                              "index": 0,
+                              "name": "blade"
+                            },
+                            {
+                              "index": 2,
+                              "name": "barrel"
+                            },
+                            {
+                              "name": "tank"
+                            }
+                          ],
+                          "textures": {
+                            "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                            "blade": "tconstruct:item/tool/swasher/blade",
+                            "handle": "tconstruct:item/tool/swasher/handle",
+                            "layer0": "tconstruct:item/tool/swasher/blade",
+                            "particle": "tconstruct:item/tool/swasher/blade",
+                            "tank": "tconstruct:item/tool/swasher/tank"
+                          }
+                        },
+                        "threshold": 1.0
+                      }
+                    ],
+                    "fallback": {
+                      "type": "tconstruct:tool",
+                      "model": "tconstruct:item/swasher",
+                      "modifier_maps": [
+                        "tconstruct:swasher"
+                      ],
+                      "modifier_roots": [
+                        "tconstruct:item/tool/swasher/modifiers/"
+                      ],
+                      "parts": [
+                        {
+                          "index": 1,
+                          "name": "handle"
+                        },
+                        {
+                          "index": 0,
+                          "name": "blade"
+                        },
+                        {
+                          "index": 2,
+                          "name": "barrel"
+                        },
+                        {
+                          "name": "tank"
+                        }
+                      ],
+                      "textures": {
+                        "barrel": "tconstruct:item/tool/swasher/barrel",
+                        "blade": "tconstruct:item/tool/swasher/blade",
+                        "handle": "tconstruct:item/tool/swasher/handle",
+                        "layer0": "tconstruct:item/tool/swasher/blade",
+                        "particle": "tconstruct:item/tool/swasher/blade",
+                        "tank": "tconstruct:item/tool/swasher/tank"
+                      }
+                    },
+                    "property": "tconstruct:charging"
+                  },
+                  "property": "tconstruct:charge"
+                },
+                "property": "tconstruct:charging"
+              },
+              "property": "tconstruct:charge"
+            },
+            "property": "tconstruct:charging"
+          },
+          "threshold": 1.0
+        }
+      ],
+      "fallback": {
+        "type": "minecraft:range_dispatch",
+        "entries": [
+          {
+            "model": {
+              "type": "minecraft:range_dispatch",
+              "entries": [
+                {
+                  "model": {
+                    "type": "tconstruct:tool",
+                    "model": "tconstruct:item/tool/swasher/blocking_1",
+                    "modifier_maps": [
+                      "tconstruct:swasher/1",
+                      "tconstruct:swasher"
+                    ],
+                    "modifier_roots": [
+                      "tconstruct:item/tool/swasher/modifiers/1/",
+                      "tconstruct:item/tool/swasher/modifiers/"
+                    ],
+                    "parts": [
+                      {
+                        "index": 1,
+                        "name": "handle"
+                      },
+                      {
+                        "index": 0,
+                        "name": "blade"
+                      },
+                      {
+                        "index": 2,
+                        "name": "barrel"
+                      },
+                      {
+                        "name": "tank"
+                      }
+                    ],
+                    "textures": {
+                      "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                      "blade": "tconstruct:item/tool/swasher/blade",
+                      "handle": "tconstruct:item/tool/swasher/handle",
+                      "layer0": "tconstruct:item/tool/swasher/blade",
+                      "particle": "tconstruct:item/tool/swasher/blade",
+                      "tank": "tconstruct:item/tool/swasher/tank"
+                    }
+                  },
+                  "threshold": 2.0
+                }
+              ],
+              "fallback": {
+                "type": "minecraft:range_dispatch",
+                "entries": [
+                  {
+                    "model": {
+                      "type": "tconstruct:tool",
+                      "model": "tconstruct:item/tool/swasher/blocking",
+                      "modifier_maps": [
+                        "tconstruct:swasher"
+                      ],
+                      "modifier_roots": [
+                        "tconstruct:item/tool/swasher/modifiers/"
+                      ],
+                      "parts": [
+                        {
+                          "index": 1,
+                          "name": "handle"
+                        },
+                        {
+                          "index": 0,
+                          "name": "blade"
+                        },
+                        {
+                          "index": 2,
+                          "name": "barrel"
+                        },
+                        {
+                          "name": "tank"
+                        }
+                      ],
+                      "textures": {
+                        "barrel": "tconstruct:item/tool/swasher/barrel",
+                        "blade": "tconstruct:item/tool/swasher/blade",
+                        "handle": "tconstruct:item/tool/swasher/handle",
+                        "layer0": "tconstruct:item/tool/swasher/blade",
+                        "particle": "tconstruct:item/tool/swasher/blade",
+                        "tank": "tconstruct:item/tool/swasher/tank"
+                      }
+                    },
+                    "threshold": 2.0
+                  }
+                ],
+                "fallback": {
+                  "type": "minecraft:range_dispatch",
+                  "entries": [
+                    {
+                      "model": {
+                        "type": "minecraft:range_dispatch",
+                        "entries": [
+                          {
+                            "model": {
+                              "type": "tconstruct:tool",
+                              "model": "tconstruct:item/tool/swasher/pulling_2",
+                              "modifier_maps": [
+                                "tconstruct:swasher/2",
+                                "tconstruct:swasher"
+                              ],
+                              "modifier_roots": [
+                                "tconstruct:item/tool/swasher/modifiers/2/",
+                                "tconstruct:item/tool/swasher/modifiers/"
+                              ],
+                              "parts": [
+                                {
+                                  "index": 1,
+                                  "name": "handle"
+                                },
+                                {
+                                  "index": 0,
+                                  "name": "blade"
+                                },
+                                {
+                                  "index": 2,
+                                  "name": "barrel"
+                                },
+                                {
+                                  "name": "tank"
+                                }
+                              ],
+                              "textures": {
+                                "barrel": "tconstruct:item/tool/swasher/barrel_2",
+                                "blade": "tconstruct:item/tool/swasher/blade",
+                                "handle": "tconstruct:item/tool/swasher/handle",
+                                "layer0": "tconstruct:item/tool/swasher/blade",
+                                "particle": "tconstruct:item/tool/swasher/blade",
+                                "tank": "tconstruct:item/tool/swasher/tank"
+                              }
+                            },
+                            "threshold": 1.0
+                          }
+                        ],
+                        "fallback": {
+                          "type": "minecraft:range_dispatch",
+                          "entries": [
+                            {
+                              "model": {
+                                "type": "tconstruct:tool",
+                                "model": "tconstruct:item/tool/swasher/pulling_1",
+                                "modifier_maps": [
+                                  "tconstruct:swasher/1",
+                                  "tconstruct:swasher"
+                                ],
+                                "modifier_roots": [
+                                  "tconstruct:item/tool/swasher/modifiers/1/",
+                                  "tconstruct:item/tool/swasher/modifiers/"
+                                ],
+                                "parts": [
+                                  {
+                                    "index": 1,
+                                    "name": "handle"
+                                  },
+                                  {
+                                    "index": 0,
+                                    "name": "blade"
+                                  },
+                                  {
+                                    "index": 2,
+                                    "name": "barrel"
+                                  },
+                                  {
+                                    "name": "tank"
+                                  }
+                                ],
+                                "textures": {
+                                  "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                                  "blade": "tconstruct:item/tool/swasher/blade",
+                                  "handle": "tconstruct:item/tool/swasher/handle",
+                                  "layer0": "tconstruct:item/tool/swasher/blade",
+                                  "particle": "tconstruct:item/tool/swasher/blade",
+                                  "tank": "tconstruct:item/tool/swasher/tank"
+                                }
+                              },
+                              "threshold": 1.0
+                            }
+                          ],
+                          "fallback": {
+                            "type": "tconstruct:tool",
+                            "model": "tconstruct:item/swasher",
+                            "modifier_maps": [
+                              "tconstruct:swasher"
+                            ],
+                            "modifier_roots": [
+                              "tconstruct:item/tool/swasher/modifiers/"
+                            ],
+                            "parts": [
+                              {
+                                "index": 1,
+                                "name": "handle"
+                              },
+                              {
+                                "index": 0,
+                                "name": "blade"
+                              },
+                              {
+                                "index": 2,
+                                "name": "barrel"
+                              },
+                              {
+                                "name": "tank"
+                              }
+                            ],
+                            "textures": {
+                              "barrel": "tconstruct:item/tool/swasher/barrel",
+                              "blade": "tconstruct:item/tool/swasher/blade",
+                              "handle": "tconstruct:item/tool/swasher/handle",
+                              "layer0": "tconstruct:item/tool/swasher/blade",
+                              "particle": "tconstruct:item/tool/swasher/blade",
+                              "tank": "tconstruct:item/tool/swasher/tank"
+                            }
+                          },
+                          "property": "tconstruct:charging"
+                        },
+                        "property": "tconstruct:charging"
+                      },
+                      "threshold": 1.0
+                    }
+                  ],
+                  "fallback": {
+                    "type": "minecraft:range_dispatch",
+                    "entries": [
+                      {
+                        "model": {
+                          "type": "tconstruct:tool",
+                          "model": "tconstruct:item/tool/swasher/pulling_1",
+                          "modifier_maps": [
+                            "tconstruct:swasher/1",
+                            "tconstruct:swasher"
+                          ],
+                          "modifier_roots": [
+                            "tconstruct:item/tool/swasher/modifiers/1/",
+                            "tconstruct:item/tool/swasher/modifiers/"
+                          ],
+                          "parts": [
+                            {
+                              "index": 1,
+                              "name": "handle"
+                            },
+                            {
+                              "index": 0,
+                              "name": "blade"
+                            },
+                            {
+                              "index": 2,
+                              "name": "barrel"
+                            },
+                            {
+                              "name": "tank"
+                            }
+                          ],
+                          "textures": {
+                            "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                            "blade": "tconstruct:item/tool/swasher/blade",
+                            "handle": "tconstruct:item/tool/swasher/handle",
+                            "layer0": "tconstruct:item/tool/swasher/blade",
+                            "particle": "tconstruct:item/tool/swasher/blade",
+                            "tank": "tconstruct:item/tool/swasher/tank"
+                          }
+                        },
+                        "threshold": 1.0
+                      }
+                    ],
+                    "fallback": {
+                      "type": "tconstruct:tool",
+                      "model": "tconstruct:item/swasher",
+                      "modifier_maps": [
+                        "tconstruct:swasher"
+                      ],
+                      "modifier_roots": [
+                        "tconstruct:item/tool/swasher/modifiers/"
+                      ],
+                      "parts": [
+                        {
+                          "index": 1,
+                          "name": "handle"
+                        },
+                        {
+                          "index": 0,
+                          "name": "blade"
+                        },
+                        {
+                          "index": 2,
+                          "name": "barrel"
+                        },
+                        {
+                          "name": "tank"
+                        }
+                      ],
+                      "textures": {
+                        "barrel": "tconstruct:item/tool/swasher/barrel",
+                        "blade": "tconstruct:item/tool/swasher/blade",
+                        "handle": "tconstruct:item/tool/swasher/handle",
+                        "layer0": "tconstruct:item/tool/swasher/blade",
+                        "particle": "tconstruct:item/tool/swasher/blade",
+                        "tank": "tconstruct:item/tool/swasher/tank"
+                      }
+                    },
+                    "property": "tconstruct:charging"
+                  },
+                  "property": "tconstruct:charge"
+                },
+                "property": "tconstruct:charging"
+              },
+              "property": "tconstruct:charging"
+            },
+            "threshold": 0.05
+          }
+        ],
+        "fallback": {
+          "type": "minecraft:range_dispatch",
+          "entries": [
+            {
+              "model": {
+                "type": "tconstruct:tool",
+                "model": "tconstruct:item/tool/swasher/blocking",
+                "modifier_maps": [
+                  "tconstruct:swasher"
+                ],
+                "modifier_roots": [
+                  "tconstruct:item/tool/swasher/modifiers/"
+                ],
+                "parts": [
+                  {
+                    "index": 1,
+                    "name": "handle"
+                  },
+                  {
+                    "index": 0,
+                    "name": "blade"
+                  },
+                  {
+                    "index": 2,
+                    "name": "barrel"
+                  },
+                  {
+                    "name": "tank"
+                  }
+                ],
+                "textures": {
+                  "barrel": "tconstruct:item/tool/swasher/barrel",
+                  "blade": "tconstruct:item/tool/swasher/blade",
+                  "handle": "tconstruct:item/tool/swasher/handle",
+                  "layer0": "tconstruct:item/tool/swasher/blade",
+                  "particle": "tconstruct:item/tool/swasher/blade",
+                  "tank": "tconstruct:item/tool/swasher/tank"
+                }
+              },
+              "threshold": 2.0
+            }
+          ],
+          "fallback": {
+            "type": "minecraft:range_dispatch",
+            "entries": [
+              {
+                "model": {
+                  "type": "minecraft:range_dispatch",
+                  "entries": [
+                    {
+                      "model": {
+                        "type": "tconstruct:tool",
+                        "model": "tconstruct:item/tool/swasher/pulling_2",
+                        "modifier_maps": [
+                          "tconstruct:swasher/2",
+                          "tconstruct:swasher"
+                        ],
+                        "modifier_roots": [
+                          "tconstruct:item/tool/swasher/modifiers/2/",
+                          "tconstruct:item/tool/swasher/modifiers/"
+                        ],
+                        "parts": [
+                          {
+                            "index": 1,
+                            "name": "handle"
+                          },
+                          {
+                            "index": 0,
+                            "name": "blade"
+                          },
+                          {
+                            "index": 2,
+                            "name": "barrel"
+                          },
+                          {
+                            "name": "tank"
+                          }
+                        ],
+                        "textures": {
+                          "barrel": "tconstruct:item/tool/swasher/barrel_2",
+                          "blade": "tconstruct:item/tool/swasher/blade",
+                          "handle": "tconstruct:item/tool/swasher/handle",
+                          "layer0": "tconstruct:item/tool/swasher/blade",
+                          "particle": "tconstruct:item/tool/swasher/blade",
+                          "tank": "tconstruct:item/tool/swasher/tank"
+                        }
+                      },
+                      "threshold": 1.0
+                    }
+                  ],
+                  "fallback": {
+                    "type": "minecraft:range_dispatch",
+                    "entries": [
+                      {
+                        "model": {
+                          "type": "tconstruct:tool",
+                          "model": "tconstruct:item/tool/swasher/pulling_1",
+                          "modifier_maps": [
+                            "tconstruct:swasher/1",
+                            "tconstruct:swasher"
+                          ],
+                          "modifier_roots": [
+                            "tconstruct:item/tool/swasher/modifiers/1/",
+                            "tconstruct:item/tool/swasher/modifiers/"
+                          ],
+                          "parts": [
+                            {
+                              "index": 1,
+                              "name": "handle"
+                            },
+                            {
+                              "index": 0,
+                              "name": "blade"
+                            },
+                            {
+                              "index": 2,
+                              "name": "barrel"
+                            },
+                            {
+                              "name": "tank"
+                            }
+                          ],
+                          "textures": {
+                            "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                            "blade": "tconstruct:item/tool/swasher/blade",
+                            "handle": "tconstruct:item/tool/swasher/handle",
+                            "layer0": "tconstruct:item/tool/swasher/blade",
+                            "particle": "tconstruct:item/tool/swasher/blade",
+                            "tank": "tconstruct:item/tool/swasher/tank"
+                          }
+                        },
+                        "threshold": 1.0
+                      }
+                    ],
+                    "fallback": {
+                      "type": "tconstruct:tool",
+                      "model": "tconstruct:item/swasher",
+                      "modifier_maps": [
+                        "tconstruct:swasher"
+                      ],
+                      "modifier_roots": [
+                        "tconstruct:item/tool/swasher/modifiers/"
+                      ],
+                      "parts": [
+                        {
+                          "index": 1,
+                          "name": "handle"
+                        },
+                        {
+                          "index": 0,
+                          "name": "blade"
+                        },
+                        {
+                          "index": 2,
+                          "name": "barrel"
+                        },
+                        {
+                          "name": "tank"
+                        }
+                      ],
+                      "textures": {
+                        "barrel": "tconstruct:item/tool/swasher/barrel",
+                        "blade": "tconstruct:item/tool/swasher/blade",
+                        "handle": "tconstruct:item/tool/swasher/handle",
+                        "layer0": "tconstruct:item/tool/swasher/blade",
+                        "particle": "tconstruct:item/tool/swasher/blade",
+                        "tank": "tconstruct:item/tool/swasher/tank"
+                      }
+                    },
+                    "property": "tconstruct:charging"
+                  },
+                  "property": "tconstruct:charging"
+                },
+                "threshold": 1.0
+              }
+            ],
+            "fallback": {
+              "type": "minecraft:range_dispatch",
+              "entries": [
+                {
+                  "model": {
+                    "type": "tconstruct:tool",
+                    "model": "tconstruct:item/tool/swasher/pulling_1",
+                    "modifier_maps": [
+                      "tconstruct:swasher/1",
+                      "tconstruct:swasher"
+                    ],
+                    "modifier_roots": [
+                      "tconstruct:item/tool/swasher/modifiers/1/",
+                      "tconstruct:item/tool/swasher/modifiers/"
+                    ],
+                    "parts": [
+                      {
+                        "index": 1,
+                        "name": "handle"
+                      },
+                      {
+                        "index": 0,
+                        "name": "blade"
+                      },
+                      {
+                        "index": 2,
+                        "name": "barrel"
+                      },
+                      {
+                        "name": "tank"
+                      }
+                    ],
+                    "textures": {
+                      "barrel": "tconstruct:item/tool/swasher/barrel_1",
+                      "blade": "tconstruct:item/tool/swasher/blade",
+                      "handle": "tconstruct:item/tool/swasher/handle",
+                      "layer0": "tconstruct:item/tool/swasher/blade",
+                      "particle": "tconstruct:item/tool/swasher/blade",
+                      "tank": "tconstruct:item/tool/swasher/tank"
+                    }
+                  },
+                  "threshold": 1.0
+                }
+              ],
+              "fallback": {
+                "type": "tconstruct:tool",
+                "model": "tconstruct:item/swasher",
+                "modifier_maps": [
+                  "tconstruct:swasher"
+                ],
+                "modifier_roots": [
+                  "tconstruct:item/tool/swasher/modifiers/"
+                ],
+                "parts": [
+                  {
+                    "index": 1,
+                    "name": "handle"
+                  },
+                  {
+                    "index": 0,
+                    "name": "blade"
+                  },
+                  {
+                    "index": 2,
+                    "name": "barrel"
+                  },
+                  {
+                    "name": "tank"
+                  }
+                ],
+                "textures": {
+                  "barrel": "tconstruct:item/tool/swasher/barrel",
+                  "blade": "tconstruct:item/tool/swasher/blade",
+                  "handle": "tconstruct:item/tool/swasher/handle",
+                  "layer0": "tconstruct:item/tool/swasher/blade",
+                  "particle": "tconstruct:item/tool/swasher/blade",
+                  "tank": "tconstruct:item/tool/swasher/tank"
+                }
+              },
+              "property": "tconstruct:charging"
+            },
+            "property": "tconstruct:charge"
+          },
+          "property": "tconstruct:charging"
+        },
+        "property": "tconstruct:charge"
+      },
+      "property": "tconstruct:charge"
+    },
+    "on_true": {
+      "type": "tconstruct:tool",
+      "model": "tconstruct:item/tool/swasher/broken",
+      "modifier_maps": [
+        "tconstruct:swasher/broken",
+        "tconstruct:swasher"
+      ],
+      "modifier_roots": [
+        "tconstruct:item/tool/swasher/modifiers/broken/",
+        "tconstruct:item/tool/swasher/modifiers/"
+      ],
+      "parts": [
+        {
+          "index": 1,
+          "name": "handle"
+        },
+        {
+          "index": 0,
+          "name": "blade"
+        },
+        {
+          "index": 2,
+          "name": "barrel"
+        },
+        {
+          "name": "tank"
+        }
+      ],
+      "textures": {
+        "barrel": "tconstruct:item/tool/swasher/barrel",
+        "blade": "tconstruct:item/tool/swasher/blade_broken",
+        "handle": "tconstruct:item/tool/swasher/handle",
+        "layer0": "tconstruct:item/tool/swasher/blade",
+        "particle": "tconstruct:item/tool/swasher/blade",
+        "tank": "tconstruct:item/tool/swasher/tank"
+      }
+    },
+    "property": "tconstruct:broken"
+  }
+}

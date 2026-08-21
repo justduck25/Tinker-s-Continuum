@@ -1,0 +1,8 @@
+{
+  "model": {
+    "type": "tconstruct:material",
+    "offset_x": 4,
+    "offset_y": -5,
+    "texture": "tconstruct:item/tool/ammo/arrow_feather"
+  }
+}

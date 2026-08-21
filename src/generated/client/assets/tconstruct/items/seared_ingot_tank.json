@@ -1,0 +1,18 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:model",
+        "model": "tconstruct:item/seared_ingot_tank"
+      },
+      {
+        "type": "minecraft:special",
+        "base": "tconstruct:item/seared_ingot_tank",
+        "model": {
+          "type": "tconstruct:tank_fluid"
+        }
+      }
+    ]
+  }
+}

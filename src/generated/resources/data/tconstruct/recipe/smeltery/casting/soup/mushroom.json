@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:bowl",
+  "cast_consumed": true,
+  "cooling_time": 1,
+  "fluid": {
+    "amount": 250,
+    "tag": "c:mushroom_stew"
+  },
+  "id": "tconstruct:smeltery/casting/soup/mushroom",
+  "result": "minecraft:mushroom_stew"
+}

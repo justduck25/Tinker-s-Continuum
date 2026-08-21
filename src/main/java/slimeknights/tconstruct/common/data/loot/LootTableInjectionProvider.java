@@ -1,0 +1,419 @@
+package slimeknights.tconstruct.common.data.loot;
+
+import net.minecraft.data.PackOutput;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.PatchedDataComponentMap;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidType;
+import slimeknights.mantle.data.predicate.IJsonPredicate;
+import slimeknights.mantle.loot.AbstractLootTableInjectionProvider;
+import slimeknights.mantle.loot.LootTableInjection;
+import slimeknights.mantle.loot.function.SetFluidLootFunction;
+import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.common.TinkerTags;
+import slimeknights.tconstruct.common.data.FakeRegistryEntry;
+import slimeknights.tconstruct.common.json.ConfigEnabledCondition;
+import slimeknights.tconstruct.fluids.TinkerFluids;
+import slimeknights.tconstruct.library.json.loot.AddToolDataFunction;
+import slimeknights.tconstruct.library.json.loot.ToolPartLootEntry;
+import slimeknights.tconstruct.library.json.predicate.material.MaterialPredicate;
+import slimeknights.tconstruct.library.materials.RandomMaterial;
+import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.tconstruct.library.recipe.FluidValues;
+import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.tools.TinkerTools;
+import slimeknights.tconstruct.tools.data.ModifierIds;
+import slimeknights.tconstruct.world.TinkerWorld;
+import slimeknights.tconstruct.world.block.FoliageType;
+
+import java.lang.reflect.Constructor;
+
+/** Add all relevant loot to loot tables */
+public class LootTableInjectionProvider extends AbstractLootTableInjectionProvider {
+  public LootTableInjectionProvider(PackOutput packOutput) {
+    super(packOutput, TConstruct.MOD_ID);
+  }
+
+  @SuppressWarnings("removal")
+  @Override
+  protected void addTables() {
+    // slimy foliage injections
+    // earth/sky
+    inject("slimy_foliage_dungeon", "chests/simple_dungeon", ConfigEnabledCondition.SLIMY_LOOT_CHESTS)
+      .addToPool("main", makeSapling(FoliageType.EARTH, 3), makeSapling(FoliageType.SKY, 7))
+      .addToPool("pool1", makeSeed(FoliageType.EARTH, 3), makeSeed(FoliageType.SKY, 7));
+    // blood
+    inject("slimy_foliage_nether_fortress", "chests/nether_bridge", ConfigEnabledCondition.SLIMY_LOOT_CHESTS)
+      .addToPool("main", makeSeed(FoliageType.BLOOD, 5));
+    inject("slimy_foliage_bastion", "chests/bastion_bridge", ConfigEnabledCondition.SLIMY_LOOT_CHESTS)
+      .addToPool("main", makeSapling(FoliageType.BLOOD, 1));
+    // ender
+    inject("slimy_foliage_end_city", "chests/end_city_treasure", ConfigEnabledCondition.SLIMY_LOOT_CHESTS)
+      .addToPool("main", makeSeed(FoliageType.ENDER, 5), makeSapling(FoliageType.ENDER, 3));
+
+    // bartering
+    IJsonPredicate<MaterialVariantId> includeInLoot = MaterialPredicate.tag(TinkerTags.Materials.EXCLUDE_FROM_LOOT).inverted();
+    RandomMaterial random = RandomMaterial.ancient();
+    AddToolDataFunction.Builder ancientToolData2 = AddToolDataFunction.builder().addMaterial(random).addMaterial(random);
+    injectGameplay("piglin_bartering")
+      .addToPool("main", LootItem.lootTableItem(TinkerSmeltery.scorchedLantern).setWeight(20)
+                                 .apply(SetFluidLootFunction.builder(fluidStackSafe(TinkerFluids.blazingBlood.get(), FluidValues.LANTERN_CAPACITY)))
+                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))
+                                 .build())
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.battlesign.get())
+                                 .setWeight(5)
+                                 .apply(ancientToolData2)
+                                 .build())
+      .addToPool("main", ToolPartLootEntry.entry(TinkerTags.Items.BARTERED_PARTS, RandomMaterial.random().tag(TinkerTags.Materials.BARTERED).allowHidden().build())
+                                 .setWeight(8) // same weight as soulspeed boots
+                                 .build());
+
+    // spawn chest
+    RandomMaterial randomTier1 = RandomMaterial.random().tier(0, 1).material(includeInLoot).build();
+    RandomMaterial firstWithStat = RandomMaterial.firstWithStat(); // should be wood
+    injectChest("spawn_bonus_chest")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.handAxe.get())
+                                 .setWeight(2)
+                                 .apply(AddToolDataFunction.builder()
+                                                           .addMaterial(randomTier1)
+                                                           .addMaterial(firstWithStat)
+                                                           .addMaterial(randomTier1))
+                                 .build())
+      .addToPool("pool1", LootItem.lootTableItem(TinkerTools.pickaxe.get())
+                                 .setWeight(2)
+                                 .apply(AddToolDataFunction.builder()
+                                                           .addMaterial(randomTier1)
+                                                           .addMaterial(firstWithStat)
+                                                           .addMaterial(randomTier1))
+                                 .build());
+
+    // ruined portals give a free flint and brick, because you need one of course
+    AddToolDataFunction.Builder buildData = AddToolDataFunction.builder();
+    injectChest("ruined_portal").addToPool("main", LootItem.lootTableItem(TinkerTools.flintAndBrick.get())
+                                                           .apply(buildData)
+                                                           .setWeight(45).build());
+    // nether fortress bridge is another place to get flint and brick
+    injectChest("nether_bridge").addToPool("main", LootItem.lootTableItem(TinkerTools.flintAndBrick.get())
+                                                           .apply(buildData)
+                                                           .setWeight(8).build());
+
+    // frypans just show up in some assorted locations
+    injectChest("simple_dungeon")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.meltingPan.get())
+                                 .setWeight(16) // a bit more common for port testing
+                                 .apply(ancientToolData2)
+                                 .build());
+    injectChest("igloo_chest")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.meltingPan.get())
+                                 .setWeight(5) // a bit more common for port testing
+                                 .apply(ancientToolData2)
+                                 .build());
+    inject("hero_of_the_armorer", "gameplay/hero_of_the_village/armorer_gift")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.meltingPan.get())
+                                 .setWeight(1) // 1 in 5 chance of a melting pan compared to the chainmail
+                                 .apply(ancientToolData2)
+                                 .build());
+
+    AddToolDataFunction.Builder ancientToolData3 = AddToolDataFunction.builder().addMaterial(random).addMaterial(random).addMaterial(random);
+    injectChest("pillager_outpost")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.battlesign.get())
+                                 .apply(ancientToolData3)
+                                 .build());
+    injectChest("abandoned_mineshaft")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.pickaxe.get())
+                                 .setWeight(10) // a bit more common for port testing
+                                 .apply(ancientToolData3)
+                                 .build());
+    injectChest("woodland_mansion")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.battlesign.get())
+                                 .setWeight(16) // a bit more common for port testing
+                                 .apply(ancientToolData3)
+                                 .build());
+    inject("hero_of_the_weaponsmith", "gameplay/hero_of_the_village/weaponsmith_gift")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.sword.get())
+                                 .setWeight(1) // makes it a 1 in 4 chance of a Tinkers sword
+                                 .apply(ancientToolData3)
+                                 .build());
+    LootTableInjection.Builder bastion = injectChest("bastion_treasure")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.battlesign.get())
+                                 .setWeight(16) // a bit more common for port testing
+                                 .apply(ancientToolData2)
+                                .build());
+    injectChest("bastion_other")
+      .addToPool("pool1", LootItem.lootTableItem(TinkerTools.battlesign.get())
+                                 .setWeight(5) // a bit more common than an iron sword
+                                 .apply(ancientToolData2)
+                                 .apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.1f, 0.9f)))
+                                 .build());
+    // diamond armor shows in bastions, add in some plate with similar weight to enchanted version
+    RandomMaterial randomHighTier = RandomMaterial.random().allowHidden().tier(3, 4).material(includeInLoot).build();
+    for (ArmorType slot : slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_TYPES) {
+      bastion.addToPool("main", LootItem.lootTableItem(TinkerTools.plateArmor.get(slot))
+                                        .setWeight(8)
+                                        .apply(AddToolDataFunction.builder()
+                                                                  .addMaterial(randomHighTier)
+                                                                  .addMaterial(randomHighTier))
+                                        .build());
+    }
+
+    AddToolDataFunction.Builder endCityCleaverData = rareToolData(randomHighTier)
+      .addUpgradeSlots(4)
+      .addAbilitySlots(4)
+      .addModifier(ModifierIds.diamond, 1)
+      .addModifier(ModifierIds.netherite, 1)
+      .addModifier(ModifierIds.sharpness, 3)
+      .addModifier(ModifierIds.looting, 2)
+      .addModifier(ModifierIds.sweeping, 1);
+    AddToolDataFunction.Builder endCitySledgeHammerData = rareToolData(randomHighTier)
+      .addUpgradeSlots(4)
+      .addAbilitySlots(4)
+      .addModifier(ModifierIds.diamond, 1)
+      .addModifier(ModifierIds.netherite, 1)
+      .addModifier(ModifierIds.haste, 3)
+      .addModifier(ModifierIds.fortune, 2)
+      .addModifier(ModifierIds.expanded, 1);
+    AddToolDataFunction.Builder endCityExcavatorData = rareToolData(randomHighTier)
+      .addUpgradeSlots(4)
+      .addAbilitySlots(4)
+      .addModifier(ModifierIds.diamond, 1)
+      .addModifier(ModifierIds.netherite, 1)
+      .addModifier(ModifierIds.haste, 3)
+      .addModifier(ModifierIds.fortune, 2)
+      .addModifier(ModifierIds.expanded, 1);
+    AddToolDataFunction.Builder ominousBattlesignData = rareToolData(randomHighTier)
+      .addUpgradeSlots(4)
+      .addAbilitySlots(3)
+      .addModifier(ModifierIds.diamond, 1)
+      .addModifier(ModifierIds.netherite, 1)
+      .addModifier(ModifierIds.blocking, 1)
+      .addModifier(ModifierIds.reinforced, 2)
+      .addModifier(ModifierIds.knockback, 1);
+    AddToolDataFunction.Builder ominousSledgeHammerData = rareToolData(randomHighTier)
+      .addUpgradeSlots(4)
+      .addAbilitySlots(3)
+      .addModifier(ModifierIds.diamond, 1)
+      .addModifier(ModifierIds.netherite, 1)
+      .addModifier(ModifierIds.haste, 2)
+      .addModifier(ModifierIds.fortune, 2)
+      .addModifier(ModifierIds.expanded, 1);
+    AddToolDataFunction.Builder ominousExcavatorData = rareToolData(randomHighTier)
+      .addUpgradeSlots(4)
+      .addAbilitySlots(4)
+      .addModifier(ModifierIds.diamond, 1)
+      .addModifier(ModifierIds.netherite, 1)
+      .addModifier(ModifierIds.haste, 3)
+      .addModifier(ModifierIds.fortune, 2)
+      .addModifier(ModifierIds.expanded, 1);
+    AddToolDataFunction.Builder ominousCleaverData = rareToolData(randomHighTier)
+      .addUpgradeSlots(4)
+      .addAbilitySlots(4)
+      .addModifier(ModifierIds.diamond, 1)
+      .addModifier(ModifierIds.netherite, 1)
+      .addModifier(ModifierIds.sharpness, 3)
+      .addModifier(ModifierIds.looting, 2)
+      .addModifier(ModifierIds.sweeping, 1);
+
+    // swashers are found in the ocean in all sorts of places, maybe there were pirates once
+    LootItemConditionalFunction.Builder<?> setFluid = SetFluidLootFunction.builder(fluidStackSafe(Fluids.LAVA, FluidType.BUCKET_VOLUME));
+    injectChest("buried_treasure")
+      .addToPool("pool3", LootItem.lootTableItem(TinkerTools.swasher.get())
+                                  .setWeight(4) // a bit more common for port testing
+                                  .apply(ancientToolData3)
+                                  .apply(setFluid)
+                                  .build());
+    injectChest("shipwreck_treasure")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.swasher.get())
+                                  .setWeight(14) // a bit more common for port testing
+                                  .apply(ancientToolData3)
+                                 .apply(setFluid)
+                                  .build());
+    inject("fishing_treasure", Identifier.parse("gameplay/fishing/treasure"))
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.swasher.get())
+                                 .setWeight(1) // all treasure from fishing is the same weight
+                                 .apply(ancientToolData3)
+                                 .apply(setFluid)
+                                 .build());
+
+
+    // broaden vanilla chest coverage for the NeoForge port, keeping entries themed and still weighted.
+    injectChest("ancient_city")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 10, ancientToolData2))
+      .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 6, AddToolDataFunction.builder().addMaterial(randomHighTier).addMaterial(randomHighTier)));
+    injectChest("ancient_city_ice_box")
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 6, ancientToolData2));
+    injectChest("bastion_bridge")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 6, ancientToolData2));
+    injectChest("bastion_hoglin_stable")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
+    injectChest("end_city_treasure")
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 2, endCityCleaverData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, endCitySledgeHammerData))
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 2, endCityExcavatorData));
+    injectChest("desert_pyramid")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
+    injectChest("jungle_temple")
+      .addToPool("main", ancientTool(TinkerTools.kama.get(), 8, ancientToolData2));
+    injectChest("jungle_temple_dispenser")
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 12, ancientToolData2));
+    injectChest("trial_chambers/reward")
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 6, ancientToolData2));
+    injectChest("shipwreck_map")
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 8, ancientToolData3, setFluid));
+    injectChest("shipwreck_supply")
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 8, ancientToolData2));
+    injectChest("stronghold_corridor")
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 8, ancientToolData2));
+    injectChest("stronghold_crossing")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
+    injectChest("stronghold_library")
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 10, ancientToolData2));
+    injectChest("underwater_ruin_big")
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 8, ancientToolData3, setFluid));
+    injectChest("underwater_ruin_small")
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 5, ancientToolData3, setFluid));
+
+    injectChest("trial_chambers/corridor")
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 8, ancientToolData2));
+    injectChest("trial_chambers/entrance")
+      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 8, ancientToolData2));
+    injectChest("trial_chambers/intersection")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
+    injectChest("trial_chambers/intersection_barrel")
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 8, ancientToolData2));
+    injectChest("trial_chambers/supply")
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 12, ancientToolData2));
+    injectChest("trial_chambers/reward_common")
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 8, ancientToolData2));
+    injectChest("trial_chambers/reward_rare")
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 6, ancientToolData3));
+    injectChest("trial_chambers/reward_unique")
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 6, ancientToolData2));
+    injectChest("trial_chambers/reward_ominous_common")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, ominousBattlesignData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 1, ominousSledgeHammerData));
+    injectChest("trial_chambers/reward_ominous")
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, ominousSledgeHammerData))
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 1, ominousExcavatorData));
+    injectChest("trial_chambers/reward_ominous_rare")
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 2, ominousExcavatorData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, ominousSledgeHammerData));
+    injectChest("trial_chambers/reward_ominous_unique")
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 2, ominousCleaverData))
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 1, ominousExcavatorData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 1, ominousSledgeHammerData));
+
+    injectChest("village/village_armorer")
+      .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 5, AddToolDataFunction.builder().addMaterial(randomHighTier).addMaterial(randomHighTier)));
+    injectChest("village/village_butcher")
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 5, ancientToolData2));
+    injectChest("village/village_cartographer")
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 4, ancientToolData3, setFluid));
+    injectChest("village/village_desert_house")
+      .addToPool("main", ancientTool(TinkerTools.flintAndBrick.get(), 8, buildData));
+    injectChest("village/village_fisher")
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 5, ancientToolData3, setFluid));
+    injectChest("village/village_fletcher")
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 12, ancientToolData2));
+    injectChest("village/village_mason")
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 4, ancientToolData3));
+    injectChest("village/village_plains_house")
+      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 5, ancientToolData2));
+    injectChest("village/village_savanna_house")
+      .addToPool("main", ancientTool(TinkerTools.kama.get(), 5, ancientToolData2));
+    injectChest("village/village_shepherd")
+      .addToPool("main", ancientTool(TinkerTools.scythe.get(), 4, ancientToolData3));
+    injectChest("village/village_snowy_house")
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 5, ancientToolData2));
+    injectChest("village/village_taiga_house")
+      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 5, ancientToolData2));
+    injectChest("village/village_tannery")
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 5, ancientToolData2));
+    injectChest("village/village_temple")
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 4, ancientToolData2));
+    injectChest("village/village_toolsmith")
+      .addToPool("main", ancientTool(TinkerTools.pickaxe.get(), 6, ancientToolData3));
+    injectChest("village/village_weaponsmith")
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 6, ancientToolData2));
+    // fletchers give you some arrows
+    inject("hero_of_the_fletcher", "gameplay/hero_of_the_village/fletcher_gift")
+      .addToPool("main", LootItem.lootTableItem(TinkerTools.arrow.get())
+        .setWeight(10) // bit more rare than tipped arrows
+        .apply(ancientToolData2)
+        .build());
+
+    // twilight forest - minotaur axe
+    String tf = "twilightforest";
+    ICondition tfLoaded = new ModLoadedCondition(tf);
+    LootPoolEntryContainer minotaurAxe = LootItem.lootTableItem(FakeRegistryEntry.item(TinkerTools.minotaurAxe.getId()))
+      .setWeight(1) // TF tends to use 1 for its weight
+      .apply(ancientToolData3)
+      .build();
+    inject("labyrinth_room", Identifier.fromNamespaceAndPath(tf, "chests/labyrinth_room"), tfLoaded)
+      .addToPool("pool1", minotaurAxe)
+      .addToPool("pool2", minotaurAxe);
+  }
+
+  @Override
+  public String getName() {
+    return "Tinkers' Construct Loot Table Injections";
+  }
+
+
+  /** Builds rare loot tool data with high-tier materials. */
+  private static AddToolDataFunction.Builder rareToolData(RandomMaterial material) {
+    return AddToolDataFunction.builder()
+      .addMaterial(material)
+      .addMaterial(material)
+      .addMaterial(material)
+      .addMaterial(material);
+  }
+
+  /** Makes an ancient tool loot entry. */
+  private static LootPoolEntryContainer ancientTool(ItemLike item, int weight, AddToolDataFunction.Builder data) {
+    return LootItem.lootTableItem(item).setWeight(weight).apply(data).build();
+  }
+
+  /** Makes an ancient tool loot entry with fluid. */
+  private static LootPoolEntryContainer ancientTool(ItemLike item, int weight, AddToolDataFunction.Builder data, LootItemConditionalFunction.Builder<?> fluid) {
+    return LootItem.lootTableItem(item).setWeight(weight).apply(data).apply(fluid).build();
+  }
+  /** Makes a seed injection loot entry */
+  private static LootPoolEntryContainer makeSeed(FoliageType type, int weight) {
+    return LootItem.lootTableItem(TinkerWorld.slimeGrassSeeds.get(type)).setWeight(weight)
+                   .apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))).build();
+  }
+
+  /** Makes a sapling injection loot entry */
+  private static LootPoolEntryContainer makeSapling(FoliageType type, int weight) {
+    return LootItem.lootTableItem(TinkerWorld.slimeSapling.get(type)).setWeight(weight).build();
+  }
+
+  /** Creates a fluid stack during datagen before custom fluid components are bound. */
+  private static FluidStack fluidStackSafe(Fluid fluid, int amount) {
+    Holder.Reference<Fluid> holder = fluid.builtInRegistryHolder();
+    if (holder.areComponentsBound()) {
+      return new FluidStack(holder, amount);
+    }
+    try {
+      Constructor<FluidStack> constructor = FluidStack.class.getDeclaredConstructor(Holder.class, int.class, PatchedDataComponentMap.class);
+      constructor.setAccessible(true);
+      return constructor.newInstance(holder, amount, new PatchedDataComponentMap(DataComponentMap.EMPTY));
+    } catch (ReflectiveOperationException e) {
+      throw new IllegalStateException("Failed to create datagen fluid stack for " + fluid, e);
+    }
+  }
+}

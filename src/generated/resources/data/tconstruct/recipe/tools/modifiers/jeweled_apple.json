@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:apple",
+  "cast_consumed": true,
+  "cooling_time": 118,
+  "fluid": {
+    "amount": 200,
+    "fluid": "tconstruct:molten_diamond"
+  },
+  "id": "tconstruct:tools/modifiers/jeweled_apple",
+  "result": "tconstruct:jeweled_apple"
+}

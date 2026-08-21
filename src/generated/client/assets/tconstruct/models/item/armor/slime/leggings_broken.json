@@ -1,0 +1,27 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "slime": "tconstruct:item/tool/armor/slime/leggings/slime_broken",
+    "shell": "tconstruct:item/tool/armor/slime/leggings/shell_broken",
+    "layer0": "tconstruct:item/tool/armor/slime/leggings/slime",
+    "particle": "tconstruct:item/tool/armor/slime/leggings/slime"
+  },
+  "modifier_maps": [
+    "tconstruct:slime/leggings_broken",
+    "tconstruct:slime/leggings"
+  ],
+  "parts": [
+    {
+      "name": "slime",
+      "index": 1
+    },
+    {
+      "name": "shell",
+      "index": 0
+    }
+  ],
+  "first_modifiers": [
+    "tconstruct:trim"
+  ]
+}

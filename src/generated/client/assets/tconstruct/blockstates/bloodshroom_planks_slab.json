@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,waterlogged=false": {
+      "model": "tconstruct:block/wood/bloodshroom/slab"
+    },
+    "type=bottom,waterlogged=true": {
+      "model": "tconstruct:block/wood/bloodshroom/slab"
+    },
+    "type=double,waterlogged=false": {
+      "model": "tconstruct:block/wood/bloodshroom/planks"
+    },
+    "type=double,waterlogged=true": {
+      "model": "tconstruct:block/wood/bloodshroom/planks"
+    },
+    "type=top,waterlogged=false": {
+      "model": "tconstruct:block/wood/bloodshroom/slab_top"
+    },
+    "type=top,waterlogged=true": {
+      "model": "tconstruct:block/wood/bloodshroom/slab_top"
+    }
+  }
+}

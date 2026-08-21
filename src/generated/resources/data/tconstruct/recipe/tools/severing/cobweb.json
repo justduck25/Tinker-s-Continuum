@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:severing",
+  "entity": {
+    "types": [
+      "minecraft:spider",
+      "minecraft:cave_spider"
+    ]
+  },
+  "id": "tconstruct:tools/severing/cobweb",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "minecraft:cobweb"
+}

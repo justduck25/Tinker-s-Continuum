@@ -1,0 +1,28 @@
+{
+  "given_item_modifiers": [
+    {
+      "function": "tconstruct:add_tool_data",
+      "materials": [
+        {
+          "type": "tconstruct:ancient"
+        },
+        {
+          "type": "tconstruct:ancient"
+        },
+        {
+          "type": "tconstruct:ancient"
+        }
+      ]
+    }
+  ],
+  "gives": {
+    "id": "tconstruct:battlesign"
+  },
+  "max_uses": 1.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 18.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 15.0
+}

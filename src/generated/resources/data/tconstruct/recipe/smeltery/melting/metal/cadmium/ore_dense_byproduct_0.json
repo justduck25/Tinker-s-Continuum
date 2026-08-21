@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_combination_filled",
+      "match": [
+        "c:ores/cadmium",
+        "c:ore_rates/dense"
+      ]
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/lead"
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 540,
+      "rate": "metal",
+      "tag": "c:molten_lead"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/cadmium/ore_dense_byproduct_0",
+  "ingredient": {
+    "neoforge:ingredient_type": "neoforge:intersection",
+    "children": [
+      "#c:ores/cadmium",
+      "#c:ore_rates/dense"
+    ]
+  },
+  "rate": "metal",
+  "result": {
+    "amount": 540,
+    "tag": "c:molten_cadmium"
+  },
+  "temperature": 294,
+  "time": 189
+}

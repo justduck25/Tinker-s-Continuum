@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "#c:nuggets",
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_gold"
+  },
+  "id": "tconstruct:smeltery/casts/gold/nuggets",
+  "result": "tconstruct:nugget_cast",
+  "switch_slots": true
+}

@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/hepatizon/nugget",
+  "ingredient": "#c:nuggets/hepatizon",
+  "material": "tconstruct:hepatizon",
+  "needed": 9,
+  "value": 1
+}

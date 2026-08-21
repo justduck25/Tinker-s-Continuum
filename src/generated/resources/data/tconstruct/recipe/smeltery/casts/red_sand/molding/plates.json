@@ -1,0 +1,13 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates"
+    }
+  ],
+  "type": "tconstruct:molding_table",
+  "id": "tconstruct:smeltery/casts/red_sand/molding/plates",
+  "material": "#tconstruct:casts/red_sand",
+  "pattern": "#c:plates",
+  "result": "tconstruct:plate_red_sand_cast"
+}

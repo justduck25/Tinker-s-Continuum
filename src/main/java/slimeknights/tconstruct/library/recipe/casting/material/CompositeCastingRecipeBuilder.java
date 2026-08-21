@@ -1,0 +1,51 @@
+package slimeknights.tconstruct.library.recipe.casting.material;
+
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.Identifier;
+import slimeknights.mantle.data.predicate.IJsonPredicate;
+import slimeknights.mantle.recipe.data.AbstractRecipeBuilder;
+import slimeknights.mantle.recipe.helper.TypeAwareRecipeSerializer;
+import slimeknights.tconstruct.library.json.predicate.material.MaterialPredicate;
+import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
+import slimeknights.tconstruct.library.tools.part.IMaterialItem;
+import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
+
+import javax.annotation.Nullable;
+
+/** Builder for a composite part recipe, should exist for each part */
+@Accessors(fluent = true)
+@RequiredArgsConstructor(staticName = "composite")
+public class CompositeCastingRecipeBuilder extends AbstractRecipeBuilder<CompositeCastingRecipeBuilder> {
+  private final IMaterialItem result;
+  private final int itemCost;
+  @Setter @Nullable
+  private MaterialStatsId castingStatConflict = null;
+  private final TypeAwareRecipeSerializer<? extends CompositeCastingRecipe> serializer;
+  @Setter
+  private IJsonPredicate<MaterialVariantId> allowedMaterials = MaterialPredicate.ANY;
+
+  public static CompositeCastingRecipeBuilder basin(IMaterialItem result, int itemCost) {
+    return composite(result, itemCost, TinkerSmeltery.typeAware(TinkerRecipeTypes.CASTING_BASIN, TinkerSmeltery.basinCompositeSerializer));
+  }
+
+  public static CompositeCastingRecipeBuilder table(IMaterialItem result, int itemCost) {
+    return composite(result, itemCost, TinkerSmeltery.typeAware(TinkerRecipeTypes.CASTING_TABLE, TinkerSmeltery.tableCompositeSerializer));
+  }
+
+  @Override
+  public void save(RecipeOutput consumer) {
+    save(consumer, BuiltInRegistries.ITEM.getKey(result.asItem()));
+  }
+
+  @Override
+  public void save(RecipeOutput consumer, Identifier id) {
+    var key = recipeKey(id);
+    consumer.accept(key, new CompositeCastingRecipe(serializer, id, group, itemCost, result, allowedMaterials, castingStatConflict), this.buildOptionalAdvancement(key, "casting"));
+  }
+}

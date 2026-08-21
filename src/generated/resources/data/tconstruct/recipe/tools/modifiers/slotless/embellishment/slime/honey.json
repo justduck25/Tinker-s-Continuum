@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/slime/honey",
+  "inputs": [
+    {
+      "ingredient": "minecraft:honey_block"
+    },
+    {
+      "ingredient": "minecraft:honey_bottle"
+    },
+    {
+      "ingredient": "minecraft:honey_block"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:honey"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/slime",
+  "variant_formatter": "tconstruct:material"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tconstruct:item/food/jeweled_apple",
+    "particle": "tconstruct:item/food/jeweled_apple"
+  }
+}

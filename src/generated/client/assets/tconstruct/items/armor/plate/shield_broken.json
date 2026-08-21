@@ -1,0 +1,46 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "first_modifiers": [
+      "tconstruct:banner"
+    ],
+    "large": true,
+    "large_offset": [
+      -8,
+      0
+    ],
+    "model": "tconstruct:item/armor/plate/shield_broken",
+    "modifier_maps": [
+      "tconstruct:plate/shield_broken",
+      "tconstruct:plate/shield"
+    ],
+    "modifier_roots": {
+      "large": [
+        "tconstruct:item/tool/armor/plate/shield/large_modifiers/broken/",
+        "tconstruct:item/tool/armor/plate/shield/large_modifiers/"
+      ],
+      "small": [
+        "tconstruct:item/tool/armor/plate/shield/modifiers/broken/",
+        "tconstruct:item/tool/armor/plate/shield/modifiers/"
+      ]
+    },
+    "parts": [
+      {
+        "index": 0,
+        "name": "core"
+      },
+      {
+        "index": 1,
+        "name": "plating"
+      }
+    ],
+    "textures": {
+      "core": "tconstruct:item/tool/armor/plate/shield/core_broken",
+      "large_core": "tconstruct:item/tool/armor/plate/shield/core_large_broken",
+      "large_plating": "tconstruct:item/tool/armor/plate/shield/plating_large_broken",
+      "layer0": "tconstruct:item/tool/armor/plate/shield/plating",
+      "particle": "tconstruct:item/tool/armor/plate/shield/plating",
+      "plating": "tconstruct:item/tool/armor/plate/shield/plating_broken"
+    }
+  }
+}

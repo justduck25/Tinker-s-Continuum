@@ -1,0 +1,27 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "slime": "tconstruct:item/tool/armor/slime/helmet/slime_broken",
+    "skull": "tconstruct:item/tool/armor/slime/helmet/skull",
+    "layer0": "tconstruct:item/tool/armor/slime/helmet/slime",
+    "particle": "tconstruct:item/tool/armor/slime/helmet/slime"
+  },
+  "modifier_maps": [
+    "tconstruct:slime/helmet_broken",
+    "tconstruct:slime/helmet"
+  ],
+  "parts": [
+    {
+      "name": "skull",
+      "index": 0
+    },
+    {
+      "name": "slime",
+      "index": 1
+    }
+  ],
+  "first_modifiers": [
+    "tconstruct:trim"
+  ]
+}

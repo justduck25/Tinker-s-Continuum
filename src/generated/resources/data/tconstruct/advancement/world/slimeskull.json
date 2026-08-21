@@ -1,0 +1,506 @@
+{
+  "parent": "tconstruct:world/slimesuit",
+  "criteria": {
+    "blaze": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:blaze"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "blazing_bone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:blazing_bone"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "bone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:bone"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "copper": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:copper"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "darkthread": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:darkthread"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "dragon_scale": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:dragon_scale"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "ender_pearl": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:ender_pearl"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "glass": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:glass"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "gold": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:gold"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "ice": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:ice"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "iron": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:iron"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "knightmetal": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:knightmetal"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "leather": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:leather"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "necrotic_bone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:necrotic_bone"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "pig_iron": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:pig_iron"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "rose_gold": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:rose_gold"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "string": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:string"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "venombone": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:venombone"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.tconstruct.world.slimeskull.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "tconstruct:slime_helmet"
+    },
+    "title": {
+      "translate": "advancements.tconstruct.world.slimeskull.title"
+    }
+  },
+  "requirements": [
+    [
+      "glass"
+    ],
+    [
+      "blaze"
+    ],
+    [
+      "leather"
+    ],
+    [
+      "iron"
+    ],
+    [
+      "copper"
+    ],
+    [
+      "string"
+    ],
+    [
+      "darkthread"
+    ],
+    [
+      "bone"
+    ],
+    [
+      "ice"
+    ],
+    [
+      "necrotic_bone"
+    ],
+    [
+      "gold"
+    ],
+    [
+      "rose_gold"
+    ],
+    [
+      "pig_iron"
+    ],
+    [
+      "ender_pearl"
+    ],
+    [
+      "dragon_scale"
+    ],
+    [
+      "venombone"
+    ],
+    [
+      "blazing_bone"
+    ],
+    [
+      "knightmetal"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/cadmium/allomancy_flakes",
+  "ingredient": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "allomancy:cadmium_flakes"
+    ]
+  },
+  "result": {
+    "amount": 30,
+    "tag": "c:molten_cadmium"
+  },
+  "temperature": 294,
+  "time": 24
+}

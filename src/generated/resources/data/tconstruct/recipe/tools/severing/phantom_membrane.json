@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:severing",
+  "entity": {
+    "type": "minecraft:phantom"
+  },
+  "id": "tconstruct:tools/severing/phantom_membrane",
+  "looting_bonus": 0.01,
+  "per_level_chance": 0.05,
+  "result": "minecraft:phantom_membrane"
+}

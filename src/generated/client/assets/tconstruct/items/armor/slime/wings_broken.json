@@ -1,0 +1,24 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "first_modifiers": [
+      "tconstruct:trim"
+    ],
+    "model": "tconstruct:item/armor/slime/wings_broken",
+    "modifier_maps": [
+      "tconstruct:slime/wings_broken",
+      "tconstruct:slime/wings"
+    ],
+    "parts": [
+      {
+        "index": 0,
+        "name": "slime"
+      }
+    ],
+    "textures": {
+      "layer0": "tconstruct:item/tool/armor/slime/wings/slime",
+      "particle": "tconstruct:item/tool/armor/slime/wings/slime",
+      "slime": "tconstruct:item/tool/armor/slime/wings/slime_broken"
+    }
+  }
+}

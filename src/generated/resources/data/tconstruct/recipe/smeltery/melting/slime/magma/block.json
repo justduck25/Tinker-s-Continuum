@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/slime/magma/block",
+  "ingredient": "minecraft:magma_block",
+  "result": {
+    "amount": 1000,
+    "tag": "c:magma"
+  },
+  "temperature": 300,
+  "time": 127
+}

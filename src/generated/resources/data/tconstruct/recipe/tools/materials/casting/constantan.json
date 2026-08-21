@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:or",
+      "values": [
+        {
+          "type": "mantle:tag_filled",
+          "tag": "c:ingots/constantan"
+        },
+        {
+          "type": "mantle:tag_filled",
+          "tag": "c:ingots/nickel"
+        }
+      ]
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_constantan"
+  },
+  "id": "tconstruct:tools/materials/casting/constantan",
+  "output": "tconstruct:constantan",
+  "temperature": 920
+}

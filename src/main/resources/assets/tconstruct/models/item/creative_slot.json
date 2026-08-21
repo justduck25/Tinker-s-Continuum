@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tconstruct:item/slot/default",
+    "particle": "tconstruct:item/slot/default"
+  }
+}

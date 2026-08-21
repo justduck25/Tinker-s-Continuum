@@ -1,0 +1,10 @@
+{
+  "values": [
+    "tconstruct:wandering_trader/melting_pan_cheap",
+    "tconstruct:wandering_trader/melting_pan_expensive",
+    "tconstruct:wandering_trader/battlesign_cheap",
+    "tconstruct:wandering_trader/battlesign_expensive",
+    "tconstruct:wandering_trader/swasher_cheap",
+    "tconstruct:wandering_trader/swasher_expensive"
+  ]
+}

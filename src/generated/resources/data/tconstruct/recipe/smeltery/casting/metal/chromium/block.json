@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/chromium"
+    }
+  ],
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 190,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_chromium"
+  },
+  "id": "tconstruct:smeltery/casting/metal/chromium/block",
+  "result": {
+    "tag": "c:storage_blocks/chromium"
+  }
+}

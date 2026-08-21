@@ -1,0 +1,14 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/single_use/ingot",
+  "cast_consumed": true,
+  "cooling_time": 71,
+  "fluid": {
+    "amount": 90,
+    "fluid": "tconstruct:molten_queens_slime"
+  },
+  "id": "tconstruct:smeltery/casting/metal/queens_slime/ingot_sand_cast",
+  "result": {
+    "tag": "c:ingots/queens_slime"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "id": "tconstruct:smeltery/casts/sand/builder_cast/gems",
+  "pattern": "tconstruct:gem",
+  "pattern_item": "#tconstruct:casts/sand",
+  "result": "tconstruct:gem_sand_cast"
+}

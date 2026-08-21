@@ -1,0 +1,35 @@
+{
+  "model": {
+    "type": "tconstruct:tool",
+    "model": "tconstruct:item/tool/minotaur_axe/broken",
+    "modifier_maps": [
+      "tconstruct:minotaur_axe_broken",
+      "tconstruct:minotaur_axe"
+    ],
+    "modifier_roots": [
+      "tconstruct:item/tool/minotaur_axe/modifiers/broken/",
+      "tconstruct:item/tool/minotaur_axe/modifiers/"
+    ],
+    "parts": [
+      {
+        "index": 2,
+        "name": "handle"
+      },
+      {
+        "index": 0,
+        "name": "front"
+      },
+      {
+        "index": 1,
+        "name": "back"
+      }
+    ],
+    "textures": {
+      "back": "tconstruct:item/tool/minotaur_axe/back",
+      "front": "tconstruct:item/tool/minotaur_axe/front_broken",
+      "handle": "tconstruct:item/tool/pickaxe/handle",
+      "layer0": "tconstruct:item/tool/minotaur_axe/front",
+      "particle": "tconstruct:item/tool/minotaur_axe/front"
+    }
+  }
+}

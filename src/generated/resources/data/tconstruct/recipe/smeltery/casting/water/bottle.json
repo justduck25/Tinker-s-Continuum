@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "minecraft:glass_bottle",
+  "cast_consumed": true,
+  "cooling_time": 1,
+  "fluid": {
+    "amount": 500,
+    "tag": "mantle:water"
+  },
+  "id": "tconstruct:smeltery/casting/water/bottle",
+  "result": "minecraft:potion"
+}

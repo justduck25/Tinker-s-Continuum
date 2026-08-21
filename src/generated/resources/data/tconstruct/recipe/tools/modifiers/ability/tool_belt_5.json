@@ -1,0 +1,19 @@
+{
+  "type": "tconstruct:modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/ability/tool_belt_5",
+  "inputs": [
+    {
+      "ingredient": "minecraft:leather"
+    },
+    {
+      "ingredient": "#c:ingots/hepatizon"
+    },
+    {
+      "ingredient": "minecraft:leather"
+    }
+  ],
+  "level": 5,
+  "result": "tconstruct:tool_belt",
+  "tools": "#tconstruct:modifiable/armor/leggings"
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:sheetmetals/constantan"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/constantan/sheetmetal",
+  "ingredient": "#c:sheetmetals/constantan",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_constantan"
+  },
+  "temperature": 920,
+  "time": 64
+}

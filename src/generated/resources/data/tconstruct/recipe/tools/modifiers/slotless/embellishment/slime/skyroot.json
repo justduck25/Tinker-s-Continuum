@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/slime/skyroot",
+  "inputs": [
+    {
+      "ingredient": "tconstruct:skyroot_planks"
+    },
+    {
+      "ingredient": "tconstruct:sky_slime_sapling"
+    },
+    {
+      "ingredient": "tconstruct:skyroot_planks"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:skyslime"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/slime",
+  "variant_formatter": "tconstruct:material"
+}

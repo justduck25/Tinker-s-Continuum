@@ -1,0 +1,27 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "slime": "tconstruct:item/tool/armor/slime/boots/slime_broken",
+    "laces": "tconstruct:item/tool/armor/slime/boots/laces_broken",
+    "layer0": "tconstruct:item/tool/armor/slime/boots/slime",
+    "particle": "tconstruct:item/tool/armor/slime/boots/slime"
+  },
+  "modifier_maps": [
+    "tconstruct:slime/boots_broken",
+    "tconstruct:slime/boots"
+  ],
+  "parts": [
+    {
+      "name": "slime",
+      "index": 1
+    },
+    {
+      "name": "laces",
+      "index": 0
+    }
+  ],
+  "first_modifiers": [
+    "tconstruct:trim"
+  ]
+}

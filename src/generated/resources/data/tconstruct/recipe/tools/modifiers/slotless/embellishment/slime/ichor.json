@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:swappable_modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/slotless/embellishment/slime/ichor",
+  "inputs": [
+    {
+      "ingredient": "tconstruct:ichor_congealed_slime"
+    },
+    {
+      "ingredient": "tconstruct:ichor_slime_ball"
+    },
+    {
+      "ingredient": "tconstruct:ichor_congealed_slime"
+    }
+  ],
+  "result": {
+    "name": "tconstruct:embellishment",
+    "value": "tconstruct:ichor"
+  },
+  "tools": "#tconstruct:modifiable/embellishment/slime",
+  "variant_formatter": "tconstruct:material"
+}

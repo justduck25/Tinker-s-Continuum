@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/gem",
+  "cooling_time": 83,
+  "fluid": {
+    "amount": 100,
+    "fluid": "tconstruct:molten_diamond"
+  },
+  "id": "tconstruct:smeltery/casting/diamond/gem_gold_cast",
+  "result": {
+    "tag": "c:gems/diamond"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/raw_brass"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/zinc"
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 810,
+      "rate": "metal",
+      "tag": "c:molten_zinc"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/brass/raw_block_byproduct_0",
+  "ingredient": "#c:storage_blocks/raw_brass",
+  "rate": "metal",
+  "result": {
+    "amount": 810,
+    "tag": "c:molten_brass"
+  },
+  "temperature": 605,
+  "time": 322
+}

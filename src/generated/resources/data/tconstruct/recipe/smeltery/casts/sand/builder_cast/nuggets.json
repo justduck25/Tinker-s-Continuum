@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:item_part_builder",
+  "id": "tconstruct:smeltery/casts/sand/builder_cast/nuggets",
+  "pattern": "tconstruct:nugget",
+  "pattern_item": "#tconstruct:casts/sand",
+  "result": "tconstruct:nugget_sand_cast"
+}
