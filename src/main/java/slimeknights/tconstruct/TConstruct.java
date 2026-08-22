@@ -71,6 +71,8 @@ import slimeknights.tconstruct.tools.data.material.TrimMaterialProvider;
 import slimeknights.tconstruct.world.TinkerStructures;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.data.WorldgenProvider;
+import slimeknights.tconstruct.plugin.craftingtweaks.CraftingTweaksPlugin;
+import slimeknights.tconstruct.plugin.jsonthings.JsonThingsPlugin;
 
 import java.util.Locale;
 import java.util.Random;
@@ -137,7 +139,13 @@ public class TConstruct {
       TinkerClient.onConstruct();
     }
 
-    // TODO NeoForge 26.1: re-enable compat plugins once removed optional plugin package is ported.
+    if (ModList.get().isLoaded("craftingtweaks")) {
+      CraftingTweaksPlugin.onConstruct();
+    }
+    if (ModList.get().isLoaded("jsonthings")) {
+      JsonThingsPlugin.onConstruct();
+    }
+
   }
 
   @SubscribeEvent

@@ -213,7 +213,9 @@ dependencies {
     // compileOnly "dev.gigaherz.jsonthings:JsonThings-${minecraft_version}:${json_things_version}"
 
     // compileOnly "curse.maven:balm-531761:5999476"
-    // compileOnly "curse.maven:crafting-tweaks-233071:5623639"
+    // Optional Crafting Tweaks integration, matching the current NeoForge 26.1.2 release.
+    compileOnly "curse.maven:crafting-tweaks-233071:8362296"
+    compileOnly "curse.maven:json-things-541617:7922513"
 
     deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
 

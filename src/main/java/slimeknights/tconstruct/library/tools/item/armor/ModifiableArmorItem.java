@@ -102,6 +102,11 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
     this(builderIn, toolDefinition, ArmorType.CHESTPLATE, SoundEvents.ARMOR_EQUIP_GENERIC);
   }
 
+  /** Constructor for JsonThings armor types with a custom equip sound. */
+  public ModifiableArmorItem(DummyArmorMaterial material, ArmorType type, Properties properties, ToolDefinition toolDefinition) {
+    this(properties, toolDefinition, type, BuiltInRegistries.SOUND_EVENT.wrapAsHolder(material.getEquipSound()));
+  }
+
   public ModifiableArmorItem(ModifiableArmorMaterial material, ArmorType type, Properties properties) {
     this(properties, Objects.requireNonNull(material.getArmorDefinition(type), "Missing tool definition for " + type.getName()), type, BuiltInRegistries.SOUND_EVENT.wrapAsHolder(material.getEquipSound()));
   }
