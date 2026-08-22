@@ -7,7 +7,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -19,7 +19,8 @@ import slimeknights.mantle.data.listener.IEarlySafeManagerReloadListener;
 import slimeknights.mantle.util.JsonHelper;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.config.Config;
-//import slimeknights.tconstruct.library.client.model.DynamicTextureLoader;
+import slimeknights.tconstruct.library.client.model.DynamicTextureLoader;
+
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.client.modifiers.model.ModifierModel;
 
@@ -209,9 +210,7 @@ public class ModifierModelManager implements IEarlySafeManagerReloadListener {
     ImmutableMap.Builder<ModifierId,IBakedModifierModel> modelMap = ImmutableMap.builder();
 
     // create two texture adders, so we only log on the final option if missing
-    // TODO: Rewrite for NeoForge 1.21.4 - DynamicTextureLoader is commented out
-    //Predicate<Material> validator = DynamicTextureLoader.getTextureValidator(spriteGetter, Config.CLIENT.logMissingModifierTextures.get());
-    Predicate<Material> validator = mat -> !MissingTextureAtlasSprite.getLocation().equals(spriteGetter.apply(mat).contents().name());
+    Predicate<Material> validator = DynamicTextureLoader.getTextureValidator(spriteGetter, Config.CLIENT.logMissingModifierTextures.get());
 
     // load each modifier
     for (Entry<ModifierId, IUnbakedModifierModel> entry : modifierModels.entrySet()) {
