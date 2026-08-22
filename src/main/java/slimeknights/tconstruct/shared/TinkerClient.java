@@ -10,13 +10,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.modifiers.hook.interaction.GeneralInteractionModifierHook;
 import net.neoforged.neoforge.client.extensions.common.IClientMobEffectExtensions;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -72,6 +75,7 @@ import slimeknights.tconstruct.library.client.modifiers.model.MaterialHasFallbac
 import slimeknights.tconstruct.library.client.modifiers.model.ModifierModel;
 import slimeknights.tconstruct.library.client.modifiers.model.TankModifierModel;
 import slimeknights.tconstruct.library.client.modifiers.model.TraitModel;
+import slimeknights.tconstruct.library.client.item.ModifiableItemClientExtension;
 import slimeknights.tconstruct.library.client.modifiers.model.TrimModifierModel;
 import slimeknights.tconstruct.library.client.model.FluidTextureModel;
 import slimeknights.tconstruct.library.client.model.LegacyPassthroughModelLoader;
@@ -81,6 +85,7 @@ import slimeknights.tconstruct.library.client.model.TinkerItemProperties;
 import slimeknights.tconstruct.library.client.model.tools.MaterialItemModel;
 import slimeknights.tconstruct.library.client.model.tools.MaterialBlockModel;
 import slimeknights.tconstruct.library.client.model.tools.ToolItemModel;
+import slimeknights.tconstruct.library.tools.item.ModifiableItem;
 import slimeknights.tconstruct.library.tools.item.armor.MultilayerArmorItem;
 import slimeknights.tconstruct.tools.item.SlimeskullItem;
 
@@ -205,6 +210,14 @@ public class TinkerClient {
   }
   private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
     event.registerMobEffect(helmetChargingExtension(), TinkerModifiers.helmetCharging.get());
+    // NeoForge 26 no longer invokes ModifiableItem.initializeClient automatically.
+    // Register the shared hand transform for standard modifiable held tools.
+    // Armor, launcher, and skull items provide their own client extensions below or in their item class.
+    for (Item item : BuiltInRegistries.ITEM) {
+      if (item instanceof ModifiableItem) {
+        event.registerItem(ModifiableItemClientExtension.INSTANCE, item);
+      }
+    }
     TinkerTools.travelersGear.forEach(item -> registerItemExtension(event, item));
     TinkerTools.plateArmor.forEach(item -> registerItemExtension(event, item));
     TinkerTools.slimesuit.forEach(item -> registerItemExtension(event, item));
