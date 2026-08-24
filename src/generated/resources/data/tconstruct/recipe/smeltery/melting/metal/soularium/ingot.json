@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/soularium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/soularium/ingot",
+  "ingredient": "#c:ingots/soularium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_soularium"
+  },
+  "temperature": 1000,
+  "time": 66
+}

@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/dark_steel"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/dark_steel/ingot",
+  "ingredient": "#c:ingots/dark_steel",
+  "material": "tconstruct:dark_steel",
+  "needed": 1,
+  "value": 1
+}

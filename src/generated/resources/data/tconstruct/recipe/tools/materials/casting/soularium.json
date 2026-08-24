@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/soularium"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_soularium"
+  },
+  "id": "tconstruct:tools/materials/casting/soularium",
+  "output": "tconstruct:soularium",
+  "temperature": 1000
+}

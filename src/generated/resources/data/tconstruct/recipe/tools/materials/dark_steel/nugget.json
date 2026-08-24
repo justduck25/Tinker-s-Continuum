@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/dark_steel"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/dark_steel/nugget",
+  "ingredient": "#c:nuggets/dark_steel",
+  "material": "tconstruct:dark_steel",
+  "needed": 9,
+  "value": 1
+}

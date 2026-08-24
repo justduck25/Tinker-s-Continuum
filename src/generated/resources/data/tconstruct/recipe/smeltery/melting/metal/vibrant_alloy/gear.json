@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/vibrant"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/vibrant_alloy/gear",
+  "ingredient": "#c:gears/vibrant",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_vibrant_alloy"
+  },
+  "temperature": 1050,
+  "time": 136
+}

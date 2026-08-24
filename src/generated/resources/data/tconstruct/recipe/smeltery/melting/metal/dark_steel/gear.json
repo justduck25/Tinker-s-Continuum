@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/dark_steel"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/dark_steel/gear",
+  "ingredient": "#c:gears/dark_steel",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_dark_steel"
+  },
+  "temperature": 1200,
+  "time": 144
+}

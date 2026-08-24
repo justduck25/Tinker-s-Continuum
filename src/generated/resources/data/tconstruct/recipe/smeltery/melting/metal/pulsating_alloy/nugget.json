@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/pulsating_alloy/nugget",
+  "ingredient": "#c:nuggets/pulsating_alloy",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_pulsating_alloy"
+  },
+  "temperature": 900,
+  "time": 21
+}

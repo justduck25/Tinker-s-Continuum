@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/dark_steel"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_dark_steel"
+  },
+  "id": "tconstruct:tools/materials/casting/dark_steel",
+  "output": "tconstruct:dark_steel",
+  "temperature": 1200
+}

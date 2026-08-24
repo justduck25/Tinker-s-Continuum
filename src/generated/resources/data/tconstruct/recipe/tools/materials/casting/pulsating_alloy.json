@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_pulsating_alloy"
+  },
+  "id": "tconstruct:tools/materials/casting/pulsating_alloy",
+  "output": "tconstruct:pulsating_alloy",
+  "temperature": 900
+}

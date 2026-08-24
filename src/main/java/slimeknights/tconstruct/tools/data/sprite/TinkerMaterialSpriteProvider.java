@@ -295,6 +295,26 @@ public class TinkerMaterialSpriteProvider extends AbstractMaterialSpriteProvider
       .meleeHarvest().ranged().armor().arrowHead().statType(INGOT)
       .fallbacks("metal_contrast", "metal", "contrast")
       .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF1E3214).addARGB(102, 0xFF27401D).addARGB(140, 0xFF416230).addARGB(178, 0xFF52873A).addARGB(216, 0xFF6DA25E).addARGB(255, 0xFF83BF72).build());
+    buildMaterial(MaterialIds.conductiveAlloy)
+      .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF3B2112).addARGB(102, 0xFF5A321A).addARGB(140, 0xFF7A4726).addARGB(178, 0xFFA75F32).addARGB(216, 0xFFC78440).addARGB(255, 0xFFFFBB71).build());
+    buildMaterial(MaterialIds.redstoneAlloy)
+      .meleeHarvest().ranged().armor().arrowHead().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF350000).addARGB(102, 0xFF590505).addARGB(140, 0xFF870A0A).addARGB(178, 0xFFB81212).addARGB(216, 0xFFE42626).addARGB(255, 0xFFFF7777).build());
+    buildMaterial(MaterialIds.pulsatingAlloy)
+      .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF123C28).addARGB(102, 0xFF1A5C3C).addARGB(140, 0xFF237C50).addARGB(178, 0xFF32A768).addARGB(216, 0xFF42C878).addARGB(255, 0xFFA6FFC4).build());
+    buildMaterial(MaterialIds.energeticAlloy)
+      .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF553B09).addARGB(102, 0xFF76530E).addARGB(140, 0xFFA87616).addARGB(178, 0xFFD49D25).addARGB(216, 0xFFF2C94C).addARGB(255, 0xFFFFED9E).build());
+    buildMaterial(MaterialIds.soularium)
+      .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF20140B).addARGB(102, 0xFF342214).addARGB(140, 0xFF4A321E).addARGB(178, 0xFF6F4A2C).addARGB(216, 0xFFA77C55).addARGB(255, 0xFFD9B083).build());
     buildMaterial(MaterialIds.jadeite)
       .ribcage()
       .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF009529).addARGB(102, 0xFF00AA2C).addARGB(140, 0xFF17DD62).addARGB(178, 0xFF41F384).addARGB(216, 0xFF82F6AD).addARGB(255, 0xFFDBFFEB).build());
@@ -371,6 +391,18 @@ public class TinkerMaterialSpriteProvider extends AbstractMaterialSpriteProvider
       .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
       .fallbacks("metal")
       .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF8F998D).addARGB(102, 0xFF9FAB9F).addARGB(140, 0xFFD0DFD5).addARGB(178, 0xFFD9E6DC).addARGB(216, 0xFFE9EFEA).addARGB(255, 0xFFF6F9F7).build());
+    buildMaterial(MaterialIds.vibrantAlloy)
+      .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF173A12).addARGB(102, 0xFF225B1A).addARGB(140, 0xFF2E8622).addARGB(178, 0xFF43B832).addARGB(216, 0xFF5DDB43).addARGB(255, 0xFFB9FF9D).build());
+    buildMaterial(MaterialIds.darkSteel)
+      .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF080A0B).addARGB(102, 0xFF11161A).addARGB(140, 0xFF1B2228).addARGB(178, 0xFF2A3035).addARGB(216, 0xFF3E484F).addARGB(255, 0xFF68757D).build());
+    buildMaterial(MaterialIds.endSteel)
+      .meleeHarvest().ranged().armor().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF4B4639).addARGB(102, 0xFF6B6656).addARGB(140, 0xFF948E7D).addARGB(178, 0xFFBDB8A8).addARGB(216, 0xFFD6D3C8).addARGB(255, 0xFFF8F4E7).build());
 
     // plate
     buildMaterial(MaterialIds.gold)

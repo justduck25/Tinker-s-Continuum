@@ -150,9 +150,17 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
     addCompatAlloy(MaterialIds.platedSlimewood, 3, ORDER_COMPAT + ORDER_SPECIAL, "zinc");
     addCompatMaterial(MaterialIds.necronium,       3, ORDER_COMPAT + ORDER_WEAPON, true, "ingots/uranium");
     addCompatMetalMaterial(MaterialIds.steeleaf, 3, ORDER_COMPAT + ORDER_SPECIAL);
+    addCompatMetalMaterial(MaterialIds.conductiveAlloy, 3, ORDER_COMPAT + ORDER_GENERAL);
+    addCompatMetalMaterial(MaterialIds.redstoneAlloy,   3, ORDER_COMPAT + ORDER_HARVEST);
+    addCompatMetalMaterial(MaterialIds.pulsatingAlloy,  3, ORDER_COMPAT + ORDER_SPECIAL);
+    addCompatMetalMaterial(MaterialIds.energeticAlloy,  3, ORDER_COMPAT + ORDER_RANGED);
+    addCompatMetalMaterial(MaterialIds.soularium,       3, ORDER_COMPAT + ORDER_WEAPON);
     // tier 4 (mod integration)
     addCompatMetalMaterial(MaterialIds.fiery,           4, ORDER_COMPAT + ORDER_END);
     addCompatAlloy(MaterialIds.nicrosil, 4, ORDER_COMPAT + ORDER_WEAPON,  or(tagExistsCondition("ingots/tin"), tagExistsCondition("ingots/nickel"), tagExistsCondition("ingots/chromium")));
+    addCompatMetalMaterial(MaterialIds.vibrantAlloy, 4, ORDER_COMPAT + ORDER_RANGED);
+    addCompatMetalMaterial(MaterialIds.darkSteel,    4, ORDER_COMPAT + ORDER_WEAPON);
+    addCompatMetalMaterial(MaterialIds.endSteel,     4, ORDER_COMPAT + ORDER_END);
 
     // slimesuit
     addMaterial(MaterialIds.clay,  2, ORDER_REPAIR + 5, true);

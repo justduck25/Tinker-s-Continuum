@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "enderio"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/redstone_alloy"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/copper"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "registry": "minecraft:fluid",
+      "tag": "c:redstone"
+    }
+  ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_redstone_alloy",
+  "inputs": [
+    {
+      "amount": 90,
+      "tag": "c:molten_copper"
+    },
+    {
+      "amount": 100,
+      "tag": "c:redstone"
+    }
+  ],
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_redstone_alloy"
+  },
+  "temperature": 600
+}

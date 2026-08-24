@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/nugget",
+  "cooling_time": 21,
+  "fluid": {
+    "amount": 10,
+    "tag": "c:molten_pulsating_alloy"
+  },
+  "id": "tconstruct:smeltery/casting/metal/pulsating_alloy/nugget_gold_cast",
+  "result": {
+    "tag": "c:nuggets/pulsating_alloy"
+  }
+}

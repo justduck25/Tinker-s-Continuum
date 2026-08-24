@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/vibrant_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/vibrant_alloy/nugget",
+  "ingredient": "#c:nuggets/vibrant_alloy",
+  "material": "tconstruct:vibrant_alloy",
+  "needed": 9,
+  "value": 1
+}

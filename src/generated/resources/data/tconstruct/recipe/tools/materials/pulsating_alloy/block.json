@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/pulsating_alloy/block",
+  "ingredient": "#c:storage_blocks/pulsating_alloy",
+  "leftover": {
+    "count": 1,
+    "tag": "c:ingots/pulsating_alloy"
+  },
+  "material": "tconstruct:pulsating_alloy",
+  "needed": 1,
+  "value": 9
+}

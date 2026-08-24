@@ -203,6 +203,15 @@ public final class TinkerFluids extends TinkerModule {
   public static final FlowingFluidObject<? extends FlowingFluid> moltenEnderium = FLUIDS.registerMetal("molten_enderium").type(hot("molten_enderium").temperature(1650).lightLevel(12)).block(createBurning(MapColor.COLOR_CYAN, 12, 10, 7f)).bucket().commonTag().flowing();
   public static final FlowingFluidObject<? extends FlowingFluid> moltenLumium   = FLUIDS.registerMetal("molten_lumium").type(hot("molten_lumium").temperature(1350).lightLevel(15)).block(createBurning(MapColor.GOLD, 15, 10, 7f)).bucket().commonTag().flowing();
   public static final FlowingFluidObject<? extends FlowingFluid> moltenSignalum = FLUIDS.registerMetal("molten_signalum").type(hot("molten_signalum").temperature(1299).lightLevel(13)).block(createBurning(MapColor.FIRE, 13, 10, 7f)).bucket().commonTag().flowing();
+  // enderio
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenConductiveAlloy = FLUIDS.registerMetal("molten_conductive_alloy").type(hot("molten_conductive_alloy").temperature(1100).lightLevel(10)).block(createBurning(MapColor.TERRACOTTA_ORANGE, 10, 10, 6f)).bucket().commonTag().flowing();
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenEnergeticAlloy  = FLUIDS.registerMetal("molten_energetic_alloy").type(hot("molten_energetic_alloy").temperature(1250).lightLevel(13)).block(createBurning(MapColor.GOLD, 13, 10, 7f)).bucket().commonTag().flowing();
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenVibrantAlloy    = FLUIDS.registerMetal("molten_vibrant_alloy").type(hot("molten_vibrant_alloy").temperature(1350).lightLevel(14)).block(createBurning(MapColor.EMERALD, 14, 10, 7f)).bucket().commonTag().flowing();
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenRedstoneAlloy   = FLUIDS.registerMetal("molten_redstone_alloy").type(hot("molten_redstone_alloy").temperature(900).lightLevel(12)).block(createBurning(MapColor.COLOR_RED, 12, 10, 6f)).bucket().commonTag().flowing();
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenPulsatingAlloy  = FLUIDS.registerMetal("molten_pulsating_alloy").type(hot("molten_pulsating_alloy").temperature(1200).lightLevel(10)).block(createBurning(MapColor.COLOR_GREEN, 10, 10, 6f)).bucket().commonTag().flowing();
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenDarkSteel       = FLUIDS.registerMetal("molten_dark_steel").type(hot("molten_dark_steel").temperature(1500).lightLevel(7)).block(createBurning(MapColor.COLOR_BLACK, 7, 10, 7f)).bucket().commonTag().flowing();
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenSoularium       = FLUIDS.registerMetal("molten_soularium").type(hot("molten_soularium").temperature(1300).lightLevel(9)).block(createBurning(MapColor.COLOR_BROWN, 9, 10, 7f)).bucket().commonTag().flowing();
+  public static final FlowingFluidObject<? extends FlowingFluid> moltenEndSteel        = FLUIDS.registerMetal("molten_end_steel").type(hot("molten_end_steel").temperature(1650).lightLevel(12)).block(createBurning(MapColor.SAND, 12, 10, 8f)).bucket().commonTag().flowing();
   // mekanism
   public static final FlowingFluidObject<? extends FlowingFluid> moltenRefinedGlowstone = FLUIDS.registerMetal("molten_refined_glowstone").type(hot("molten_refined_glowstone").temperature(1125).lightLevel(15)).block(createBurning(MapColor.COLOR_YELLOW, 15, 10, 7f)).bucket().commonTag().flowing();
   public static final FlowingFluidObject<? extends FlowingFluid> moltenRefinedObsidian  = FLUIDS.registerMetal("molten_refined_obsidian").type(hot("molten_refined_obsidian").temperature(1775).lightLevel(7)).block(createBurning(MapColor.TERRACOTTA_BLUE, 7, 10, 7f)).bucket().commonTag().flowing();
@@ -391,6 +400,14 @@ public final class TinkerFluids extends TinkerModule {
       DispenserBlock.registerBehavior(moltenEnderium, dispenseBucket);
       DispenserBlock.registerBehavior(moltenLumium, dispenseBucket);
       DispenserBlock.registerBehavior(moltenSignalum, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenConductiveAlloy, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenEnergeticAlloy, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenVibrantAlloy, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenRedstoneAlloy, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenPulsatingAlloy, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenDarkSteel, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenSoularium, dispenseBucket);
+      DispenserBlock.registerBehavior(moltenEndSteel, dispenseBucket);
       DispenserBlock.registerBehavior(moltenRefinedGlowstone, dispenseBucket);
       DispenserBlock.registerBehavior(moltenRefinedObsidian, dispenseBucket);
       DispenserBlock.registerBehavior(moltenNicrosil, dispenseBucket);
@@ -491,6 +508,14 @@ public final class TinkerFluids extends TinkerModule {
     acceptMolten(output, moltenEnderium);
     acceptMolten(output, moltenLumium);
     acceptMolten(output, moltenSignalum);
+    acceptMolten(output, moltenConductiveAlloy);
+    acceptMolten(output, moltenEnergeticAlloy);
+    acceptMolten(output, moltenVibrantAlloy);
+    acceptMolten(output, moltenRedstoneAlloy);
+    acceptMolten(output, moltenPulsatingAlloy);
+    acceptMolten(output, moltenDarkSteel);
+    acceptMolten(output, moltenSoularium);
+    acceptMolten(output, moltenEndSteel);
     acceptMolten(output, moltenRefinedGlowstone);
     acceptMolten(output, moltenRefinedObsidian);
     acceptMolten(output, moltenDuralumin);

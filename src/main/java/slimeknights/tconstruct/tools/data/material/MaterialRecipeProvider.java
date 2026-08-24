@@ -234,10 +234,18 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
       MaterialIds.necronium, Ingredient.of(TinkerMaterials.necroniumBone), 1, 1, folder + "necronium");
     metalMaterialRecipe(consumer, MaterialIds.electrum, folder, "electrum", true);
     metalMaterialRecipe(consumer, MaterialIds.steeleaf, folder, "steeleaf", true);
+    metalMaterialRecipe(consumer, MaterialIds.conductiveAlloy, folder, "conductive_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.redstoneAlloy,   folder, "redstone_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.pulsatingAlloy,  folder, "pulsating_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.energeticAlloy,  folder, "energetic_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.soularium,       folder, "soularium", true);
     // no plated slimewood, use repair kits
     // tier 4 (mod integration)
     metalMaterialRecipe(consumer, MaterialIds.fiery, folder, "fiery", true);
     metalMaterialRecipe(consumer, MaterialIds.nicrosil, folder, "nicrosil", true);
+    metalMaterialRecipe(consumer, MaterialIds.vibrantAlloy, folder, "vibrant_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.darkSteel,    folder, "dark_steel", true);
+    metalMaterialRecipe(consumer, MaterialIds.endSteel,     folder, "end_steel", true);
 
     // slimesuit
     materialRecipe(consumer, MaterialIds.enderslime, Ingredient.of(TinkerWorld.enderGeode), 1, 1, folder + "enderslime");
@@ -337,6 +345,11 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     compatMeltingCasting(consumer, MaterialIds.electrum,   TinkerFluids.moltenElectrum,   "silver", folder);
     compatMeltingCasting(consumer, MaterialIds.bronze,     TinkerFluids.moltenBronze,     "tin", folder);
     compatMeltingCasting(consumer, MaterialIds.steeleaf,   TinkerFluids.moltenSteeleaf, folder);
+    compatMeltingCasting(consumer, MaterialIds.conductiveAlloy, TinkerFluids.moltenConductiveAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.redstoneAlloy,   TinkerFluids.moltenRedstoneAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.pulsatingAlloy,  TinkerFluids.moltenPulsatingAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.energeticAlloy,  TinkerFluids.moltenEnergeticAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.soularium,       TinkerFluids.moltenSoularium, folder);
     // pewter has two different ores that let it appear, tin and lead
     materialMeltingCasting(
       withCondition(consumer, new OrCondition(List.of(tagCondition("ingots/pewter"), tagCondition("ingots/tin"), tagCondition("ingots/lead")))),
@@ -354,6 +367,9 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     materialMeltingCasting(
       withCondition(consumer, new OrCondition(List.of(tagCondition("ingots/nicrosil"), tagCondition("ingots/tin"), tagCondition("ingots/nickel"), tagCondition("ingots/chromium")))),
       MaterialIds.nicrosil, TinkerFluids.moltenNicrosil, folder);
+    compatMeltingCasting(consumer, MaterialIds.vibrantAlloy, TinkerFluids.moltenVibrantAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.darkSteel,    TinkerFluids.moltenDarkSteel, folder);
+    compatMeltingCasting(consumer, MaterialIds.endSteel,     TinkerFluids.moltenEndSteel, folder);
 
     // slimesuit - slime
     materialMeltingCasting(consumer, MaterialIds.earthslime, TinkerFluids.earthSlime, FluidValues.SLIMEBALL, folder);

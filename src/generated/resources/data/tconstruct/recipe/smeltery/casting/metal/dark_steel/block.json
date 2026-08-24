@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/dark_steel"
+    }
+  ],
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 216,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_dark_steel"
+  },
+  "id": "tconstruct:smeltery/casting/metal/dark_steel/block",
+  "result": {
+    "tag": "c:storage_blocks/dark_steel"
+  }
+}

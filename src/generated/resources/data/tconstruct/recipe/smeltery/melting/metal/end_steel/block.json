@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/end_steel"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/end_steel/block",
+  "ingredient": "#c:storage_blocks/end_steel",
+  "result": {
+    "amount": 810,
+    "tag": "c:molten_end_steel"
+  },
+  "temperature": 1350,
+  "time": 229
+}

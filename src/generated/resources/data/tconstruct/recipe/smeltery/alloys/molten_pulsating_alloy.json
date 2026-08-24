@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "enderio"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/pulsating_alloy"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_pulsating_alloy",
+  "inputs": [
+    {
+      "amount": 90,
+      "tag": "c:molten_iron"
+    },
+    {
+      "amount": 250,
+      "tag": "c:ender"
+    }
+  ],
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_pulsating_alloy"
+  },
+  "temperature": 900
+}

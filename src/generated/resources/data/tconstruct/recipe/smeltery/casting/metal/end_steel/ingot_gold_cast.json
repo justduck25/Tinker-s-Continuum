@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/end_steel"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/ingot",
+  "cooling_time": 76,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_end_steel"
+  },
+  "id": "tconstruct:smeltery/casting/metal/end_steel/ingot_gold_cast",
+  "result": {
+    "tag": "c:ingots/end_steel"
+  }
+}

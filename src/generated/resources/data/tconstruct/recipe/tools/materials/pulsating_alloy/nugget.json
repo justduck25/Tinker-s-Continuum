@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/pulsating_alloy/nugget",
+  "ingredient": "#c:nuggets/pulsating_alloy",
+  "material": "tconstruct:pulsating_alloy",
+  "needed": 9,
+  "value": 1
+}

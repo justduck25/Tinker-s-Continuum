@@ -131,10 +131,18 @@ public class MaterialRenderInfoProvider extends AbstractMaterialRenderInfoProvid
     buildRenderInfo(MaterialIds.electrum).color(0xFFEA65).fallbacks("metal");
     buildRenderInfo(MaterialIds.platedSlimewood).color(0xFFE170).fallbacks("slime_metal", "metal");
     buildRenderInfo(MaterialIds.steeleaf);
+    buildRenderInfo(MaterialIds.conductiveAlloy).color(0xC78440).fallbacks("metal");
+    buildRenderInfo(MaterialIds.redstoneAlloy).color(0xD02020).fallbacks("metal");
+    buildRenderInfo(MaterialIds.pulsatingAlloy).color(0x42C878).fallbacks("metal");
+    buildRenderInfo(MaterialIds.energeticAlloy).color(0xF2C94C).fallbacks("metal").luminosity(4);
+    buildRenderInfo(MaterialIds.soularium).color(0x6F4A2C).fallbacks("metal");
 
     // tier 4 compat
     buildRenderInfo(MaterialIds.fiery).color(0x893D14).fallbacks("metal").luminosity(15);
     buildRenderInfo(MaterialIds.nicrosil).color(0xD9E6DC);
+    buildRenderInfo(MaterialIds.vibrantAlloy).color(0x5DDB43).fallbacks("metal").luminosity(6);
+    buildRenderInfo(MaterialIds.darkSteel).color(0x2A3035).fallbacks("metal");
+    buildRenderInfo(MaterialIds.endSteel).color(0xD6D3C8).fallbacks("metal");
 
     // ammo
     buildRenderInfo(MaterialIds.amethyst);
