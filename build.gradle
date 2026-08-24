@@ -23,6 +23,7 @@ repositories {
         name = 'DVS1 Maven FS'
         url = uri('https://dvs1.progwml6.com/files/maven')
         content {
+            excludeGroup "curse.maven"
             excludeGroupByRegex 'dev\\.shadowsoffire.*'
         }
     }
@@ -226,6 +227,8 @@ dependencies {
     // Optional Apotheosis bridge: compile against the API, never bundle it into TCon.
     compileOnly "dev.shadowsoffire:Placebo:${minecraft_version}-${placebo_version}"
     compileOnly "dev.shadowsoffire:Apotheosis:${minecraft_version}-${apotheosis_version}"
+    compileOnly "curse.maven:jade-324717:${jade_file_id}"
+    runtimeOnly "curse.maven:jade-324717:${jade_file_id}"
 
     deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
 
@@ -248,7 +251,8 @@ tasks.named('processResources', ProcessResources).configure {
         'mantle_range': mantle_range,
         'jei_range': jei_range,
         'json_things_range': json_things_range,
-        'apotheosis_range': apotheosis_range
+        'apotheosis_range': apotheosis_range,
+        'jade_range': jade_range
 
     ]
     inputs.properties replaceProperties

@@ -1,10 +1,10 @@
-# Tinkers' Construct — NeoForge 26.1 Port
+# Tinker's Continuum
 
-> Modify all the things, then do it again!
+> A community NeoForge 26.1 port of Tinkers' Construct.
 
-This repository contains a community port of **Tinkers' Construct 4** to **Minecraft 26.1 / NeoForge 26.1**.
+**Tinker's Continuum** is the working name for this community-maintained port of **Tinkers' Construct 4** to **Minecraft 26.1 / NeoForge 26.1**.
 
-The NeoForge 26.1 port is maintained by **justduck** and is based on the original Tinkers' Construct project by SlimeKnights. This is a community port, not an official SlimeKnights release.
+This is not an official SlimeKnights release. The original mod, source code, assets, design, and license remain credited to SlimeKnights. This repository exists to keep the mod playable on the NeoForge 26.1 target while the upstream ecosystem catches up.
 
 ## Port target
 
@@ -15,13 +15,25 @@ The NeoForge 26.1 port is maintained by **justduck** and is based on the origina
 | Java | 25 |
 | Gradle | 9.1 |
 
-The port preserves the original gameplay, recipes, materials, tools, modifiers, fluids, structures, world generation and client features wherever the 26.1 API allows it.
+## Current support
 
-## Documentation
+This port currently focuses on the core Tinkers' Construct experience:
 
-For documentation about writing addons or working with Tinkers' Construct datapacks, see the [SlimeKnights documentation](https://slimeknights.github.io/docs/).
+- Tools, materials, parts, modifiers, tool stats, and tooltips.
+- Smeltery, foundry, melter, casting, fluids, tanks, and related rendering.
+- Recipes, loot, advancements, data generation, tags, and world generation that have been ported to the current data/API format.
+- Client features needed for normal play on NeoForge 26.1.
 
-For the original project and official releases, see the [Tinkers' Construct project page](https://slimeknights.github.io/projects/#tinkers-construct).
+Optional compatibility currently included:
+
+| Mod | Status |
+|---|---|
+| JEI | Recipe/category integration for the current port. |
+| JsonThings | Flex item/block integration for TCon content where supported. |
+| Apotheosis / Apothic Enchanting | TCon tool enchant/modifier bridge, loot category mapping, post-cap handling, and related recipe/tooltip cleanup for the supported 26.1 versions. |
+| Jade | Basic block tooltip integration for TCon fluid tanks and related tank blocks. |
+
+Other historical Tinkers' Construct integrations are not listed as supported here until those mods have usable NeoForge 26.1 builds and the compat has been tested in this port.
 
 ## Building from source
 
@@ -46,7 +58,7 @@ To start the development client:
 .\gradlew.bat runClient
 ```
 
-The generated resources are written under `src/generated`. Do not edit generated files manually; update the corresponding data provider or source resource and run datagen again.
+Build artifacts are written under `build/libs`. Generated resources are written under `src/generated`. Do not edit generated files manually; update the corresponding data provider or source resource and run datagen again.
 
 ## Issue reporting
 
@@ -54,21 +66,29 @@ Please include the following information:
 
 - Minecraft version: `26.1.2`.
 - NeoForge version/build: `26.1.2.78`.
-- Tinkers' Construct port version or commit.
+- Port version or commit.
 - Versions of other mods that may be related to the issue.
 - Exact steps to reproduce the problem.
 - Relevant screenshots or video.
 - For crashes or runtime errors, attach the relevant `latest.log`, `debug.log`, or crash report.
 
-Please note whether the issue is specific to this NeoForge 26.1 port or also occurs in the original upstream project.
+Please mention whether the issue happens with this NeoForge 26.1 port only, or also happens in an official upstream Tinkers' Construct build.
+
+## Documentation
+
+For documentation about writing addons or working with Tinkers' Construct datapacks, see the [SlimeKnights documentation](https://slimeknights.github.io/docs/).
+
+For the original project and official releases, see the [Tinkers' Construct project page](https://slimeknights.github.io/projects/#tinkers-construct).
 
 ## Credits and license
 
 Tinkers' Construct is an original project by [SlimeKnights](https://github.com/SlimeKnights).
 
-The NeoForge 26.1 port in this repository is maintained by **justduck**.
+This NeoForge 26.1 community port is maintained by **justduck**.
 
-Code, textures and binaries are licensed under the [MIT License](https://tldrlegal.com/license/mit-license), unless a different license is noted in the relevant file or asset.
+Copyright (c) 2022 SlimeKnights.
+
+Code, textures, binaries, and documentation are licensed under the [MIT License](LICENSE), unless a different license is noted in the relevant file or asset. The copyright notice and license text must be included in all copies or substantial portions of the software.
 
 You may use the mod in a modpack. Modpack authors are responsible for user support for their packs. Official support from the original project applies to official upstream builds, not custom port builds.
 

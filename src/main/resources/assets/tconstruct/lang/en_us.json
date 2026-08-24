@@ -4790,5 +4790,9 @@
   "advancements.tconstruct.world.piggybackpack.title": "Pig Piggyback",
   "advancements.tconstruct.world.piggybackpack.description": "Pick up a pig with a piggybackpack",
   "advancements.tconstruct.world.ancient_tools.title": "Archeologists",
-  "advancements.tconstruct.world.ancient_tools.description": "Discover all original types of ancient tool"
+  "advancements.tconstruct.world.ancient_tools.description": "Discover all original types of ancient tool",
+
+  "_comment": "Jade Strings",
+  "jade.tconstruct.tank.empty": "Fluid: Empty / %s mB",
+  "jade.tconstruct.tank.fluid": "Fluid: %s (%s / %s mB)"
 }
