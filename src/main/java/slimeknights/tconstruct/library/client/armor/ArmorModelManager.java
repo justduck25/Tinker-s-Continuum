@@ -31,6 +31,7 @@ import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier
 import slimeknights.tconstruct.library.client.armor.texture.TintedArmorTexture;
 import slimeknights.tconstruct.library.client.armor.texture.TrimArmorTextureSupplier;
 import slimeknights.tconstruct.tools.TinkerModifiers;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.tools.client.material.CombatFishingHookRenderer;
 import slimeknights.tconstruct.tools.modules.cosmetic.TrimModule;
 
@@ -174,7 +175,7 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
         return;
       }
       Minecraft minecraft = Minecraft.getInstance();
-      if (minecraft.level == null) {
+      if (minecraft.level == null || !stack.is(TinkerTags.Items.MODIFIABLE)) {
         return;
       }
       slimeknights.tconstruct.library.tools.nbt.ToolStack tool = slimeknights.tconstruct.library.tools.nbt.ToolStack.from(stack);

@@ -38,6 +38,8 @@ import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
+import slimeknights.tconstruct.library.tools.definition.module.build.ToolMeleeHooks;
+
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
@@ -258,11 +260,16 @@ public class ToolAttackUtil {
 
     // determine damage actually dealt
     float damageDealt = damage;
-    if (targetLiving != null) {
+        if (targetLiving != null) {
       damageDealt = oldHealth - targetLiving.getHealth();
     }
+    ToolStack toolStack = tool instanceof ToolStack existing
+      ? existing
+      : ToolStack.from(context.getAttacker().getItemInHand(context.getHand()));
+    ToolMeleeHooks.onSuccessfulHit(toolStack, context, damageDealt);
 
     // apply knockback
+
     if (knockback > 0) {
       if (targetLiving != null) {
         targetLiving.knockback(knockback, Mth.sin(attackerLiving.getYRot() * DEGREE_TO_RADIANS), -Mth.cos(attackerLiving.getYRot() * DEGREE_TO_RADIANS));

@@ -274,13 +274,15 @@ public class TConstructJEIPlugin implements IModPlugin {
 
     List<IDisplayModifierRecipe> modifierRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.TINKER_STATION.get(), IDisplayModifierRecipe.class)
       .stream()
-      .sorted((r1, r2) -> {
-        SlotType t1 = r1.getSlotType();
-        SlotType t2 = r2.getSlotType();
-        String n1 = t1 == null ? "zzzzzzzzzz" : t1.getName();
-        String n2 = t2 == null ? "zzzzzzzzzz" : t2.getName();
-        return n1.compareTo(n2);
-      }).toList();
+      .sorted(java.util.Comparator
+        .comparing(TConstructJEIPlugin::modifierSlotSortKey)
+        .thenComparing(TConstructJEIPlugin::isApotheosisPostCapRecipe)
+        .thenComparing(recipe -> recipe.getDisplayResult().getId().toString())
+        .thenComparing(recipe -> {
+          Identifier id = recipe.getRecipeId();
+          return id == null ? "" : id.toString();
+        }))
+      .toList();
     registration.addRecipes(TConstructJEIConstants.MODIFIERS, modifierRecipes);
 
     List<SeveringRecipe> severingRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.SEVERING.get(), SeveringRecipe.class);
@@ -294,6 +296,18 @@ public class TConstructJEIPlugin implements IModPlugin {
 
     List<IModifierWorktableRecipe> worktableRecipes = RecipeHelper.getJEIRecipes(minecraft.level.registryAccess(), manager, TinkerRecipeTypes.MODIFIER_WORKTABLE.get(), IModifierWorktableRecipe.class);
     registration.addRecipes(TConstructJEIConstants.MODIFIER_WORKTABLE, worktableRecipes);
+  }
+
+  /** Sort key for modifier recipes; null slotless recipes stay last as before. */
+  private static String modifierSlotSortKey(IDisplayModifierRecipe recipe) {
+    SlotType type = recipe.getSlotType();
+    return type == null ? "zzzzzzzzzz" : type.getName();
+  }
+
+  /** Apotheosis post-cap recipes are kept together in JEI instead of being interleaved with the normal recipe list. */
+  private static boolean isApotheosisPostCapRecipe(IDisplayModifierRecipe recipe) {
+    Identifier id = recipe.getRecipeId();
+    return id != null && id.getNamespace().equals(TConstruct.MOD_ID) && id.getPath().startsWith("tools/modifiers/upgrade/apotheosis/");
   }
 
   @Override

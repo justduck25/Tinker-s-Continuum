@@ -1,0 +1,19 @@
+{
+  "stack": {
+    "id": "tconstruct:javelin",
+    "components": {
+      "minecraft:custom_data": {
+        "tic_materials": [
+          "tconstruct:iron",
+          "tconstruct:iron",
+          "tconstruct:iron",
+          "tconstruct:iron"
+        ]
+      }
+    }
+  },
+  "weights": {
+    "quality": 1.0,
+    "weight": 3
+  }
+}

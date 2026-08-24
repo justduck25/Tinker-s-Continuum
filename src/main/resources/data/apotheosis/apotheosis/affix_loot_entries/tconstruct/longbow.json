@@ -1,0 +1,19 @@
+{
+  "stack": {
+    "id": "tconstruct:longbow",
+    "components": {
+      "minecraft:custom_data": {
+        "tic_materials": [
+          "tconstruct:wood",
+          "tconstruct:wood",
+          "tconstruct:wood",
+          "tconstruct:string"
+        ]
+      }
+    }
+  },
+  "weights": {
+    "quality": 1.0,
+    "weight": 4
+  }
+}

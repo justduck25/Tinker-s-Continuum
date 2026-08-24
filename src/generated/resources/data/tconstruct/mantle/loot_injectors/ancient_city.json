@@ -36,8 +36,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -49,8 +49,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 }
               ]

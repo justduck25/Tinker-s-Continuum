@@ -39,8 +39,30 @@
         "entries": [
           {
             "model": {
-              "type": "minecraft:model",
-              "model": "tconstruct:item/tool/dagger/throwing"
+              "type": "tconstruct:tool",
+              "model": "tconstruct:item/tool/dagger/throwing",
+              "modifier_maps": [
+                "tconstruct:dagger"
+              ],
+              "modifier_roots": [
+                "tconstruct:item/tool/dagger/modifiers/"
+              ],
+              "parts": [
+                {
+                  "index": 0,
+                  "name": "head"
+                },
+                {
+                  "index": 1,
+                  "name": "crossguard"
+                }
+              ],
+              "textures": {
+                "crossguard": "tconstruct:item/tool/dagger/crossguard",
+                "head": "tconstruct:item/tool/dagger/blade",
+                "layer0": "tconstruct:item/tool/dagger/blade",
+                "particle": "tconstruct:item/tool/dagger/blade"
+              }
             },
             "threshold": 1.75
           }

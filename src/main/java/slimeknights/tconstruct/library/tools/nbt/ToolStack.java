@@ -28,6 +28,8 @@ import slimeknights.tconstruct.library.tools.context.ToolRebuildContext;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinitionData;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
+import slimeknights.tconstruct.library.tools.definition.module.build.ToolStatsHooks;
+import slimeknights.tconstruct.library.tools.definition.module.build.ToolVolatileDataHooks;
 import slimeknights.tconstruct.library.tools.definition.module.material.MissingMaterialsToolHook;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
@@ -789,6 +791,7 @@ public class ToolStack implements IToolStackView {
     for (ModifierEntry entry : modifierList) {
       entry.getHook(ModifierHooks.VOLATILE_DATA).addVolatileData(context, entry, volatileData);
     }
+    ToolVolatileDataHooks.apply(context, volatileData);
     setVolatileModData(volatileData);
 
     // regular stats last so we can include volatile data
@@ -797,6 +800,7 @@ public class ToolStack implements IToolStackView {
     for (ModifierEntry entry : modifierList) {
       entry.getHook(ModifierHooks.TOOL_STATS).addToolStats(context, entry, statBuilder);
     }
+    ToolStatsHooks.apply(context, statBuilder);
     setStats(statBuilder.build());
     setMultipliers(statBuilder.buildMultipliers());
 

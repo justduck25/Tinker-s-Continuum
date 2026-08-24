@@ -66,6 +66,7 @@ public class ModifierIds {
   public static final ModifierId bucketing = id("bucketing");
   public static final ModifierId autosmelt = id("autosmelt");
   public static final ModifierId expanded = id("expanded");
+  public static final ModifierId apotheosis = id("apotheosis");
   // compat
   public static final ModifierId theOneProbe = id("the_one_probe");
   public static final ModifierId headlight = id("headlight");

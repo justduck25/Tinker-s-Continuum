@@ -51,6 +51,34 @@
           "modifier": "tconstruct:unbreakable"
         }
       }
+    },
+    {
+      "type": "tconstruct:requirements",
+      "display_modifiers": [
+        {
+          "level": 1,
+          "name": "tconstruct:apotheosis"
+        }
+      ],
+      "modifier_level": {
+        "min": 6,
+        "max": 15
+      },
+      "requirement": {
+        "type": "tconstruct:has_modifier",
+        "check": "all",
+        "modifier": {
+          "type": "tconstruct:single",
+          "modifier": "tconstruct:apotheosis"
+        }
+      },
+      "translation_key": "modifier.tconstruct.apotheosis.requirements"
+    },
+    {
+      "type": "tconstruct:apothic_enchantment_cap",
+      "fallback_max": 7,
+      "min_level": 6,
+      "name": "minecraft:unbreaking"
     }
   ],
   "tooltip_display": "always"

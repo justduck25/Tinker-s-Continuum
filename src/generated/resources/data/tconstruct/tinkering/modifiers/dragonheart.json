@@ -17,8 +17,8 @@
       ],
       "holder": {
         "type": "tconstruct:variable_range",
-        "interval": "right_open",
         "min": 2.0,
+        "interval": "right_open",
         "variable": {
           "type": "tconstruct:attribute",
           "attribute": "minecraft:max_health"

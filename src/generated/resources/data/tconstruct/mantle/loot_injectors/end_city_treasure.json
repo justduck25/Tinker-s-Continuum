@@ -19,8 +19,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -32,8 +32,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -45,8 +45,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -58,27 +58,29 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 }
               ],
-              "modifiers": [
-                {
-                  "level": 1,
-                  "name": "tconstruct:diamond"
-                },
-                {
-                  "level": 1,
-                  "name": "tconstruct:netherite"
-                },
+              "random_modifier_max": 3,
+              "random_modifier_min": 2,
+              "random_modifiers": [
                 {
                   "level": 3,
                   "name": "tconstruct:sharpness"
                 },
                 {
                   "level": 2,
-                  "name": "tconstruct:looting"
+                  "name": "tconstruct:luck"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:knockback"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:fiery"
                 },
                 {
                   "level": 1,
@@ -89,7 +91,7 @@
             }
           ],
           "name": "tconstruct:cleaver",
-          "weight": 2
+          "weight": 6
         },
         {
           "type": "minecraft:item",
@@ -107,8 +109,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -120,8 +122,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -133,8 +135,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -146,27 +148,29 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 }
               ],
-              "modifiers": [
-                {
-                  "level": 1,
-                  "name": "tconstruct:diamond"
-                },
-                {
-                  "level": 1,
-                  "name": "tconstruct:netherite"
-                },
+              "random_modifier_max": 3,
+              "random_modifier_min": 2,
+              "random_modifiers": [
                 {
                   "level": 3,
                   "name": "tconstruct:haste"
                 },
                 {
                   "level": 2,
-                  "name": "tconstruct:fortune"
+                  "name": "tconstruct:luck"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:magnetic"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:reinforced"
                 },
                 {
                   "level": 1,
@@ -177,7 +181,7 @@
             }
           ],
           "name": "tconstruct:sledge_hammer",
-          "weight": 2
+          "weight": 6
         },
         {
           "type": "minecraft:item",
@@ -195,8 +199,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -208,8 +212,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -221,8 +225,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 },
                 {
@@ -234,27 +238,29 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "max": 4,
-                    "min": 3
+                    "min": 3,
+                    "max": 4
                   }
                 }
               ],
-              "modifiers": [
-                {
-                  "level": 1,
-                  "name": "tconstruct:diamond"
-                },
-                {
-                  "level": 1,
-                  "name": "tconstruct:netherite"
-                },
+              "random_modifier_max": 3,
+              "random_modifier_min": 2,
+              "random_modifiers": [
                 {
                   "level": 3,
                   "name": "tconstruct:haste"
                 },
                 {
                   "level": 2,
-                  "name": "tconstruct:fortune"
+                  "name": "tconstruct:luck"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:magnetic"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:reinforced"
                 },
                 {
                   "level": 1,
@@ -265,7 +271,7 @@
             }
           ],
           "name": "tconstruct:excavator",
-          "weight": 2
+          "weight": 6
         }
       ],
       "name": "main"

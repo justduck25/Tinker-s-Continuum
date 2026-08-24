@@ -17,6 +17,34 @@
           "modifier": "tconstruct:long_fall"
         }
       }
+    },
+    {
+      "type": "tconstruct:requirements",
+      "display_modifiers": [
+        {
+          "level": 1,
+          "name": "tconstruct:apotheosis"
+        }
+      ],
+      "modifier_level": {
+        "min": 3,
+        "max": 15
+      },
+      "requirement": {
+        "type": "tconstruct:has_modifier",
+        "check": "all",
+        "modifier": {
+          "type": "tconstruct:single",
+          "modifier": "tconstruct:apotheosis"
+        }
+      },
+      "translation_key": "modifier.tconstruct.apotheosis.requirements"
+    },
+    {
+      "type": "tconstruct:apothic_enchantment_cap",
+      "fallback_max": 4,
+      "min_level": 3,
+      "name": "minecraft:feather_falling"
     }
   ],
   "tooltip_display": "always"

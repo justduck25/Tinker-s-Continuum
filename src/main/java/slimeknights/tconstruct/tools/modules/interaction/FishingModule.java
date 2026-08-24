@@ -1,6 +1,8 @@
 package slimeknights.tconstruct.tools.modules.interaction;
 
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -31,9 +33,13 @@ import slimeknights.tconstruct.library.tools.capability.EntityModifierCapability
 import slimeknights.tconstruct.library.tools.capability.PersistentDataCapability;
 import slimeknights.tconstruct.library.tools.context.EquipmentChangeContext;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
+import slimeknights.tconstruct.library.tools.definition.module.build.ToolFishingHooks;
+
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ModifierNBT;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
@@ -77,11 +83,15 @@ public enum FishingModule implements ModifierModule, GeneralInteractionModifierH
         // due to fishing rod buggy behavior, chance we end up retrieving someone else's cast, so keep this logic 1 to 1 with vanilla
         if (!level.isClientSide()) {
           int damage = player.fishing.retrieve(stack);
-          if (damage > 0) {
+                    if (damage > 0) {
             ToolDamageUtil.damageAnimated(tool, damage, player, Util.getSlotType(hand));
+            if (player instanceof ServerPlayer serverPlayer) {
+              ToolFishingHooks.onSuccessfulCatch(serverPlayer, (ToolStack) tool);
+            }
             // we apply cooldown as this is a weapon, don't want to let you spam it. But only need the cooldown if something happened
             GeneralInteractionModifierHook.addCooldown(tool, player, 1);
           }
+
         }
 
         level.playSound( null, player.getX(), player.getY(), player.getZ(), SoundEvents.FISHING_BOBBER_RETRIEVE, SoundSource.NEUTRAL, 1, 0.4f / (level.getRandom().nextFloat() * 0.4f + 0.8f));

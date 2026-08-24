@@ -49,6 +49,8 @@ public class Config {
     public final BooleanValue allowIngotlessAlloys;
     public final DoubleValue chemthrowerShotValue;
     public final BooleanValue allowMonsterMeleeModifiers;
+    public final BooleanValue apotheosisProsperousBridge;
+    public final BooleanValue apotheosisPostCapRecipes;
 
     // debug
     public final BooleanValue forceIntegrationMaterials;
@@ -180,6 +182,15 @@ public class Config {
           .comment("If true, monsters will run melee modifiers when attacking with a modifiable weapon. Provided to work around potential issues with addons allowing more monsters to use tools.",
             "Note that if its just a specific mob or damage source that has an issue, there are tag blacklists.")
           .define("allowMonsterMeleeModifiers", true);
+        this.apotheosisProsperousBridge = builder
+          .comment("If true, Apotheosis Prosperous affixes on TCon tools will increase the effective TCon Luck level.",
+            "This is read-only: it does not add modifier levels, consume slots, or write vanilla enchantment data.")
+          .define("apotheosis_prosperous_bridge", true);
+        this.apotheosisPostCapRecipes = builder
+          .comment("If true, enables Apotheosis-gated TCon modifier recipes that unlock select levels past vanilla-style caps.",
+            "Disable this if a pack wants Apotheosis affix/category compat without the TCon post-cap progression recipes.")
+          .worldRestart()
+          .define("apotheosis_post_cap_recipes", true);
       }
       builder.pop();
 

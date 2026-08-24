@@ -22,6 +22,9 @@ repositories {
     maven { // Mantle
         name = 'DVS1 Maven FS'
         url = uri('https://dvs1.progwml6.com/files/maven')
+        content {
+            excludeGroupByRegex 'dev\\.shadowsoffire.*'
+        }
     }
     maven { // TOP
         name = 'tterrag maven'
@@ -34,6 +37,10 @@ repositories {
     maven { // JSON Things
         name = 'Dogforce Games'
         url = uri('https://www.dogforce-games.com/maven/')
+    }
+    maven { // Apotheosis and Placebo
+        name = 'Shadowsoffire Maven'
+        url = uri('https://maven.shadowsoffire.dev/releases')
     }
     maven {
         url = uri('https://www.cursemaven.com')
@@ -216,6 +223,9 @@ dependencies {
     // Optional Crafting Tweaks integration, matching the current NeoForge 26.1.2 release.
     compileOnly "curse.maven:crafting-tweaks-233071:8362296"
     compileOnly "curse.maven:json-things-541617:7922513"
+    // Optional Apotheosis bridge: compile against the API, never bundle it into TCon.
+    compileOnly "dev.shadowsoffire:Placebo:${minecraft_version}-${placebo_version}"
+    compileOnly "dev.shadowsoffire:Apotheosis:${minecraft_version}-${apotheosis_version}"
 
     deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
 
@@ -237,7 +247,9 @@ tasks.named('processResources', ProcessResources).configure {
         'neoforge_version': neoforge_version,
         'mantle_range': mantle_range,
         'jei_range': jei_range,
-        'json_things_range': json_things_range
+        'json_things_range': json_things_range,
+        'apotheosis_range': apotheosis_range
+
     ]
     inputs.properties replaceProperties
 

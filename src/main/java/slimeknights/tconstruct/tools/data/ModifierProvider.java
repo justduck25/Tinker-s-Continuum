@@ -196,12 +196,15 @@ import slimeknights.tconstruct.tools.entity.ThrownTool;
 import slimeknights.tconstruct.tools.item.CrystalshotItem;
 import slimeknights.tconstruct.tools.logic.ModifierEvents;
 import slimeknights.tconstruct.tools.modules.AutosmeltModule;
+import slimeknights.tconstruct.tools.modules.ApothicEnchantmentCapModule;
 import slimeknights.tconstruct.tools.modules.ClearEffectOnUnequipModule;
 import slimeknights.tconstruct.tools.modules.CraftCountModule;
 import slimeknights.tconstruct.tools.modules.DamageOnUnequipModule;
 import slimeknights.tconstruct.tools.modules.FovModule;
 import slimeknights.tconstruct.tools.modules.FovModule.FovAction;
 import slimeknights.tconstruct.tools.modules.HeadlightModule;
+import slimeknights.tconstruct.tools.modules.LuckApothicEnchantmentCapModule;
+import slimeknights.tconstruct.tools.modules.LuckEnchantmentModule;
 import slimeknights.tconstruct.tools.modules.MeltingModule;
 import slimeknights.tconstruct.tools.modules.OverburnModule;
 import slimeknights.tconstruct.tools.modules.OvergrowthModule;
@@ -290,6 +293,8 @@ import static slimeknights.tconstruct.library.modifiers.modules.behavior.RepairM
 import static slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial.ARMOR_SLOTS;
 
 public class ModifierProvider extends AbstractModifierProvider {
+  /** Upper bound for Apotheosis post-cap recipes; Apothic Enchanting can lower this at runtime. */
+  private static final int APOTHIC_POST_CAP_MAX = 15;
   public ModifierProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
     super(packOutput, lookupProvider);
   }
@@ -391,6 +396,7 @@ public class ModifierProvider extends AbstractModifierProvider {
       .addModule(AttributeModule.builder(Attributes.BLOCK_INTERACTION_RANGE.value(), Operation.ADD_VALUE).eachLevel(1))
       .addModule(AttributeModule.builder(Attributes.ENTITY_INTERACTION_RANGE.value(), Operation.ADD_VALUE).eachLevel(1));
     buildModifier(ModifierIds.expanded).addModule(new VolatileIntModule(IModifiable.EXPANDED, LevelingInt.eachLevel(1)));
+    buildModifier(ModifierIds.apotheosis).tooltipDisplay(TooltipDisplay.TINKER_STATION).levelDisplay(ModifierLevelDisplay.SINGLE_LEVEL);
     // fire primer is just expanded now, isn't that neat? this might have a hidden application
     buildModifier(ModifierIds.fireprimer).addModule(new VolatileIntModule(IModifiable.EXPANDED, LevelingInt.flat(1))).levelDisplay(ModifierLevelDisplay.NO_LEVELS);
     buildModifier(ModifierIds.glowing)
@@ -434,7 +440,9 @@ public class ModifierProvider extends AbstractModifierProvider {
       .addModule(ReduceToolDamageModule.builder().minLevel(6)
         .toolContext(noUnbreakable)
         .cause(allowReinforced)
-        .amount(0.5f, 0.05f));
+        .amount(0.5f, 0.05f))
+      .addModule(apotheosisRequirement(6, 7))
+      .addModule(apothicCap(6, 7, enchantment(Enchantments.UNBREAKING), false));
     // unbreakable priority is after overslime but before standard modifiers like dense
     buildModifier(ModifierIds.unbreakable)
       .levelDisplay(ModifierLevelDisplay.NO_LEVELS).priority(125)
@@ -463,7 +471,9 @@ public class ModifierProvider extends AbstractModifierProvider {
     buildModifier(ModifierIds.haste)
       .levelDisplay(new UniqueForLevels(5))
       .addModule(StatBoostModule.add(ToolStats.MINING_SPEED).eachLevel(4))
-      .addModule(AttributeModule.builder(TinkerAttributes.MINING_SPEED_MULTIPLIER, Operation.ADD_MULTIPLIED_TOTAL).toolItem(ItemPredicate.tag(HARVEST).inverted()).eachLevel(0.1f));
+      .addModule(AttributeModule.builder(TinkerAttributes.MINING_SPEED_MULTIPLIER, Operation.ADD_MULTIPLIED_TOTAL).toolItem(ItemPredicate.tag(HARVEST).inverted()).eachLevel(0.1f))
+      .addModule(apotheosisRequirement(6, 7))
+      .addModule(apothicCap(6, 7, enchantment(Enchantments.EFFICIENCY), false));
     buildModifier(ModifierIds.blasting).addModule(
       ConditionalMiningSpeedModule.builder()
         .customVariable("resistance", new BlockMiningSpeedVariable(BlockVariable.BLAST_RESISTANCE, 3))
@@ -524,8 +534,13 @@ public class ModifierProvider extends AbstractModifierProvider {
     // note chestplates will have both modules, but will get ignored due to setting the looting slot
     // the air check on weapon looting is for projectiles which use an item of air in their tool context
     LootingModule WEAPON_LOOTING = LootingModule.builder().toolItem(ItemPredicate.or(ItemPredicate.set(Items.AIR), ItemPredicate.tag(MELEE))).weapon();
+    LootingModule LUCK_WEAPON_LOOTING = LootingModule.builder().toolItem(ItemPredicate.or(ItemPredicate.set(Items.AIR), ItemPredicate.tag(TinkerTags.Items.MELEE_WEAPON), ItemPredicate.tag(TinkerTags.Items.LAUNCHERS))).weapon();
     LootingModule ARMOR_LOOTING = LootingModule.builder().toolItem(armor).armor(ARMOR_SLOTS);
-    buildModifier(ModifierIds.luck).levelDisplay(new UniqueForLevels(3)).addModules(CONSTANT_FORTUNE, ARMOR_FORTUNE, WEAPON_LOOTING, ARMOR_LOOTING, SEA_LUCK, ARMOR_LUCK);
+    buildModifier(ModifierIds.luck)
+      .levelDisplay(new UniqueForLevels(3))
+      .addModules(new LuckEnchantmentModule(enchantment(Enchantments.FORTUNE), enchantment(Enchantments.LOOTING), enchantment(Enchantments.LUCK_OF_THE_SEA)), ARMOR_FORTUNE, LUCK_WEAPON_LOOTING, ARMOR_LOOTING, SEA_LUCK, ARMOR_LUCK)
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(luckApothicCap(4, 5));
     buildModifier(ModifierIds.fortune).addModules(CONSTANT_FORTUNE, ARMOR_FORTUNE, SEA_LUCK, ARMOR_LUCK);
     buildModifier(ModifierIds.looting).addModules(WEAPON_LOOTING, ARMOR_LOOTING);
     // boot traits
@@ -566,7 +581,9 @@ public class ModifierProvider extends AbstractModifierProvider {
         .constant(0.25f).variable(LEVEL).multiply()
         .variable(MULTIPLIER).multiply() // cooldown and sling properties
         // finally, add to the base effect
-        .variable(VALUE).add().build());
+        .variable(VALUE).add().build())
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(apothicCap(4, 5, enchantment(Enchantments.KNOCKBACK), false));
     buildModifier(ModifierIds.padded)
       .priority(75) // run after knockback
       .addModule(KnockbackModule.builder().formula()
@@ -577,22 +594,27 @@ public class ModifierProvider extends AbstractModifierProvider {
         .variable(VALUE)
         .constant(2).variable(LEVEL).power() // 2^LEVEL
         .divide().build()); // FORCE / 2^LEVEL
-    buildModifier(ModifierIds.sweeping).addModule(new SweepingEdgeModule(LevelingValue.eachLevel(0.25f)));
+    buildModifier(ModifierIds.sweeping)
+      .addModule(new SweepingEdgeModule(LevelingValue.eachLevel(0.25f)))
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(apothicCap(4, 5, enchantment(Enchantments.SWEEPING_EDGE), false));
     buildModifier(ModifierIds.sticky)
       .addModule(MobEffectModule.builder(MobEffects.SLOWNESS.value()).level(RandomLevelingValue.perLevel(0, 0.5f)).time(RandomLevelingValue.random(20, 10)).buildWeapon());
 
     // damage boost
     // vanilla give +1, 1.5, 2, 2.5, 3, but that is low
     // we instead do +0.75, +1.5, +2.25, +3, +3.75
-    buildModifier(ModifierIds.sharpness).addModule(StatBoostModule.add(ToolStats.ATTACK_DAMAGE).eachLevel(0.75f)).levelDisplay(new UniqueForLevels(5, true));
+    buildModifier(ModifierIds.sharpness).addModule(StatBoostModule.add(ToolStats.ATTACK_DAMAGE).eachLevel(0.75f)).levelDisplay(new UniqueForLevels(5, true)).addModule(apotheosisRequirement(6, 7)).addModule(apothicCap(6, 7, enchantment(Enchantments.SHARPNESS), false));
     buildModifier(ModifierIds.swiftstrike).addModule(StatBoostModule.multiplyBase(ToolStats.ATTACK_SPEED).eachLevel(0.05f)).levelDisplay(new UniqueForLevels(5));
-    buildModifier(ModifierIds.smite).addModule(ConditionalMeleeDamageModule.builder().target(new MobTypePredicate(EntityTypeTags.UNDEAD)).eachLevel(2.0f));
+    buildModifier(ModifierIds.smite).addModule(ConditionalMeleeDamageModule.builder().target(new MobTypePredicate(EntityTypeTags.UNDEAD)).eachLevel(2.0f)).addModule(apotheosisRequirement(6, 7)).addModule(apothicCap(6, 7, enchantment(Enchantments.SMITE), false));
     buildModifier(ModifierIds.antiaquatic).addModule(ConditionalMeleeDamageModule.builder().target(new MobTypePredicate(EntityTypeTags.AQUATIC)).eachLevel(2.0f));
     buildModifier(ModifierIds.cooling).addModule(ConditionalMeleeDamageModule.builder().target(LivingEntityPredicate.FIRE_IMMUNE).eachLevel(1.6f));
     IJsonPredicate<LivingEntity> baneSssssPredicate = LivingEntityPredicate.or(new MobTypePredicate(EntityTypeTags.ARTHROPOD), LivingEntityPredicate.tag(TinkerTags.EntityTypes.CREEPERS));
     buildModifier(ModifierIds.baneOfSssss)
       .addModule(ConditionalMeleeDamageModule.builder().target(baneSssssPredicate).eachLevel(2.0f))
-      .addModule(MobEffectModule.builder(MobEffects.SLOWNESS.value()).level(RandomLevelingValue.flat(4)).time(RandomLevelingValue.random(20, 10)).target(baneSssssPredicate).buildWeapon(), ModifierHooks.MELEE_HIT, ModifierHooks.MONSTER_MELEE_HIT);
+      .addModule(MobEffectModule.builder(MobEffects.SLOWNESS.value()).level(RandomLevelingValue.flat(4)).time(RandomLevelingValue.random(20, 10)).target(baneSssssPredicate).buildWeapon(), ModifierHooks.MELEE_HIT, ModifierHooks.MONSTER_MELEE_HIT)
+      .addModule(apotheosisRequirement(6, 7))
+      .addModule(apothicCap(6, 7, enchantment(Enchantments.BANE_OF_ARTHROPODS), false));
     buildModifier(ModifierIds.killager).addModule(ConditionalMeleeDamageModule.builder().target(LivingEntityPredicate.or(
       new MobTypePredicate(EntityTypeTags.ILLAGER),
       LivingEntityPredicate.LOADER.tag(TinkerTags.EntityTypes.KILLAGERS))).eachLevel(2.0f));
@@ -609,16 +631,16 @@ public class ModifierProvider extends AbstractModifierProvider {
     buildModifier(ModifierIds.chargeAttack).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(ConditionalMeleeDamageModule.builder().attacker(LivingEntityPredicate.SPRINTING).flat(7));
 
     // ranged
-    buildModifier(ModifierIds.power).addModule(StatBoostModule.add(ToolStats.PROJECTILE_DAMAGE).amount(0.5f, 0.5f));
+    buildModifier(ModifierIds.power).addModule(StatBoostModule.add(ToolStats.PROJECTILE_DAMAGE).amount(0.5f, 0.5f)).addModule(apotheosisRequirement(6, 7)).addModule(apothicCap(6, 7, enchantment(Enchantments.POWER), false));
     buildModifier(ModifierIds.keen).addModule(StatBoostModule.add(ToolStats.PROJECTILE_DAMAGE).eachLevel(0.5f));
     buildModifier(ModifierIds.weak).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(StatBoostModule.add(ToolStats.PROJECTILE_DAMAGE).flat(-1f));
-    buildModifier(ModifierIds.punch).addModule(new PunchModule(LevelingValue.eachLevel(1), ModifierCondition.ANY_TOOL));
+    buildModifier(ModifierIds.punch).addModule(new PunchModule(LevelingValue.eachLevel(1), ModifierCondition.ANY_TOOL)).addModule(apotheosisRequirement(4, 5)).addModule(apothicCap(4, 5, enchantment(Enchantments.PUNCH), false));
     buildModifier(ModifierIds.drawback).addModule(new ReversePunchModule(LevelingValue.eachLevel(0.6f)));
-    buildModifier(ModifierIds.arrowPierce).addModule(new ArrowPierceModule(LevelingInt.eachLevel(1), ModifierCondition.ANY_TOOL));
+    buildModifier(ModifierIds.arrowPierce).addModule(new ArrowPierceModule(LevelingInt.eachLevel(1), ModifierCondition.ANY_TOOL)).addModule(apotheosisRequirement(5, 6)).addModule(apothicCap(5, 6, enchantment(Enchantments.PIERCING), false));
     buildModifier(ModifierIds.spike).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
       .addModule(new ToolActionsModule(TinkerToolActions.SHIELD_DISABLE))
       .addModule(new ArrowPierceModule(LevelingInt.flat(1), ModifierCondition.ANY_TOOL));
-    buildModifier(ModifierIds.quickCharge).addModule(StatBoostModule.multiplyBase(ToolStats.DRAW_SPEED).eachLevel(0.25f));
+    buildModifier(ModifierIds.quickCharge).addModule(StatBoostModule.multiplyBase(ToolStats.DRAW_SPEED).eachLevel(0.25f)).addModule(apotheosisRequirement(5, 6)).addModule(apothicCap(5, 6, enchantment(Enchantments.QUICK_CHARGE), false));
     buildModifier(ModifierIds.trueshot).addModule(StatBoostModule.add(ToolStats.ACCURACY).eachLevel(0.1f));
     buildModifier(ModifierIds.blindshot).addModule(StatBoostModule.add(ToolStats.ACCURACY).eachLevel(-0.1f));
     buildModifier(ModifierIds.erratic)
@@ -690,11 +712,16 @@ public class ModifierProvider extends AbstractModifierProvider {
 
     // combat
     // deals 1 + rand(3) damage at 15% chance
-    buildModifier(ModifierIds.thorns).addModule(ThornsModule.type(DamageTypes.THORNS).constantFlat(1).randomFlat(3).build());
+    buildModifier(ModifierIds.thorns)
+      .addModule(ThornsModule.type(DamageTypes.THORNS).constantFlat(1).randomFlat(3).build())
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(apothicCap(4, 5, enchantment(Enchantments.THORNS), false));
     buildModifier(ModifierIds.fiery)
       .addModule(new FieryAttackModule(LevelingValue.eachLevel(5)))
       // want fiery to be a bit to make up for being over time more so its 1+rand(6) seconds
-      .addModule(FieryCounterModule.builder().constantFlat(1).randomFlat(6).toolTag(TinkerTags.Items.ARMOR).build());
+      .addModule(FieryCounterModule.builder().constantFlat(1).randomFlat(6).toolTag(TinkerTags.Items.ARMOR).build())
+      .addModule(apotheosisRequirement(6, 7))
+      .addModule(apothicCap(6, 7, enchantment(Enchantments.FIRE_ASPECT), false));
     buildModifier(ModifierIds.freezing)
       .addModule(new FreezingAttackModule(new LevelingValue(4, 4)))
       .addModule(FreezingCounterModule.builder().constantFlat(2).randomFlat(6).toolTag(TinkerTags.Items.ARMOR).build());
@@ -731,7 +758,10 @@ public class ModifierProvider extends AbstractModifierProvider {
       // in hand, restore new health immediately and drop it immediately, fits better with shield swapping
       .addModule(new UpdateHealthModule(LevelingValue.eachLevel(2), handSlots));
     // protection
-    buildModifier(ModifierIds.protection).addModule(ProtectionModule.builder().eachLevel(1.25f));
+    buildModifier(ModifierIds.protection)
+      .addModule(ProtectionModule.builder().eachLevel(1.25f))
+      .addModule(apotheosisRequirement(2, 3))
+      .addModule(apothicCap(2, 3, enchantment(Enchantments.PROTECTION), false));
     buildModifier(ModifierIds.meleeProtection)
       .addModule(MaxArmorAttributeModule.builder(TinkerAttributes.USE_ITEM_SPEED, Operation.ADD_VALUE).heldTag(TinkerTags.Items.HELD).tooltipStyle(TooltipStyle.PERCENT).eachLevel(0.05f))
       // disallow indirect damage to guard against misuse of the melee damage types
@@ -769,7 +799,10 @@ public class ModifierProvider extends AbstractModifierProvider {
       .addModule(AttributeModule.builder(TinkerAttributes.CRITICAL_DAMAGE, Operation.ADD_VALUE).tooltipStyle(TooltipStyle.PERCENT).eachLevel(0.1f))
       .addModule(AttributeModule.builder(TinkerAttributes.SAFE_FALL_DISTANCE, Operation.ADD_VALUE).eachLevel(2));
     // helmet
-    buildModifier(ModifierIds.respiration).addModule(EnchantmentModule.builder(enchantment(Enchantments.RESPIRATION)).constant());
+    buildModifier(ModifierIds.respiration)
+      .addModule(EnchantmentModule.builder(enchantment(Enchantments.RESPIRATION)).constant())
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(apothicCap(4, 5, enchantment(Enchantments.RESPIRATION), false));
     buildModifier(ModifierIds.aquaAffinity).addModule(EnchantmentModule.builder(enchantment(Enchantments.AQUA_AFFINITY)).constant()).levelDisplay(ModifierLevelDisplay.NO_LEVELS);
     buildModifier(TinkerModifiers.itemFrame).addModule(InventoryModule.builder().pattern(pattern("item_frame")).flatLimit(1).slotsPerLevel(3));
     buildModifier(ModifierIds.minimap).addModule(InventoryModule.builder().pattern(pattern("map")).filter(TinkerPredicate.MAP).flatLimit(1).slotsPerLevel(3)).addModule(MinimapModule.INSTANCE);
@@ -807,7 +840,10 @@ public class ModifierProvider extends AbstractModifierProvider {
     buildModifier(ModifierIds.leaping)
       .addModule(AttributeModule.builder(TinkerAttributes.JUMP_BOOST, Operation.ADD_VALUE).eachLevel(1))
       .addModule(AttributeModule.builder(TinkerAttributes.SAFE_FALL_DISTANCE, Operation.ADD_VALUE).eachLevel(1));
-    buildModifier(ModifierIds.swiftSneak).addModule(EnchantmentModule.builder(enchantment(Enchantments.SWIFT_SNEAK)).constant());
+    buildModifier(ModifierIds.swiftSneak)
+      .addModule(EnchantmentModule.builder(enchantment(Enchantments.SWIFT_SNEAK)).constant())
+      .addModule(apotheosisRequirement(6, 7))
+      .addModule(apothicCap(6, 7, enchantment(Enchantments.SWIFT_SNEAK), false));
     // TODO: consider higher levels keeping more of the inventory
     buildModifier(ModifierIds.soulBelt).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(new ArmorLevelModule(TinkerDataKeys.SOUL_BELT, true, null)).addModule(ModifierRequirementsModule.builder().modifierKey(ModifierIds.soulBelt).requireModifier(ModifierIds.soulbound, 1).build());
     buildModifier(ModifierIds.workbench)
@@ -821,11 +857,19 @@ public class ModifierProvider extends AbstractModifierProvider {
       .addModule(InventorySlotMenuModule.INSTANCE)
       .addModule(new VolatileFlagModule(ToolInventoryCapability.CRAFTING_TABLE));
     // boots
-    buildModifier(ModifierIds.depthStrider).addModule(EnchantmentModule.builder(enchantment(Enchantments.DEPTH_STRIDER)).constant());
-    buildModifier(ModifierIds.soulspeed).addModule(new SoulSpeedModule(LevelingInt.flat(1), ModifierCondition.ANY_TOOL));
+    buildModifier(ModifierIds.depthStrider)
+      .addModule(EnchantmentModule.builder(enchantment(Enchantments.DEPTH_STRIDER)).constant())
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(apothicCap(4, 5, enchantment(Enchantments.DEPTH_STRIDER), false));
+    buildModifier(ModifierIds.soulspeed)
+      .addModule(new SoulSpeedModule(LevelingInt.flat(1), ModifierCondition.ANY_TOOL))
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(apothicCap(4, 5, enchantment(Enchantments.SOUL_SPEED), false));
     buildModifier(ModifierIds.featherFalling)
       .addModule(ProtectionModule.builder().source(DamageSourcePredicate.tag(TinkerTags.DamageTypes.FALL_PROTECTION))
-        .toolContext(HasModifierPredicate.hasModifier(ModifierIds.longFall, 1).inverted()).eachLevel(6.25f));
+        .toolContext(HasModifierPredicate.hasModifier(ModifierIds.longFall, 1).inverted()).eachLevel(6.25f))
+      .addModule(apotheosisRequirement(3, 4))
+      .addModule(apothicCap(3, 4, enchantment(Enchantments.FEATHER_FALLING), false));
     buildModifier(ModifierIds.longFall)
       .levelDisplay(ModifierLevelDisplay.NO_LEVELS)
       .addModule(ModifierRequirementsModule.builder().requireModifier(ModifierIds.featherFalling, 2).modifierKey(ModifierIds.longFall).build())
@@ -876,7 +920,10 @@ public class ModifierProvider extends AbstractModifierProvider {
       .addModule(HarvestModule.INSTANCE)
       .addModule(ShowOffhandModule.DISALLOW_BROKEN).addModule(ShowInteractionSourceModule.INSTANCE);
     buildModifier(ModifierIds.throwing).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(ThrowingModule.INSTANCE);
-    buildModifier(ModifierIds.returning).addModule(new VolatileIntModule(ThrownTool.LOYALTY, LevelingInt.eachLevel(1)));
+    buildModifier(ModifierIds.returning)
+      .addModule(new VolatileIntModule(ThrownTool.LOYALTY, LevelingInt.eachLevel(1)))
+      .addModule(apotheosisRequirement(5, 6))
+      .addModule(apothicCap(5, 6, enchantment(Enchantments.LOYALTY), false));
     buildModifier(ModifierIds.channeling).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(new ChannelingModule(0.15f, 0.65f, 1.0f, false));
     buildModifier(ModifierIds.ballista).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(new VolatileFlagModule(ModifiableBowItem.KEY_BALLISTA));
     buildModifier(ModifierIds.fins)
@@ -921,7 +968,10 @@ public class ModifierProvider extends AbstractModifierProvider {
 
     // fishing
     buildModifier(ModifierIds.fishing).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(FishingModule.INSTANCE).addModule(ShowInteractionSourceModule.INSTANCE);
-    buildModifier(ModifierIds.lure).addModule(StatBoostModule.add(ToolStats.LURE).eachLevel(1));
+    buildModifier(ModifierIds.lure)
+      .addModule(StatBoostModule.add(ToolStats.LURE).eachLevel(1))
+      .addModule(apotheosisRequirement(4, 5))
+      .addModule(apothicCap(4, 5, enchantment(Enchantments.LURE), false));
     // lure on prismarine arrows should only apply to fishing rods
     buildModifier(ModifierIds.lureRod).tooltipDisplay(TooltipDisplay.NEVER).addModule(ModifierTraitModule.tagCondition(ModifierIds.lure, TinkerTags.Items.FISHING_RODS));
     buildModifier(ModifierIds.grapple)
@@ -1683,6 +1733,26 @@ public class ModifierProvider extends AbstractModifierProvider {
   @Override
   public String getName() {
     return "Tinkers' Construct Modifiers";
+  }
+
+  /** Requires the Apotheosis marker modifier for levels unlocked past vanilla-style caps. */
+  private static ModifierRequirementsModule apotheosisRequirement(int minLevel, int maxLevel) {
+    return ModifierRequirementsModule.builder()
+      .requireModifier(ModifierIds.apotheosis, 1)
+      .minLevel(minLevel)
+      .maxLevel(APOTHIC_POST_CAP_MAX)
+      .modifierKey(ModifierIds.apotheosis)
+      .build();
+  }
+
+  /** Caps post-cap Apotheosis levels to Apothic Enchanting's configured enchantment max when present. */
+  private static ApothicEnchantmentCapModule apothicCap(int minLevel, int fallbackMax, Enchantment enchantment, boolean lootLevel) {
+    return new ApothicEnchantmentCapModule(enchantment, lootLevel, minLevel, fallbackMax);
+  }
+
+  /** Caps luck using the Apothic Enchanting cap for the enchantment matching the tool role. */
+  private LuckApothicEnchantmentCapModule luckApothicCap(int minLevel, int fallbackMax) {
+    return new LuckApothicEnchantmentCapModule(enchantment(Enchantments.FORTUNE), enchantment(Enchantments.LOOTING), enchantment(Enchantments.LUCK_OF_THE_SEA), minLevel, fallbackMax);
   }
 
   /** Short helper to get a modifier ID */

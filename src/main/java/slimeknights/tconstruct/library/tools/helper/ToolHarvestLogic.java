@@ -30,6 +30,8 @@ import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.mining.HarvestEnchantmentsModifierHook;
 import slimeknights.tconstruct.library.tools.context.ToolHarvestContext;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
+import slimeknights.tconstruct.library.tools.definition.module.build.ToolHarvestHooks;
+
 import slimeknights.tconstruct.library.tools.definition.module.aoe.AreaOfEffectIterator.AOEMatchType;
 import slimeknights.tconstruct.library.tools.definition.module.mining.IsEffectiveToolHook;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
@@ -170,10 +172,15 @@ public class ToolHarvestLogic {
     // handle modifiers if not broken
     // broken means we are using "empty hand"
     if (removed && !tool.isBroken()) {
-      for (ModifierEntry entry : tool.getModifierList()) {
+            for (ModifierEntry entry : tool.getModifierList()) {
         entry.getHook(ModifierHooks.BLOCK_BREAK).afterBlockBreak(tool, entry, context);
       }
+      if (removed && !tool.isBroken()) {
+        ToolStack toolStack = tool instanceof ToolStack existing ? existing : ToolStack.from(stack);
+        ToolHarvestHooks.onSuccessfulHarvest(player, toolStack, stack);
+      }
       ToolDamageUtil.damageAnimated(tool, damage, player, EquipmentSlot.MAINHAND);
+
     }
 
     return removed;
@@ -357,6 +364,9 @@ public class ToolHarvestLogic {
 
       for (ModifierEntry entry : tool.getModifierList()) {
         entry.getHook(ModifierHooks.BLOCK_BREAK).afterBlockBreak(tool, entry, context);
+      }
+      if (entityLiving instanceof ServerPlayer player && !tool.isBroken()) {
+        ToolHarvestHooks.onSuccessfulHarvest(player, tool, stack);
       }
       ToolDamageUtil.damageAnimated(tool, ToolHarvestLogic.getDamage(tool, worldIn, pos, state), entityLiving, EquipmentSlot.MAINHAND);
 

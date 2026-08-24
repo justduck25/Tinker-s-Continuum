@@ -1,0 +1,28 @@
+{
+  "stack": {
+    "id": "tconstruct:sword",
+    "components": {
+      "minecraft:custom_data": {
+        "tic_materials": [
+          "tconstruct:iron",
+          "tconstruct:iron",
+          "tconstruct:iron"
+        ]
+      }
+    }
+  },
+  "weights": {
+    "ascent": {
+      "quality": 1.0,
+      "weight": 6
+    },
+    "summit": {
+      "quality": 0.75,
+      "weight": 6
+    },
+    "pinnacle": {
+      "quality": 0.5,
+      "weight": 2
+    }
+  }
+}

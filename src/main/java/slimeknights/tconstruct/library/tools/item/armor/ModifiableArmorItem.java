@@ -62,6 +62,8 @@ import slimeknights.tconstruct.library.tools.capability.inventory.ToolInventoryC
 import slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.definition.module.display.ToolNameHook;
+import slimeknights.tconstruct.library.tools.definition.module.build.ToolElytraHooks;
+
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.helper.ToolBuildHandler;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
@@ -342,6 +344,9 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
         // damage the tool and keep flying
         if (!entity.level().isClientSide() && (flightTicks + 1) % 20 == 0) {
           ToolDamageUtil.damageAnimated(tool, 1, entity, EquipmentSlot.CHEST);
+        }
+        if (!entity.level().isClientSide()) {
+          ToolElytraHooks.onFlightTick(tool, stack, entity, flightTicks);
         }
         return true;
       }

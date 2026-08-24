@@ -44,8 +44,35 @@
         "entries": [
           {
             "model": {
-              "type": "minecraft:model",
-              "model": "tconstruct:item/tool/sword/throwing"
+              "type": "tconstruct:tool",
+              "model": "tconstruct:item/tool/sword/throwing",
+              "modifier_maps": [
+                "tconstruct:sword"
+              ],
+              "modifier_roots": [
+                "tconstruct:item/tool/sword/modifiers/"
+              ],
+              "parts": [
+                {
+                  "index": 1,
+                  "name": "handle"
+                },
+                {
+                  "index": 0,
+                  "name": "head"
+                },
+                {
+                  "index": 2,
+                  "name": "guard"
+                }
+              ],
+              "textures": {
+                "guard": "tconstruct:item/tool/sword/guard",
+                "handle": "tconstruct:item/tool/sword/handle",
+                "head": "tconstruct:item/tool/sword/blade",
+                "layer0": "tconstruct:item/tool/sword/blade",
+                "particle": "tconstruct:item/tool/sword/blade"
+              }
             },
             "threshold": 1.75
           }

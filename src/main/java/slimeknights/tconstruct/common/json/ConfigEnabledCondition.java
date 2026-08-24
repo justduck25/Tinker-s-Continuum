@@ -100,4 +100,5 @@ public class ConfigEnabledCondition implements ICondition, LootItemCondition {
   public static final ConfigEnabledCondition FORCE_INTEGRATION_MATERIALS = add("force_integration_materials", Config.COMMON.forceIntegrationMaterials, false);
   public static final ConfigEnabledCondition SLIMY_LOOT_CHESTS = add("slimy_loot_chests", Config.COMMON.slimyLootChests);
   public static final ConfigEnabledCondition SYNC_KNOCKBACK_RESISTANCE = add("sync_knockback_resistance", Config.COMMON.syncKnockbackResistance);
+  public static final ConfigEnabledCondition APOTHEOSIS_POST_CAP_RECIPES = add("apotheosis_post_cap_recipes", Config.COMMON.apotheosisPostCapRecipes);
 }

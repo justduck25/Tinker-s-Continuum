@@ -25,6 +25,7 @@ import slimeknights.tconstruct.library.module.HookProvider;
 import slimeknights.tconstruct.library.module.ModuleHook;
 import slimeknights.tconstruct.library.tools.nbt.IToolContext;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
+import slimeknights.tconstruct.library.utils.RomanNumeralHelper;
 import slimeknights.tconstruct.library.utils.Util;
 
 import javax.annotation.Nullable;
@@ -54,22 +55,24 @@ public class ModifierRequirementsModule implements ValidateModifierHook, Modifie
   private final String translationKey;
   /** Modifiers for display */
   private final List<ModifierEntry> display;
-  /** Message to display */
-  private final Component errorMessage;
 
   private ModifierRequirementsModule(IJsonPredicate<IToolContext> requirement, IntRange level, String translationKey, List<ModifierEntry> display) {
     this.requirement = requirement;
     this.level = level;
     this.translationKey = translationKey;
     this.display = display;
-    this.errorMessage = Component.translatable(translationKey);
+  }
+
+  /** Gets the error message for the given modifier level. */
+  private Component errorMessage(int modifierLevel) {
+    return Component.translatable(translationKey, RomanNumeralHelper.getNumeral(level.min()), modifierLevel, level.min(), level.max());
   }
 
   @Nullable
   @Override
   public Component validate(IToolStackView tool, ModifierEntry modifier) {
     if (level.test(modifier.getLevel()) && !this.requirement.matches(tool)) {
-      return errorMessage;
+      return errorMessage(modifier.getLevel());
     }
     return null;
   }
@@ -77,7 +80,7 @@ public class ModifierRequirementsModule implements ValidateModifierHook, Modifie
   @Nullable
   @Override
   public Component requirementsError(ModifierEntry entry) {
-    return level.test(entry.getLevel()) ? errorMessage : null;
+    return level.test(entry.getLevel()) ? errorMessage(entry.getLevel()) : null;
   }
 
   @Override

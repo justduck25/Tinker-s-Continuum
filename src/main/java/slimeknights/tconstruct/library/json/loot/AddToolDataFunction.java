@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import lombok.experimental.Accessors;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
@@ -24,6 +25,7 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import slimeknights.tconstruct.tools.TinkerTools;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** Loot function to add data to a tool. */
@@ -36,6 +38,9 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
     Codec.FLOAT.optionalFieldOf("damage_percent", 0f).validate(damage -> damage >= 0 && damage <= 1 ? com.mojang.serialization.DataResult.success(damage) : com.mojang.serialization.DataResult.error(() -> "damage_percent must be between 0 and 1, given " + damage)).forGetter(f -> f.damage),
     RANDOM_MATERIAL_CODEC.listOf().optionalFieldOf("materials", List.of()).forGetter(f -> f.materials),
     MODIFIER_ENTRY_CODEC.listOf().optionalFieldOf("modifiers", List.of()).forGetter(f -> f.modifiers),
+    MODIFIER_ENTRY_CODEC.listOf().optionalFieldOf("random_modifiers", List.of()).forGetter(f -> f.randomModifiers),
+    Codec.INT.optionalFieldOf("random_modifier_min", 0).validate(count -> count >= 0 ? com.mojang.serialization.DataResult.success(count) : com.mojang.serialization.DataResult.error(() -> "random_modifier_min must be non-negative, given " + count)).forGetter(f -> f.randomModifierMin),
+    Codec.INT.optionalFieldOf("random_modifier_max", 0).validate(count -> count >= 0 ? com.mojang.serialization.DataResult.success(count) : com.mojang.serialization.DataResult.error(() -> "random_modifier_max must be non-negative, given " + count)).forGetter(f -> f.randomModifierMax),
     Codec.INT.optionalFieldOf("upgrade_slots", 0).validate(slots -> slots >= 0 ? com.mojang.serialization.DataResult.success(slots) : com.mojang.serialization.DataResult.error(() -> "upgrade_slots must be non-negative, given " + slots)).forGetter(f -> f.upgradeSlots),
     Codec.INT.optionalFieldOf("ability_slots", 0).validate(slots -> slots >= 0 ? com.mojang.serialization.DataResult.success(slots) : com.mojang.serialization.DataResult.error(() -> "ability_slots must be non-negative, given " + slots)).forGetter(f -> f.abilitySlots)
   ).apply(instance, AddToolDataFunction::new));
@@ -46,16 +51,25 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
   private final List<RandomMaterial> materials;
   /** Modifiers to add as recipe upgrades */
   private final List<ModifierEntry> modifiers;
+  /** Pool of modifiers to randomly add as recipe upgrades */
+  private final List<ModifierEntry> randomModifiers;
+  /** Minimum number of modifiers to select from {@link #randomModifiers} */
+  private final int randomModifierMin;
+  /** Maximum number of modifiers to select from {@link #randomModifiers} */
+  private final int randomModifierMax;
   /** Extra upgrade slots to add before modifiers */
   private final int upgradeSlots;
   /** Extra ability slots to add before modifiers */
   private final int abilitySlots;
 
-  protected AddToolDataFunction(List<LootItemCondition> conditions, float damage, List<RandomMaterial> materials, List<ModifierEntry> modifiers, int upgradeSlots, int abilitySlots) {
+  protected AddToolDataFunction(List<LootItemCondition> conditions, float damage, List<RandomMaterial> materials, List<ModifierEntry> modifiers, List<ModifierEntry> randomModifiers, int randomModifierMin, int randomModifierMax, int upgradeSlots, int abilitySlots) {
     super(conditions == null ? List.of() : conditions);
     this.damage = damage;
     this.materials = materials;
     this.modifiers = modifiers;
+    this.randomModifiers = randomModifiers;
+    this.randomModifierMin = randomModifierMin;
+    this.randomModifierMax = randomModifierMax;
     this.upgradeSlots = upgradeSlots;
     this.abilitySlots = abilitySlots;
   }
@@ -94,6 +108,10 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
         tool.addModifier(modifier.getId(), modifier.getLevel());
         needsRebuild = false;
       }
+      for (ModifierEntry modifier : selectRandomModifiers(context.getRandom())) {
+        tool.addModifier(modifier.getId(), modifier.getLevel());
+        needsRebuild = false;
+      }
       if (needsRebuild) {
         tool.rebuildStats();
       }
@@ -106,12 +124,37 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
     return stack;
   }
 
+  /** Selects a random subset of modifier entries without replacement. */
+  private List<ModifierEntry> selectRandomModifiers(RandomSource random) {
+    if (randomModifiers.isEmpty() || randomModifierMax <= 0) {
+      return List.of();
+    }
+    int max = Math.min(randomModifierMax, randomModifiers.size());
+    int min = Math.min(randomModifierMin, max);
+    int count = min + random.nextInt(max - min + 1);
+    if (count == randomModifiers.size()) {
+      return randomModifiers;
+    }
+
+    List<ModifierEntry> pool = new ArrayList<>(randomModifiers);
+    for (int i = 0; i < count; i++) {
+      int selected = i + random.nextInt(pool.size() - i);
+      ModifierEntry entry = pool.get(i);
+      pool.set(i, pool.get(selected));
+      pool.set(selected, entry);
+    }
+    return pool.subList(0, count);
+  }
+
   /** Builder to create a new add tool data function */
   @Accessors(chain = true)
   public static class Builder extends LootItemConditionalFunction.Builder<AddToolDataFunction.Builder> {
     private final ImmutableList.Builder<RandomMaterial> materials = ImmutableList.builder();
     private final ImmutableList.Builder<ModifierEntry> modifiers = ImmutableList.builder();
+    private final ImmutableList.Builder<ModifierEntry> randomModifiers = ImmutableList.builder();
     private float damage = 0;
+    private int randomModifierMin = 0;
+    private int randomModifierMax = 0;
     private int upgradeSlots = 0;
     private int abilitySlots = 0;
 
@@ -152,6 +195,22 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
       return this;
     }
 
+    /** Adds a modifier to the random modifier pool. */
+    public Builder addRandomModifier(ModifierId modifier, int level) {
+      randomModifiers.add(new ModifierEntry(modifier, level));
+      return this;
+    }
+
+    /** Sets how many modifiers to select from the random modifier pool. */
+    public Builder randomModifierCount(int min, int max) {
+      if (min < 0 || max < 0 || min > max) {
+        throw new IllegalArgumentException("Random modifier count must satisfy 0 <= min <= max, given " + min + " to " + max);
+      }
+      this.randomModifierMin = min;
+      this.randomModifierMax = max;
+      return this;
+    }
+
     /** Adds bonus upgrade slots before adding modifiers. */
     public Builder addUpgradeSlots(int slots) {
       if (slots < 0) {
@@ -172,7 +231,7 @@ public class AddToolDataFunction extends LootItemConditionalFunction {
 
     @Override
     public LootItemFunction build() {
-      return new AddToolDataFunction(getConditions(), damage, materials.build(), modifiers.build(), upgradeSlots, abilitySlots);
+      return new AddToolDataFunction(getConditions(), damage, materials.build(), modifiers.build(), randomModifiers.build(), randomModifierMin, randomModifierMax, upgradeSlots, abilitySlots);
     }
   }
 }

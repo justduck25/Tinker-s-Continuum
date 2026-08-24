@@ -41,6 +41,7 @@ import slimeknights.mantle.registration.object.WoodBlockObject;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.data.BaseRecipeProvider;
+import slimeknights.tconstruct.common.json.ConfigEnabledCondition;
 import slimeknights.tconstruct.common.registration.GeodeItemObject.BudSize;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.gadgets.TinkerGadgets;
@@ -99,6 +100,9 @@ import static slimeknights.mantle.Mantle.COMMON;
 import static slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe.getTemperature;
 
 public class ModifierRecipeProvider extends BaseRecipeProvider {
+  /** Static recipe ceiling for Apotheosis post-cap levels; modifier modules enforce Apothic Enchanting's live cap. */
+  private static final int APOTHIC_POST_CAP_MAX = 15;
+
   public ModifierRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
     super(provider, output);
   }
@@ -193,6 +197,10 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
     String abilitySalvage = salvageFolder + "ability/";
     String defenseSalvage = salvageFolder + "defense/";
     String compatSalvage = salvageFolder + "compat/";
+    String apotheosis = "apotheosis";
+    RecipeOutput apotheosisConsumer = withCondition(consumer, new ModLoadedCondition(apotheosis), ConfigEnabledCondition.APOTHEOSIS_POST_CAP_RECIPES);
+    Ingredient apotheosisSigil = ItemNameIngredient.from(Identifier.fromNamespaceAndPath(apotheosis, "sigil_of_enhancement"));
+    Ingredient godforgedPearl = ItemNameIngredient.from(Identifier.fromNamespaceAndPath(apotheosis, "godforged_pearl"));
 
     /*
      * durability
@@ -649,6 +657,29 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setTools(ingredientFromTags(TinkerTags.Items.MELEE, TinkerTags.Items.BOWS, TinkerTags.Items.FISHING_RODS, TinkerTags.Items.WORN_ARMOR, TinkerTags.Items.SHIELDS))
                          .saveSalvage(consumer, prefix(ModifierIds.freezing, upgradeSalvage))
                          .save(consumer, prefix(ModifierIds.freezing, upgradeFolder));
+
+    String apotheosisUpgradeFolder = upgradeFolder + apotheosis + "/";
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.reinforced, tagIngredient(TinkerTags.Items.DURABILITY), apotheosisSigil, 6, 7, Ingredient.of(TinkerModifiers.emeraldReinforcement));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.haste, ingredientFromTags(TinkerTags.Items.HARVEST, TinkerTags.Items.CHESTPLATES), apotheosisSigil, 6, 7, tagIngredient(Tags.Items.STORAGE_BLOCKS_REDSTONE));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.knockback, ingredientFromTags(TinkerTags.Items.MELEE, TinkerTags.Items.CHESTPLATES), apotheosisSigil, 4, 5, Ingredient.of(Items.PISTON), Ingredient.of(TinkerWorld.slime.get(SlimeType.EARTH)));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.fiery, ingredientFromTags(TinkerTags.Items.MELEE, TinkerTags.Items.BOWS, TinkerTags.Items.FISHING_RODS, TinkerTags.Items.WORN_ARMOR, TinkerTags.Items.SHIELDS), apotheosisSigil, 6, 7, Ingredient.of(Items.BLAZE_POWDER));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.smite, tagIngredient(TinkerTags.Items.MELEE), apotheosisSigil, 6, 7, Ingredient.of(Items.GLISTERING_MELON_SLICE));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.baneOfSssss, tagIngredient(TinkerTags.Items.MELEE), apotheosisSigil, 6, 7, Ingredient.of(Items.FERMENTED_SPIDER_EYE));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.sharpness, tagIngredient(TinkerTags.Items.MELEE), apotheosisSigil, 6, 7, tagIngredient(getItemTag(COMMON, "storage_blocks/quartz")));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.power, tagIngredient(TinkerTags.Items.RANGED_POWER), apotheosisSigil, 6, 7, Ingredient.of(TinkerWorld.ichorGeode.asItem()));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.quickCharge, tagIngredient(TinkerTags.Items.RANGED_QUICK_CHARGE), apotheosisSigil, 5, 6, Ingredient.of(Items.MAGMA_CREAM));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.punch, tagIngredient(TinkerTags.Items.LAUNCHERS), apotheosisSigil, 4, 5, Ingredient.of(Items.PISTON), Ingredient.of(TinkerWorld.slime.get(SlimeType.SKY)));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.arrowPierce, tagIngredient(TinkerTags.Items.CROSSBOWS), apotheosisSigil, 5, 6, Ingredient.of(Items.POINTED_DRIPSTONE));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.sweeping, tagIngredient(TinkerTags.Items.SWORD), apotheosisSigil, 4, 5, Ingredient.of(Blocks.IRON_CHAIN));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.lure, tagIngredient(TinkerTags.Items.FISHING_RODS), apotheosisSigil, 4, 5, Ingredient.of(TinkerCommons.cheeseIngot));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.thorns, ingredientFromTags(TinkerTags.Items.WORN_ARMOR, TinkerTags.Items.SHIELDS), apotheosisSigil, 4, 5, Ingredient.of(Blocks.CACTUS));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.respiration, tagIngredient(TinkerTags.Items.HELMETS), apotheosisSigil, 4, 5, tagIngredient(ItemTags.FISHES), tagIngredient(Tags.Items.GLASS_BLOCKS_COLORLESS), Ingredient.of(Items.KELP));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.swiftSneak, tagIngredient(TinkerTags.Items.LEGGINGS), apotheosisSigil, 6, 7, Ingredient.of(Blocks.SCULK_SENSOR));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.featherFalling, tagIngredient(TinkerTags.Items.BOOTS), apotheosisSigil, 3, 4, Ingredient.of(Items.FEATHER));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.soulspeed, tagIngredient(TinkerTags.Items.BOOTS), apotheosisSigil, 4, 5, Ingredient.of(Items.MAGMA_BLOCK), Ingredient.of(Items.CRYING_OBSIDIAN));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.depthStrider, tagIngredient(TinkerTags.Items.BOOTS), apotheosisSigil, 4, 5, tagIngredient(ItemTags.FISHES), Ingredient.of(Blocks.PRISMARINE_BRICKS));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.protection, tagIngredient(TinkerTags.Items.ARMOR), apotheosisSigil, 2, 3, SlotType.ABILITY, Ingredient.of(TinkerModifiers.goldReinforcement), Ingredient.of(TinkerModifiers.searedReinforcement), Ingredient.of(TinkerModifiers.obsidianReinforcement), Ingredient.of(TinkerModifiers.ironReinforcement));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.returning, ingredientFromTags(TinkerTags.Items.MELEE_WEAPON, TinkerTags.Items.HARVEST), apotheosisSigil, 5, 6, Ingredient.of(Items.ENDER_PEARL), Ingredient.of(Items.CLOCK));
     ModifierRecipeBuilder.modifier(ModifierIds.bulkQuiver)
                          .addInput(Items.LEATHER)
                          .addInput(TinkerWorld.skySlimeVine)
@@ -1274,6 +1305,13 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setSlots(SlotType.ABILITY, 1)
                          .saveSalvage(consumer, prefix(ModifierIds.gilded, abilitySalvage))
                          .save(consumer, prefix(ModifierIds.gilded, abilityFolder));
+    ModifierRecipeBuilder.modifier(ModifierIds.apotheosis)
+                         .setTools(TinkerTags.Items.BONUS_SLOTS)
+                         .addInput(apotheosisSigil)
+                         .addInput(godforgedPearl)
+                         .setSlots(SlotType.ABILITY, 1)
+                         .setMaxLevel(1)
+                         .save(apotheosisConsumer, prefix(ModifierIds.apotheosis, abilityFolder));
     // luck is 3 recipes
     // level 1 always requires a slot
     Ingredient luckSupporting = ingredientFromTags(TinkerTags.Items.MELEE_WEAPON, TinkerTags.Items.HARVEST, TinkerTags.Items.LAUNCHERS);
@@ -1308,6 +1346,7 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .disallowCrystal() // would allow a cost cheese
                          .exactLevel(3)
                          .save(consumer, wrap(ModifierIds.luck, abilityFolder, "_level_3"));
+    apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.luck, luckSupporting, apotheosisSigil, 4, 5, SlotType.ABILITY, Ingredient.of(Items.RABBIT_FOOT), tagIngredient(Tags.Items.GEMS_DIAMOND), Ingredient.of(Items.NAME_TAG));
     // pants have just one level
     ModifierRecipeBuilder.modifier(ModifierIds.luck)
                          .setTools(TinkerTags.Items.LEGGINGS)
@@ -2126,6 +2165,26 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                                       .disallowCrystal() // avoid redundancy, though in this case the end result is the same
                                       .save(consumer, wrap(modifier, recipeFolder, "_from_block"));
     }
+  }
+
+  /** Adds a finite Apotheosis-gated post-cap modifier recipe. */
+  private void apotheosisModifier(RecipeOutput consumer, String folder, ModifierId modifier, Ingredient tools, Ingredient sigil, int minLevel, int maxLevel, Ingredient... inputs) {
+    apotheosisModifier(consumer, folder, modifier, tools, sigil, minLevel, maxLevel, SlotType.UPGRADE, inputs);
+  }
+
+  /** Adds a finite Apotheosis-gated post-cap modifier recipe. */
+  private void apotheosisModifier(RecipeOutput consumer, String folder, ModifierId modifier, Ingredient tools, Ingredient sigil, int minLevel, int maxLevel, SlotType slotType, Ingredient... inputs) {
+    ModifierRecipeBuilder builder = ModifierRecipeBuilder.modifier(modifier)
+      .setTools(tools)
+      .addInput(sigil)
+      .setMinLevel(minLevel)
+      .setMaxLevel(APOTHIC_POST_CAP_MAX)
+      .setSlots(slotType, 1)
+      .disallowCrystal();
+    for (Ingredient input : inputs) {
+      builder.addInput(input);
+    }
+    builder.save(consumer, wrap(modifier, folder, "_from_sigil"));
   }
 
   /** Prefixes the modifier ID with the given prefix */

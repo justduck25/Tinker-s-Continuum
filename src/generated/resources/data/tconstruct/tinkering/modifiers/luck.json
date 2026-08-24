@@ -6,13 +6,10 @@
   },
   "modules": [
     {
-      "type": "tconstruct:constant_enchantment",
-      "level": 1,
-      "name": "minecraft:fortune",
-      "tool": {
-        "type": "mantle:tag",
-        "tag": "tconstruct:modifiable/harvest"
-      }
+      "type": "tconstruct:luck_enchantment",
+      "fortune": "minecraft:fortune",
+      "looting": "minecraft:looting",
+      "luck_of_the_sea": "minecraft:luck_of_the_sea"
     },
     {
       "type": "tconstruct:armor_harvest_enchantment",
@@ -43,7 +40,11 @@
           },
           {
             "type": "mantle:tag",
-            "tag": "tconstruct:modifiable/melee"
+            "tag": "tconstruct:modifiable/melee/weapon"
+          },
+          {
+            "type": "mantle:tag",
+            "tag": "tconstruct:modifiable/ranged/launcher"
           }
         ]
       }
@@ -87,6 +88,36 @@
         "type": "mantle:tag",
         "tag": "tconstruct:modifiable/armor/worn"
       }
+    },
+    {
+      "type": "tconstruct:requirements",
+      "display_modifiers": [
+        {
+          "level": 1,
+          "name": "tconstruct:apotheosis"
+        }
+      ],
+      "modifier_level": {
+        "min": 4,
+        "max": 15
+      },
+      "requirement": {
+        "type": "tconstruct:has_modifier",
+        "check": "all",
+        "modifier": {
+          "type": "tconstruct:single",
+          "modifier": "tconstruct:apotheosis"
+        }
+      },
+      "translation_key": "modifier.tconstruct.apotheosis.requirements"
+    },
+    {
+      "type": "tconstruct:luck_apothic_enchantment_cap",
+      "fallback_max": 5,
+      "fortune": "minecraft:fortune",
+      "looting": "minecraft:looting",
+      "luck_of_the_sea": "minecraft:luck_of_the_sea",
+      "min_level": 4
     }
   ],
   "tooltip_display": "always"

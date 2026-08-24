@@ -14,8 +14,8 @@
               },
               {
                 "type": "tconstruct:stat_in_range",
-                "max": 1,
                 "min": 1,
+                "max": 1,
                 "stat": "tconstruct:accuracy"
               }
             ]

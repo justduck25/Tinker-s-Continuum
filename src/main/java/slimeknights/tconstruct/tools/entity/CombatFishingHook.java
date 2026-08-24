@@ -44,6 +44,7 @@ import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+
 import slimeknights.tconstruct.shared.TinkerEffects;
 import slimeknights.tconstruct.tools.TinkerTools;
 
@@ -321,8 +322,9 @@ public class CombatFishingHook extends FishingHook implements ProjectileWithKnoc
       // do at least 2 damage, but not more than 3, practically this should always be 2
       return Mth.clamp(super.retrieve(stack), 2, 3);
     }
-    // deal 3 damage for mob hooking instead of 5
+        // deal 3 damage for mob hooking instead of 5
     return Math.min(super.retrieve(stack), 3);
+
   }
 
   @Override

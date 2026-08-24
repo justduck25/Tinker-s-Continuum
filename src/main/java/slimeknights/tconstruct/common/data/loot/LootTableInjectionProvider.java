@@ -170,62 +170,13 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
                                         .build());
     }
 
-    AddToolDataFunction.Builder endCityCleaverData = rareToolData(randomHighTier)
-      .addUpgradeSlots(4)
-      .addAbilitySlots(4)
-      .addModifier(ModifierIds.diamond, 1)
-      .addModifier(ModifierIds.netherite, 1)
-      .addModifier(ModifierIds.sharpness, 3)
-      .addModifier(ModifierIds.looting, 2)
-      .addModifier(ModifierIds.sweeping, 1);
-    AddToolDataFunction.Builder endCitySledgeHammerData = rareToolData(randomHighTier)
-      .addUpgradeSlots(4)
-      .addAbilitySlots(4)
-      .addModifier(ModifierIds.diamond, 1)
-      .addModifier(ModifierIds.netherite, 1)
-      .addModifier(ModifierIds.haste, 3)
-      .addModifier(ModifierIds.fortune, 2)
-      .addModifier(ModifierIds.expanded, 1);
-    AddToolDataFunction.Builder endCityExcavatorData = rareToolData(randomHighTier)
-      .addUpgradeSlots(4)
-      .addAbilitySlots(4)
-      .addModifier(ModifierIds.diamond, 1)
-      .addModifier(ModifierIds.netherite, 1)
-      .addModifier(ModifierIds.haste, 3)
-      .addModifier(ModifierIds.fortune, 2)
-      .addModifier(ModifierIds.expanded, 1);
-    AddToolDataFunction.Builder ominousBattlesignData = rareToolData(randomHighTier)
-      .addUpgradeSlots(4)
-      .addAbilitySlots(3)
-      .addModifier(ModifierIds.diamond, 1)
-      .addModifier(ModifierIds.netherite, 1)
-      .addModifier(ModifierIds.blocking, 1)
-      .addModifier(ModifierIds.reinforced, 2)
-      .addModifier(ModifierIds.knockback, 1);
-    AddToolDataFunction.Builder ominousSledgeHammerData = rareToolData(randomHighTier)
-      .addUpgradeSlots(4)
-      .addAbilitySlots(3)
-      .addModifier(ModifierIds.diamond, 1)
-      .addModifier(ModifierIds.netherite, 1)
-      .addModifier(ModifierIds.haste, 2)
-      .addModifier(ModifierIds.fortune, 2)
-      .addModifier(ModifierIds.expanded, 1);
-    AddToolDataFunction.Builder ominousExcavatorData = rareToolData(randomHighTier)
-      .addUpgradeSlots(4)
-      .addAbilitySlots(4)
-      .addModifier(ModifierIds.diamond, 1)
-      .addModifier(ModifierIds.netherite, 1)
-      .addModifier(ModifierIds.haste, 3)
-      .addModifier(ModifierIds.fortune, 2)
-      .addModifier(ModifierIds.expanded, 1);
-    AddToolDataFunction.Builder ominousCleaverData = rareToolData(randomHighTier)
-      .addUpgradeSlots(4)
-      .addAbilitySlots(4)
-      .addModifier(ModifierIds.diamond, 1)
-      .addModifier(ModifierIds.netherite, 1)
-      .addModifier(ModifierIds.sharpness, 3)
-      .addModifier(ModifierIds.looting, 2)
-      .addModifier(ModifierIds.sweeping, 1);
+    AddToolDataFunction.Builder endCityCleaverData = rareMeleeWeaponData(randomHighTier, 4, 4, 3, 2, true);
+    AddToolDataFunction.Builder endCitySledgeHammerData = rareBroadHarvestData(randomHighTier, 4, 4, 3, 2, true);
+    AddToolDataFunction.Builder endCityExcavatorData = rareBroadHarvestData(randomHighTier, 4, 4, 3, 2, true);
+    AddToolDataFunction.Builder ominousBattlesignData = rareShieldData(randomHighTier, 4, 3);
+    AddToolDataFunction.Builder ominousSledgeHammerData = rareBroadHarvestData(randomHighTier, 4, 3, 2, 2, true);
+    AddToolDataFunction.Builder ominousExcavatorData = rareBroadHarvestData(randomHighTier, 4, 4, 3, 2, true);
+    AddToolDataFunction.Builder ominousCleaverData = rareMeleeWeaponData(randomHighTier, 4, 4, 3, 2, true);
 
     // swashers are found in the ocean in all sorts of places, maybe there were pirates once
     LootItemConditionalFunction.Builder<?> setFluid = SetFluidLootFunction.builder(fluidStackSafe(Fluids.LAVA, FluidType.BUCKET_VOLUME));
@@ -260,9 +211,9 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
     injectChest("bastion_hoglin_stable")
       .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
     injectChest("end_city_treasure")
-      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 2, endCityCleaverData))
-      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, endCitySledgeHammerData))
-      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 2, endCityExcavatorData));
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 6, endCityCleaverData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 6, endCitySledgeHammerData))
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 6, endCityExcavatorData));
     injectChest("desert_pyramid")
       .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
     injectChest("jungle_temple")
@@ -303,18 +254,18 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
     injectChest("trial_chambers/reward_unique")
       .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 6, ancientToolData2));
     injectChest("trial_chambers/reward_ominous_common")
-      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, ominousBattlesignData))
-      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 1, ominousSledgeHammerData));
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 6, ominousBattlesignData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 4, ominousSledgeHammerData));
     injectChest("trial_chambers/reward_ominous")
-      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, ominousSledgeHammerData))
-      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 1, ominousExcavatorData));
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 6, ominousSledgeHammerData))
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 4, ominousExcavatorData));
     injectChest("trial_chambers/reward_ominous_rare")
-      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 2, ominousExcavatorData))
-      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, ominousSledgeHammerData));
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 5, ominousExcavatorData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 5, ominousSledgeHammerData));
     injectChest("trial_chambers/reward_ominous_unique")
-      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 2, ominousCleaverData))
-      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 1, ominousExcavatorData))
-      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 1, ominousSledgeHammerData));
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 6, ominousCleaverData))
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 4, ominousExcavatorData))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 4, ominousSledgeHammerData));
 
     injectChest("village/village_armorer")
       .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 5, AddToolDataFunction.builder().addMaterial(randomHighTier).addMaterial(randomHighTier)));
@@ -380,6 +331,52 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
       .addMaterial(material)
       .addMaterial(material)
       .addMaterial(material);
+  }
+
+  /** Common high-tier setup safe for all rare loot tools. The random high-tier materials are already the main reward. */
+  private static AddToolDataFunction.Builder rareBaseData(RandomMaterial material, int upgradeSlots, int abilitySlots) {
+    return rareToolData(material)
+      .addUpgradeSlots(upgradeSlots)
+      .addAbilitySlots(abilitySlots);
+  }
+
+  /** Profile for melee weapons such as swords and cleavers. Uses luck so the tool displays Looting by role. */
+  private static AddToolDataFunction.Builder rareMeleeWeaponData(RandomMaterial material, int upgradeSlots, int abilitySlots, int sharpness, int luck, boolean sweeping) {
+    AddToolDataFunction.Builder builder = rareBaseData(material, upgradeSlots, abilitySlots)
+      .randomModifierCount(2, 3)
+      .addRandomModifier(ModifierIds.sharpness, sharpness)
+      .addRandomModifier(ModifierIds.luck, luck)
+      .addRandomModifier(ModifierIds.knockback, 2)
+      .addRandomModifier(ModifierIds.fiery, 2);
+    if (sweeping) {
+      builder.addRandomModifier(ModifierIds.sweeping, 1);
+    }
+    return builder;
+  }
+
+  /** Profile for broad harvest tools such as sledge hammers and excavators. Uses luck so the tool displays Fortune by role. */
+  private static AddToolDataFunction.Builder rareBroadHarvestData(RandomMaterial material, int upgradeSlots, int abilitySlots, int haste, int luck, boolean expanded) {
+    AddToolDataFunction.Builder builder = rareBaseData(material, upgradeSlots, abilitySlots)
+      .randomModifierCount(2, 3)
+      .addRandomModifier(ModifierIds.haste, haste)
+      .addRandomModifier(ModifierIds.luck, luck)
+      .addRandomModifier(ModifierIds.magnetic, 2)
+      .addRandomModifier(ModifierIds.reinforced, 2);
+    if (expanded) {
+      builder.addRandomModifier(ModifierIds.expanded, 1);
+    }
+    return builder;
+  }
+
+  /** Profile for shield-style loot such as battlesigns. */
+  private static AddToolDataFunction.Builder rareShieldData(RandomMaterial material, int upgradeSlots, int abilitySlots) {
+    return rareBaseData(material, upgradeSlots, abilitySlots)
+      .randomModifierCount(2, 3)
+      .addRandomModifier(ModifierIds.blocking, 1)
+      .addRandomModifier(ModifierIds.reinforced, 2)
+      .addRandomModifier(ModifierIds.blockade, 2)
+      .addRandomModifier(ModifierIds.reflecting, 1)
+      .addRandomModifier(ModifierIds.boundless, 1);
   }
 
   /** Makes an ancient tool loot entry. */

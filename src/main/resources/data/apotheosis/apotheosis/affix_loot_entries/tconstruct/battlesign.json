@@ -1,0 +1,17 @@
+{
+  "stack": {
+    "id": "tconstruct:battlesign",
+    "components": {
+      "minecraft:custom_data": {
+        "tic_materials": [
+          "tconstruct:wood",
+          "tconstruct:wood"
+        ]
+      }
+    }
+  },
+  "weights": {
+    "quality": 1.0,
+    "weight": 3
+  }
+}

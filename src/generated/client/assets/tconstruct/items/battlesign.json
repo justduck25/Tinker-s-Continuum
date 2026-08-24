@@ -6,8 +6,30 @@
       "entries": [
         {
           "model": {
-            "type": "minecraft:model",
-            "model": "tconstruct:item/tool/battlesign/blocking"
+            "type": "tconstruct:tool",
+            "model": "tconstruct:item/tool/battlesign/blocking",
+            "modifier_maps": [
+              "tconstruct:battlesign"
+            ],
+            "modifier_roots": [
+              "tconstruct:item/tool/battlesign/modifiers/"
+            ],
+            "parts": [
+              {
+                "index": 0,
+                "name": "head"
+              },
+              {
+                "index": 1,
+                "name": "handle"
+              }
+            ],
+            "textures": {
+              "handle": "tconstruct:item/tool/battlesign/handle",
+              "head": "tconstruct:item/tool/battlesign/head",
+              "layer0": "tconstruct:item/tool/battlesign/head",
+              "particle": "tconstruct:item/tool/battlesign/head"
+            }
           },
           "threshold": 2.0
         }

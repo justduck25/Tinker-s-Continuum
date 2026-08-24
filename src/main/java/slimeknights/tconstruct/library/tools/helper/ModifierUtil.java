@@ -32,6 +32,7 @@ import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
+import slimeknights.tconstruct.plugin.apotheosis.ApotheosisModifierBridge;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 import javax.annotation.Nonnull;
@@ -85,10 +86,12 @@ public final class ModifierUtil {
   }
 
   /**
-   * Direct method to get the level of a modifier from a stack. If you need to get multiple modifier levels, using {@link ToolStack} is faster
+   * Direct method to get the effective level of a modifier from a stack. If you need to get multiple
+   * modifier levels, using {@link ToolStack} is faster.
    * @param stack     Stack to check
    * @param modifier  Modifier to search for
-   * @return  Modifier level, or 0 if not present or the stack is not modifiable
+   * @return  Effective modifier level, or 0 if not present or the stack is not modifiable. Optional
+   *          integrations may contribute read-only bonuses without creating serialized modifiers.
    */
   public static int getModifierLevel(ItemStack stack, ModifierId modifier) {
     if (!stack.isEmpty() && stack.is(TinkerTags.Items.MODIFIABLE)) {
@@ -101,7 +104,8 @@ public final class ModifierUtil {
           for (int i = 0; i < size; i++) {
             CompoundTag entry = list.getCompound(i).orElseGet(CompoundTag::new);
             if (key.equals(entry.getString(ModifierEntry.TAG_MODIFIER).orElse(""))) {
-              return entry.getInt(ModifierEntry.TAG_LEVEL).orElse(0);
+              int level = entry.getInt(ModifierEntry.TAG_LEVEL).orElse(0);
+              return ApotheosisModifierBridge.getEffectiveLevel(stack, modifier, level);
             }
           }
         }

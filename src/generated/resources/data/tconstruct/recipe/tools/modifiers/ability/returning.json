@@ -23,8 +23,8 @@
     },
     {
       "level": {
-        "max": 4,
-        "min": 2
+        "min": 2,
+        "max": 4
       },
       "slots": {
         "upgrades": 1

@@ -1,0 +1,35 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "apotheosis"
+    },
+    {
+      "type": "tconstruct:config",
+      "prop": "apotheosis_post_cap_recipes"
+    }
+  ],
+  "type": "tconstruct:modifier",
+  "allow_crystal": false,
+  "id": "tconstruct:tools/modifiers/upgrade/apotheosis/sweeping_edge_from_sigil",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "apotheosis:sigil_of_enhancement"
+      ]
+    },
+    {
+      "ingredient": "minecraft:iron_chain"
+    }
+  ],
+  "level": {
+    "min": 4,
+    "max": 15
+  },
+  "result": "tconstruct:sweeping_edge",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/melee/sword"
+}
