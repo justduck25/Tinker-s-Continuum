@@ -1,0 +1,166 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "terralith"
+    }
+  ],
+  "name": "terralith:mage/treasure",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 2,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                }
+              ],
+              "random_modifier_max": 3,
+              "random_modifier_min": 2,
+              "random_modifiers": [
+                {
+                  "level": 3,
+                  "name": "tconstruct:protection"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:revitalizing"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:knockback_resistance"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:fire_protection"
+                }
+              ],
+              "upgrade_slots": 3
+            }
+          ],
+          "name": "tconstruct:plate_chestplate",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 2,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                }
+              ],
+              "random_modifier_max": 3,
+              "random_modifier_min": 2,
+              "random_modifiers": [
+                {
+                  "level": 1,
+                  "name": "tconstruct:blocking"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:reinforced"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:blockade"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:reflecting"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:boundless"
+                }
+              ],
+              "upgrade_slots": 3
+            }
+          ],
+          "name": "tconstruct:battlesign",
+          "weight": 2
+        }
+      ],
+      "name": "main"
+    }
+  ]
+}

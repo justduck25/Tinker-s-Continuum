@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mr_dungeons_andtaverns"
+    }
+  ],
+  "name": "nova_structures:chests/badland_miner_outpost_forge",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:ancient"
+                },
+                {
+                  "type": "tconstruct:ancient"
+                },
+                {
+                  "type": "tconstruct:ancient"
+                }
+              ]
+            }
+          ],
+          "name": "tconstruct:pickaxe",
+          "weight": 3
+        }
+      ],
+      "name": "main"
+    }
+  ]
+}
