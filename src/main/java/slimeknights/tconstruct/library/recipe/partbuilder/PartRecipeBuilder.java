@@ -7,10 +7,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.Ingredient;
-import slimeknights.mantle.data.predicate.IJsonPredicate;
 import slimeknights.mantle.recipe.data.AbstractRecipeBuilder;
-import slimeknights.tconstruct.library.json.predicate.material.MaterialPredicate;
-import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.tools.part.IMaterialItem;
 
 import java.util.function.Consumer;
@@ -31,8 +28,6 @@ public class PartRecipeBuilder extends AbstractRecipeBuilder<PartRecipeBuilder> 
   private Ingredient patternItem = IPartBuilderRecipe.DEFAULT_PATTERNS;
   @Setter
   private boolean allowUncraftable = false;
-  @Setter
-  private IJsonPredicate<MaterialVariantId> allowedMaterials = MaterialPredicate.ANY;
 
   /**
    * Creates a new part recipe that outputs a single item
@@ -60,6 +55,6 @@ public class PartRecipeBuilder extends AbstractRecipeBuilder<PartRecipeBuilder> 
       throw new IllegalStateException("recipe " + id + " has no pattern associated with it");
     }
     var key = recipeKey(id);
-    consumerIn.accept(key, new PartRecipe(id, group, new Pattern(pattern), patternItem, cost, allowUncraftable, allowedMaterials, output, outputAmount), this.buildOptionalAdvancement(key, "parts"));
+    consumerIn.accept(key, new PartRecipe(id, group, new Pattern(pattern), patternItem, cost, allowUncraftable, output, outputAmount), this.buildOptionalAdvancement(key, "parts"));
   }
 }

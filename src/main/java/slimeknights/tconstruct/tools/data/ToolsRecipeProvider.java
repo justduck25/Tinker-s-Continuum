@@ -22,7 +22,6 @@ import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import slimeknights.mantle.recipe.data.ItemNameIngredient;
 import slimeknights.mantle.recipe.ingredient.PotionDisplayIngredient;
 import slimeknights.mantle.recipe.ingredient.SizedIngredient;
-import slimeknights.mantle.data.predicate.IJsonPredicate;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.data.BaseRecipeProvider;
@@ -33,7 +32,6 @@ import slimeknights.tconstruct.library.json.predicate.material.MaterialHasPartPr
 import slimeknights.tconstruct.library.json.predicate.material.MaterialPredicate;
 import slimeknights.tconstruct.library.json.predicate.material.MaterialStatTypePredicate;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
-import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -501,23 +499,11 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .save(consumer, location(partFolder + "builder/fletching"));
   }
 
-  /** Adds part builder recipes for compat materials that have no molten fluid, so armor plating remains craftable. */
+  /** Adds part builder recipes for armor plating so item-only compat materials that have no molten fluid remain craftable. */
   private void itemOnlyCompatPlating(RecipeOutput consumer, IMaterialItem part, int cost, String name, String partFolder) {
-    IJsonPredicate<MaterialVariantId> itemOnlyCompatMaterials = MaterialPredicate.or(
-      MaterialPredicate.variant(MaterialIds.certusQuartz),
-      MaterialPredicate.variant(MaterialIds.fluix),
-      MaterialPredicate.variant(MaterialIds.quantumAlloy),
-      MaterialPredicate.variant(MaterialIds.entro),
-      MaterialPredicate.variant(MaterialIds.energizedSteel),
-      MaterialPredicate.variant(MaterialIds.blazingCrystal),
-      MaterialPredicate.variant(MaterialIds.nioticCrystal),
-      MaterialPredicate.variant(MaterialIds.spiritedCrystal),
-      MaterialPredicate.variant(MaterialIds.nitroCrystal),
-      MaterialPredicate.variant(MaterialIds.uraninite));
     PartRecipeBuilder.partRecipe(part)
       .setPattern(BuiltInRegistries.ITEM.getKey(part.asItem()))
       .setCost(cost)
-      .setAllowedMaterials(itemOnlyCompatMaterials)
       .save(consumer, location(partFolder + "builder/compat/" + name + "_plating"));
   }
 

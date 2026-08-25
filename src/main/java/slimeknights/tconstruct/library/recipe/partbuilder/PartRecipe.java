@@ -17,15 +17,11 @@ import slimeknights.mantle.data.loadable.field.ContextKey;
 import slimeknights.mantle.data.loadable.primitive.BooleanLoadable;
 import slimeknights.mantle.data.loadable.primitive.IntLoadable;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
-import slimeknights.mantle.data.loadable.field.LoadableField;
-import slimeknights.mantle.data.predicate.IJsonPredicate;
 import slimeknights.mantle.recipe.IMultiRecipe;
 import slimeknights.mantle.recipe.helper.LoadableRecipeSerializer;
 import slimeknights.tconstruct.library.json.TinkerLoadables;
 import slimeknights.tconstruct.library.json.field.MergingField;
 import slimeknights.tconstruct.library.json.field.MergingField.MissingMode;
-import slimeknights.tconstruct.library.json.predicate.material.MaterialPredicate;
-import slimeknights.tconstruct.library.json.predicate.material.MaterialPredicateField;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariant;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
@@ -45,7 +41,6 @@ import java.util.stream.Stream;
  */
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPartBuilderRecipe> {
-  private static final LoadableField<IJsonPredicate<MaterialVariantId>,PartRecipe> MATERIALS_FIELD = new MaterialPredicateField<>("materials", r -> r.materials);
   public static final RecordLoadable<PartRecipe> LOADER = RecordLoadable.create(
     ContextKey.ID.requiredField(),
     LoadableRecipeSerializer.RECIPE_GROUP,
@@ -53,7 +48,6 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
     IngredientLoadable.DISALLOW_EMPTY.defaultField("pattern_item", DEFAULT_PATTERNS, r -> r.patternItem),
     IntLoadable.FROM_ONE.requiredField("cost", PartRecipe::getCost),
     BooleanLoadable.INSTANCE.defaultField("allow_uncraftable", false, false, r -> r.allowUncraftable),
-    MATERIALS_FIELD,
     new MergingField<>(TinkerLoadables.MATERIAL_ITEM.requiredField("item", r -> r.output), "result", MissingMode.DISALLOWED),
     new MergingField<>(IntLoadable.FROM_ONE.defaultField("count", 1, r -> r.outputCount), "result", MissingMode.CREATE),
     PartRecipe::new);
@@ -72,8 +66,6 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
   @Getter
   @Accessors(fluent = true)
   protected final boolean allowUncraftable;
-  /** Materials allowed by this recipe */
-  protected final IJsonPredicate<MaterialVariantId> materials;
   /** Recipe result, used to fetch a material */
   protected final IMaterialItem output;
   /** Count for the recipe output */
@@ -82,7 +74,7 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
   /** @deprecated use {@link #PartRecipe(Identifier, String, Pattern, Ingredient, int, boolean, IMaterialItem, int)} */
   @Deprecated(forRemoval = true)
   public PartRecipe(Identifier id, String group, Pattern pattern, Ingredient patternItem, int cost, IMaterialItem output, int outputCount) {
-    this(id, group, pattern, patternItem, cost, false, MaterialPredicate.ANY, output, outputCount);
+    this(id, group, pattern, patternItem, cost, false, output, outputCount);
   }
 
   @Override
@@ -108,7 +100,7 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
         return false;
       }
       MaterialVariant material = materialRecipe.getMaterial();
-      return (allowUncraftable || material.get().isCraftable()) && materials.matches(material.getVariant()) && output.canUseMaterial(material.getId());
+      return (allowUncraftable || material.get().isCraftable()) && output.canUseMaterial(material.getId());
     }
     // no material item? return match in case we get one later
     return true;
@@ -127,7 +119,7 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
     if (materialRecipe != null) {
       // material must be craftable, usable in the item, and have a cost we can afford
       MaterialVariant material = materialRecipe.getMaterial();
-      return (allowUncraftable || material.get().isCraftable()) && materials.matches(material.getVariant()) && output.canUseMaterial(material.getId())
+      return (allowUncraftable || material.get().isCraftable()) && output.canUseMaterial(material.getId())
              && inv.getStack().getCount() >= materialRecipe.getItemsUsed(cost);
     }
     return false;
@@ -187,7 +179,7 @@ public class PartRecipe implements IPartBuilderRecipe, IMultiRecipe<IDisplayPart
           // start by finding all variants to display
           // if no variant has a part builder recipe, skip this recipe
           List<MaterialVariantId> variants = MaterialRecipeCache.getVariants(mat.getIdentifier()).stream()
-            .filter(variant -> materials.matches(variant) && !MaterialRecipeCache.getRecipes(variant).isEmpty()).toList();
+            .filter(variant -> !MaterialRecipeCache.getRecipes(variant).isEmpty()).toList();
           if (variants.isEmpty()) {
             return Stream.empty();
           }
