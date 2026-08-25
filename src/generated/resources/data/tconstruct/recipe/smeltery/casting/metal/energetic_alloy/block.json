@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/energetic_alloy"
+    }
+  ],
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 194,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_energetic_alloy"
+  },
+  "id": "tconstruct:smeltery/casting/metal/energetic_alloy/block",
+  "result": {
+    "tag": "c:storage_blocks/energetic_alloy"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/redstone_alloy"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_redstone_alloy"
+  },
+  "id": "tconstruct:tools/materials/casting/redstone_alloy",
+  "output": "tconstruct:redstone_alloy",
+  "temperature": 600
+}

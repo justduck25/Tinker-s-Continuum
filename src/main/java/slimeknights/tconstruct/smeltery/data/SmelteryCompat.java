@@ -51,6 +51,15 @@ public enum SmelteryCompat {
   ENDERIUM(TinkerFluids.moltenEnderium, CompatType.ALLOY),
   LUMIUM  (TinkerFluids.moltenLumium,   CompatType.ALLOY),
   SIGNALUM(TinkerFluids.moltenSignalum, CompatType.ALLOY),
+  // enderio alloys
+  CONDUCTIVE_ALLOY(TinkerFluids.moltenConductiveAlloy, CompatType.ALLOY),
+  ENERGETIC_ALLOY (TinkerFluids.moltenEnergeticAlloy,  CompatType.ALLOY),
+  VIBRANT_ALLOY   (TinkerFluids.moltenVibrantAlloy,    CompatType.ALLOY),
+  REDSTONE_ALLOY  (TinkerFluids.moltenRedstoneAlloy,   CompatType.ALLOY),
+  PULSATING_ALLOY (TinkerFluids.moltenPulsatingAlloy,  CompatType.ALLOY),
+  DARK_STEEL      (TinkerFluids.moltenDarkSteel,       CompatType.ALLOY),
+  SOULARIUM       (TinkerFluids.moltenSoularium,       CompatType.ALLOY),
+  END_STEEL       (TinkerFluids.moltenEndSteel,        CompatType.ALLOY),
   // mekanism alloys
   REFINED_GLOWSTONE(TinkerFluids.moltenRefinedGlowstone, CompatType.ALLOY),
   REFINED_OBSIDIAN (TinkerFluids.moltenRefinedObsidian,  CompatType.ALLOY),

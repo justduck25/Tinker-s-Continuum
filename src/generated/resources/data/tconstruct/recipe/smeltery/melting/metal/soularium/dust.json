@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:dusts/soularium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/soularium/dust",
+  "ingredient": "#c:dusts/soularium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_soularium"
+  },
+  "temperature": 1000,
+  "time": 50
+}

@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "enderio"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/soularium"
+    },
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/gold"
+    }
+  ],
+  "type": "tconstruct:alloy",
+  "id": "tconstruct:smeltery/alloys/molten_soularium",
+  "inputs": [
+    {
+      "amount": 90,
+      "tag": "c:molten_gold"
+    },
+    {
+      "amount": 1000,
+      "fluid": "tconstruct:liquid_soul"
+    }
+  ],
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_soularium"
+  },
+  "temperature": 1000
+}

@@ -2055,6 +2055,46 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                       .addInput(FluidIngredient.of(fluidTag.apply("redstone"), 400))
                       .save(wrapped, prefix(TinkerFluids.moltenSignalum, folder));
 
+    // enderio alloys
+    ICondition enderIO = new ModLoadedCondition("enderio");
+    wrapped = withCondition(consumer, enderIO, tagCondition("ingots/conductive_alloy"), tagCondition("ingots/iron"), tagCondition("ingots/copper"));
+    AlloyRecipeBuilder.alloy(TinkerFluids.moltenConductiveAlloy, FluidValues.INGOT * 2)
+                      .addInput(TinkerFluids.moltenIron.ingredient(FluidValues.INGOT))
+                      .addInput(TinkerFluids.moltenCopper.ingredient(FluidValues.INGOT))
+                      .save(wrapped, prefix(TinkerFluids.moltenConductiveAlloy, folder));
+
+    wrapped = withCondition(consumer, enderIO, tagCondition("ingots/redstone_alloy"), tagCondition("ingots/copper"), fluidTagLoaded.apply("redstone"));
+    AlloyRecipeBuilder.alloy(TinkerFluids.moltenRedstoneAlloy, FluidValues.INGOT)
+                      .addInput(TinkerFluids.moltenCopper.ingredient(FluidValues.INGOT))
+                      .addInput(FluidIngredient.of(fluidTag.apply("redstone"), FluidValues.GEM))
+                      .save(wrapped, prefix(TinkerFluids.moltenRedstoneAlloy, folder));
+
+    wrapped = withCondition(consumer, enderIO, tagCondition("ingots/pulsating_alloy"), tagCondition("ingots/iron"));
+    AlloyRecipeBuilder.alloy(TinkerFluids.moltenPulsatingAlloy, FluidValues.INGOT * 2)
+                      .addInput(TinkerFluids.moltenIron.ingredient(FluidValues.INGOT))
+                      .addInput(TinkerFluids.moltenEnder.ingredient(FluidValues.SLIMEBALL))
+                      .save(wrapped, prefix(TinkerFluids.moltenPulsatingAlloy, folder));
+
+    wrapped = withCondition(consumer, enderIO, tagCondition("ingots/soularium"), tagCondition("ingots/gold"));
+    AlloyRecipeBuilder.alloy(TinkerFluids.moltenSoularium, FluidValues.INGOT)
+                      .addInput(TinkerFluids.moltenGold.ingredient(FluidValues.INGOT))
+                      .addInput(TinkerFluids.liquidSoul.ingredient(FluidValues.GLASS_BLOCK))
+                      .save(wrapped, prefix(TinkerFluids.moltenSoularium, folder));
+
+    wrapped = withCondition(consumer, enderIO, tagCondition("ingots/energetic_alloy"), tagCondition("ingots/conductive_alloy"), tagCondition("ingots/gold"), fluidTagLoaded.apply("redstone"));
+    AlloyRecipeBuilder.alloy(TinkerFluids.moltenEnergeticAlloy, FluidValues.INGOT * 2)
+                      .addInput(TinkerFluids.moltenConductiveAlloy.ingredient(FluidValues.INGOT))
+                      .addInput(TinkerFluids.moltenGold.ingredient(FluidValues.INGOT))
+                      .addInput(FluidIngredient.of(fluidTag.apply("redstone"), FluidValues.GEM))
+                      .save(wrapped, prefix(TinkerFluids.moltenEnergeticAlloy, folder));
+
+    wrapped = withCondition(consumer, enderIO, tagCondition("ingots/vibrant_alloy"), tagCondition("ingots/energetic_alloy"), fluidTagLoaded.apply("glowstone"));
+    AlloyRecipeBuilder.alloy(TinkerFluids.moltenVibrantAlloy, FluidValues.INGOT * 2)
+                      .addInput(TinkerFluids.moltenEnergeticAlloy.ingredient(FluidValues.INGOT))
+                      .addInput(TinkerFluids.moltenEnder.ingredient(FluidValues.SLIMEBALL))
+                      .addInput(FluidIngredient.of(fluidTag.apply("glowstone"), FluidValues.GEM))
+                      .save(wrapped, prefix(TinkerFluids.moltenVibrantAlloy, folder));
+
     // refined obsidian, note glowstone is done as a composite
     wrapped = withCondition(consumer, tagCondition("ingots/refined_obsidian"), tagCondition("ingots/osmium"));
     AlloyRecipeBuilder.alloy(TinkerFluids.moltenRefinedObsidian, FluidValues.INGOT)
@@ -2335,6 +2375,17 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     metal(consumer, TinkerFluids.moltenEnderium).optional().metal().dust().plate().gear().coin();
     metal(consumer, TinkerFluids.moltenLumium  ).optional().metal().dust().plate().gear().coin();
     metal(consumer, TinkerFluids.moltenSignalum).optional().metal().dust().plate().gear().coin();
+    // enderio alloys
+    metal(consumer, TinkerFluids.moltenConductiveAlloy).optional().metal().dust();
+    metal(consumer, TinkerFluids.moltenEnergeticAlloy ).optional().metal();
+    metal(consumer, TinkerFluids.moltenVibrantAlloy   ).optional().metal();
+    metal(consumer, TinkerFluids.moltenRedstoneAlloy  ).optional().metal().dust();
+    metal(consumer, TinkerFluids.moltenPulsatingAlloy ).optional().metal().dust();
+    metal(consumer, TinkerFluids.moltenDarkSteel      ).optional().metal().gear();
+    metal(consumer, TinkerFluids.moltenSoularium      ).optional().metal().dust();
+    metal(consumer, TinkerFluids.moltenEndSteel       ).optional().metal();
+    enderIOGear(consumer, TinkerFluids.moltenEnergeticAlloy, "energized", "energetic_alloy");
+    enderIOGear(consumer, TinkerFluids.moltenVibrantAlloy, "vibrant", "vibrant_alloy");
     metal(consumer, TinkerFluids.moltenRefinedObsidian ).optional().metal().common(TOOLS).common(MEKANISM_ARMOR);
     metal(consumer, TinkerFluids.moltenRefinedGlowstone).optional().metal().common(TOOLS).common(MEKANISM_ARMOR);
     // embers provides their own fluid. so we just have to add the recipes
@@ -2363,6 +2414,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       .melting(1, "raw", "raw_materials", false, false)
       // armor and tools
       .common(AXES, SWORD, tfShovel, tfHelmet, tfChestplate, tfLeggings, tfBoots);
+  }
+
+  /** Adds EnderIO's nonstandard bimetal gear tags for alloys whose gear tag does not match the alloy name. */
+  private void enderIOGear(RecipeOutput consumer, FluidObject<?> fluid, String gearName, String alloyName) {
+    String folder = "smeltery/";
+    tagMelting(consumer, fluid, FluidValues.INGOT * 4, "gears/" + gearName, 2.0f, folder + "melting/metal/" + alloyName + "/gear", true);
+    tagCasting(consumer, fluid, FluidValues.INGOT * 4, TinkerSmeltery.gearCast, "gears/" + gearName, folder + "casting/metal/" + alloyName + "/gear", true);
   }
 
   private void addCompatRecipes(RecipeOutput consumer) {

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/conductive_alloy"
+    }
+  ],
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 180,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_conductive_alloy"
+  },
+  "id": "tconstruct:smeltery/casting/metal/conductive_alloy/block",
+  "result": {
+    "tag": "c:storage_blocks/conductive_alloy"
+  }
+}

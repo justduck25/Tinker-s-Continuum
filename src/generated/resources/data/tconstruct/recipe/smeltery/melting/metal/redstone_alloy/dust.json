@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:dusts/redstone_alloy"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/redstone_alloy/dust",
+  "ingredient": "#c:dusts/redstone_alloy",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_redstone_alloy"
+  },
+  "temperature": 600,
+  "time": 40
+}

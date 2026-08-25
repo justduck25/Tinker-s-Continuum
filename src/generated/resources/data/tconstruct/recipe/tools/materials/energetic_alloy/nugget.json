@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/energetic_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/energetic_alloy/nugget",
+  "ingredient": "#c:nuggets/energetic_alloy",
+  "material": "tconstruct:energetic_alloy",
+  "needed": 9,
+  "value": 1
+}

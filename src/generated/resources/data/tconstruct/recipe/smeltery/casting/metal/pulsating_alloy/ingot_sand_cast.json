@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/single_use/ingot",
+  "cast_consumed": true,
+  "cooling_time": 63,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_pulsating_alloy"
+  },
+  "id": "tconstruct:smeltery/casting/metal/pulsating_alloy/ingot_sand_cast",
+  "result": {
+    "tag": "c:ingots/pulsating_alloy"
+  }
+}

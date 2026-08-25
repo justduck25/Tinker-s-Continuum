@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/end_steel"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_end_steel"
+  },
+  "id": "tconstruct:tools/materials/casting/end_steel",
+  "output": "tconstruct:end_steel",
+  "temperature": 1350
+}

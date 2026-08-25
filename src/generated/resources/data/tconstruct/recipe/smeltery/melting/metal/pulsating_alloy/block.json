@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/pulsating_alloy/block",
+  "ingredient": "#c:storage_blocks/pulsating_alloy",
+  "result": {
+    "amount": 810,
+    "tag": "c:molten_pulsating_alloy"
+  },
+  "temperature": 900,
+  "time": 190
+}

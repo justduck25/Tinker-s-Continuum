@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/vibrant"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/single_use/gear",
+  "cast_consumed": true,
+  "cooling_time": 136,
+  "fluid": {
+    "amount": 360,
+    "tag": "c:molten_vibrant_alloy"
+  },
+  "id": "tconstruct:smeltery/casting/metal/vibrant_alloy/gear_sand_cast",
+  "result": {
+    "tag": "c:gears/vibrant"
+  }
+}

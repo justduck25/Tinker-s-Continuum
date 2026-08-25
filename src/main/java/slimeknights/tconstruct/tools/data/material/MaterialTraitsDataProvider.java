@@ -174,11 +174,22 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addDefaultTraits(MaterialIds.platedSlimewood, TinkerModifiers.overworked, TinkerModifiers.overslime);
     addDefaultTraits(MaterialIds.steeleaf, ModifierIds.experienced);
     addTraits(MaterialIds.steeleaf, AMMO, ModifierIds.looting);
+    addDefaultTraits(MaterialIds.conductiveAlloy, ModifierIds.conductive);
+    addDefaultTraits(MaterialIds.redstoneAlloy, ModifierIds.supercharged);
+    addDefaultTraits(MaterialIds.pulsatingAlloy, ModifierIds.enderference);
+    addTraits(MaterialIds.pulsatingAlloy, ARMOR, ModifierIds.enderclearance);
+    addDefaultTraits(MaterialIds.energeticAlloy, ModifierIds.lightweight);
+    addDefaultTraits(MaterialIds.soularium, ModifierIds.soulbound);
     // tier 4 - mod compat
     addDefaultTraits(MaterialIds.fiery, ModifierIds.autosmelt);
     addTraits(MaterialIds.fiery, ARMOR, ModifierIds.temperedProtection);
     addDefaultTraits(MaterialIds.nicrosil, TinkerModifiers.insatiable);
     addTraits(MaterialIds.nicrosil, ARMOR, ModifierIds.kinetic);
+    addDefaultTraits(MaterialIds.vibrantAlloy, ModifierIds.godspeed);
+    addDefaultTraits(MaterialIds.darkSteel, ModifierIds.ductile);
+    addTraits(MaterialIds.darkSteel, ARMOR, ModifierIds.stalwart);
+    addDefaultTraits(MaterialIds.endSteel, ModifierIds.valiant);
+    addTraits(MaterialIds.endSteel, ARMOR, ModifierIds.enderclearance);
 
     // slimesuit slime
     addTraits(MaterialIds.earthslime, SlimeStats.ID, ModifierIds.overgrowth, TinkerModifiers.overslime.getId());

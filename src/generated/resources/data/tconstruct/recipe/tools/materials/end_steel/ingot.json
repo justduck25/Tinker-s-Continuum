@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/end_steel"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/end_steel/ingot",
+  "ingredient": "#c:ingots/end_steel",
+  "material": "tconstruct:end_steel",
+  "needed": 1,
+  "value": 1
+}

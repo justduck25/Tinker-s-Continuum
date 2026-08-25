@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/soularium"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/soularium/ingot",
+  "ingredient": "#c:ingots/soularium",
+  "material": "tconstruct:soularium",
+  "needed": 1,
+  "value": 1
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/conductive_alloy"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/conductive_alloy/nugget",
+  "ingredient": "#c:nuggets/conductive_alloy",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_conductive_alloy"
+  },
+  "temperature": 800,
+  "time": 20
+}

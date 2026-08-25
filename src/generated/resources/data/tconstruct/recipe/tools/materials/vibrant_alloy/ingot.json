@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/vibrant_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/vibrant_alloy/ingot",
+  "ingredient": "#c:ingots/vibrant_alloy",
+  "material": "tconstruct:vibrant_alloy",
+  "needed": 1,
+  "value": 1
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/pulsating_alloy"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/pulsating_alloy/ingot",
+  "ingredient": "#c:ingots/pulsating_alloy",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_pulsating_alloy"
+  },
+  "temperature": 900,
+  "time": 63
+}

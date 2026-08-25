@@ -1130,6 +1130,56 @@
   "fluid.tconstruct.flowing_molten_signalum": "Flowing Molten Signalum",
   "item.tconstruct.molten_signalum_bucket": "Molten Signalum Bucket",
 
+  "_comment": "Ender IO Alloys",
+
+  "block.tconstruct.molten_conductive_alloy_fluid": "Molten Conductive Alloy",
+  "item.tconstruct.molten_conductive_alloy_fluid": "Molten Conductive Alloy",
+  "fluid.tconstruct.molten_conductive_alloy": "Molten Conductive Alloy",
+  "fluid.tconstruct.flowing_molten_conductive_alloy": "Flowing Molten Conductive Alloy",
+  "item.tconstruct.molten_conductive_alloy_bucket": "Molten Conductive Alloy Bucket",
+
+  "block.tconstruct.molten_energetic_alloy_fluid": "Molten Energetic Alloy",
+  "item.tconstruct.molten_energetic_alloy_fluid": "Molten Energetic Alloy",
+  "fluid.tconstruct.molten_energetic_alloy": "Molten Energetic Alloy",
+  "fluid.tconstruct.flowing_molten_energetic_alloy": "Flowing Molten Energetic Alloy",
+  "item.tconstruct.molten_energetic_alloy_bucket": "Molten Energetic Alloy Bucket",
+
+  "block.tconstruct.molten_vibrant_alloy_fluid": "Molten Vibrant Alloy",
+  "item.tconstruct.molten_vibrant_alloy_fluid": "Molten Vibrant Alloy",
+  "fluid.tconstruct.molten_vibrant_alloy": "Molten Vibrant Alloy",
+  "fluid.tconstruct.flowing_molten_vibrant_alloy": "Flowing Molten Vibrant Alloy",
+  "item.tconstruct.molten_vibrant_alloy_bucket": "Molten Vibrant Alloy Bucket",
+
+  "block.tconstruct.molten_redstone_alloy_fluid": "Molten Redstone Alloy",
+  "item.tconstruct.molten_redstone_alloy_fluid": "Molten Redstone Alloy",
+  "fluid.tconstruct.molten_redstone_alloy": "Molten Redstone Alloy",
+  "fluid.tconstruct.flowing_molten_redstone_alloy": "Flowing Molten Redstone Alloy",
+  "item.tconstruct.molten_redstone_alloy_bucket": "Molten Redstone Alloy Bucket",
+
+  "block.tconstruct.molten_pulsating_alloy_fluid": "Molten Pulsating Alloy",
+  "item.tconstruct.molten_pulsating_alloy_fluid": "Molten Pulsating Alloy",
+  "fluid.tconstruct.molten_pulsating_alloy": "Molten Pulsating Alloy",
+  "fluid.tconstruct.flowing_molten_pulsating_alloy": "Flowing Molten Pulsating Alloy",
+  "item.tconstruct.molten_pulsating_alloy_bucket": "Molten Pulsating Alloy Bucket",
+
+  "block.tconstruct.molten_dark_steel_fluid": "Molten Dark Steel",
+  "item.tconstruct.molten_dark_steel_fluid": "Molten Dark Steel",
+  "fluid.tconstruct.molten_dark_steel": "Molten Dark Steel",
+  "fluid.tconstruct.flowing_molten_dark_steel": "Flowing Molten Dark Steel",
+  "item.tconstruct.molten_dark_steel_bucket": "Molten Dark Steel Bucket",
+
+  "block.tconstruct.molten_soularium_fluid": "Molten Soularium",
+  "item.tconstruct.molten_soularium_fluid": "Molten Soularium",
+  "fluid.tconstruct.molten_soularium": "Molten Soularium",
+  "fluid.tconstruct.flowing_molten_soularium": "Flowing Molten Soularium",
+  "item.tconstruct.molten_soularium_bucket": "Molten Soularium Bucket",
+
+  "block.tconstruct.molten_end_steel_fluid": "Molten End Steel",
+  "item.tconstruct.molten_end_steel_fluid": "Molten End Steel",
+  "fluid.tconstruct.molten_end_steel": "Molten End Steel",
+  "fluid.tconstruct.flowing_molten_end_steel": "Flowing Molten End Steel",
+  "item.tconstruct.molten_end_steel_bucket": "Molten End Steel Bucket",
+
   "_comment": "Mekanism Alloys",
 
   "block.tconstruct.molten_refined_glowstone_fluid": "Molten Refined Glowstone",
@@ -2919,6 +2969,36 @@
   "material.tconstruct.steeleaf.ranged": "Grants +50%% XP per level from monsters killed by arrows",
   "material.tconstruct.steeleaf.armor": "Grants +25%% XP per level from blocks and monsters",
 
+  "material.tconstruct.conductive_alloy": "Conductive Alloy",
+  "material.tconstruct.conductive_alloy.flavor": "Carries heat and charge in equal measure.",
+  "material.tconstruct.conductive_alloy.encyclopedia": "Applies conductive, causing targets to take increased fire damage for a short time.",
+  "material.tconstruct.conductive_alloy.ranged": "Arrows apply conductive, causing targets to take increased fire damage for a short time.",
+  "material.tconstruct.conductive_alloy.armor": "Applies conductive to attackers, causing them to take increased fire damage for a short time.",
+
+  "material.tconstruct.redstone_alloy": "Redstone Alloy",
+  "material.tconstruct.redstone_alloy.flavor": "A fast signal in metal form.",
+  "material.tconstruct.redstone_alloy.encyclopedia": "Boosts charged redstone effects from other modifiers.",
+  "material.tconstruct.redstone_alloy.ranged": "Boosts charged redstone effects from arrows.",
+  "material.tconstruct.redstone_alloy.armor": "Boosts charged redstone effects while worn.",
+
+  "material.tconstruct.pulsating_alloy": "Pulsating Alloy",
+  "material.tconstruct.pulsating_alloy.flavor": "Faint ender pulses ripple through the metal.",
+  "material.tconstruct.pulsating_alloy.encyclopedia": "Lets the tool interact better with ender interference.",
+  "material.tconstruct.pulsating_alloy.ranged": "Adds ender interference to arrows.",
+  "material.tconstruct.pulsating_alloy.armor": "Reduces ender penalties and interference while worn.",
+
+  "material.tconstruct.energetic_alloy": "Energetic Alloy",
+  "material.tconstruct.energetic_alloy.flavor": "Moves before you finish telling it where to go.",
+  "material.tconstruct.energetic_alloy.encyclopedia": "Reduces tool weight, improving movement and handling.",
+  "material.tconstruct.energetic_alloy.ranged": "Reduces bow weight, improving handling.",
+  "material.tconstruct.energetic_alloy.armor": "Reduces armor weight, improving movement.",
+
+  "material.tconstruct.soularium": "Soularium",
+  "material.tconstruct.soularium.flavor": "A little too eager to come back home.",
+  "material.tconstruct.soularium.encyclopedia": "Keeps the tool bound to you after death.",
+  "material.tconstruct.soularium.ranged": "Keeps the bow bound to you after death.",
+  "material.tconstruct.soularium.armor": "Keeps the armor bound to you after death.",
+
 
   "_comment": "Tier 4 Integration Materials",
 
@@ -2933,6 +3013,24 @@
   "material.tconstruct.nicrosil.encyclopedia": "Grants up to +2.5 damage per level, with the damage increasing by +0.5 per level per hit over 5 consecutive hits",
   "material.tconstruct.nicrosil.ranged": "Arrows gain up to +1.25 power per level, with the damage increasing by +0.25 per level per hit over 5 consecutive arrow hits",
   "material.tconstruct.nicrosil.armor": "Temporarily boosts melee damage by 1 after taking damage, capping at the total level across all armor",
+
+  "material.tconstruct.vibrant_alloy": "Vibrant Alloy",
+  "material.tconstruct.vibrant_alloy.flavor": "Bright enough to make speed feel sensible.",
+  "material.tconstruct.vibrant_alloy.encyclopedia": "Boosts movement and momentum while held.",
+  "material.tconstruct.vibrant_alloy.ranged": "Boosts movement and shot handling while held.",
+  "material.tconstruct.vibrant_alloy.armor": "Boosts movement while worn.",
+
+  "material.tconstruct.dark_steel": "Dark Steel",
+  "material.tconstruct.dark_steel.flavor": "Heavy, stubborn, and hard to convince.",
+  "material.tconstruct.dark_steel.encyclopedia": "Increases durability from upgrades.",
+  "material.tconstruct.dark_steel.ranged": "Increases durability from upgrades.",
+  "material.tconstruct.dark_steel.armor": "Improves shield and armor guard strength.",
+
+  "material.tconstruct.end_steel": "End Steel",
+  "material.tconstruct.end_steel.flavor": "Dark steel with its eyes on the void.",
+  "material.tconstruct.end_steel.encyclopedia": "Increases damage when fighting stronger foes.",
+  "material.tconstruct.end_steel.ranged": "Increases arrow power against stronger foes.",
+  "material.tconstruct.end_steel.armor": "Reduces ender penalties and interference while worn.",
 
 
   "_comment": "Modifiers",
@@ -4793,6 +4891,7 @@
   "advancements.tconstruct.world.ancient_tools.description": "Discover all original types of ancient tool",
 
   "_comment": "Jade Strings",
+  "config.jade.plugin_tconstruct.tank_fluid": "Tank Fluid",
   "jade.tconstruct.tank.empty": "Fluid: Empty / %s mB",
   "jade.tconstruct.tank.fluid": "Fluid: %s (%s / %s mB)"
 }
