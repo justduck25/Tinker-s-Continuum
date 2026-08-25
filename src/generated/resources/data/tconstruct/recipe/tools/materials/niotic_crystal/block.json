@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/niotic_crystal"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/niotic_crystal/block",
+  "ingredient": "#c:storage_blocks/niotic_crystal",
+  "leftover": {
+    "count": 1,
+    "tag": "c:gems/niotic_crystal"
+  },
+  "material": "tconstruct:niotic_crystal",
+  "needed": 1,
+  "value": 9
+}

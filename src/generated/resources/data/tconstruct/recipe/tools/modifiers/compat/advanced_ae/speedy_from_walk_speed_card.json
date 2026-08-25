@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "advanced_ae"
+    }
+  ],
+  "type": "tconstruct:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "tconstruct:tools/modifiers/compat/advanced_ae/speedy_from_walk_speed_card",
+  "input": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "advanced_ae:walk_speed_card"
+    ]
+  },
+  "level": {
+    "max": 3
+  },
+  "needed_per_level": 2,
+  "result": "tconstruct:speedy",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/leggings"
+}

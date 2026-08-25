@@ -143,6 +143,16 @@ public class MaterialRenderInfoProvider extends AbstractMaterialRenderInfoProvid
     buildRenderInfo(MaterialIds.vibrantAlloy).color(0x5DDB43).fallbacks("metal").luminosity(6);
     buildRenderInfo(MaterialIds.darkSteel).color(0x2A3035).fallbacks("metal");
     buildRenderInfo(MaterialIds.endSteel).color(0xD6D3C8).fallbacks("metal");
+    buildRenderInfo(MaterialIds.certusQuartz).color(0xBFEAFF).fallbacks("crystal", "rock").luminosity(3);
+    buildRenderInfo(MaterialIds.fluix).color(0x8D63D8).fallbacks("crystal", "rock").luminosity(5);
+    buildRenderInfo(MaterialIds.quantumAlloy).color(0x62DFFF).fallbacks("metal").luminosity(5);
+    buildRenderInfo(MaterialIds.entro).color(0xD66BFF).fallbacks("crystal", "metal").luminosity(6);
+    buildRenderInfo(MaterialIds.energizedSteel).color(0xF4B441).fallbacks("metal").luminosity(3);
+    buildRenderInfo(MaterialIds.blazingCrystal).color(0xFF8B2F).fallbacks("crystal", "rock").luminosity(6);
+    buildRenderInfo(MaterialIds.nioticCrystal).color(0x41A9FF).fallbacks("crystal", "rock").luminosity(5);
+    buildRenderInfo(MaterialIds.spiritedCrystal).color(0xA86BFF).fallbacks("crystal", "rock").luminosity(6);
+    buildRenderInfo(MaterialIds.nitroCrystal).color(0xE43232).fallbacks("crystal", "rock").luminosity(7);
+    buildRenderInfo(MaterialIds.uraninite).color(0x70D84D).fallbacks("crystal", "rock").luminosity(4);
 
     // ammo
     buildRenderInfo(MaterialIds.amethyst);

@@ -201,6 +201,25 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
     RecipeOutput apotheosisConsumer = withCondition(consumer, new ModLoadedCondition(apotheosis), ConfigEnabledCondition.APOTHEOSIS_POST_CAP_RECIPES);
     Ingredient apotheosisSigil = ItemNameIngredient.from(Identifier.fromNamespaceAndPath(apotheosis, "sigil_of_enhancement"));
     Ingredient godforgedPearl = ItemNameIngredient.from(Identifier.fromNamespaceAndPath(apotheosis, "godforged_pearl"));
+    String advancedAE = "advanced_ae";
+    RecipeOutput advancedAEConsumer = withCondition(consumer, new ModLoadedCondition(advancedAE));
+    String advancedAECompatFolder = compatFolder + advancedAE + "/";
+    Ingredient advancedAEAttackSpeedCard = modItem(advancedAE, "attack_speed_card");
+    Ingredient advancedAEFlightCard = modItem(advancedAE, "flight_card");
+    Ingredient advancedAEHpBufferCard = modItem(advancedAE, "hp_buffer_card");
+    Ingredient advancedAEJumpHeightCard = modItem(advancedAE, "jump_height_card");
+    Ingredient advancedAELavaImmunityCard = modItem(advancedAE, "lava_immunity_card");
+    Ingredient advancedAELuckCard = modItem(advancedAE, "luck_card");
+    Ingredient advancedAEMagnetCard = modItem(advancedAE, "magnet_card");
+    Ingredient advancedAEQuantumAlloy = modItem(advancedAE, "quantum_alloy");
+    Ingredient advancedAEReachCard = modItem(advancedAE, "reach_card");
+    Ingredient advancedAERegenerationCard = modItem(advancedAE, "regeneration_card");
+    Ingredient advancedAESprintSpeedCard = modItem(advancedAE, "sprint_speed_card");
+    Ingredient advancedAEStepAssistCard = modItem(advancedAE, "step_assist_card");
+    Ingredient advancedAEStrengthCard = modItem(advancedAE, "strength_card");
+    Ingredient advancedAESwimSpeedCard = modItem(advancedAE, "swim_speed_card");
+    Ingredient advancedAEWalkSpeedCard = modItem(advancedAE, "walk_speed_card");
+    Ingredient advancedAEWaterBreathingCard = modItem(advancedAE, "water_breathing_card");
 
     /*
      * durability
@@ -358,6 +377,18 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setSlots(SlotType.UPGRADE, 1)
                          .setTools(ingredientFromTags(TinkerTags.Items.MELEE_WEAPON, TinkerTags.Items.HARVEST, TinkerTags.Items.WORN_ARMOR))
                          .saveSalvage(consumer, prefix(ModifierIds.magnetic, upgradeSalvage));
+    ModifierRecipeBuilder.modifier(ModifierIds.magnetic)
+                         .addInput(advancedAEMagnetCard)
+                         .setMaxLevel(5)
+                         .setSlots(SlotType.UPGRADE, 1)
+                         .setTools(ingredientFromTags(TinkerTags.Items.MELEE_WEAPON, TinkerTags.Items.HARVEST))
+                         .save(advancedAEConsumer, wrap(ModifierIds.magnetic, advancedAECompatFolder, "_from_magnet_card"));
+    ModifierRecipeBuilder.modifier(ModifierIds.magnetic)
+                         .addInput(advancedAEMagnetCard)
+                         .setMaxLevel(1)
+                         .setSlots(SlotType.UPGRADE, 1)
+                         .setTools(TinkerTags.Items.WORN_ARMOR)
+                         .save(advancedAEConsumer, wrap(ModifierIds.magnetic, advancedAECompatFolder, "_armor_from_magnet_card"));
     ModifierRecipeBuilder.modifier(ModifierIds.shiny)
                          .addInput(Ingredient.of(Items.ENCHANTED_GOLDEN_APPLE, Items.NETHER_STAR))
                          .setMaxLevel(1)
@@ -455,6 +486,12 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
       .setMaxLevel(3)
       .setTools(TinkerTags.Items.BOOTS)
       .save(consumer, wrap(ModifierIds.lightspeed, upgradeFolder, "_boots_from_block"));
+    IncrementalModifierRecipeBuilder.modifier(ModifierIds.lightspeed)
+                                    .setInput(advancedAESprintSpeedCard, 1, 2)
+                                    .setMaxLevel(3)
+                                    .setSlots(SlotType.UPGRADE, 1)
+                                    .setTools(TinkerTags.Items.BOOTS)
+                                    .save(advancedAEConsumer, wrap(ModifierIds.lightspeed, advancedAECompatFolder, "_boots_from_sprint_speed_card"));
 
     /*
      * weapon
@@ -595,6 +632,18 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                                     .disallowCrystal()
                                     .setSlots(SlotType.UPGRADE, 1)
                                     .save(consumer, wrap(ModifierIds.swiftstrike, upgradeFolder, "_from_block"));
+    IncrementalModifierRecipeBuilder.modifier(ModifierIds.swiftstrike)
+                                    .setTools(TinkerTags.Items.MELEE_WEAPON)
+                                    .setInput(advancedAEAttackSpeedCard, 1, 2)
+                                    .setMaxLevel(5)
+                                    .setSlots(SlotType.UPGRADE, 1)
+                                    .save(advancedAEConsumer, wrap(ModifierIds.swiftstrike, advancedAECompatFolder, "_from_attack_speed_card"));
+    IncrementalModifierRecipeBuilder.modifier(ModifierIds.sharpness)
+                                    .setTools(TinkerTags.Items.MELEE)
+                                    .setInput(advancedAEStrengthCard, 1, 2)
+                                    .setMaxLevel(5)
+                                    .setSlots(SlotType.UPGRADE, 1)
+                                    .save(advancedAEConsumer, wrap(ModifierIds.sharpness, advancedAECompatFolder, "_from_strength_card"));
 
     /*
      * ranged
@@ -886,6 +935,11 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                                     .setTools(protectableTools)
                                     .saveSalvage(consumer, prefix(ModifierIds.fireProtection, defenseSalvage))
                                     .save(consumer, prefix(ModifierIds.fireProtection, defenseFolder));
+    IncrementalModifierRecipeBuilder.modifier(ModifierIds.fireProtection)
+                                    .setInput(advancedAELavaImmunityCard, 1, 2)
+                                    .setSlots(SlotType.DEFENSE, 1)
+                                    .setTools(TinkerTags.Items.ARMOR)
+                                    .save(advancedAEConsumer, wrap(ModifierIds.fireProtection, advancedAECompatFolder, "_from_lava_immunity_card"));
     ModifierRecipeBuilder.modifier(ModifierIds.protection)
                          .addInput(TinkerModifiers.goldReinforcement)
                          .addInput(TinkerModifiers.searedReinforcement)
@@ -958,6 +1012,11 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                                     .setSlots(SlotType.DEFENSE, 1)
                                     .saveSalvage(consumer, prefix(ModifierIds.revitalizing, defenseSalvage))
                                     .save(consumer, prefix(ModifierIds.revitalizing, defenseFolder));
+    IncrementalModifierRecipeBuilder.modifier(ModifierIds.revitalizing)
+                                    .setTools(TinkerTags.Items.WORN_ARMOR)
+                                    .setInput(CompoundIngredient.of(advancedAEHpBufferCard, advancedAERegenerationCard), 1, 2)
+                                    .setSlots(SlotType.DEFENSE, 1)
+                                    .save(advancedAEConsumer, wrap(ModifierIds.revitalizing, advancedAECompatFolder, "_from_defensive_card"));
 
     // upgrade - counterattack
     Ingredient wornOrShield = ingredientFromTags(TinkerTags.Items.WORN_ARMOR, TinkerTags.Items.SHIELDS); // held armor may include things that cannot block
@@ -988,6 +1047,12 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setSlots(SlotType.UPGRADE, 1)
                          .saveSalvage(consumer, prefix(ModifierIds.respiration, upgradeSalvage))
                          .save(consumer, prefix(ModifierIds.respiration, upgradeFolder));
+    ModifierRecipeBuilder.modifier(ModifierIds.respiration)
+                         .setTools(TinkerTags.Items.HELMETS)
+                         .addInput(advancedAEWaterBreathingCard)
+                         .setMaxLevel(3)
+                         .setSlots(SlotType.UPGRADE, 1)
+                         .save(advancedAEConsumer, wrap(ModifierIds.respiration, advancedAECompatFolder, "_from_water_breathing_card"));
     ModifierRecipeBuilder.modifier(TinkerModifiers.itemFrame)
                          .setTools(TinkerTags.Items.HELMETS)
                          .addInput(Ingredient.of(Arrays.stream(FrameType.values())
@@ -1006,6 +1071,12 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
       .save(consumer, prefix(ModifierIds.minimap, upgradeFolder));
     // upgrade - leggings
     hasteRecipes(consumer, ModifierIds.speedy, tagIngredient(TinkerTags.Items.LEGGINGS), 3, upgradeFolder, upgradeSalvage);
+    IncrementalModifierRecipeBuilder.modifier(ModifierIds.speedy)
+                                    .setTools(TinkerTags.Items.LEGGINGS)
+                                    .setInput(advancedAEWalkSpeedCard, 1, 2)
+                                    .setMaxLevel(3)
+                                    .setSlots(SlotType.UPGRADE, 1)
+                                    .save(advancedAEConsumer, wrap(ModifierIds.speedy, advancedAECompatFolder, "_from_walk_speed_card"));
     // leaping changes slot type on level 2
     MultilevelIncrementalModifierRecipeBuilder.modifier(ModifierIds.leaping)
       .setTools(TinkerTags.Items.LEGGINGS)
@@ -1022,6 +1093,12 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
       .addLevelRange(SlotType.ABILITY, 1, 2, 2)
       .disallowCrystal()
       .save(consumer, wrap(ModifierIds.leaping, upgradeFolder, "_from_block"));
+    MultilevelIncrementalModifierRecipeBuilder.modifier(ModifierIds.leaping)
+      .setTools(TinkerTags.Items.LEGGINGS)
+      .setInput(advancedAEJumpHeightCard, 1, 2)
+      .addLevelRange(SlotType.UPGRADE, 1, 1, 1)
+      .addLevelRange(SlotType.ABILITY, 1, 2, 2)
+      .save(advancedAEConsumer, wrap(ModifierIds.leaping, advancedAECompatFolder, "_from_jump_height_card"));
     ModifierRecipeBuilder.modifier(ModifierIds.stepUp)
                          .setTools(TinkerTags.Items.LEGGINGS)
                          .addInput(Items.LEATHER)
@@ -1033,6 +1110,12 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setMaxLevel(2)
                          .saveSalvage(consumer, prefix(ModifierIds.stepUp, upgradeSalvage))
                          .save(consumer, prefix(ModifierIds.stepUp, upgradeFolder));
+    ModifierRecipeBuilder.modifier(ModifierIds.stepUp)
+                         .setTools(TinkerTags.Items.LEGGINGS)
+                         .addInput(advancedAEStepAssistCard)
+                         .setSlots(SlotType.UPGRADE, 1)
+                         .setMaxLevel(2)
+                         .save(advancedAEConsumer, wrap(ModifierIds.stepUp, advancedAECompatFolder, "_from_step_assist_card"));
     ModifierRecipeBuilder.modifier(ModifierIds.swiftSneak)
                          .setTools(TinkerTags.Items.LEGGINGS)
                          .addInput(Blocks.SCULK_SENSOR)
@@ -1078,6 +1161,12 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setMaxLevel(3)
                          .saveSalvage(consumer, prefix(ModifierIds.depthStrider, upgradeSalvage))
                          .save(consumer, prefix(ModifierIds.depthStrider, upgradeFolder));
+    ModifierRecipeBuilder.modifier(ModifierIds.depthStrider)
+                         .setTools(TinkerTags.Items.BOOTS)
+                         .addInput(advancedAESwimSpeedCard)
+                         .setSlots(SlotType.UPGRADE, 1)
+                         .setMaxLevel(3)
+                         .save(advancedAEConsumer, wrap(ModifierIds.depthStrider, advancedAECompatFolder, "_from_swim_speed_card"));
 
     // upgrade - all
     ModifierRecipeBuilder.modifier(ModifierIds.ricochet)
@@ -1141,6 +1230,12 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                                     .setMaxLevel(2)
                                     .saveSalvage(consumer, prefix(ModifierIds.strength, abilitySalvage))
                                     .save(consumer, prefix(ModifierIds.strength, abilityFolder));
+    IncrementalModifierRecipeBuilder.modifier(ModifierIds.strength)
+                                    .setTools(TinkerTags.Items.CHESTPLATES)
+                                    .setInput(advancedAEStrengthCard, 1, 2)
+                                    .setSlots(SlotType.ABILITY, 1)
+                                    .setMaxLevel(2)
+                                    .save(advancedAEConsumer, wrap(ModifierIds.strength, advancedAECompatFolder, "_from_strength_card"));
     ModifierRecipeBuilder.modifier(ModifierIds.wings)
                          .setTools(TinkerTags.Items.CHESTPLATES)
                          .setMaxLevel(1).checkTraitLevel()
@@ -1148,6 +1243,13 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setSlots(SlotType.ABILITY, 2)
                          .saveSalvage(consumer, prefix(ModifierIds.wings, abilitySalvage))
                          .save(consumer, prefix(ModifierIds.wings, abilityFolder));
+    ModifierRecipeBuilder.modifier(ModifierIds.wings)
+                         .setTools(TinkerTags.Items.CHESTPLATES)
+                         .setMaxLevel(1).checkTraitLevel()
+                         .addInput(advancedAEFlightCard)
+                         .addInput(advancedAEQuantumAlloy)
+                         .setSlots(SlotType.ABILITY, 2)
+                         .save(advancedAEConsumer, wrap(ModifierIds.wings, advancedAECompatFolder, "_from_flight_card"));
     ModifierRecipeBuilder.modifier(TinkerModifiers.sleeves)
       .setTools(TinkerTags.Items.CHESTPLATES)
       .addInput(TinkerModifiers.silkyCloth)
@@ -1346,6 +1448,14 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .disallowCrystal() // would allow a cost cheese
                          .exactLevel(3)
                          .save(consumer, wrap(ModifierIds.luck, abilityFolder, "_level_3"));
+    ModifierRecipeBuilder.modifier(ModifierIds.luck)
+                         .setTools(luckSupporting)
+                         .addInput(advancedAELuckCard)
+                         .addInput(advancedAEQuantumAlloy)
+                         .setMaxLevel(1)
+                         .setSlots(SlotType.ABILITY, 1)
+                         .allowCrystal()
+                         .save(advancedAEConsumer, wrap(ModifierIds.luck, advancedAECompatFolder, "_from_luck_card"));
     apotheosisModifier(apotheosisConsumer, apotheosisUpgradeFolder, ModifierIds.luck, luckSupporting, apotheosisSigil, 4, 5, SlotType.ABILITY, Ingredient.of(Items.RABBIT_FOOT), tagIngredient(Tags.Items.GEMS_DIAMOND), Ingredient.of(Items.NAME_TAG));
     // pants have just one level
     ModifierRecipeBuilder.modifier(ModifierIds.luck)
@@ -1526,6 +1636,13 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
                          .setMaxLevel(2)
                          .saveSalvage(consumer, prefix(ModifierIds.reach, abilitySalvage))
                          .save(consumer, prefix(ModifierIds.reach, abilityFolder));
+    ModifierRecipeBuilder.modifier(ModifierIds.reach)
+                         .setTools(TinkerTags.Items.CHESTPLATES)
+                         .addInput(advancedAEReachCard)
+                         .addInput(advancedAEQuantumAlloy)
+                         .setSlots(SlotType.ABILITY, 1)
+                         .setMaxLevel(2)
+                         .save(advancedAEConsumer, wrap(ModifierIds.reach, advancedAECompatFolder, "_from_reach_card"));
     // block transformers
     Ingredient interactableWithDurability = IntersectionIngredient.of(tagIngredient(TinkerTags.Items.DURABILITY), tagIngredient(TinkerTags.Items.INTERACTABLE));
     Ingredient interactableBootsWithDurability = IntersectionIngredient.of(tagIngredient(TinkerTags.Items.DURABILITY), ingredientFromTags(TinkerTags.Items.INTERACTABLE, TinkerTags.Items.BOOTS));
@@ -2215,6 +2332,10 @@ public class ModifierRecipeProvider extends BaseRecipeProvider {
 
   private static Ingredient tagIngredient(TagKey<Item> tag) {
     return slimeknights.tconstruct.library.recipe.ingredient.LegacyIngredientType.ofTag(tag);
+  }
+
+  private static Ingredient modItem(String modId, String name) {
+    return ItemNameIngredient.from(Identifier.fromNamespaceAndPath(modId, name));
   }
 
   @SafeVarargs

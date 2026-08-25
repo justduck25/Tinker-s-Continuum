@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "advanced_ae"
+    }
+  ],
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/compat/advanced_ae/reach_from_reach_card",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "advanced_ae:reach_card"
+      ]
+    },
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "advanced_ae:quantum_alloy"
+      ]
+    }
+  ],
+  "level": {
+    "max": 2
+  },
+  "result": "tconstruct:reach",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/chestplate"
+}

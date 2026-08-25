@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:raw_materials/uraninite"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/uraninite/raw",
+  "ingredient": "#c:raw_materials/uraninite",
+  "material": "tconstruct:uraninite",
+  "needed": 1,
+  "value": 1
+}
