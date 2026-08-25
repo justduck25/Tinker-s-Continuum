@@ -1,0 +1,54 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 2,
+  "id": "tconstruct:tools/parts/builder/compat/boots_plating",
+  "materials": {
+    "type": "mantle:or",
+    "predicates": [
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:certus_quartz"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:fluix"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:quantum_alloy"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:entro"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:energized_steel"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:blazing_crystal"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:niotic_crystal"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:spirited_crystal"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:nitro_crystal"
+      },
+      {
+        "type": "tconstruct:id",
+        "id": "tconstruct:uraninite"
+      }
+    ]
+  },
+  "pattern": "tconstruct:boots_plating",
+  "result": {
+    "item": "tconstruct:boots_plating"
+  }
+}

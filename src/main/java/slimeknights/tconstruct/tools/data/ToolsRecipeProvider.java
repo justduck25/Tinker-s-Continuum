@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.tools.data;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -21,6 +22,7 @@ import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import slimeknights.mantle.recipe.data.ItemNameIngredient;
 import slimeknights.mantle.recipe.ingredient.PotionDisplayIngredient;
 import slimeknights.mantle.recipe.ingredient.SizedIngredient;
+import slimeknights.mantle.data.predicate.IJsonPredicate;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.data.BaseRecipeProvider;
@@ -31,6 +33,7 @@ import slimeknights.tconstruct.library.json.predicate.material.MaterialHasPartPr
 import slimeknights.tconstruct.library.json.predicate.material.MaterialPredicate;
 import slimeknights.tconstruct.library.json.predicate.material.MaterialStatTypePredicate;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
+import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -50,6 +53,7 @@ import slimeknights.tconstruct.library.recipe.partbuilder.recycle.PartBuilderToo
 import slimeknights.tconstruct.library.recipe.tinkerstation.building.MaterialSwappingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.tinkerstation.building.ToolBuildingRecipeBuilder;
 import slimeknights.tconstruct.library.tools.layout.Patterns;
+import slimeknights.tconstruct.library.tools.part.IMaterialItem;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tables.TinkerTables;
@@ -462,6 +466,10 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
     partWithDummy(consumer, TinkerToolParts.plating.get(ArmorType.CHESTPLATE), TinkerSmeltery.dummyPlating.get(ArmorType.CHESTPLATE), TinkerSmeltery.chestplatePlatingCast, 6, partFolder, castFolder);
     partWithDummy(consumer, TinkerToolParts.plating.get(ArmorType.LEGGINGS),   TinkerSmeltery.dummyPlating.get(ArmorType.LEGGINGS),   TinkerSmeltery.leggingsPlatingCast,   5, partFolder, castFolder);
     partWithDummy(consumer, TinkerToolParts.plating.get(ArmorType.BOOTS),      TinkerSmeltery.dummyPlating.get(ArmorType.BOOTS),      TinkerSmeltery.bootsPlatingCast,      2, partFolder, castFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.HELMET),     3, "helmet",     partFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.CHESTPLATE), 6, "chestplate", partFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.LEGGINGS),   5, "leggings",   partFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.BOOTS),      2, "boots",      partFolder);
     partRecipes(consumer, TinkerToolParts.maille, TinkerSmeltery.mailleCast, 2, partFolder, castFolder);
 
     // bowstrings and shield cores are part builder exclusive. Shield core additionally disallows anything that conflicts with casting shield plating (obsidian/nahuatl conflict)
@@ -491,6 +499,26 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .setCost(1)
       .setAllowUncraftable(true)
       .save(consumer, location(partFolder + "builder/fletching"));
+  }
+
+  /** Adds part builder recipes for compat materials that have no molten fluid, so armor plating remains craftable. */
+  private void itemOnlyCompatPlating(RecipeOutput consumer, IMaterialItem part, int cost, String name, String partFolder) {
+    IJsonPredicate<MaterialVariantId> itemOnlyCompatMaterials = MaterialPredicate.or(
+      MaterialPredicate.variant(MaterialIds.certusQuartz),
+      MaterialPredicate.variant(MaterialIds.fluix),
+      MaterialPredicate.variant(MaterialIds.quantumAlloy),
+      MaterialPredicate.variant(MaterialIds.entro),
+      MaterialPredicate.variant(MaterialIds.energizedSteel),
+      MaterialPredicate.variant(MaterialIds.blazingCrystal),
+      MaterialPredicate.variant(MaterialIds.nioticCrystal),
+      MaterialPredicate.variant(MaterialIds.spiritedCrystal),
+      MaterialPredicate.variant(MaterialIds.nitroCrystal),
+      MaterialPredicate.variant(MaterialIds.uraninite));
+    PartRecipeBuilder.partRecipe(part)
+      .setPattern(BuiltInRegistries.ITEM.getKey(part.asItem()))
+      .setCost(cost)
+      .setAllowedMaterials(itemOnlyCompatMaterials)
+      .save(consumer, location(partFolder + "builder/compat/" + name + "_plating"));
   }
 
   /** Helper to create a casting recipe for a slimeskull variant */
