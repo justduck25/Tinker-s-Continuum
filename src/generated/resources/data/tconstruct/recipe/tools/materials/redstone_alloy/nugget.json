@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/redstone_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/redstone_alloy/nugget",
+  "ingredient": "#c:nuggets/redstone_alloy",
+  "material": "tconstruct:redstone_alloy",
+  "needed": 9,
+  "value": 1
+}

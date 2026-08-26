@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "advanced_ae"
+    }
+  ],
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/compat/advanced_ae/luck_from_luck_card",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "advanced_ae:luck_card"
+      ]
+    },
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "advanced_ae:quantum_alloy"
+      ]
+    }
+  ],
+  "level": 1,
+  "result": "tconstruct:luck",
+  "slots": {
+    "abilities": 1
+  },
+  "tools": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      "#tconstruct:modifiable/melee/weapon",
+      "#tconstruct:modifiable/harvest",
+      "#tconstruct:modifiable/ranged/launcher"
+    ]
+  }
+}

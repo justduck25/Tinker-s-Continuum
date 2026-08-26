@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/soularium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/soularium/nugget",
+  "ingredient": "#c:nuggets/soularium",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_soularium"
+  },
+  "temperature": 1000,
+  "time": 22
+}

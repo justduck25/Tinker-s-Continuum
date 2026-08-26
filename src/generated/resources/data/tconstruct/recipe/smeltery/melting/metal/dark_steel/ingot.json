@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/dark_steel"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/dark_steel/ingot",
+  "ingredient": "#c:ingots/dark_steel",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_dark_steel"
+  },
+  "temperature": 1200,
+  "time": 72
+}

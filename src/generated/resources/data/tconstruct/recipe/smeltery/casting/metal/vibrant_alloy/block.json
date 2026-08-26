@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/vibrant_alloy"
+    }
+  ],
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 203,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_vibrant_alloy"
+  },
+  "id": "tconstruct:smeltery/casting/metal/vibrant_alloy/block",
+  "result": {
+    "tag": "c:storage_blocks/vibrant_alloy"
+  }
+}

@@ -234,10 +234,36 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
       MaterialIds.necronium, Ingredient.of(TinkerMaterials.necroniumBone), 1, 1, folder + "necronium");
     metalMaterialRecipe(consumer, MaterialIds.electrum, folder, "electrum", true);
     metalMaterialRecipe(consumer, MaterialIds.steeleaf, folder, "steeleaf", true);
+    metalMaterialRecipe(consumer, MaterialIds.conductiveAlloy, folder, "conductive_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.redstoneAlloy,   folder, "redstone_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.pulsatingAlloy,  folder, "pulsating_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.energeticAlloy,  folder, "energetic_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.soularium,       folder, "soularium", true);
     // no plated slimewood, use repair kits
     // tier 4 (mod integration)
     metalMaterialRecipe(consumer, MaterialIds.fiery, folder, "fiery", true);
     metalMaterialRecipe(consumer, MaterialIds.nicrosil, folder, "nicrosil", true);
+    metalMaterialRecipe(consumer, MaterialIds.vibrantAlloy, folder, "vibrant_alloy", true);
+    metalMaterialRecipe(consumer, MaterialIds.darkSteel,    folder, "dark_steel", true);
+    metalMaterialRecipe(consumer, MaterialIds.endSteel,     folder, "end_steel", true);
+    materialRecipe(withCondition(consumer, tagCondition("gems/certus_quartz")), MaterialIds.certusQuartz, LegacyIngredientType.ofTag(getItemTag(COMMON, "gems/certus_quartz")), 1, 1, folder + "certus_quartz/gem");
+    materialRecipe(withCondition(consumer, tagCondition("gems/fluix")), MaterialIds.fluix, LegacyIngredientType.ofTag(getItemTag(COMMON, "gems/fluix")), 1, 1, folder + "fluix/gem");
+    materialRecipe(withCondition(consumer, tagCondition("ingots/quantum_alloy")), MaterialIds.quantumAlloy, LegacyIngredientType.ofTag(getItemTag(COMMON, "ingots/quantum_alloy")), 1, 1, folder + "quantum_alloy/ingot");
+    materialRecipe(withCondition(consumer, tagCondition("storage_blocks/quantum_alloy")), MaterialIds.quantumAlloy, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/quantum_alloy")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "ingots/quantum_alloy")), folder + "quantum_alloy/block");
+    materialRecipe(withCondition(consumer, tagCondition("ingots/infused_entro")), MaterialIds.entro, LegacyIngredientType.ofTag(getItemTag(COMMON, "ingots/infused_entro")), 1, 1, folder + "entro/ingot");
+    materialRecipe(withCondition(consumer, tagCondition("gems/entro")), MaterialIds.entro, LegacyIngredientType.ofTag(getItemTag(COMMON, "gems/entro")), 1, 1, folder + "entro/gem");
+    materialRecipe(withCondition(consumer, tagCondition("ingots/energized_steel")), MaterialIds.energizedSteel, LegacyIngredientType.ofTag(getItemTag(COMMON, "ingots/energized_steel")), 1, 1, folder + "energized_steel/ingot");
+    materialRecipe(withCondition(consumer, tagCondition("storage_blocks/energized_steel")), MaterialIds.energizedSteel, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/energized_steel")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "ingots/energized_steel")), folder + "energized_steel/block");
+    materialRecipe(withCondition(consumer, tagCondition("gems/blazing_crystal")), MaterialIds.blazingCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "gems/blazing_crystal")), 1, 1, folder + "blazing_crystal/gem");
+    materialRecipe(withCondition(consumer, tagCondition("storage_blocks/blazing_crystal")), MaterialIds.blazingCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/blazing_crystal")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "gems/blazing_crystal")), folder + "blazing_crystal/block");
+    materialRecipe(withCondition(consumer, tagCondition("gems/niotic_crystal")), MaterialIds.nioticCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "gems/niotic_crystal")), 1, 1, folder + "niotic_crystal/gem");
+    materialRecipe(withCondition(consumer, tagCondition("storage_blocks/niotic_crystal")), MaterialIds.nioticCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/niotic_crystal")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "gems/niotic_crystal")), folder + "niotic_crystal/block");
+    materialRecipe(withCondition(consumer, tagCondition("gems/spirited_crystal")), MaterialIds.spiritedCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "gems/spirited_crystal")), 1, 1, folder + "spirited_crystal/gem");
+    materialRecipe(withCondition(consumer, tagCondition("storage_blocks/spirited_crystal")), MaterialIds.spiritedCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/spirited_crystal")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "gems/spirited_crystal")), folder + "spirited_crystal/block");
+    materialRecipe(withCondition(consumer, tagCondition("gems/nitro_crystal")), MaterialIds.nitroCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "gems/nitro_crystal")), 1, 1, folder + "nitro_crystal/gem");
+    materialRecipe(withCondition(consumer, tagCondition("storage_blocks/nitro_crystal")), MaterialIds.nitroCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/nitro_crystal")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "gems/nitro_crystal")), folder + "nitro_crystal/block");
+    materialRecipe(withCondition(consumer, tagCondition("raw_materials/uraninite")), MaterialIds.uraninite, LegacyIngredientType.ofTag(getItemTag(COMMON, "raw_materials/uraninite")), 1, 1, folder + "uraninite/raw");
+    materialRecipe(withCondition(consumer, tagCondition("storage_blocks/uraninite")), MaterialIds.uraninite, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/uraninite")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "raw_materials/uraninite")), folder + "uraninite/block");
 
     // slimesuit
     materialRecipe(consumer, MaterialIds.enderslime, Ingredient.of(TinkerWorld.enderGeode), 1, 1, folder + "enderslime");
@@ -337,6 +363,11 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     compatMeltingCasting(consumer, MaterialIds.electrum,   TinkerFluids.moltenElectrum,   "silver", folder);
     compatMeltingCasting(consumer, MaterialIds.bronze,     TinkerFluids.moltenBronze,     "tin", folder);
     compatMeltingCasting(consumer, MaterialIds.steeleaf,   TinkerFluids.moltenSteeleaf, folder);
+    compatMeltingCasting(consumer, MaterialIds.conductiveAlloy, TinkerFluids.moltenConductiveAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.redstoneAlloy,   TinkerFluids.moltenRedstoneAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.pulsatingAlloy,  TinkerFluids.moltenPulsatingAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.energeticAlloy,  TinkerFluids.moltenEnergeticAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.soularium,       TinkerFluids.moltenSoularium, folder);
     // pewter has two different ores that let it appear, tin and lead
     materialMeltingCasting(
       withCondition(consumer, new OrCondition(List.of(tagCondition("ingots/pewter"), tagCondition("ingots/tin"), tagCondition("ingots/lead")))),
@@ -354,6 +385,9 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     materialMeltingCasting(
       withCondition(consumer, new OrCondition(List.of(tagCondition("ingots/nicrosil"), tagCondition("ingots/tin"), tagCondition("ingots/nickel"), tagCondition("ingots/chromium")))),
       MaterialIds.nicrosil, TinkerFluids.moltenNicrosil, folder);
+    compatMeltingCasting(consumer, MaterialIds.vibrantAlloy, TinkerFluids.moltenVibrantAlloy, folder);
+    compatMeltingCasting(consumer, MaterialIds.darkSteel,    TinkerFluids.moltenDarkSteel, folder);
+    compatMeltingCasting(consumer, MaterialIds.endSteel,     TinkerFluids.moltenEndSteel, folder);
 
     // slimesuit - slime
     materialMeltingCasting(consumer, MaterialIds.earthslime, TinkerFluids.earthSlime, FluidValues.SLIMEBALL, folder);

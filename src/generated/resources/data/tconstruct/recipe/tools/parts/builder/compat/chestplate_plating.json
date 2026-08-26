@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 6,
+  "id": "tconstruct:tools/parts/builder/compat/chestplate_plating",
+  "pattern": "tconstruct:chestplate_plating",
+  "result": {
+    "item": "tconstruct:chestplate_plating"
+  }
+}

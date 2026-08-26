@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/end_steel"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/end_steel/nugget",
+  "ingredient": "#c:nuggets/end_steel",
+  "material": "tconstruct:end_steel",
+  "needed": 9,
+  "value": 1
+}

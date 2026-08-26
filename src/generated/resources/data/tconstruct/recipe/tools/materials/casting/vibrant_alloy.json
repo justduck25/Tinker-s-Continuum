@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/vibrant_alloy"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_vibrant_alloy"
+  },
+  "id": "tconstruct:tools/materials/casting/vibrant_alloy",
+  "output": "tconstruct:vibrant_alloy",
+  "temperature": 1050
+}

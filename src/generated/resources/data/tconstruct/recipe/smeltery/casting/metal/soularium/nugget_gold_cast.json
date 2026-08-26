@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/soularium"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/nugget",
+  "cooling_time": 22,
+  "fluid": {
+    "amount": 10,
+    "tag": "c:molten_soularium"
+  },
+  "id": "tconstruct:smeltery/casting/metal/soularium/nugget_gold_cast",
+  "result": {
+    "tag": "c:nuggets/soularium"
+  }
+}

@@ -87,7 +87,7 @@ if (System.getenv().ARTIFACT_VERSION == null) {
     artifact_version = "${mod_version}.${project.buildInfo.buildNum}"
 }
 if (System.getenv().ARTIFACT_VERSION != null) {
-    artifact_version = "${system.getenv().ARTIFACT_VERSION}"
+    artifact_version = "${System.getenv().ARTIFACT_VERSION}"
 }
 
 version = "${minecraft_version}-${artifact_version}"
@@ -248,6 +248,7 @@ tasks.named('processResources', ProcessResources).configure {
         'loader_range': loader_range,
         'minecraft_range': minecraft_range,
         'neoforge_version': neoforge_version,
+        'neoforge_range': neoforge_range,
         'mantle_range': mantle_range,
         'jei_range': jei_range,
         'json_things_range': json_things_range,

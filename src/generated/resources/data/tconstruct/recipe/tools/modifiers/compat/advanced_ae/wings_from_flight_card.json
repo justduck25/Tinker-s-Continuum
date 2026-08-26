@@ -1,0 +1,32 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "advanced_ae"
+    }
+  ],
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "check_trait_level": true,
+  "id": "tconstruct:tools/modifiers/compat/advanced_ae/wings_from_flight_card",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "advanced_ae:flight_card"
+      ]
+    },
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "advanced_ae:quantum_alloy"
+      ]
+    }
+  ],
+  "level": 1,
+  "result": "tconstruct:wings",
+  "slots": {
+    "abilities": 2
+  },
+  "tools": "#tconstruct:modifiable/armor/chestplate"
+}

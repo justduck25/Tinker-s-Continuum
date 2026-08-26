@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gems/nitro_crystal"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/nitro_crystal/gem",
+  "ingredient": "#c:gems/nitro_crystal",
+  "material": "tconstruct:nitro_crystal",
+  "needed": 1,
+  "value": 1
+}

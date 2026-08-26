@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/energetic_alloy"
+    }
+  ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/energetic_alloy",
+  "input": "tconstruct:energetic_alloy",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_energetic_alloy"
+  },
+  "temperature": 950
+}

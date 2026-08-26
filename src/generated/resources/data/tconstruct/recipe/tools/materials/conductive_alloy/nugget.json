@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/conductive_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/conductive_alloy/nugget",
+  "ingredient": "#c:nuggets/conductive_alloy",
+  "material": "tconstruct:conductive_alloy",
+  "needed": 9,
+  "value": 1
+}

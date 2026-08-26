@@ -150,9 +150,27 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
     addCompatAlloy(MaterialIds.platedSlimewood, 3, ORDER_COMPAT + ORDER_SPECIAL, "zinc");
     addCompatMaterial(MaterialIds.necronium,       3, ORDER_COMPAT + ORDER_WEAPON, true, "ingots/uranium");
     addCompatMetalMaterial(MaterialIds.steeleaf, 3, ORDER_COMPAT + ORDER_SPECIAL);
+    addCompatMetalMaterial(MaterialIds.conductiveAlloy, 3, ORDER_COMPAT + ORDER_GENERAL);
+    addCompatMetalMaterial(MaterialIds.redstoneAlloy,   3, ORDER_COMPAT + ORDER_HARVEST);
+    addCompatMetalMaterial(MaterialIds.pulsatingAlloy,  3, ORDER_COMPAT + ORDER_SPECIAL);
+    addCompatMetalMaterial(MaterialIds.energeticAlloy,  3, ORDER_COMPAT + ORDER_RANGED);
+    addCompatMetalMaterial(MaterialIds.soularium,       3, ORDER_COMPAT + ORDER_WEAPON);
     // tier 4 (mod integration)
     addCompatMetalMaterial(MaterialIds.fiery,           4, ORDER_COMPAT + ORDER_END);
     addCompatAlloy(MaterialIds.nicrosil, 4, ORDER_COMPAT + ORDER_WEAPON,  or(tagExistsCondition("ingots/tin"), tagExistsCondition("ingots/nickel"), tagExistsCondition("ingots/chromium")));
+    addCompatMetalMaterial(MaterialIds.vibrantAlloy, 4, ORDER_COMPAT + ORDER_RANGED);
+    addCompatMetalMaterial(MaterialIds.darkSteel,    4, ORDER_COMPAT + ORDER_WEAPON);
+    addCompatMetalMaterial(MaterialIds.endSteel,     4, ORDER_COMPAT + ORDER_END);
+    addCompatMaterial(MaterialIds.certusQuartz, 2, ORDER_COMPAT + ORDER_RANGED, true, "gems/certus_quartz");
+    addCompatMaterial(MaterialIds.fluix,        3, ORDER_COMPAT + ORDER_SPECIAL, true, "gems/fluix");
+    addCompatMaterial(MaterialIds.quantumAlloy, 4, ORDER_COMPAT + ORDER_GENERAL, true, "ingots/quantum_alloy", "storage_blocks/quantum_alloy");
+    addCompatMaterial(MaterialIds.entro,        4, ORDER_COMPAT + ORDER_END, true, "ingots/infused_entro", "gems/entro");
+    addCompatMaterial(MaterialIds.energizedSteel, 3, ORDER_COMPAT + ORDER_GENERAL, true, "ingots/energized_steel", "storage_blocks/energized_steel");
+    addCompatMaterial(MaterialIds.blazingCrystal, 3, ORDER_COMPAT + ORDER_SPECIAL, true, "gems/blazing_crystal", "storage_blocks/blazing_crystal");
+    addCompatMaterial(MaterialIds.nioticCrystal,  3, ORDER_COMPAT + ORDER_RANGED,  true, "gems/niotic_crystal", "storage_blocks/niotic_crystal");
+    addCompatMaterial(MaterialIds.spiritedCrystal,4, ORDER_COMPAT + ORDER_SPECIAL, true, "gems/spirited_crystal", "storage_blocks/spirited_crystal");
+    addCompatMaterial(MaterialIds.nitroCrystal,   4, ORDER_COMPAT + ORDER_END,     true, "gems/nitro_crystal", "storage_blocks/nitro_crystal");
+    addCompatMaterial(MaterialIds.uraninite,      2, ORDER_COMPAT + ORDER_HARVEST, true, "raw_materials/uraninite", "storage_blocks/uraninite");
 
     // slimesuit
     addMaterial(MaterialIds.clay,  2, ORDER_REPAIR + 5, true);

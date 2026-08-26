@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "type": "neoforge:or",
+    "values": [
+      {
+        "type": "tconstruct:config",
+        "prop": "force_integration_materials"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:gems/blazing_crystal"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:storage_blocks/blazing_crystal"
+      }
+    ]
+  },
+  "craftable": true,
+  "hidden": false,
+  "sortOrder": 8,
+  "tier": 3
+}

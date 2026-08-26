@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/vibrant_alloy"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/vibrant_alloy/nugget",
+  "ingredient": "#c:nuggets/vibrant_alloy",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_vibrant_alloy"
+  },
+  "temperature": 1050,
+  "time": 23
+}

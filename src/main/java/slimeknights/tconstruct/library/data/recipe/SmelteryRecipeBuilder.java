@@ -502,8 +502,8 @@ public class SmelteryRecipeBuilder {
   public SmelteryRecipeBuilder rawOre() {
     assert oreRate != null;
     assert baseUnit != 0;
-    oreMelting(1, "raw_materials/",      null, 1.5f, "raw",       false);
-    oreMelting(9, "storage_blocks/raw_", null, 6.0f, "raw_block", false);
+    oreMelting(1, "raw_materials/",      null, 1.5f, "raw",       true);
+    oreMelting(9, "storage_blocks/raw_", null, 6.0f, "raw_block", true);
     return this;
   }
 

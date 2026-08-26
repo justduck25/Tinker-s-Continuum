@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/end_steel"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/single_use/nugget",
+  "cast_consumed": true,
+  "cooling_time": 25,
+  "fluid": {
+    "amount": 10,
+    "tag": "c:molten_end_steel"
+  },
+  "id": "tconstruct:smeltery/casting/metal/end_steel/nugget_sand_cast",
+  "result": {
+    "tag": "c:nuggets/end_steel"
+  }
+}

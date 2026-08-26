@@ -203,6 +203,46 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
       new HeadMaterialStats(200, 8, DIAMOND, 3),
       HandleMaterialStats.multipliers().durability(0.65f).attackSpeed(1.15f).miningSpeed(1.15f).build(),
       StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.conductiveAlloy,
+                     new HeadMaterialStats(520, 7.0f, DIAMOND, 2.0f),
+                     HandleMaterialStats.multipliers().durability(0.95f).miningSpeed(1.10f).attackSpeed(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.redstoneAlloy,
+                     new HeadMaterialStats(260, 9.0f, IRON, 1.0f),
+                     HandleMaterialStats.multipliers().durability(0.70f).miningSpeed(1.20f).attackSpeed(1.15f).attackDamage(0.90f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.pulsatingAlloy,
+                     new HeadMaterialStats(520, 6.5f, DIAMOND, 2.25f),
+                     HandleMaterialStats.multipliers().durability(0.95f).miningSpeed(1.05f).attackSpeed(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.energeticAlloy,
+                     new HeadMaterialStats(640, 8.5f, DIAMOND, 1.75f),
+                     HandleMaterialStats.multipliers().durability(0.90f).miningSpeed(1.20f).attackSpeed(1.10f).attackDamage(0.95f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.soularium,
+                     new HeadMaterialStats(450, 5.5f, DIAMOND, 2.75f),
+                     HandleMaterialStats.multipliers().durability(0.85f).miningSpeed(0.90f).attackSpeed(0.95f).attackDamage(1.15f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.certusQuartz,
+                     new HeadMaterialStats(260, 6.5f, IRON, 1.5f),
+                     HandleMaterialStats.multipliers().durability(0.85f).miningSpeed(1.10f).attackSpeed(1.10f).attackDamage(0.95f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.fluix,
+                     new HeadMaterialStats(520, 7.5f, DIAMOND, 2.0f),
+                     HandleMaterialStats.multipliers().durability(0.95f).miningSpeed(1.15f).attackSpeed(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.energizedSteel,
+                     new HeadMaterialStats(590, 7.0f, DIAMOND, 2.25f),
+                     HandleMaterialStats.multipliers().durability(1.00f).miningSpeed(1.10f).attackSpeed(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.blazingCrystal,
+                     new HeadMaterialStats(520, 7.25f, DIAMOND, 2.50f),
+                     HandleMaterialStats.multipliers().durability(0.90f).miningSpeed(1.15f).attackSpeed(1.05f).attackDamage(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.nioticCrystal,
+                     new HeadMaterialStats(650, 8.0f, DIAMOND, 2.10f),
+                     HandleMaterialStats.multipliers().durability(0.95f).miningSpeed(1.20f).attackSpeed(1.10f).attackDamage(0.95f).build(),
+                     StatlessMaterialStats.BINDING);
 
     // tier 4
     // vanilla netherite: 2031, 9f, NETHERITE, 4f
@@ -250,6 +290,38 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
       new HeadMaterialStats(816, 6f, NETHERITE, 3.16f),
       HandleMaterialStats.multipliers().durability(1.16f).miningSpeed(0.92f).attackSpeed(1.16f).attackDamage(0.92f).build(),
       StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.vibrantAlloy,
+                     new HeadMaterialStats(900, 9.0f, NETHERITE, 2.0f),
+                     HandleMaterialStats.multipliers().durability(1.00f).miningSpeed(1.25f).attackSpeed(1.15f).attackDamage(0.90f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.darkSteel,
+                     new HeadMaterialStats(1100, 7.0f, NETHERITE, 3.0f),
+                     HandleMaterialStats.multipliers().durability(1.20f).miningSpeed(0.95f).attackSpeed(0.95f).attackDamage(1.10f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.endSteel,
+                     new HeadMaterialStats(1350, 8.0f, NETHERITE, 3.25f),
+                     HandleMaterialStats.multipliers().durability(1.15f).miningSpeed(1.10f).attackDamage(1.10f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.quantumAlloy,
+                     new HeadMaterialStats(1000, 8.5f, NETHERITE, 2.75f),
+                     HandleMaterialStats.multipliers().durability(1.05f).miningSpeed(1.15f).attackSpeed(1.05f).attackDamage(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.entro,
+                     new HeadMaterialStats(850, 8.0f, NETHERITE, 3.0f),
+                     HandleMaterialStats.multipliers().durability(1.00f).miningSpeed(1.10f).attackSpeed(1.10f).attackDamage(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.spiritedCrystal,
+                     new HeadMaterialStats(850, 8.5f, NETHERITE, 2.75f),
+                     HandleMaterialStats.multipliers().durability(1.00f).miningSpeed(1.20f).attackSpeed(1.10f).attackDamage(1.00f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.nitroCrystal,
+                     new HeadMaterialStats(1100, 9.0f, NETHERITE, 3.25f),
+                     HandleMaterialStats.multipliers().durability(1.05f).miningSpeed(1.25f).attackSpeed(1.15f).attackDamage(1.05f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.uraninite,
+                     new HeadMaterialStats(360, 5.5f, IRON, 1.75f),
+                     HandleMaterialStats.multipliers().durability(0.85f).miningSpeed(0.95f).attackSpeed(0.95f).build(),
+                     StatlessMaterialStats.BINDING);
   }
 
   private void addRanged() {
@@ -370,6 +442,36 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.steeleaf,
       new LimbMaterialStats(200, 0, 0, 0.15f),
       new GripMaterialStats(-0.35f, 0, 2.75f));
+    addMaterialStats(MaterialIds.conductiveAlloy,
+                     new LimbMaterialStats(520, 0.05f, 0.05f, -0.05f),
+                     new GripMaterialStats(0.05f, 0.00f, 2.0f));
+    addMaterialStats(MaterialIds.redstoneAlloy,
+                     new LimbMaterialStats(260, 0.20f, -0.10f, -0.05f),
+                     new GripMaterialStats(-0.25f, 0.10f, 1.0f));
+    addMaterialStats(MaterialIds.pulsatingAlloy,
+                     new LimbMaterialStats(520, 0.05f, -0.05f, 0.15f),
+                     new GripMaterialStats(0.00f, 0.10f, 2.25f));
+    addMaterialStats(MaterialIds.energeticAlloy,
+                     new LimbMaterialStats(640, 0.15f, 0.05f, -0.10f),
+                     new GripMaterialStats(-0.10f, 0.05f, 1.75f));
+    addMaterialStats(MaterialIds.soularium,
+                     new LimbMaterialStats(450, -0.05f, 0.10f, 0.05f),
+                     new GripMaterialStats(-0.15f, 0.05f, 2.75f));
+    addMaterialStats(MaterialIds.certusQuartz,
+                     new LimbMaterialStats(260, 0.10f, -0.05f, 0.05f),
+                     new GripMaterialStats(-0.15f, 0.10f, 1.5f));
+    addMaterialStats(MaterialIds.fluix,
+                     new LimbMaterialStats(520, 0.15f, 0.05f, 0.00f),
+                     new GripMaterialStats(0.00f, 0.10f, 2.0f));
+    addMaterialStats(MaterialIds.energizedSteel,
+                     new LimbMaterialStats(590, 0.05f, 0.05f, 0.00f),
+                     new GripMaterialStats(0.00f, 0.05f, 2.25f));
+    addMaterialStats(MaterialIds.blazingCrystal,
+                     new LimbMaterialStats(520, 0.10f, 0.10f, -0.05f),
+                     new GripMaterialStats(-0.10f, 0.05f, 2.50f));
+    addMaterialStats(MaterialIds.nioticCrystal,
+                     new LimbMaterialStats(650, 0.15f, 0.10f, 0.05f),
+                     new GripMaterialStats(-0.05f, 0.10f, 2.10f));
 
 
     // tier 4
@@ -405,6 +507,30 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.nicrosil,
       new LimbMaterialStats(816, 0.16f, -0.08f, 0),
       new GripMaterialStats(0.16f, -0.16f, 3.16f));
+    addMaterialStats(MaterialIds.vibrantAlloy,
+                     new LimbMaterialStats(900, 0.20f, 0.10f, -0.05f),
+                     new GripMaterialStats(0.00f, 0.10f, 2.0f));
+    addMaterialStats(MaterialIds.darkSteel,
+                     new LimbMaterialStats(1100, -0.15f, 0.20f, -0.05f),
+                     new GripMaterialStats(0.15f, -0.05f, 3.0f));
+    addMaterialStats(MaterialIds.endSteel,
+                     new LimbMaterialStats(1350, -0.10f, 0.25f, 0.05f),
+                     new GripMaterialStats(0.10f, 0.00f, 3.25f));
+    addMaterialStats(MaterialIds.quantumAlloy,
+                     new LimbMaterialStats(1000, 0.05f, 0.15f, 0.05f),
+                     new GripMaterialStats(0.05f, 0.05f, 2.75f));
+    addMaterialStats(MaterialIds.entro,
+                     new LimbMaterialStats(850, 0.15f, 0.10f, 0.10f),
+                     new GripMaterialStats(0.00f, 0.15f, 3.0f));
+    addMaterialStats(MaterialIds.spiritedCrystal,
+                     new LimbMaterialStats(850, 0.20f, 0.10f, 0.00f),
+                     new GripMaterialStats(0.00f, 0.10f, 2.75f));
+    addMaterialStats(MaterialIds.nitroCrystal,
+                     new LimbMaterialStats(1100, 0.25f, 0.15f, -0.05f),
+                     new GripMaterialStats(0.05f, 0.10f, 3.25f));
+    addMaterialStats(MaterialIds.uraninite,
+                     new LimbMaterialStats(360, -0.05f, 0.05f, 0.05f),
+                     new GripMaterialStats(-0.15f, 0.05f, 1.75f));
   }
 
   private void addAmmo() {
@@ -431,6 +557,8 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.blaze, StatlessMaterialStats.ARROW_SHAFT);
     addMaterialStats(MaterialIds.venombone, StatlessMaterialStats.ARROW_SHAFT);
     addMaterialStats(MaterialIds.steeleaf, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.certusQuartz, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.fluix, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.slimeball, StatlessMaterialStats.FLETCHING);
     addMaterialStats(MaterialIds.gunpowder, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.redstone, StatlessMaterialStats.ARROW_HEAD);
@@ -447,6 +575,14 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.enderslime, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.dragonScale, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.shulker, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.quantumAlloy, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.entro, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.energizedSteel, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.blazingCrystal, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.nioticCrystal, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.spiritedCrystal, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.nitroCrystal, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.uraninite, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.blazewood, StatlessMaterialStats.ARROW_SHAFT);
     addMaterialStats(MaterialIds.blazingBone, StatlessMaterialStats.ARROW_SHAFT);
     addMaterialStats(MaterialIds.knightly, StatlessMaterialStats.ARROW_HEAD);
@@ -502,6 +638,16 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addArmorShieldStats(MaterialIds.pewter,     PlatingMaterialStats.builder().durabilityFactor(16).armor(2, 5, 7, 2), StatlessMaterialStats.MAILLE);
     addArmorShieldStats(MaterialIds.electrum,   PlatingMaterialStats.builder().durabilityFactor(14).armor(1, 3, 4, 2), StatlessMaterialStats.MAILLE);
     addArmorShieldStats(MaterialIds.steeleaf,   PlatingMaterialStats.builder().durabilityFactor(10).armor(2, 5, 7, 2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.conductiveAlloy, PlatingMaterialStats.builder().durabilityFactor(22).armor(1, 4, 5, 2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.redstoneAlloy,   PlatingMaterialStats.builder().durabilityFactor( 8).armor(1, 2, 3, 1), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.pulsatingAlloy,  PlatingMaterialStats.builder().durabilityFactor(20).armor(1, 4, 5, 2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.energeticAlloy,  PlatingMaterialStats.builder().durabilityFactor(24).armor(2, 4, 5, 2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.soularium,       PlatingMaterialStats.builder().durabilityFactor(18).armor(1, 3, 5, 2).toughness(1), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.certusQuartz,    PlatingMaterialStats.builder().durabilityFactor(13).armor(1, 3, 4, 1), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.fluix,           PlatingMaterialStats.builder().durabilityFactor(22).armor(2, 4, 5, 2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.energizedSteel,  PlatingMaterialStats.builder().durabilityFactor(21).armor(2, 4, 5, 2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.blazingCrystal,  PlatingMaterialStats.builder().durabilityFactor(19).armor(2, 4, 5, 2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.nioticCrystal,   PlatingMaterialStats.builder().durabilityFactor(24).armor(2, 4, 6, 2), StatlessMaterialStats.MAILLE);
     // tier 4
     addMaterialStats(MaterialIds.blazewood, StatlessMaterialStats.SHIELD_CORE);
     addMaterialStats(MaterialIds.blazingBone, StatlessMaterialStats.SHIELD_CORE);
@@ -521,6 +667,14 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     // tier 4 (compat)
     addArmorShieldStats(MaterialIds.fiery, PlatingMaterialStats.builder().durabilityFactor(25).armor(3, 6, 8, 3).toughness(1.5f), StatlessMaterialStats.MAILLE);
     addArmorShieldStats(MaterialIds.nicrosil, PlatingMaterialStats.builder().durabilityFactor(28).armor(2, 5, 7, 2).knockbackResistance(0.16f), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.vibrantAlloy, PlatingMaterialStats.builder().durabilityFactor(30).armor(2, 5, 6, 2).toughness(1), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.darkSteel,    PlatingMaterialStats.builder().durabilityFactor(35).armor(2, 5, 7, 2).toughness(2).knockbackResistance(0.05f), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.endSteel,     PlatingMaterialStats.builder().durabilityFactor(42).armor(3, 6, 8, 3).toughness(2).knockbackResistance(0.05f), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.quantumAlloy, PlatingMaterialStats.builder().durabilityFactor(32).armor(2, 5, 7, 2).toughness(2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.entro,        PlatingMaterialStats.builder().durabilityFactor(28).armor(2, 5, 7, 2).toughness(1).knockbackResistance(0.05f), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.spiritedCrystal, PlatingMaterialStats.builder().durabilityFactor(30).armor(2, 5, 7, 2).toughness(1), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.nitroCrystal,    PlatingMaterialStats.builder().durabilityFactor(38).armor(3, 6, 8, 3).toughness(2), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.uraninite,       PlatingMaterialStats.builder().durabilityFactor(12).armor(1, 3, 4, 1), StatlessMaterialStats.MAILLE);
   }
 
   private void addSlimesuit() {

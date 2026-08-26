@@ -51,6 +51,38 @@
       "required": false
     },
     {
+      "id": "#c:storage_blocks/conductive_alloy",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/energetic_alloy",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/vibrant_alloy",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/redstone_alloy",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/pulsating_alloy",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/dark_steel",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/soularium",
+      "required": false
+    },
+    {
+      "id": "#c:storage_blocks/end_steel",
+      "required": false
+    },
+    {
       "id": "#c:storage_blocks/refined_glowstone",
       "required": false
     },

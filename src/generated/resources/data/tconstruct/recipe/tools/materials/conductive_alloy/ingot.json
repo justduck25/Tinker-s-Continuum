@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/conductive_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/conductive_alloy/ingot",
+  "ingredient": "#c:ingots/conductive_alloy",
+  "material": "tconstruct:conductive_alloy",
+  "needed": 1,
+  "value": 1
+}

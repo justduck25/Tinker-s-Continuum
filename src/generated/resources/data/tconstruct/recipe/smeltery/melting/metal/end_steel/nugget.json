@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/end_steel"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/end_steel/nugget",
+  "ingredient": "#c:nuggets/end_steel",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_end_steel"
+  },
+  "temperature": 1350,
+  "time": 25
+}

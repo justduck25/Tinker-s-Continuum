@@ -174,11 +174,37 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addDefaultTraits(MaterialIds.platedSlimewood, TinkerModifiers.overworked, TinkerModifiers.overslime);
     addDefaultTraits(MaterialIds.steeleaf, ModifierIds.experienced);
     addTraits(MaterialIds.steeleaf, AMMO, ModifierIds.looting);
+    addDefaultTraits(MaterialIds.conductiveAlloy, ModifierIds.conductive);
+    addDefaultTraits(MaterialIds.redstoneAlloy, ModifierIds.supercharged);
+    addDefaultTraits(MaterialIds.pulsatingAlloy, ModifierIds.enderference);
+    addTraits(MaterialIds.pulsatingAlloy, ARMOR, ModifierIds.enderclearance);
+    addDefaultTraits(MaterialIds.energeticAlloy, ModifierIds.lightweight);
+    addDefaultTraits(MaterialIds.soularium, ModifierIds.soulbound);
     // tier 4 - mod compat
     addDefaultTraits(MaterialIds.fiery, ModifierIds.autosmelt);
     addTraits(MaterialIds.fiery, ARMOR, ModifierIds.temperedProtection);
     addDefaultTraits(MaterialIds.nicrosil, TinkerModifiers.insatiable);
     addTraits(MaterialIds.nicrosil, ARMOR, ModifierIds.kinetic);
+    addDefaultTraits(MaterialIds.vibrantAlloy, ModifierIds.godspeed);
+    addDefaultTraits(MaterialIds.darkSteel, ModifierIds.ductile);
+    addTraits(MaterialIds.darkSteel, ARMOR, ModifierIds.stalwart);
+    addDefaultTraits(MaterialIds.endSteel, ModifierIds.valiant);
+    addTraits(MaterialIds.endSteel, ARMOR, ModifierIds.enderclearance);
+    addDefaultTraits(MaterialIds.certusQuartz, ModifierIds.crystalbound);
+    addDefaultTraits(MaterialIds.fluix, ModifierIds.enderference);
+    addTraits(MaterialIds.fluix, ARMOR, ModifierIds.enderclearance);
+    addDefaultTraits(MaterialIds.quantumAlloy, ModifierIds.enhanced);
+    addTraits(MaterialIds.quantumAlloy, ARMOR, ModifierIds.projectileProtection);
+    addDefaultTraits(MaterialIds.entro, ModifierIds.enderference);
+    addTraits(MaterialIds.entro, ARMOR, ModifierIds.enderclearance);
+    addDefaultTraits(MaterialIds.energizedSteel, ModifierIds.conductive);
+    addDefaultTraits(MaterialIds.blazingCrystal, ModifierIds.autosmelt);
+    addTraits(MaterialIds.blazingCrystal, ARMOR, ModifierIds.temperedProtection);
+    addDefaultTraits(MaterialIds.nioticCrystal, ModifierIds.crystalbound);
+    addDefaultTraits(MaterialIds.spiritedCrystal, ModifierIds.godspeed);
+    addDefaultTraits(MaterialIds.nitroCrystal, ModifierIds.enhanced);
+    addTraits(MaterialIds.nitroCrystal, ARMOR, ModifierIds.projectileProtection);
+    addDefaultTraits(MaterialIds.uraninite, ModifierIds.magnetic);
 
     // slimesuit slime
     addTraits(MaterialIds.earthslime, SlimeStats.ID, ModifierIds.overgrowth, TinkerModifiers.overslime.getId());

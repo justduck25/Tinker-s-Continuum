@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "type": "neoforge:or",
+    "values": [
+      {
+        "type": "tconstruct:config",
+        "prop": "force_integration_materials"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:ingots/quantum_alloy"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:storage_blocks/quantum_alloy"
+      }
+    ]
+  },
+  "craftable": true,
+  "hidden": false,
+  "sortOrder": 5,
+  "tier": 4
+}

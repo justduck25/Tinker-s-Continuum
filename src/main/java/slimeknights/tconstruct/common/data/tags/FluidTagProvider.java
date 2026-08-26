@@ -96,6 +96,15 @@ public class FluidTagProvider extends FluidTagsProvider {
     fluidTag(TinkerFluids.moltenEnderium);
     fluidTag(TinkerFluids.moltenLumium);
     fluidTag(TinkerFluids.moltenSignalum);
+    // enderio compat alloys
+    fluidTag(TinkerFluids.moltenConductiveAlloy);
+    fluidTag(TinkerFluids.moltenEnergeticAlloy);
+    fluidTag(TinkerFluids.moltenVibrantAlloy);
+    fluidTag(TinkerFluids.moltenRedstoneAlloy);
+    fluidTag(TinkerFluids.moltenPulsatingAlloy);
+    fluidTag(TinkerFluids.moltenDarkSteel);
+    fluidTag(TinkerFluids.moltenSoularium);
+    fluidTag(TinkerFluids.moltenEndSteel);
     // mekanism compat alloys
     fluidTag(TinkerFluids.moltenRefinedGlowstone);
     fluidTag(TinkerFluids.moltenRefinedObsidian);
@@ -216,6 +225,10 @@ public class FluidTagProvider extends FluidTagsProvider {
         TinkerFluids.moltenInvar.getTag(), TinkerFluids.moltenConstantan.getTag(), TinkerFluids.moltenPewter.getTag(),
         // thermal alloys
         TinkerFluids.moltenEnderium.getTag(), TinkerFluids.moltenLumium.getTag(), TinkerFluids.moltenSignalum.getTag(),
+        // enderio alloys
+        TinkerFluids.moltenConductiveAlloy.getTag(), TinkerFluids.moltenEnergeticAlloy.getTag(), TinkerFluids.moltenVibrantAlloy.getTag(),
+        TinkerFluids.moltenRedstoneAlloy.getTag(), TinkerFluids.moltenPulsatingAlloy.getTag(), TinkerFluids.moltenDarkSteel.getTag(),
+        TinkerFluids.moltenSoularium.getTag(), TinkerFluids.moltenEndSteel.getTag(),
         // mekanism alloys
         TinkerFluids.moltenRefinedGlowstone.getTag(), TinkerFluids.moltenRefinedObsidian.getTag(),
         // cosmere alloys

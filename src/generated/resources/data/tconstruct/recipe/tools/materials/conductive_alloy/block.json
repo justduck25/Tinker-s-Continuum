@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/conductive_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/conductive_alloy/block",
+  "ingredient": "#c:storage_blocks/conductive_alloy",
+  "leftover": {
+    "count": 1,
+    "tag": "c:ingots/conductive_alloy"
+  },
+  "material": "tconstruct:conductive_alloy",
+  "needed": 1,
+  "value": 9
+}

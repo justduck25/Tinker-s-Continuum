@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "advanced_ae"
+    }
+  ],
+  "type": "tconstruct:modifier",
+  "allow_crystal": true,
+  "id": "tconstruct:tools/modifiers/compat/advanced_ae/depth_strider_from_swim_speed_card",
+  "inputs": [
+    {
+      "neoforge:ingredient_type": "mantle:item_name",
+      "names": [
+        "advanced_ae:swim_speed_card"
+      ]
+    }
+  ],
+  "level": {
+    "max": 3
+  },
+  "result": "tconstruct:depth_strider",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/boots"
+}

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/quantum_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/quantum_alloy/block",
+  "ingredient": "#c:storage_blocks/quantum_alloy",
+  "leftover": {
+    "count": 1,
+    "tag": "c:ingots/quantum_alloy"
+  },
+  "material": "tconstruct:quantum_alloy",
+  "needed": 1,
+  "value": 9
+}

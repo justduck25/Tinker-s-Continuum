@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gems/spirited_crystal"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/spirited_crystal/gem",
+  "ingredient": "#c:gems/spirited_crystal",
+  "material": "tconstruct:spirited_crystal",
+  "needed": 1,
+  "value": 1
+}

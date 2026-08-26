@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.tools.data;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -50,6 +51,7 @@ import slimeknights.tconstruct.library.recipe.partbuilder.recycle.PartBuilderToo
 import slimeknights.tconstruct.library.recipe.tinkerstation.building.MaterialSwappingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.tinkerstation.building.ToolBuildingRecipeBuilder;
 import slimeknights.tconstruct.library.tools.layout.Patterns;
+import slimeknights.tconstruct.library.tools.part.IMaterialItem;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tables.TinkerTables;
@@ -462,6 +464,10 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
     partWithDummy(consumer, TinkerToolParts.plating.get(ArmorType.CHESTPLATE), TinkerSmeltery.dummyPlating.get(ArmorType.CHESTPLATE), TinkerSmeltery.chestplatePlatingCast, 6, partFolder, castFolder);
     partWithDummy(consumer, TinkerToolParts.plating.get(ArmorType.LEGGINGS),   TinkerSmeltery.dummyPlating.get(ArmorType.LEGGINGS),   TinkerSmeltery.leggingsPlatingCast,   5, partFolder, castFolder);
     partWithDummy(consumer, TinkerToolParts.plating.get(ArmorType.BOOTS),      TinkerSmeltery.dummyPlating.get(ArmorType.BOOTS),      TinkerSmeltery.bootsPlatingCast,      2, partFolder, castFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.HELMET),     3, "helmet",     partFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.CHESTPLATE), 6, "chestplate", partFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.LEGGINGS),   5, "leggings",   partFolder);
+    itemOnlyCompatPlating(consumer, TinkerToolParts.plating.get(ArmorType.BOOTS),      2, "boots",      partFolder);
     partRecipes(consumer, TinkerToolParts.maille, TinkerSmeltery.mailleCast, 2, partFolder, castFolder);
 
     // bowstrings and shield cores are part builder exclusive. Shield core additionally disallows anything that conflicts with casting shield plating (obsidian/nahuatl conflict)
@@ -491,6 +497,14 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .setCost(1)
       .setAllowUncraftable(true)
       .save(consumer, location(partFolder + "builder/fletching"));
+  }
+
+  /** Adds part builder recipes for armor plating so item-only compat materials that have no molten fluid remain craftable. */
+  private void itemOnlyCompatPlating(RecipeOutput consumer, IMaterialItem part, int cost, String name, String partFolder) {
+    PartRecipeBuilder.partRecipe(part)
+      .setPattern(BuiltInRegistries.ITEM.getKey(part.asItem()))
+      .setCost(cost)
+      .save(consumer, location(partFolder + "builder/compat/" + name + "_plating"));
   }
 
   /** Helper to create a casting recipe for a slimeskull variant */

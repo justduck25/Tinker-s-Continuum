@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 5,
+  "id": "tconstruct:tools/parts/builder/compat/leggings_plating",
+  "pattern": "tconstruct:leggings_plating",
+  "result": {
+    "item": "tconstruct:leggings_plating"
+  }
+}

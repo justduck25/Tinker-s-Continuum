@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/redstone_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/redstone_alloy/ingot",
+  "ingredient": "#c:ingots/redstone_alloy",
+  "material": "tconstruct:redstone_alloy",
+  "needed": 1,
+  "value": 1
+}

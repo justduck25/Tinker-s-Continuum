@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/energized_steel"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/energized_steel/block",
+  "ingredient": "#c:storage_blocks/energized_steel",
+  "leftover": {
+    "count": 1,
+    "tag": "c:ingots/energized_steel"
+  },
+  "material": "tconstruct:energized_steel",
+  "needed": 1,
+  "value": 9
+}

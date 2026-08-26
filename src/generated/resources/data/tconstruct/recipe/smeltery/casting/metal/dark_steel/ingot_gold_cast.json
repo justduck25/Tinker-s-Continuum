@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/dark_steel"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/ingot",
+  "cooling_time": 72,
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_dark_steel"
+  },
+  "id": "tconstruct:smeltery/casting/metal/dark_steel/ingot_gold_cast",
+  "result": {
+    "tag": "c:ingots/dark_steel"
+  }
+}

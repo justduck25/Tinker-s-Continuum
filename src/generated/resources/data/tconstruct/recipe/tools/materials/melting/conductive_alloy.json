@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/conductive_alloy"
+    }
+  ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/conductive_alloy",
+  "input": "tconstruct:conductive_alloy",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_conductive_alloy"
+  },
+  "temperature": 800
+}

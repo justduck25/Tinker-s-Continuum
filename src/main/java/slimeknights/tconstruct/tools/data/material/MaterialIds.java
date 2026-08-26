@@ -122,6 +122,24 @@ public final class MaterialIds {
   public static final MaterialId pewter = id("pewter");
   public static final MaterialId nicrosil = id("nicrosil");
   public static final MaterialId platedSlimewood = id("plated_slimewood");
+  public static final MaterialId conductiveAlloy = id("conductive_alloy");
+  public static final MaterialId redstoneAlloy = id("redstone_alloy");
+  public static final MaterialId pulsatingAlloy = id("pulsating_alloy");
+  public static final MaterialId energeticAlloy = id("energetic_alloy");
+  public static final MaterialId vibrantAlloy = id("vibrant_alloy");
+  public static final MaterialId soularium = id("soularium");
+  public static final MaterialId darkSteel = id("dark_steel");
+  public static final MaterialId endSteel = id("end_steel");
+  public static final MaterialId certusQuartz = id("certus_quartz");
+  public static final MaterialId fluix = id("fluix");
+  public static final MaterialId quantumAlloy = id("quantum_alloy");
+  public static final MaterialId entro = id("entro");
+  public static final MaterialId energizedSteel = id("energized_steel");
+  public static final MaterialId blazingCrystal = id("blazing_crystal");
+  public static final MaterialId nioticCrystal = id("niotic_crystal");
+  public static final MaterialId spiritedCrystal = id("spirited_crystal");
+  public static final MaterialId nitroCrystal = id("nitro_crystal");
+  public static final MaterialId uraninite = id("uraninite");
   // twilight forest
   public static final MaterialId ironwood = id("ironwood");
   public static final MaterialId steeleaf = id("steeleaf");

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/redstone_alloy"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/redstone_alloy/block",
+  "ingredient": "#c:storage_blocks/redstone_alloy",
+  "leftover": {
+    "count": 1,
+    "tag": "c:ingots/redstone_alloy"
+  },
+  "material": "tconstruct:redstone_alloy",
+  "needed": 1,
+  "value": 9
+}

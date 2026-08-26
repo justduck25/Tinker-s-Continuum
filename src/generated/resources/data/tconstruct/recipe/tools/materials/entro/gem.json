@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gems/entro"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/entro/gem",
+  "ingredient": "#c:gems/entro",
+  "material": "tconstruct:entro",
+  "needed": 1,
+  "value": 1
+}

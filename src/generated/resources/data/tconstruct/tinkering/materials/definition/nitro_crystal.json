@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "type": "neoforge:or",
+    "values": [
+      {
+        "type": "tconstruct:config",
+        "prop": "force_integration_materials"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:gems/nitro_crystal"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:storage_blocks/nitro_crystal"
+      }
+    ]
+  },
+  "craftable": true,
+  "hidden": false,
+  "sortOrder": 20,
+  "tier": 4
+}

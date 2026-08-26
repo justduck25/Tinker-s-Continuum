@@ -299,6 +299,9 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
       .addToPool("main", ancientTool(TinkerTools.pickaxe.get(), 6, ancientToolData3));
     injectChest("village/village_weaponsmith")
       .addToPool("main", ancientTool(TinkerTools.sword.get(), 6, ancientToolData2));
+
+    addWorldLootIntegrations(randomHighTier, ancientToolData2, ancientToolData3, setFluid);
+
     // fletchers give you some arrows
     inject("hero_of_the_fletcher", "gameplay/hero_of_the_village/fletcher_gift")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.arrow.get())
@@ -388,6 +391,91 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
   private static LootPoolEntryContainer ancientTool(ItemLike item, int weight, AddToolDataFunction.Builder data, LootItemConditionalFunction.Builder<?> fluid) {
     return LootItem.lootTableItem(item).setWeight(weight).apply(data).apply(fluid).build();
   }
+
+  /** Adds low-rate Tinkers' gear to common structure mods, keeping each entry themed to the source table. */
+  private void addWorldLootIntegrations(RandomMaterial highTierMaterial, AddToolDataFunction.Builder ancientToolData2, AddToolDataFunction.Builder ancientToolData3, LootItemConditionalFunction.Builder<?> fluid) {
+    AddToolDataFunction.Builder rareWeapon = rareMeleeWeaponData(highTierMaterial, 3, 2, 3, 2, true);
+    AddToolDataFunction.Builder rareHarvest = rareBroadHarvestData(highTierMaterial, 3, 2, 3, 2, true);
+    AddToolDataFunction.Builder rareShield = rareShieldData(highTierMaterial, 3, 2);
+    AddToolDataFunction.Builder rareArmor = AddToolDataFunction.builder()
+      .addMaterial(highTierMaterial)
+      .addMaterial(highTierMaterial)
+      .addUpgradeSlots(3)
+      .addAbilitySlots(2)
+      .randomModifierCount(2, 3)
+      .addRandomModifier(ModifierIds.protection, 3)
+      .addRandomModifier(ModifierIds.revitalizing, 2)
+      .addRandomModifier(ModifierIds.knockbackResistance, 2)
+      .addRandomModifier(ModifierIds.fireProtection, 2);
+
+    ICondition terralith = new ModLoadedCondition("terralith");
+    inject("compat/terralith/mage_treasure", Identifier.fromNamespaceAndPath("terralith", "mage/treasure"), terralith)
+      .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 2, rareArmor))
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, rareShield));
+    inject("compat/terralith/spire_treasure", Identifier.fromNamespaceAndPath("terralith", "spire/treasure"), terralith)
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 2, rareWeapon))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, rareHarvest));
+    inject("compat/terralith/underground_chest", Identifier.fromNamespaceAndPath("terralith", "underground/chest"), terralith)
+      .addToPool("main", ancientTool(TinkerTools.pickaxe.get(), 3, ancientToolData3));
+    inject("compat/terralith/fortified_village_treasure", Identifier.fromNamespaceAndPath("terralith", "village/fortified/treasure"), terralith)
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 3, ancientToolData2))
+      .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 2, rareArmor));
+    inject("compat/terralith/desert_village_treasure", Identifier.fromNamespaceAndPath("terralith", "village/desert/treasure"), terralith)
+      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 3, ancientToolData2));
+    inject("compat/terralith/witch_hut", Identifier.fromNamespaceAndPath("terralith", "witch_hut"), terralith)
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 2, ancientToolData2));
+
+    ICondition dungeonsAndTaverns = new ModLoadedCondition("mr_dungeons_andtaverns");
+    inject("compat/dungeons_and_taverns/badland_miner_forge", Identifier.fromNamespaceAndPath("nova_structures", "chests/badland_miner_outpost_forge"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.pickaxe.get(), 3, ancientToolData3));
+    inject("compat/dungeons_and_taverns/catacomb_generic", Identifier.fromNamespaceAndPath("nova_structures", "chests/catacomb/catacomb_generic"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 3, ancientToolData2));
+    inject("compat/dungeons_and_taverns/creeping_crypt_vault", Identifier.fromNamespaceAndPath("nova_structures", "chests/creeping_crypt/vault_creeping"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 2, rareWeapon));
+    inject("compat/dungeons_and_taverns/desert_ruin_temple", Identifier.fromNamespaceAndPath("nova_structures", "chests/desert_ruins/desert_ruin_main_temple"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, rareShield));
+    inject("compat/dungeons_and_taverns/end_castle_greater_loot", Identifier.fromNamespaceAndPath("nova_structures", "chests/end_castle/greater_loot"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 2, rareWeapon))
+      .addToPool("main", ancientTool(TinkerTools.excavator.get(), 2, rareHarvest));
+    inject("compat/dungeons_and_taverns/illager_barracks_generic", Identifier.fromNamespaceAndPath("nova_structures", "chests/illager_barracks/generic"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 3, ancientToolData2));
+    inject("compat/dungeons_and_taverns/illager_mansion_smithing", Identifier.withDefaultNamespace("chests/illager_mansion/smithing_room"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 3, ancientToolData2));
+    inject("compat/dungeons_and_taverns/nether_fortress_inside", Identifier.withDefaultNamespace("chests/nether_fortress/fort_inside"), dungeonsAndTaverns)
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, ancientToolData2));
+
+    ICondition betterDesertTemples = new ModLoadedCondition("betterdeserttemples");
+    inject("compat/yung/desert_tomb_pharaoh", Identifier.fromNamespaceAndPath("betterdeserttemples", "chests/tomb_pharaoh"), betterDesertTemples)
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, rareShield));
+    inject("compat/yung/desert_lab", Identifier.fromNamespaceAndPath("betterdeserttemples", "chests/lab"), betterDesertTemples)
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 2, ancientToolData2));
+
+    ICondition betterDungeons = new ModLoadedCondition("betterdungeons");
+    inject("compat/yung/skeleton_dungeon_middle", Identifier.fromNamespaceAndPath("betterdungeons", "skeleton_dungeon/chests/middle"), betterDungeons)
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 3, ancientToolData2));
+    inject("compat/yung/zombie_dungeon_special", Identifier.fromNamespaceAndPath("betterdungeons", "zombie_dungeon/chests/special"), betterDungeons)
+      .addToPool("main", ancientTool(TinkerTools.cleaver.get(), 2, rareWeapon));
+    inject("compat/yung/small_nether_dungeon_common", Identifier.fromNamespaceAndPath("betterdungeons", "small_nether_dungeon/chests/common"), betterDungeons)
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, ancientToolData2));
+
+    inject("compat/yung/jungle_temple_treasure", Identifier.fromNamespaceAndPath("betterjungletemples", "chests/treasure"), new ModLoadedCondition("betterjungletemples"))
+      .addToPool("main", ancientTool(TinkerTools.kama.get(), 2, ancientToolData2));
+    inject("compat/yung/nether_fortress_keep", Identifier.fromNamespaceAndPath("betterfortresses", "chests/keep"), new ModLoadedCondition("betterfortresses"))
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, rareShield));
+    inject("compat/yung/ocean_monument_upper_side_chamber", Identifier.fromNamespaceAndPath("betteroceanmonuments", "chests/upper_side_chamber"), new ModLoadedCondition("betteroceanmonuments"))
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 2, ancientToolData3, fluid));
+
+    ICondition betterStrongholds = new ModLoadedCondition("betterstrongholds");
+    inject("compat/yung/stronghold_armoury", Identifier.fromNamespaceAndPath("betterstrongholds", "chests/armoury"), betterStrongholds)
+      .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 2, rareArmor));
+    inject("compat/yung/stronghold_treasure", Identifier.fromNamespaceAndPath("betterstrongholds", "chests/treasure"), betterStrongholds)
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 2, rareWeapon))
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, rareHarvest));
+
+    inject("compat/yung/witch_hut", Identifier.fromNamespaceAndPath("betterwitchhuts", "chests/hut_0"), new ModLoadedCondition("betterwitchhuts"))
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 2, ancientToolData2));
+  }
+
   /** Makes a seed injection loot entry */
   private static LootPoolEntryContainer makeSeed(FoliageType type, int weight) {
     return LootItem.lootTableItem(TinkerWorld.slimeGrassSeeds.get(type)).setWeight(weight)

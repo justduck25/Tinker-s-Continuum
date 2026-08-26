@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 3,
+  "id": "tconstruct:tools/parts/builder/compat/helmet_plating",
+  "pattern": "tconstruct:helmet_plating",
+  "result": {
+    "item": "tconstruct:helmet_plating"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/soularium"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/soularium/nugget",
+  "ingredient": "#c:nuggets/soularium",
+  "material": "tconstruct:soularium",
+  "needed": 9,
+  "value": 1
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/energized"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/energetic_alloy/gear",
+  "ingredient": "#c:gears/energized",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_energetic_alloy"
+  },
+  "temperature": 950,
+  "time": 130
+}

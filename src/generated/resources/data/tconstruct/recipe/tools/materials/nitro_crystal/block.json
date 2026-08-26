@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/nitro_crystal"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/nitro_crystal/block",
+  "ingredient": "#c:storage_blocks/nitro_crystal",
+  "leftover": {
+    "count": 1,
+    "tag": "c:gems/nitro_crystal"
+  },
+  "material": "tconstruct:nitro_crystal",
+  "needed": 1,
+  "value": 9
+}
