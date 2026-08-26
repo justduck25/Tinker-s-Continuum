@@ -1,0 +1,35 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "advanced_ae"
+    }
+  ],
+  "type": "tconstruct:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "tconstruct:tools/modifiers/compat/advanced_ae/revitalizing_from_defensive_card",
+  "input": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      {
+        "neoforge:ingredient_type": "mantle:item_name",
+        "names": [
+          "advanced_ae:hp_buffer_card"
+        ]
+      },
+      {
+        "neoforge:ingredient_type": "mantle:item_name",
+        "names": [
+          "advanced_ae:regeneration_card"
+        ]
+      }
+    ]
+  },
+  "needed_per_level": 2,
+  "result": "tconstruct:revitalizing",
+  "slots": {
+    "defense": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/worn"
+}

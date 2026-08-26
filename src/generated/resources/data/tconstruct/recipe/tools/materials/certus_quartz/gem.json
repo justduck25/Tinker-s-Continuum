@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gems/certus_quartz"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/certus_quartz/gem",
+  "ingredient": "#c:gems/certus_quartz",
+  "material": "tconstruct:certus_quartz",
+  "needed": 1,
+  "value": 1
+}

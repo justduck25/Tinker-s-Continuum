@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/energized_steel"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/energized_steel/ingot",
+  "ingredient": "#c:ingots/energized_steel",
+  "material": "tconstruct:energized_steel",
+  "needed": 1,
+  "value": 1
+}

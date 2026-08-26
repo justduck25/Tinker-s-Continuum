@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gems/blazing_crystal"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/blazing_crystal/gem",
+  "ingredient": "#c:gems/blazing_crystal",
+  "material": "tconstruct:blazing_crystal",
+  "needed": 1,
+  "value": 1
+}

@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "advanced_ae"
+    }
+  ],
+  "type": "tconstruct:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "id": "tconstruct:tools/modifiers/compat/advanced_ae/fire_protection_from_lava_immunity_card",
+  "input": {
+    "neoforge:ingredient_type": "mantle:item_name",
+    "names": [
+      "advanced_ae:lava_immunity_card"
+    ]
+  },
+  "needed_per_level": 2,
+  "result": "tconstruct:fire_protection",
+  "slots": {
+    "defense": 1
+  },
+  "tools": "#tconstruct:modifiable/armor"
+}

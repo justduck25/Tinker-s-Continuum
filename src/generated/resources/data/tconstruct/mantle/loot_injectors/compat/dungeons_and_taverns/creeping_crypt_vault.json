@@ -1,0 +1,106 @@
+{
+  "conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mr_dungeons_andtaverns"
+    }
+  ],
+  "name": "nova_structures:chests/creeping_crypt/vault_creeping",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "ability_slots": 2,
+              "function": "tconstruct:add_tool_data",
+              "materials": [
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                },
+                {
+                  "type": "tconstruct:random",
+                  "allow_hidden": true,
+                  "material": {
+                    "type": "mantle:inverted",
+                    "inverted_type": "mantle:tag",
+                    "tag": "tconstruct:exclude_from_loot"
+                  },
+                  "tier": {
+                    "min": 3,
+                    "max": 4
+                  }
+                }
+              ],
+              "random_modifier_max": 3,
+              "random_modifier_min": 2,
+              "random_modifiers": [
+                {
+                  "level": 3,
+                  "name": "tconstruct:sharpness"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:luck"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:knockback"
+                },
+                {
+                  "level": 2,
+                  "name": "tconstruct:fiery"
+                },
+                {
+                  "level": 1,
+                  "name": "tconstruct:sweeping_edge"
+                }
+              ],
+              "upgrade_slots": 3
+            }
+          ],
+          "name": "tconstruct:sword",
+          "weight": 2
+        }
+      ],
+      "name": "main"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/blazing_crystal"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/blazing_crystal/block",
+  "ingredient": "#c:storage_blocks/blazing_crystal",
+  "leftover": {
+    "count": 1,
+    "tag": "c:gems/blazing_crystal"
+  },
+  "material": "tconstruct:blazing_crystal",
+  "needed": 1,
+  "value": 9
+}

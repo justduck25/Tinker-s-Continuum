@@ -2999,6 +2999,66 @@
   "material.tconstruct.soularium.ranged": "Keeps the bow bound to you after death.",
   "material.tconstruct.soularium.armor": "Keeps the armor bound to you after death.",
 
+  "material.tconstruct.certus_quartz": "Certus Quartz",
+  "material.tconstruct.certus_quartz.flavor": "Pure storage crystal, cut for precision.",
+  "material.tconstruct.certus_quartz.encyclopedia": "Gains bonus damage potential, but arrow angle is restricted.",
+  "material.tconstruct.certus_quartz.ranged": "Arrows gain crystalbound precision.",
+  "material.tconstruct.certus_quartz.armor": "Applies crystalbound properties while worn.",
+
+  "material.tconstruct.fluix": "Fluix",
+  "material.tconstruct.fluix.flavor": "A charged blend that dislikes sitting still.",
+  "material.tconstruct.fluix.encyclopedia": "Applies enderference, preventing targets from teleporting for a short time.",
+  "material.tconstruct.fluix.ranged": "Arrows apply enderference on hit.",
+  "material.tconstruct.fluix.armor": "Reduces ender penalties and interference while worn.",
+
+  "material.tconstruct.quantum_alloy": "Quantum Alloy",
+  "material.tconstruct.quantum_alloy.flavor": "A dense alloy folded around a tiny impossible edge.",
+  "material.tconstruct.quantum_alloy.encyclopedia": "Grants an extra upgrade slot.",
+  "material.tconstruct.quantum_alloy.ranged": "Grants an extra upgrade slot to ranged tools.",
+  "material.tconstruct.quantum_alloy.armor": "Improves resistance to projectile damage.",
+
+  "material.tconstruct.entro": "Entro",
+  "material.tconstruct.entro.flavor": "Fluix taught to bend the wrong way.",
+  "material.tconstruct.entro.encyclopedia": "Applies enderference, preventing targets from teleporting for a short time.",
+  "material.tconstruct.entro.ranged": "Arrows apply enderference on hit.",
+  "material.tconstruct.entro.armor": "Reduces ender penalties and interference while worn.",
+
+  "material.tconstruct.energized_steel": "Energized Steel",
+  "material.tconstruct.energized_steel.flavor": "Steel with a steady charge running through it.",
+  "material.tconstruct.energized_steel.encyclopedia": "Conducts energy through the tool, improving powered utility.",
+  "material.tconstruct.energized_steel.ranged": "Arrows carry a clean energized edge.",
+  "material.tconstruct.energized_steel.armor": "Conductive plating for technical armor builds.",
+
+  "material.tconstruct.blazing_crystal": "Blazing Crystal",
+  "material.tconstruct.blazing_crystal.flavor": "Hot enough to make the workshop nervous.",
+  "material.tconstruct.blazing_crystal.encyclopedia": "Smelts drops directly while used as a tool material.",
+  "material.tconstruct.blazing_crystal.ranged": "Arrows carry blazing crystal heat.",
+  "material.tconstruct.blazing_crystal.armor": "Improves protection against heat.",
+
+  "material.tconstruct.niotic_crystal": "Niotic Crystal",
+  "material.tconstruct.niotic_crystal.flavor": "Blue energy packed into a sharp lattice.",
+  "material.tconstruct.niotic_crystal.encyclopedia": "Crystalbound precision makes projectiles fly straighter.",
+  "material.tconstruct.niotic_crystal.ranged": "Arrows gain crystalbound precision.",
+  "material.tconstruct.niotic_crystal.armor": "Light charged crystal plating.",
+
+  "material.tconstruct.spirited_crystal": "Spirited Crystal",
+  "material.tconstruct.spirited_crystal.flavor": "It hums like it already knows where to go.",
+  "material.tconstruct.spirited_crystal.encyclopedia": "Improves movement speed through godspeed.",
+  "material.tconstruct.spirited_crystal.ranged": "Arrows move with spirited momentum.",
+  "material.tconstruct.spirited_crystal.armor": "Charged plating that favors mobility.",
+
+  "material.tconstruct.nitro_crystal": "Nitro Crystal",
+  "material.tconstruct.nitro_crystal.flavor": "A very small promise of a very large problem.",
+  "material.tconstruct.nitro_crystal.encyclopedia": "Adds enhanced potential to high-tier tools.",
+  "material.tconstruct.nitro_crystal.ranged": "Arrows carry nitro-grade force.",
+  "material.tconstruct.nitro_crystal.armor": "High-tier charged crystal plating.",
+
+  "material.tconstruct.uraninite": "Uraninite",
+  "material.tconstruct.uraninite.flavor": "A green spark from deep ore veins.",
+  "material.tconstruct.uraninite.encyclopedia": "Draws nearby drops with magnetic energy.",
+  "material.tconstruct.uraninite.ranged": "Arrows carry a faint mineral pull.",
+  "material.tconstruct.uraninite.armor": "Dense mineral plating for early technical armor.",
+
 
   "_comment": "Tier 4 Integration Materials",
 

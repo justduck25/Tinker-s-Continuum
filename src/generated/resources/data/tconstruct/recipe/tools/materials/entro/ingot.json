@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/infused_entro"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/entro/ingot",
+  "ingredient": "#c:ingots/infused_entro",
+  "material": "tconstruct:entro",
+  "needed": 1,
+  "value": 1
+}

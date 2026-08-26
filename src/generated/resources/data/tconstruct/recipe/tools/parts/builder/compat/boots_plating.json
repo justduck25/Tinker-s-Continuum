@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 2,
+  "id": "tconstruct:tools/parts/builder/compat/boots_plating",
+  "pattern": "tconstruct:boots_plating",
+  "result": {
+    "item": "tconstruct:boots_plating"
+  }
+}

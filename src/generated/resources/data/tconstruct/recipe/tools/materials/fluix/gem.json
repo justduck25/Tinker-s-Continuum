@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gems/fluix"
+    }
+  ],
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/fluix/gem",
+  "ingredient": "#c:gems/fluix",
+  "material": "tconstruct:fluix",
+  "needed": 1,
+  "value": 1
+}
