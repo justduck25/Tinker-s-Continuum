@@ -1,29 +1,21 @@
-New Smeltery stuff
-Smelteries can have any rectangular size from 3x3 to 4x7 to 9x9 (from 5x5)
-Smeltery capacity depends directly on size
-Smelteries learned how to use Pyrotheum
-Smeltery GUI shinyness
-Some fixes
-Ported many changes from the latest 1.6.4 version, that didn't make the jump to 1.7.10
-Redstone modifier changes
-Fix heart rendering
-Fix Arrow/Dagger/Bow rendering
-Comparator output for fullness of smeltery and seared tank/glass
+Tinkers' Continuum 26.1.2-3.11.3
 
-Tool Blockbreaking has been reworked. Tinker tools should not cause any problems with other mod blocks anymore.
-Armor Modifiers now have proper book pages.
-Frying pans in the world are now colorable
-Battlesigns can be placed
-Dense Ore Support
-More Localization stuff
-Zombie Flesh can be molten into a small amount of blood
-New slimecrystal graphics by baddaspig
-Many small (liquid) rendering fixes
-Tanks also display the liquids they contain in item form
-Fix stuff derping when putting incorrect modifiers onto armor
-Fix ExtraUtilities Compressed Block support
-No more free toolrod pattern for you
-Many fixes with autosmelting
-Fix Achievements
-Fix black armor slots
-So many small fixes that I don't even know where to start
+Compatibility
+- Added material and tool part compatibility for AE2, Advanced AE, ExtendedAE, Ender IO, Powah, and Jade.
+- Added item-only armor part recipes for supported compat materials so armor pieces can be crafted consistently.
+- Added world loot integration for generated Tinkers' tools with more controlled modifier pools.
+- Added Apotheosis and Apothic Enchanting support for higher modifier caps and vanilla-style enchantment conversion where supported.
+- Added safer recipe visibility and conditional loading for optional compat content.
+
+Fixes
+- Fixed Smeltery recipe sync crashes caused by missing or empty optional tags, including raw steel materials.
+- Fixed slime embellishment recipes by restoring the missing TCon slime embellishment tool tag.
+- Fixed several JEI recipe display issues for compat materials, casting, and tool part recipes.
+- Fixed luck tooltip and enchantment naming so tools show the correct vanilla-style effect such as Fortune, Looting, or Luck of the Sea.
+- Fixed tool loot balance so world-generated tools no longer roll too many random modifiers.
+- Fixed white or missing models for AE2-family compat materials including Certus Quartz, Fluix, Quantum, and Entro.
+- Improved Mantle recipe network errors so broken synced recipes report the failing recipe ID.
+
+Version Safety
+- Restricted NeoForge compatibility to 26.1.2.78 or newer, below 26.2, so unsupported loader versions fail with a clear dependency message.
+- Verified NeoForge 26.1.2.77 is rejected with the expected loader warning.
