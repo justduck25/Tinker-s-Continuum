@@ -70,6 +70,7 @@ import static slimeknights.tconstruct.common.TinkerTags.Items.CHESTPLATES;
 import static slimeknights.tconstruct.common.TinkerTags.Items.CROSSBOWS;
 import static slimeknights.tconstruct.common.TinkerTags.Items.DURABILITY;
 import static slimeknights.tconstruct.common.TinkerTags.Items.DYEABLE;
+import static slimeknights.tconstruct.common.TinkerTags.Items.EMBELLISHMENT_SLIME;
 import static slimeknights.tconstruct.common.TinkerTags.Items.EMBELLISHMENT_WOOD;
 import static slimeknights.tconstruct.common.TinkerTags.Items.FANTASTIC_ARMOR;
 import static slimeknights.tconstruct.common.TinkerTags.Items.FISHING_RODS;
@@ -398,10 +399,10 @@ public class ItemTagProvider extends TagsProvider<Item> {
     addToolTags(TinkerTools.throwingAxe, MULTIPART_TOOL, THROWN_AMMO, UNSALVAGABLE, UNSWAPPABLE, SINGLE_USE);
     // specialized
     addToolTags(TinkerTools.flintAndBrick, DURABILITY, MELEE_WEAPON, INTERACTABLE_RIGHT, AOE, SMALL_TOOLS, BONUS_SLOTS);
-    addToolTags(TinkerTools.skyStaff,      DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS);
-    addToolTags(TinkerTools.earthStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS);
-    addToolTags(TinkerTools.ichorStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS);
-    addToolTags(TinkerTools.enderStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS);
+    addToolTags(TinkerTools.skyStaff,      DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
+    addToolTags(TinkerTools.earthStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
+    addToolTags(TinkerTools.ichorStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
+    addToolTags(TinkerTools.enderStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
     // ancient
     addToolTags(TinkerTools.meltingPan, MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, TRADER_TOOLS, HARVEST_PRIMARY, STAFFS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, BONUS_SLOTS);
     addToolTags(TinkerTools.warPick,    MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, TRADER_TOOLS, HARVEST_PRIMARY, STONE_HARVEST, MELEE_WEAPON, HELD, AOE, CLUSTER_MAX_HARVESTABLES, CROSSBOWS, BONUS_SLOTS, ItemTags.PICKAXES, ItemTags.create(Identifier.parse("c:tools/crossbow")));
