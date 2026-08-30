@@ -2,6 +2,8 @@ package slimeknights.tconstruct.tables.block.entity.table;
 
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -13,6 +15,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.storage.ValueInput;
@@ -360,6 +363,22 @@ public class TinkerStationBlockEntity extends RetexturedTableBlockEntity impleme
     super.saveSynced(tags);
     if (material != IMaterial.UNKNOWN_ID) {
       tags.putString(MATERIAL_TAG, material.toString());
+    }
+  }
+
+  @Override
+  protected void collectImplicitComponents(DataComponentMap.Builder components) {
+    super.collectImplicitComponents(components);
+    CompoundTag tag = new CompoundTag();
+    String textureName = getTextureName();
+    if (!textureName.isEmpty()) {
+      tag.putString(RetexturedHelper.TAG_TEXTURE, textureName);
+    }
+    if (material != IMaterial.UNKNOWN_ID) {
+      tag.putString(MATERIAL_TAG, material.toString());
+    }
+    if (!tag.isEmpty()) {
+      components.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
   }
 

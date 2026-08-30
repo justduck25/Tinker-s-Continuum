@@ -37,6 +37,7 @@ import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.data.ModifierIds;
+import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.FoliageType;
 
@@ -69,6 +70,12 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
     IJsonPredicate<MaterialVariantId> includeInLoot = MaterialPredicate.tag(TinkerTags.Materials.EXCLUDE_FROM_LOOT).inverted();
     RandomMaterial random = RandomMaterial.ancient();
     AddToolDataFunction.Builder ancientToolData2 = AddToolDataFunction.builder().addMaterial(random).addMaterial(random);
+    AddToolDataFunction.Builder commonToolData2 = commonToolData2();
+    AddToolDataFunction.Builder commonHarvestData = commonHarvestData();
+    AddToolDataFunction.Builder commonWeaponData = commonWeaponData();
+    AddToolDataFunction.Builder commonShieldData = commonShieldData();
+    AddToolDataFunction.Builder commonArmorData = commonArmorData();
+    AddToolDataFunction.Builder commonArrowData = commonArrowData();
     injectGameplay("piglin_bartering")
       .addToPool("main", LootItem.lootTableItem(TinkerSmeltery.scorchedLantern).setWeight(20)
                                  .apply(SetFluidLootFunction.builder(fluidStackSafe(TinkerFluids.blazingBlood.get(), FluidValues.LANTERN_CAPACITY)))
@@ -114,13 +121,13 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
     // frypans just show up in some assorted locations
     injectChest("simple_dungeon")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.meltingPan.get())
-                                 .setWeight(16) // a bit more common for port testing
-                                 .apply(ancientToolData2)
+                                 .setWeight(4)
+                                 .apply(commonToolData2)
                                  .build());
     injectChest("igloo_chest")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.meltingPan.get())
-                                 .setWeight(5) // a bit more common for port testing
-                                 .apply(ancientToolData2)
+                                 .setWeight(2)
+                                 .apply(commonToolData2)
                                  .build());
     inject("hero_of_the_armorer", "gameplay/hero_of_the_village/armorer_gift")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.meltingPan.get())
@@ -131,17 +138,17 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
     AddToolDataFunction.Builder ancientToolData3 = AddToolDataFunction.builder().addMaterial(random).addMaterial(random).addMaterial(random);
     injectChest("pillager_outpost")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.battlesign.get())
-                                 .apply(ancientToolData3)
+                                 .apply(commonShieldData)
                                  .build());
     injectChest("abandoned_mineshaft")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.pickaxe.get())
-                                 .setWeight(10) // a bit more common for port testing
-                                 .apply(ancientToolData3)
+                                 .setWeight(3)
+                                 .apply(commonHarvestData)
                                  .build());
     injectChest("woodland_mansion")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.battlesign.get())
-                                 .setWeight(16) // a bit more common for port testing
-                                 .apply(ancientToolData3)
+                                 .setWeight(3)
+                                 .apply(commonShieldData)
                                  .build());
     inject("hero_of_the_weaponsmith", "gameplay/hero_of_the_village/weaponsmith_gift")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.sword.get())
@@ -150,7 +157,7 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
                                  .build());
     LootTableInjection.Builder bastion = injectChest("bastion_treasure")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.battlesign.get())
-                                 .setWeight(16) // a bit more common for port testing
+                                 .setWeight(8)
                                  .apply(ancientToolData2)
                                 .build());
     injectChest("bastion_other")
@@ -182,20 +189,20 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
     LootItemConditionalFunction.Builder<?> setFluid = SetFluidLootFunction.builder(fluidStackSafe(Fluids.LAVA, FluidType.BUCKET_VOLUME));
     injectChest("buried_treasure")
       .addToPool("pool3", LootItem.lootTableItem(TinkerTools.swasher.get())
-                                  .setWeight(4) // a bit more common for port testing
-                                  .apply(ancientToolData3)
+                                  .setWeight(2)
+                                  .apply(commonWeaponData)
                                   .apply(setFluid)
                                   .build());
     injectChest("shipwreck_treasure")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.swasher.get())
-                                  .setWeight(14) // a bit more common for port testing
-                                  .apply(ancientToolData3)
+                                  .setWeight(4)
+                                  .apply(commonWeaponData)
                                  .apply(setFluid)
                                   .build());
     inject("fishing_treasure", Identifier.parse("gameplay/fishing/treasure"))
       .addToPool("main", LootItem.lootTableItem(TinkerTools.swasher.get())
                                  .setWeight(1) // all treasure from fishing is the same weight
-                                 .apply(ancientToolData3)
+                                 .apply(commonWeaponData)
                                  .apply(setFluid)
                                  .build());
 
@@ -215,40 +222,40 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
       .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 6, endCitySledgeHammerData))
       .addToPool("main", ancientTool(TinkerTools.excavator.get(), 6, endCityExcavatorData));
     injectChest("desert_pyramid")
-      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 3, commonShieldData));
     injectChest("jungle_temple")
-      .addToPool("main", ancientTool(TinkerTools.kama.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.kama.get(), 3, commonHarvestData));
     injectChest("jungle_temple_dispenser")
-      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 12, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 5, commonArrowData));
     injectChest("trial_chambers/reward")
-      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 6, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 3, commonWeaponData));
     injectChest("shipwreck_map")
-      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 8, ancientToolData3, setFluid));
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 3, commonWeaponData, setFluid));
     injectChest("shipwreck_supply")
-      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 3, commonToolData2));
     injectChest("stronghold_corridor")
-      .addToPool("main", ancientTool(TinkerTools.sword.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 3, commonWeaponData));
     injectChest("stronghold_crossing")
-      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 3, commonShieldData));
     injectChest("stronghold_library")
-      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 10, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 5, commonArrowData));
     injectChest("underwater_ruin_big")
-      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 8, ancientToolData3, setFluid));
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 3, commonWeaponData, setFluid));
     injectChest("underwater_ruin_small")
-      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 5, ancientToolData3, setFluid));
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 2, commonWeaponData, setFluid));
 
     injectChest("trial_chambers/corridor")
-      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 3, commonWeaponData));
     injectChest("trial_chambers/entrance")
-      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 3, commonHarvestData));
     injectChest("trial_chambers/intersection")
-      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 3, commonShieldData));
     injectChest("trial_chambers/intersection_barrel")
-      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 3, commonToolData2));
     injectChest("trial_chambers/supply")
-      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 12, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 5, commonArrowData));
     injectChest("trial_chambers/reward_common")
-      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 8, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 3, commonWeaponData));
     injectChest("trial_chambers/reward_rare")
       .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 6, ancientToolData3));
     injectChest("trial_chambers/reward_unique")
@@ -268,37 +275,37 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
       .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 4, ominousSledgeHammerData));
 
     injectChest("village/village_armorer")
-      .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 5, AddToolDataFunction.builder().addMaterial(randomHighTier).addMaterial(randomHighTier)));
+      .addToPool("main", ancientTool(TinkerTools.plateArmor.get(ArmorType.CHESTPLATE), 2, commonArmorData));
     injectChest("village/village_butcher")
-      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 5, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 2, commonToolData2));
     injectChest("village/village_cartographer")
-      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 4, ancientToolData3, setFluid));
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 2, commonWeaponData, setFluid));
     injectChest("village/village_desert_house")
       .addToPool("main", ancientTool(TinkerTools.flintAndBrick.get(), 8, buildData));
     injectChest("village/village_fisher")
-      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 5, ancientToolData3, setFluid));
+      .addToPool("main", ancientTool(TinkerTools.swasher.get(), 2, commonWeaponData, setFluid));
     injectChest("village/village_fletcher")
-      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 12, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.arrow.get(), 5, commonArrowData));
     injectChest("village/village_mason")
-      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 4, ancientToolData3));
+      .addToPool("main", ancientTool(TinkerTools.sledgeHammer.get(), 2, commonHarvestData));
     injectChest("village/village_plains_house")
-      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 5, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 2, commonHarvestData));
     injectChest("village/village_savanna_house")
-      .addToPool("main", ancientTool(TinkerTools.kama.get(), 5, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.kama.get(), 2, commonHarvestData));
     injectChest("village/village_shepherd")
-      .addToPool("main", ancientTool(TinkerTools.scythe.get(), 4, ancientToolData3));
+      .addToPool("main", ancientTool(TinkerTools.scythe.get(), 2, commonHarvestData));
     injectChest("village/village_snowy_house")
-      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 5, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.meltingPan.get(), 2, commonToolData2));
     injectChest("village/village_taiga_house")
-      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 5, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.handAxe.get(), 2, commonHarvestData));
     injectChest("village/village_tannery")
-      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 5, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.dagger.get(), 2, commonWeaponData));
     injectChest("village/village_temple")
-      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 4, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.battlesign.get(), 2, commonShieldData));
     injectChest("village/village_toolsmith")
-      .addToPool("main", ancientTool(TinkerTools.pickaxe.get(), 6, ancientToolData3));
+      .addToPool("main", ancientTool(TinkerTools.pickaxe.get(), 3, commonHarvestData));
     injectChest("village/village_weaponsmith")
-      .addToPool("main", ancientTool(TinkerTools.sword.get(), 6, ancientToolData2));
+      .addToPool("main", ancientTool(TinkerTools.sword.get(), 3, commonWeaponData));
 
     addWorldLootIntegrations(randomHighTier, ancientToolData2, ancientToolData3, setFluid);
 
@@ -306,7 +313,7 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
     inject("hero_of_the_fletcher", "gameplay/hero_of_the_village/fletcher_gift")
       .addToPool("main", LootItem.lootTableItem(TinkerTools.arrow.get())
         .setWeight(10) // bit more rare than tipped arrows
-        .apply(ancientToolData2)
+        .apply(commonArrowData)
         .build());
 
     // twilight forest - minotaur axe
@@ -324,6 +331,52 @@ public class LootTableInjectionProvider extends AbstractLootTableInjectionProvid
   @Override
   public String getName() {
     return "Tinkers' Construct Loot Table Injections";
+  }
+
+  /** Low-tier two-material profile for ordinary overworld loot. */
+  private static AddToolDataFunction.Builder commonToolData2() {
+    return AddToolDataFunction.builder()
+      .addMaterial(MaterialIds.iron)
+      .addMaterial(MaterialIds.wood);
+  }
+
+  /** Low-tier harvest profile for ordinary overworld loot. */
+  private static AddToolDataFunction.Builder commonHarvestData() {
+    return AddToolDataFunction.builder()
+      .addMaterial(MaterialIds.rock)
+      .addMaterial(MaterialIds.wood)
+      .addMaterial(MaterialIds.iron);
+  }
+
+  /** Low-tier weapon profile for ordinary overworld loot. */
+  private static AddToolDataFunction.Builder commonWeaponData() {
+    return AddToolDataFunction.builder()
+      .addMaterial(MaterialIds.flint)
+      .addMaterial(MaterialIds.wood)
+      .addMaterial(MaterialIds.iron);
+  }
+
+  /** Low-tier shield profile for ordinary overworld loot. */
+  private static AddToolDataFunction.Builder commonShieldData() {
+    return AddToolDataFunction.builder()
+      .addMaterial(MaterialIds.wood)
+      .addMaterial(MaterialIds.iron)
+      .addMaterial(MaterialIds.wood);
+  }
+
+  /** Low-tier armor profile for ordinary overworld loot. */
+  private static AddToolDataFunction.Builder commonArmorData() {
+    return AddToolDataFunction.builder()
+      .addMaterial(MaterialIds.iron)
+      .addMaterial(MaterialIds.leather);
+  }
+
+  /** Low-tier ammo profile for ordinary overworld loot. */
+  private static AddToolDataFunction.Builder commonArrowData() {
+    return AddToolDataFunction.builder()
+      .addMaterial(MaterialIds.flint)
+      .addMaterial(MaterialIds.wood)
+      .addMaterial(MaterialIds.feather);
   }
 
 

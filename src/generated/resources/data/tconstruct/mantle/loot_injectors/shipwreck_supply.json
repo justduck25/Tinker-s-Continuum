@@ -10,16 +10,18 @@
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "type": "tconstruct:ancient"
+                  "type": "tconstruct:fixed",
+                  "material": "tconstruct:iron"
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "type": "tconstruct:fixed",
+                  "material": "tconstruct:wood"
                 }
               ]
             }
           ],
           "name": "tconstruct:melting_pan",
-          "weight": 8
+          "weight": 3
         }
       ],
       "name": "main"

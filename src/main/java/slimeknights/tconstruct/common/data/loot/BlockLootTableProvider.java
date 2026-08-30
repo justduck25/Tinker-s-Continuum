@@ -412,7 +412,7 @@ public class BlockLootTableProvider extends BlockLootSubProvider {
     builder.apply(COPY_NAME));
   /** Properties for a tinkers anvil table */
   private final Function<Block, LootTable.Builder> ADD_ANVIL = block -> droppingWithFunctions(block, (builder) ->
-    builder.apply(COPY_NAME));
+    builder.apply(COPY_NAME).apply(COPY_CUSTOM_DATA));
 
   /** Registers a block that drops with its own texture stored in NBT */
   private void dropTable(Block table) {
