@@ -304,7 +304,7 @@ public final class TinkerFluids extends TinkerModule {
 
   void registerBrewing(RegisterBrewingRecipesEvent event) {
     event.getBuilder().addRecipe(new BrewingRecipe(Ingredient.of(Items.GLASS_BOTTLE), Ingredient.of(Items.GUNPOWDER), new ItemStack(splashBottle.get())));
-    event.getBuilder().addRecipe(new BrewingRecipe(Ingredient.of(BuiltInRegistries.ITEM.getOrThrow(MantleTags.Items.SPLASH_BOTTLE)), Ingredient.of(Items.DRAGON_BREATH), new ItemStack(lingeringBottle.get())));
+    event.getBuilder().addRecipe(new BrewingRecipe(Ingredient.of(splashBottle.get()), Ingredient.of(Items.DRAGON_BREATH), new ItemStack(lingeringBottle.get())));
     for (SlimeType type : SlimeType.values()) {
       event.getBuilder().addRecipe(new BrewingRecipe(Ingredient.of(Items.GLASS_BOTTLE), Ingredient.of(TinkerWorld.congealedSlime.get(type)), new ItemStack(slimeBottle.get(type))));
     }

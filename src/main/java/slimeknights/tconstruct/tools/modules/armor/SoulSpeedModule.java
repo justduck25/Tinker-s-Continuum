@@ -1,8 +1,6 @@
 package slimeknights.tconstruct.tools.modules.armor;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -14,9 +12,10 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import slimeknights.mantle.client.TooltipKey;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
+import slimeknights.mantle.util.typed.TypedMap;
+import slimeknights.tconstruct.library.json.TinkerEnchantmentLoadable;
 import slimeknights.tconstruct.library.json.LevelingInt;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -51,7 +50,11 @@ public record SoulSpeedModule(LevelingInt level, ModifierCondition<IToolStackVie
   }
 
   private static Optional<Enchantment> getSoulSpeed() {
-    return ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(Enchantments.SOUL_SPEED).map(Holder::value);
+    try {
+      return Optional.of(TinkerEnchantmentLoadable.INSTANCE.parseString(Enchantments.SOUL_SPEED.identifier().toString(), "enchantment", TypedMap.EMPTY));
+    } catch (RuntimeException e) {
+      return Optional.empty();
+    }
   }
 
   @Override

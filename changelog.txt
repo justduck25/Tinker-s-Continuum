@@ -1,24 +1,12 @@
-Tinkers' Continuum 26.1.2-3.11.4
+Tinkers' Continuum 26.1.2-3.11.5
 
-Compatibility
-- Added material and tool part compatibility for AE2, Advanced AE, ExtendedAE, Ender IO, Powah, and Jade.
-- Added item-only armor part recipes for supported compat materials so armor pieces can be crafted consistently.
-- Added world loot integration for generated Tinkers' tools with more controlled modifier pools.
-- Added Apotheosis and Apothic Enchanting support for higher modifier caps and vanilla-style enchantment conversion where supported.
-- Added safer recipe visibility and conditional loading for optional compat content.
+Compatibility Fixes
+- Fixed enchantment and fluid effect recipe sync on multiplayer servers by preserving registry lookup context during TCon network packet decoding.
+- Fixed Apotheosis Lucky affix loading with the current Apotheosis 26.1.2 build by removing the unregistered charm loot category through compatibility data.
+- Added compatibility load ordering for Apotheosis, Ender IO, and Athena so TCon resource overrides apply after those optional mods.
+- Added fallback Ender IO client models for capacitor bank parts, conduit items, and IO overlay models that referenced removed or unavailable custom model loaders.
+- Added a Jade compatibility guard to avoid the shearable block collector logging an error before the loot table registry is available.
 
-Fixes
-- Fixed Smeltery recipe sync crashes caused by missing or empty optional tags, including raw steel materials.
-- Fixed slime embellishment recipes by restoring the missing TCon slime embellishment tool tag.
-- Fixed several JEI recipe display issues for compat materials, casting, and tool part recipes.
-- Fixed luck tooltip and enchantment naming so tools show the correct vanilla-style effect such as Fortune, Looting, or Luck of the Sea.
-- Fixed tool loot balance so world-generated tools no longer roll too many random modifiers.
-- Fixed common structure loot balance so early-game chests no longer hand out too many high-tier Tinkers' tools or materials.
-- Fixed Tinker's Anvil and Scorched Anvil variants so they keep their material/texture when broken and placed again.
-- Fixed tool part fallback tooltips so missing material/stat IDs render safely.
-- Fixed white or missing models for AE2-family compat materials including Certus Quartz, Fluix, Quantum, and Entro.
-- Improved Mantle recipe network errors so broken synced recipes report the failing recipe ID.
-
-Version Safety
-- Restricted NeoForge compatibility to 26.1.2.78 or newer, below 26.2, so unsupported loader versions fail with a clear dependency message.
-- Verified NeoForge 26.1.2.77 is rejected with the expected loader warning.
+Stability
+- Fixed JEI/client tooltip crashes from Soul Speed parsing when no active server registry context is available.
+- Verified server startup, client connection, Apotheosis data sync, JEI startup, and TCon packet sync with the full 26.1.2 test pack.

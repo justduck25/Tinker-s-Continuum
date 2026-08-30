@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "slimeknights.tconstruct.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "jade.LootTableMineableCollectorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
