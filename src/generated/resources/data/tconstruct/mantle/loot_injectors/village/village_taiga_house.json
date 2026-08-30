@@ -10,16 +10,22 @@
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:rock",
+                  "type": "tconstruct:fixed"
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:wood",
+                  "type": "tconstruct:fixed"
+                },
+                {
+                  "material": "tconstruct:iron",
+                  "type": "tconstruct:fixed"
                 }
               ]
             }
           ],
           "name": "tconstruct:hand_axe",
-          "weight": 5
+          "weight": 2
         }
       ],
       "name": "main"

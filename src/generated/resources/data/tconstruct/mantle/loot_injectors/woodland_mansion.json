@@ -10,19 +10,22 @@
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:wood",
+                  "type": "tconstruct:fixed"
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:iron",
+                  "type": "tconstruct:fixed"
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:wood",
+                  "type": "tconstruct:fixed"
                 }
               ]
             }
           ],
           "name": "tconstruct:battlesign",
-          "weight": 16
+          "weight": 3
         }
       ],
       "name": "main"

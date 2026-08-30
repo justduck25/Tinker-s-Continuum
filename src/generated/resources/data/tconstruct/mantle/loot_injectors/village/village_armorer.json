@@ -10,36 +10,18 @@
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "type": "tconstruct:random",
-                  "allow_hidden": true,
-                  "material": {
-                    "type": "mantle:inverted",
-                    "inverted_type": "mantle:tag",
-                    "tag": "tconstruct:exclude_from_loot"
-                  },
-                  "tier": {
-                    "min": 3,
-                    "max": 4
-                  }
+                  "material": "tconstruct:iron",
+                  "type": "tconstruct:fixed"
                 },
                 {
-                  "type": "tconstruct:random",
-                  "allow_hidden": true,
-                  "material": {
-                    "type": "mantle:inverted",
-                    "inverted_type": "mantle:tag",
-                    "tag": "tconstruct:exclude_from_loot"
-                  },
-                  "tier": {
-                    "min": 3,
-                    "max": 4
-                  }
+                  "material": "tconstruct:leather",
+                  "type": "tconstruct:fixed"
                 }
               ]
             }
           ],
           "name": "tconstruct:plate_chestplate",
-          "weight": 5
+          "weight": 2
         }
       ],
       "name": "main"

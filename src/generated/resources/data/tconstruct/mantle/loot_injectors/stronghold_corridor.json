@@ -10,16 +10,22 @@
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:flint",
+                  "type": "tconstruct:fixed"
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:wood",
+                  "type": "tconstruct:fixed"
+                },
+                {
+                  "material": "tconstruct:iron",
+                  "type": "tconstruct:fixed"
                 }
               ]
             }
           ],
           "name": "tconstruct:sword",
-          "weight": 8
+          "weight": 3
         }
       ],
       "name": "main"

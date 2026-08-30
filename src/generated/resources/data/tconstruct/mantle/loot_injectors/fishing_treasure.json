@@ -10,13 +10,16 @@
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:flint",
+                  "type": "tconstruct:fixed"
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:wood",
+                  "type": "tconstruct:fixed"
                 },
                 {
-                  "type": "tconstruct:ancient"
+                  "material": "tconstruct:iron",
+                  "type": "tconstruct:fixed"
                 }
               ]
             },
@@ -26,7 +29,8 @@
               "function": "mantle:set_fluid"
             }
           ],
-          "name": "tconstruct:swasher"
+          "name": "tconstruct:swasher",
+          "weight": 1
         }
       ],
       "name": "main"
