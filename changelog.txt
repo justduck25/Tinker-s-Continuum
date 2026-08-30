@@ -1,4 +1,4 @@
-Tinkers' Continuum 26.1.2-3.11.3
+Tinkers' Continuum 26.1.2-3.11.4
 
 Compatibility
 - Added material and tool part compatibility for AE2, Advanced AE, ExtendedAE, Ender IO, Powah, and Jade.
