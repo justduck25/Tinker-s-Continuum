@@ -19,7 +19,7 @@
             }
           ],
           "name": "tconstruct:battlesign",
-          "weight": 16
+          "weight": 8
         },
         {
           "type": "minecraft:item",

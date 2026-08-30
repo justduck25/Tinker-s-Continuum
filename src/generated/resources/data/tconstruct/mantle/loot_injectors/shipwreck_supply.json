@@ -10,12 +10,12 @@
               "function": "tconstruct:add_tool_data",
               "materials": [
                 {
-                  "material": "tconstruct:iron",
-                  "type": "tconstruct:fixed"
+                  "type": "tconstruct:fixed",
+                  "material": "tconstruct:iron"
                 },
                 {
-                  "material": "tconstruct:wood",
-                  "type": "tconstruct:fixed"
+                  "type": "tconstruct:fixed",
+                  "material": "tconstruct:wood"
                 }
               ]
             }

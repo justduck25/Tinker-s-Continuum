@@ -13,6 +13,9 @@ Fixes
 - Fixed several JEI recipe display issues for compat materials, casting, and tool part recipes.
 - Fixed luck tooltip and enchantment naming so tools show the correct vanilla-style effect such as Fortune, Looting, or Luck of the Sea.
 - Fixed tool loot balance so world-generated tools no longer roll too many random modifiers.
+- Fixed common structure loot balance so early-game chests no longer hand out too many high-tier Tinkers' tools or materials.
+- Fixed Tinker's Anvil and Scorched Anvil variants so they keep their material/texture when broken and placed again.
+- Fixed tool part fallback tooltips so missing material/stat IDs render safely.
 - Fixed white or missing models for AE2-family compat materials including Certus Quartz, Fluix, Quantum, and Entro.
 - Improved Mantle recipe network errors so broken synced recipes report the failing recipe ID.
 
