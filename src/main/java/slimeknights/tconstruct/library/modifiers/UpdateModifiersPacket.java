@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.netty.handler.codec.DecoderException;
 import lombok.RequiredArgsConstructor;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -16,6 +17,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.enchantment.Enchantment;
 import slimeknights.mantle.network.packet.IThreadsafePacket;
 import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.library.json.TinkerEnchantmentLoadable;
 import slimeknights.tconstruct.library.modifiers.impl.ComposableModifier;
 import slimeknights.tconstruct.library.utils.GenericTagUtil;
 
@@ -93,16 +95,21 @@ public class UpdateModifiersPacket implements IThreadsafePacket, CustomPacketPay
     // read in modifiers
     int size = buffer.readVarInt();
     Map<ModifierId,Modifier> modifiers = new HashMap<>();
-    for (int i = 0; i < size; i++) {
-      ModifierId id = new ModifierId(buffer.readUtf(Short.MAX_VALUE));
-      try {
-        Modifier modifier = ComposableModifier.LOADER.decode(buffer, ModifierManager.contextBuilder(id.getId()).build());
-        modifier.setId(id);
-        modifiers.put(id, modifier);
-      } catch (RuntimeException e) {
-        TConstruct.LOG.error("Failed to decode modifier with ID {}", id, e);
-        throw e;
+    HolderLookup.Provider previousLookup = TinkerEnchantmentLoadable.setLookupProvider(buffer.registryAccess());
+    try {
+      for (int i = 0; i < size; i++) {
+        ModifierId id = new ModifierId(buffer.readUtf(Short.MAX_VALUE));
+        try {
+          Modifier modifier = ComposableModifier.LOADER.decode(buffer, ModifierManager.contextBuilder(id.getId()).build());
+          modifier.setId(id);
+          modifiers.put(id, modifier);
+        } catch (RuntimeException e) {
+          TConstruct.LOG.error("Failed to decode modifier with ID {}", id, e);
+          throw e;
+        }
       }
+    } finally {
+      TinkerEnchantmentLoadable.setLookupProvider(previousLookup);
     }
     // read in redirects
     size = buffer.readVarInt();

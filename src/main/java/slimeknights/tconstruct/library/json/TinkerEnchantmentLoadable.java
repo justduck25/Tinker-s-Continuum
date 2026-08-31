@@ -27,8 +27,10 @@ public class TinkerEnchantmentLoadable implements StringLoadable<Enchantment> {
 
   private final LazyRegistryLoadable<Enchantment> delegate = new LazyRegistryLoadable<>(Registries.ENCHANTMENT);
 
-  public static void setLookupProvider(HolderLookup.Provider provider) {
+  public static HolderLookup.Provider setLookupProvider(HolderLookup.Provider provider) {
+    HolderLookup.Provider previous = LOOKUP_SUPPLIER.get();
     LOOKUP_SUPPLIER = () -> provider;
+    return previous;
   }
 
   public static void clear() {
