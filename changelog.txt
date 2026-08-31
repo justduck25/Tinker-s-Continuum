@@ -1,12 +1,9 @@
-Tinkers' Continuum 26.1.2-3.11.5
+Tinkers' Continuum 26.1.2-3.11.6
 
-Compatibility Fixes
-- Fixed enchantment and fluid effect recipe sync on multiplayer servers by preserving registry lookup context during TCon network packet decoding.
-- Fixed Apotheosis Lucky affix loading with the current Apotheosis 26.1.2 build by removing the unregistered charm loot category through compatibility data.
-- Added compatibility load ordering for Apotheosis, Ender IO, and Athena so TCon resource overrides apply after those optional mods.
-- Added fallback Ender IO client models for capacitor bank parts, conduit items, and IO overlay models that referenced removed or unavailable custom model loaders.
-- Added a Jade compatibility guard to avoid the shearable block collector logging an error before the loot table registry is available.
+Fixes
+- Fixed duplicate solid-fuel recipe warnings during recipe sync.
+- Improved recipe cache handling so repeated client/server recipe reloads do not keep stale fuel lookup data.
+- Updated the required Continuum Mantle version to 1.11.2 for the latest recipe sync fixes.
 
-Stability
-- Fixed JEI/client tooltip crashes from Soul Speed parsing when no active server registry context is available.
-- Verified server startup, client connection, Apotheosis data sync, JEI startup, and TCon packet sync with the full 26.1.2 test pack.
+Tested
+- Verified client startup, world join, JEI startup, Apotheosis sync, and AE2-family compatibility on NeoForge 26.1.2.100.

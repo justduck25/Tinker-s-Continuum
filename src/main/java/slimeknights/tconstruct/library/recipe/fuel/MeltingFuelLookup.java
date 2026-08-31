@@ -55,8 +55,12 @@ public class MeltingFuelLookup {
       return;
     }
     LISTENER.checkClear();
+    RECIPES.removeIf(recipe -> recipe.getId().equals(fuel.getId()));
+    CACHE.clear();
     if (fuel.getInput() != FluidIngredient.EMPTY) {
       RECIPES.add(fuel);
+    } else if (SOLID.getId().equals(fuel.getId())) {
+      SOLID = fuel;
     } else if (SOLID == EMPTY) {
       SOLID = fuel;
     } else {

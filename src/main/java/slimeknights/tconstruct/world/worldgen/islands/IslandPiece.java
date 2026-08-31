@@ -27,7 +27,6 @@ import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSeriali
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
-import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.world.TinkerStructures;
 
 import slimeknights.tconstruct.world.block.SlimeVineBlock;
@@ -146,20 +145,6 @@ public class IslandPiece extends TemplateStructurePiece {
     // find if there is another place that can handle the check or ditch it
 //    if (true || this.structure.getPlacement().isPositionValid(world, this.templatePosition, generator)) {
         super.postProcess(world, manager, generator, rand, bounds, chunk, pos);
-    int nonAir = 0;
-    BlockPos.MutableBlockPos checkPos = new BlockPos.MutableBlockPos();
-    BoundingBox pieceBox = this.getBoundingBox();
-    for (int x = pieceBox.minX(); x <= pieceBox.maxX(); x++) {
-      for (int y = pieceBox.minY(); y <= pieceBox.maxY(); y++) {
-        for (int z = pieceBox.minZ(); z <= pieceBox.maxZ(); z++) {
-          checkPos.set(x, y, z);
-          if (!world.isEmptyBlock(checkPos)) {
-            nonAir++;
-          }
-        }
-      }
-    }
-    TConstruct.LOG.info("[ISLAND_DEBUG] afterPostProcess chunk={} pieceBox={} nonAir={}", chunk, pieceBox, nonAir);
 //    }
 
   }
