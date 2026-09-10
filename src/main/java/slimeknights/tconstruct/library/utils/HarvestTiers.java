@@ -6,6 +6,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.ToolMaterial;
 import slimeknights.mantle.client.ResourceColorManager;
@@ -22,6 +23,24 @@ import java.util.Map;
 public class HarvestTiers {
   private HarvestTiers() {}
 
+  public static final ToolMaterial ALLTHEMODIUM = new ToolMaterial(
+    BlockTags.create(Identifier.fromNamespaceAndPath("allthemodium", "incorrect_for_allthemodium_tool")),
+    Short.MAX_VALUE, 15.0F, 12.0F, 85,
+    ItemTags.create(Identifier.fromNamespaceAndPath("c", "ingots/allthemodium"))
+  );
+
+  public static final ToolMaterial VIBRANIUM = new ToolMaterial(
+    BlockTags.create(Identifier.fromNamespaceAndPath("allthemodium", "incorrect_for_vibranium_tool")),
+    Short.MAX_VALUE, 20.0F, 25.0F, 100,
+    ItemTags.create(Identifier.fromNamespaceAndPath("c", "ingots/vibranium"))
+  );
+
+  public static final ToolMaterial UNOBTAINIUM = new ToolMaterial(
+    BlockTags.create(Identifier.fromNamespaceAndPath("allthemodium", "incorrect_for_unobtainium_tool")),
+    Short.MAX_VALUE, 25.0F, 35.0F, 125,
+    ItemTags.create(Identifier.fromNamespaceAndPath("c", "ingots/unobtainium"))
+  );
+
   private static final List<ToolMaterial> ORDER = List.of(
     ToolMaterial.WOOD,
     ToolMaterial.GOLD,
@@ -29,7 +48,10 @@ public class HarvestTiers {
     ToolMaterial.COPPER,
     ToolMaterial.IRON,
     ToolMaterial.DIAMOND,
-    ToolMaterial.NETHERITE
+    ToolMaterial.NETHERITE,
+    ALLTHEMODIUM,
+    VIBRANIUM,
+    UNOBTAINIUM
   );
 
   private static final Map<Identifier,ToolMaterial> BY_NAME = Map.of(
@@ -39,7 +61,10 @@ public class HarvestTiers {
     Identifier.withDefaultNamespace("copper"), ToolMaterial.COPPER,
     Identifier.withDefaultNamespace("iron"), ToolMaterial.IRON,
     Identifier.withDefaultNamespace("diamond"), ToolMaterial.DIAMOND,
-    Identifier.withDefaultNamespace("netherite"), ToolMaterial.NETHERITE
+    Identifier.withDefaultNamespace("netherite"), ToolMaterial.NETHERITE,
+    Identifier.fromNamespaceAndPath("allthemodium", "allthemodium"), ALLTHEMODIUM,
+    Identifier.fromNamespaceAndPath("allthemodium", "vibranium"), VIBRANIUM,
+    Identifier.fromNamespaceAndPath("allthemodium", "unobtainium"), UNOBTAINIUM
   );
 
   /** Cache of name for each tier */
@@ -49,6 +74,15 @@ public class HarvestTiers {
 
   /** Gets the tier ID. */
   public static Identifier getName(ToolMaterial tier) {
+    if (tier == UNOBTAINIUM) {
+      return Identifier.fromNamespaceAndPath("allthemodium", "unobtainium");
+    }
+    if (tier == VIBRANIUM) {
+      return Identifier.fromNamespaceAndPath("allthemodium", "vibranium");
+    }
+    if (tier == ALLTHEMODIUM) {
+      return Identifier.fromNamespaceAndPath("allthemodium", "allthemodium");
+    }
     if (tier == ToolMaterial.NETHERITE) {
       return Identifier.withDefaultNamespace("netherite");
     }
@@ -77,6 +111,15 @@ public class HarvestTiers {
   }
 
   private static int rank(ToolMaterial material) {
+    if (material == UNOBTAINIUM) {
+      return 9;
+    }
+    if (material == VIBRANIUM) {
+      return 8;
+    }
+    if (material == ALLTHEMODIUM) {
+      return 7;
+    }
     if (material == ToolMaterial.NETHERITE) {
       return 6;
     }
@@ -129,6 +172,9 @@ public class HarvestTiers {
   /** Checks if the tier is correct for drops under the vanilla 1.21 incorrect-for-tool tags. */
   public static boolean isCorrectTierForDrops(Object tier, BlockState state) {
     ToolMaterial material = tier instanceof ToolMaterial toolMaterial ? toolMaterial : ToolMaterial.WOOD;
+    if (material == UNOBTAINIUM || material == VIBRANIUM || material == ALLTHEMODIUM) {
+      return !state.is(material.incorrectBlocksForDrops());
+    }
     if (material == ToolMaterial.NETHERITE) {
       return !state.is(BlockTags.INCORRECT_FOR_NETHERITE_TOOL);
     }

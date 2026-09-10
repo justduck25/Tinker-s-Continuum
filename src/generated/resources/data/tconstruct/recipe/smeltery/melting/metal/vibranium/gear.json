@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/vibranium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/vibranium/gear",
+  "ingredient": "#c:gears/vibranium",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_vibranium"
+  },
+  "temperature": 1500,
+  "time": 160
+}

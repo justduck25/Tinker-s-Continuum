@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:tools/shovels/vibranium"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/vibranium/shovel",
+  "ingredient": "#c:tools/shovels/vibranium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_vibranium",
+    "unit_size": 10
+  },
+  "temperature": 1500,
+  "time": 80
+}

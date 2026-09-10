@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/allthemodium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/allthemodium/gear",
+  "ingredient": "#c:gears/allthemodium",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_allthemodium"
+  },
+  "temperature": 1500,
+  "time": 160
+}

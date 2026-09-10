@@ -1,16 +1,19 @@
-Continuum Construct 26.1.2-3.11.8
+Continuum Construct 26.1.2-3.11.9
+
+New
+- Added AllTheModium family material compatibility for Allthemodium, Vibranium, and Unobtainium.
+- Added molten fluids, melting recipes, casting recipes, material stats, traits, and generated tool textures for the three main AllTheModium metals.
+- AllTheModium materials are made through smeltery casting only; Part Builder recipes are intentionally disabled for these materials.
+
+Improvements
+- Updated AllTheModium material colors so Continuum tools better match the original AllTheModium tool palette.
+- Added matching harvest tiers for Allthemodium, Vibranium, and Unobtainium harvest tools.
 
 Fixes
-- Updated the required library dependency to Continuum Core 1.11.4 after the Mantle fork rename.
-- Fixed Luck displaying the wrong vanilla enchantment tooltip on weapons. Swords and launchers now show Looting, fishing rods show Luck of the Sea, and harvest tools show Fortune.
-- Fixed Tinker Station and Tinkers' Anvil tool assembly being too strict about internal input slot order.
-- Tools can now be assembled as long as the required parts are present in the station inputs, matching the selected tool layout more reliably.
-- Added a readable error message for missing tool parts instead of exposing an untranslated recipe key.
-- Fixed Continuum Construct JEI categories dropping synced server recipes after joining a world or server.
-- Part Builder, casting, melting, modifier, and tool-building recipes now use the recipe map received from the server when JEI builds its displays.
-- Fixed a JEI registration crash caused by sorting an immutable synced fuel recipe list.
-- Fixed material and tool casting recipes failing on dedicated servers after recipe reload by rebuilding Continuum Construct recipe lookups from the loaded server recipe map.
-- Updated the required Continuum Core version to 1.11.4 for the latest recipe decode and sync fixes.
+- Fixed AllTheModium ores refusing to break even when Continuum tools displayed the correct harvest tier.
+- Added vanilla tool component syncing so mods that check DataComponents.TOOL can recognize Continuum harvest tools correctly.
+- Fixed older Continuum tools missing the new vanilla tool component after loading an existing world.
+- Fixed a crash caused by trying to create registry lookups after Minecraft registries were already frozen.
 
 Tested
-- compileJava and assemble passed.
+- compileJava, runClientData, runClient, and assemble passed.

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:dusts/unobtainium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/unobtainium/dust",
+  "ingredient": "#c:dusts/unobtainium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_unobtainium"
+  },
+  "temperature": 1500,
+  "time": 60
+}

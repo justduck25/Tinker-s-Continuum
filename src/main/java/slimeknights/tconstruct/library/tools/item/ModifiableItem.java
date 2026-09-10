@@ -107,7 +107,7 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
   }
 
   public ModifiableItem(Properties properties, ToolDefinition toolDefinition, int maxStackSize) {
-    super(ItemDeferredRegister.setIdFromCurrentKey(properties));
+    super(ItemDeferredRegister.setIdFromCurrentKey(TooltipUtil.hideVanillaEnchantments(properties)));
     this.toolDefinition = toolDefinition;
     this.maxStackSize = maxStackSize;
   }
@@ -287,6 +287,9 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
   /* Modifier interactions */
   @Override
   public void inventoryTick(ItemStack stack, ServerLevel worldIn, Entity entityIn, @Nullable EquipmentSlot slot) {
+    if (stack.has(DataComponents.CUSTOM_DATA) && stack.is(TinkerTags.Items.HARVEST) && !stack.has(DataComponents.TOOL)) {
+      ToolStack.from(stack).updateStack(stack, false);
+    }
     InventoryTickModifierHook.heldInventoryTick(stack, worldIn, entityIn, slot == null ? -1 : slot.ordinal(), slot != null && entityIn instanceof LivingEntity living && living.getItemBySlot(slot) == stack);
   }
   public boolean overrideStackedOnOther(ItemStack held, Slot slot, ClickAction action, Player player) {

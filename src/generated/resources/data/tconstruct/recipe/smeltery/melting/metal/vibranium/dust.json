@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:dusts/vibranium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/vibranium/dust",
+  "ingredient": "#c:dusts/vibranium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_vibranium"
+  },
+  "temperature": 1500,
+  "time": 60
+}

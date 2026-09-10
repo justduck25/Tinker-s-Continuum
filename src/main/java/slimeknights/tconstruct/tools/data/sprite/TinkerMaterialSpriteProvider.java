@@ -355,6 +355,18 @@ public class TinkerMaterialSpriteProvider extends AbstractMaterialSpriteProvider
       .meleeHarvest().ranged().armor().arrowHead().statType(INGOT, STORAGE_BLOCK)
       .fallbacks("crystal", "rock")
       .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF173915).addARGB(102, 0xFF275E22).addARGB(140, 0xFF429B37).addARGB(178, 0xFF70D84D).addARGB(216, 0xFFA9F577).addARGB(255, 0xFFE4FFD1).build());
+    buildMaterial(MaterialIds.allthemodium)
+      .meleeHarvest().ranged().armor().arrowHead().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF3A2105).addARGB(102, 0xFF81520D).addARGB(140, 0xFFD18A16).addARGB(178, 0xFFFFC72E).addARGB(216, 0xFFFFE159).addARGB(255, 0xFFFFF3A0).build());
+    buildMaterial(MaterialIds.vibranium)
+      .meleeHarvest().ranged().armor().arrowHead().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF052728).addARGB(102, 0xFF075B5A).addARGB(140, 0xFF0B9B94).addARGB(178, 0xFF18E0D1).addARGB(216, 0xFF5FFFF0).addARGB(255, 0xFFB8FFF8).build());
+    buildMaterial(MaterialIds.unobtainium)
+      .meleeHarvest().ranged().armor().arrowHead().statType(INGOT, STORAGE_BLOCK)
+      .fallbacks("metal")
+      .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF21043A).addARGB(102, 0xFF4B0F7A).addARGB(140, 0xFF8623C7).addARGB(178, 0xFFC43BFF).addARGB(216, 0xFFE070FF).addARGB(255, 0xFFFFC4FF).build());
     buildMaterial(MaterialIds.jadeite)
       .ribcage()
       .colorMapper(GreyToColorMapping.builderFromBlack().addARGB(63, 0xFF009529).addARGB(102, 0xFF00AA2C).addARGB(140, 0xFF17DD62).addARGB(178, 0xFF41F384).addARGB(216, 0xFF82F6AD).addARGB(255, 0xFFDBFFEB).build());

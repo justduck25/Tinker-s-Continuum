@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/unobtainium"
+    }
+  ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/unobtainium",
+  "input": "tconstruct:unobtainium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_unobtainium"
+  },
+  "temperature": 1500
+}

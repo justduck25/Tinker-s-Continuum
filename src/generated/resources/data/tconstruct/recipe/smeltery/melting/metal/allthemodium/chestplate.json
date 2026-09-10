@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:armors/chestplates/allthemodium"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/allthemodium/chestplate",
+  "ingredient": "#c:armors/chestplates/allthemodium",
+  "result": {
+    "amount": 720,
+    "tag": "c:molten_allthemodium",
+    "unit_size": 10
+  },
+  "temperature": 1500,
+  "time": 227
+}

@@ -171,6 +171,9 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
     addCompatMaterial(MaterialIds.spiritedCrystal,4, ORDER_COMPAT + ORDER_SPECIAL, true, "gems/spirited_crystal", "storage_blocks/spirited_crystal");
     addCompatMaterial(MaterialIds.nitroCrystal,   4, ORDER_COMPAT + ORDER_END,     true, "gems/nitro_crystal", "storage_blocks/nitro_crystal");
     addCompatMaterial(MaterialIds.uraninite,      2, ORDER_COMPAT + ORDER_HARVEST, true, "raw_materials/uraninite", "storage_blocks/uraninite");
+    addCompatMaterial(MaterialIds.allthemodium, 5, ORDER_COMPAT + ORDER_GENERAL, true, "ingots/allthemodium", "storage_blocks/allthemodium");
+    addCompatMaterial(MaterialIds.vibranium,    5, ORDER_COMPAT + ORDER_RANGED,  true, "ingots/vibranium", "storage_blocks/vibranium");
+    addCompatMaterial(MaterialIds.unobtainium,  5, ORDER_COMPAT + ORDER_END,     true, "ingots/unobtainium", "storage_blocks/unobtainium");
 
     // slimesuit
     addMaterial(MaterialIds.clay,  2, ORDER_REPAIR + 5, true);

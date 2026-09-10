@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/unobtainium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/unobtainium/plate",
+  "ingredient": "#c:plates/unobtainium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_unobtainium"
+  },
+  "temperature": 1500,
+  "time": 80
+}

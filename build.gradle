@@ -83,11 +83,11 @@ task buildInfo {
     }
 }
 ext.artifact_version = 'NFG'
-if (System.getenv().ARTIFACT_VERSION == null) {
+def releaseVersion = System.getenv().ARTIFACT_VERSION ?: findProperty('ARTIFACT_VERSION')
+if (releaseVersion == null) {
     artifact_version = "${mod_version}.${project.buildInfo.buildNum}"
-}
-if (System.getenv().ARTIFACT_VERSION != null) {
-    artifact_version = "${System.getenv().ARTIFACT_VERSION}"
+} else {
+    artifact_version = "${releaseVersion}"
 }
 
 version = "${minecraft_version}-${artifact_version}"

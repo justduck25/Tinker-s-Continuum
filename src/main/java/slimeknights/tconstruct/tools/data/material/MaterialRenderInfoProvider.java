@@ -153,6 +153,9 @@ public class MaterialRenderInfoProvider extends AbstractMaterialRenderInfoProvid
     buildRenderInfo(MaterialIds.spiritedCrystal).color(0xA86BFF).fallbacks("crystal", "rock").luminosity(6);
     buildRenderInfo(MaterialIds.nitroCrystal).color(0xE43232).fallbacks("crystal", "rock").luminosity(7);
     buildRenderInfo(MaterialIds.uraninite).color(0x70D84D).fallbacks("crystal", "rock").luminosity(4);
+    buildRenderInfo(MaterialIds.allthemodium).color(0xFFC72E).fallbacks("metal").luminosity(5);
+    buildRenderInfo(MaterialIds.vibranium).color(0x18E0D1).fallbacks("metal").luminosity(6);
+    buildRenderInfo(MaterialIds.unobtainium).color(0xC43BFF).fallbacks("metal").luminosity(7);
 
     // ammo
     buildRenderInfo(MaterialIds.amethyst);

@@ -2384,6 +2384,10 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     metal(consumer, TinkerFluids.moltenDarkSteel      ).optional().metal().gear();
     metal(consumer, TinkerFluids.moltenSoularium      ).optional().metal().dust();
     metal(consumer, TinkerFluids.moltenEndSteel       ).optional().metal();
+    // allthemodium - hot enough to require blazing blood as fuel
+    metal(consumer, TinkerFluids.moltenAllthemodium).optional().ore(Byproduct.DEBRIS).metal().dust().plate().gear().rod().common(TOOLS).common(ARMOR);
+    metal(consumer, TinkerFluids.moltenVibranium).optional().ore(Byproduct.DIAMOND).metal().dust().plate().gear().rod().common(TOOLS).common(ARMOR);
+    metal(consumer, TinkerFluids.moltenUnobtainium).optional().ore(Byproduct.DIAMOND).metal().dust().plate().gear().rod().common(TOOLS).common(ARMOR);
     enderIOGear(consumer, TinkerFluids.moltenEnergeticAlloy, "energized", "energetic_alloy");
     enderIOGear(consumer, TinkerFluids.moltenVibrantAlloy, "vibrant", "vibrant_alloy");
     metal(consumer, TinkerFluids.moltenRefinedObsidian ).optional().metal().common(TOOLS).common(MEKANISM_ARMOR);

@@ -118,6 +118,11 @@ public class TooltipUtil {
     }
   }
 
+  /** Hides vanilla enchantment component tooltips on modifiable tools while preserving gameplay enchantment hooks. */
+  public static net.minecraft.world.item.Item.Properties hideVanillaEnchantments(net.minecraft.world.item.Item.Properties properties) {
+    return properties.component(DataComponents.TOOLTIP_DISPLAY, net.minecraft.world.item.component.TooltipDisplay.DEFAULT.withHidden(DataComponents.ENCHANTMENTS, true));
+  }
+
   /** Sets the tool name in a way that will not be italic */
   public static void setDisplayName(ItemStack tool, String name) {
     CompoundTag tag = getCustomData(tool);

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/unobtainium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/unobtainium/nugget",
+  "ingredient": "#c:nuggets/unobtainium",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_unobtainium"
+  },
+  "temperature": 1500,
+  "time": 27
+}

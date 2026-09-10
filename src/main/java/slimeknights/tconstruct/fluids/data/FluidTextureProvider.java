@@ -121,6 +121,10 @@ public class FluidTextureProvider extends AbstractFluidTextureProvider {
       tintedMolten(TinkerFluids.moltenDarkSteel      ).color(0xFF4A4541);
       tintedMolten(TinkerFluids.moltenSoularium      ).color(0xFF8A6032);
       tintedMolten(TinkerFluids.moltenEndSteel       ).color(0xFFE4D9A8);
+      // allthemodium
+      tintedMolten(TinkerFluids.moltenAllthemodium).color(0xFFF7D848);
+      tintedMolten(TinkerFluids.moltenVibranium).color(0xFF35D4C6);
+      tintedMolten(TinkerFluids.moltenUnobtainium).color(0xFFD45CFF);
       // mekanism
       compatAlloy(TinkerFluids.moltenRefinedObsidian);
       compatAlloy(TinkerFluids.moltenRefinedGlowstone);

@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:raw_materials/allthemodium"
+    }
+  ],
+  "type": "tconstruct:ore_melting",
+  "byproducts": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_debris",
+      "rate": "metal"
+    }
+  ],
+  "id": "tconstruct:smeltery/melting/metal/allthemodium/raw",
+  "ingredient": "#c:raw_materials/allthemodium",
+  "rate": "metal",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_allthemodium"
+  },
+  "temperature": 1500,
+  "time": 120
+}

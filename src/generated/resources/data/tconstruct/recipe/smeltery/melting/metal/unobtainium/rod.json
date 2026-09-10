@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:rods/unobtainium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/unobtainium/rod",
+  "ingredient": "#c:rods/unobtainium",
+  "result": {
+    "amount": 45,
+    "tag": "c:molten_unobtainium"
+  },
+  "temperature": 1500,
+  "time": 16
+}

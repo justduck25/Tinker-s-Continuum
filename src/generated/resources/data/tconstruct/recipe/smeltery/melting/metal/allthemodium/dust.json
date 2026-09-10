@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:dusts/allthemodium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/allthemodium/dust",
+  "ingredient": "#c:dusts/allthemodium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_allthemodium"
+  },
+  "temperature": 1500,
+  "time": 60
+}

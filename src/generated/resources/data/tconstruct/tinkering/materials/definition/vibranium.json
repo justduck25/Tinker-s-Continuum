@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "type": "neoforge:or",
+    "values": [
+      {
+        "type": "tconstruct:config",
+        "prop": "force_integration_materials"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:ingots/vibranium"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:storage_blocks/vibranium"
+      }
+    ]
+  },
+  "craftable": true,
+  "hidden": false,
+  "sortOrder": 9,
+  "tier": 5
+}

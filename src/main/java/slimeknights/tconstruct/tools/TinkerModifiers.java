@@ -296,6 +296,7 @@ import slimeknights.tconstruct.tools.modules.cosmetic.DyeModule;
 import slimeknights.tconstruct.tools.modules.cosmetic.EmbellishmentModule;
 import slimeknights.tconstruct.tools.modules.cosmetic.TrimModule;
 import slimeknights.tconstruct.tools.modules.durability.DurabilityAsCapacityModule;
+import slimeknights.tconstruct.tools.modules.durability.FullAllthemodiumSetModule;
 import slimeknights.tconstruct.tools.modules.durability.MossyRepairModule;
 import slimeknights.tconstruct.tools.modules.durability.ShareDurabilityModule;
 import slimeknights.tconstruct.tools.modules.durability.ToolDamageRangeModule;
@@ -857,6 +858,7 @@ public final class TinkerModifiers extends TinkerModule {
       // behavior
       ModifierModule.LOADER.register(getResource("attribute"), AttributeModule.LOADER);
       ModifierModule.LOADER.register(getResource("reduce_tool_damage"), ReduceToolDamageModule.LOADER);
+      ModifierModule.LOADER.register(getResource("full_allthemodium_set"), FullAllthemodiumSetModule.LOADER);
       // TODO 1.21: rename to repair_factor?
       ModifierModule.LOADER.register(getResource("repair"), RepairModule.LOADER);
       ModifierModule.LOADER.register(getResource("material_repair"), MaterialRepairModule.LOADER);

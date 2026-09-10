@@ -264,7 +264,6 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     materialRecipe(withCondition(consumer, tagCondition("storage_blocks/nitro_crystal")), MaterialIds.nitroCrystal, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/nitro_crystal")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "gems/nitro_crystal")), folder + "nitro_crystal/block");
     materialRecipe(withCondition(consumer, tagCondition("raw_materials/uraninite")), MaterialIds.uraninite, LegacyIngredientType.ofTag(getItemTag(COMMON, "raw_materials/uraninite")), 1, 1, folder + "uraninite/raw");
     materialRecipe(withCondition(consumer, tagCondition("storage_blocks/uraninite")), MaterialIds.uraninite, LegacyIngredientType.ofTag(getItemTag(COMMON, "storage_blocks/uraninite")), 9, 1, ItemOutput.fromTag(getItemTag(COMMON, "raw_materials/uraninite")), folder + "uraninite/block");
-
     // slimesuit
     materialRecipe(consumer, MaterialIds.enderslime, Ingredient.of(TinkerWorld.enderGeode), 1, 1, folder + "enderslime");
     materialRecipe(consumer, MaterialIds.phantom,    Ingredient.of(Items.PHANTOM_MEMBRANE), 1, 1, folder + "phantom_membrane");
@@ -388,6 +387,9 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     compatMeltingCasting(consumer, MaterialIds.vibrantAlloy, TinkerFluids.moltenVibrantAlloy, folder);
     compatMeltingCasting(consumer, MaterialIds.darkSteel,    TinkerFluids.moltenDarkSteel, folder);
     compatMeltingCasting(consumer, MaterialIds.endSteel,     TinkerFluids.moltenEndSteel, folder);
+    compatMeltingCasting(consumer, MaterialIds.allthemodium, TinkerFluids.moltenAllthemodium, folder);
+    compatMeltingCasting(consumer, MaterialIds.vibranium, TinkerFluids.moltenVibranium, folder);
+    compatMeltingCasting(consumer, MaterialIds.unobtainium, TinkerFluids.moltenUnobtainium, folder);
 
     // slimesuit - slime
     materialMeltingCasting(consumer, MaterialIds.earthslime, TinkerFluids.earthSlime, FluidValues.SLIMEBALL, folder);

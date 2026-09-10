@@ -247,6 +247,7 @@ import slimeknights.tconstruct.tools.modules.cosmetic.BannerModule;
 import slimeknights.tconstruct.tools.modules.cosmetic.DyeModule;
 import slimeknights.tconstruct.tools.modules.cosmetic.EmbellishmentModule;
 import slimeknights.tconstruct.tools.modules.cosmetic.TrimModule;
+import slimeknights.tconstruct.tools.modules.durability.FullAllthemodiumSetModule;
 import slimeknights.tconstruct.tools.modules.durability.MossyRepairModule;
 import slimeknights.tconstruct.tools.modules.durability.ShareDurabilityModule;
 import slimeknights.tconstruct.tools.modules.durability.ToolDamageRangeModule;
@@ -449,6 +450,10 @@ public class ModifierProvider extends AbstractModifierProvider {
       .addModule(ModifierRequirementsModule.builder().requireModifier(ModifierIds.netherite, 1).requireModifier(ModifierIds.reinforced, 5).modifierKey(ModifierIds.unbreakable).build())
       .addModule(new DurabilityBarColorModule(0xffffff))
       .addModule(ReduceToolDamageModule.builder().cause(allowReinforced).flat(1.0f));
+    buildModifier(ModifierIds.modiumForged)
+      .tooltipDisplay(TooltipDisplay.NEVER).levelDisplay(ModifierLevelDisplay.NO_LEVELS).priority(126)
+      .addModule(new DurabilityBarColorModule(0xEEDB74))
+      .addModule(FullAllthemodiumSetModule.INSTANCE);
     buildModifier(ModifierIds.tank).addModules(
       StatBoostModule.add(ToolTankHelper.CAPACITY_STAT).eachLevel(FluidType.BUCKET_VOLUME),
       ToolTankHelper.TANK_HANDLER,

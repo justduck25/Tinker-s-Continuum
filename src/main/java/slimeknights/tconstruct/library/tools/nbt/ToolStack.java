@@ -1,15 +1,20 @@
 package slimeknights.tconstruct.library.tools.nbt;
 
 import com.google.common.collect.ImmutableSet;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.ApiStatus.Internal;
 import slimeknights.tconstruct.TConstruct;
@@ -31,6 +36,7 @@ import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
 import slimeknights.tconstruct.library.tools.definition.module.build.ToolStatsHooks;
 import slimeknights.tconstruct.library.tools.definition.module.build.ToolVolatileDataHooks;
 import slimeknights.tconstruct.library.tools.definition.module.material.MissingMaterialsToolHook;
+import slimeknights.tconstruct.library.tools.definition.module.mining.MiningTierToolHook;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
@@ -147,6 +153,22 @@ public class ToolStack implements IToolStackView {
       stack.remove(DataComponents.MAX_DAMAGE);
       stack.remove(DataComponents.DAMAGE);
     }
+    if (hasTag(TinkerTags.Items.HARVEST)) {
+      stack.set(DataComponents.TOOL, buildToolComponent());
+    }
+  }
+
+  /** Builds a vanilla tool component so external mods checking DataComponents.TOOL see Tinkers' dynamic mining tier. */
+  private Tool buildToolComponent() {
+    Object tier = MiningTierToolHook.getTier(this);
+    ToolMaterial material = tier instanceof ToolMaterial toolMaterial ? toolMaterial : ToolMaterial.WOOD;
+    return new Tool(List.of(
+      Tool.Rule.deniesDrops(HolderSet.emptyNamed(BuiltInRegistries.BLOCK, material.incorrectBlocksForDrops())),
+      Tool.Rule.minesAndDrops(HolderSet.emptyNamed(BuiltInRegistries.BLOCK, BlockTags.MINEABLE_WITH_PICKAXE), getStats().get(ToolStats.MINING_SPEED)),
+      Tool.Rule.minesAndDrops(HolderSet.emptyNamed(BuiltInRegistries.BLOCK, BlockTags.MINEABLE_WITH_AXE), getStats().get(ToolStats.MINING_SPEED)),
+      Tool.Rule.minesAndDrops(HolderSet.emptyNamed(BuiltInRegistries.BLOCK, BlockTags.MINEABLE_WITH_SHOVEL), getStats().get(ToolStats.MINING_SPEED)),
+      Tool.Rule.minesAndDrops(HolderSet.emptyNamed(BuiltInRegistries.BLOCK, BlockTags.MINEABLE_WITH_HOE), getStats().get(ToolStats.MINING_SPEED))
+    ), 1.0F, 1, true);
   }
 
   /* Creating */

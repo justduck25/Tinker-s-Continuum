@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/allthemodium"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_allthemodium"
+  },
+  "id": "tconstruct:tools/materials/casting/allthemodium",
+  "output": "tconstruct:allthemodium",
+  "temperature": 1500
+}

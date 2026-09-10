@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "tconstruct:melting/allthemodium/tools_costing_2"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/allthemodium/sword",
+  "ingredient": "#tconstruct:melting/allthemodium/tools_costing_2",
+  "result": {
+    "amount": 180,
+    "tag": "c:molten_allthemodium",
+    "unit_size": 10
+  },
+  "temperature": 1500,
+  "time": 113
+}

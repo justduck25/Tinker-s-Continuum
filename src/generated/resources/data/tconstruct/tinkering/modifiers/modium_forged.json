@@ -1,0 +1,14 @@
+{
+  "level_display": "tconstruct:no_levels",
+  "modules": [
+    {
+      "type": "tconstruct:durability_color",
+      "color": "EEDB74"
+    },
+    {
+      "type": "tconstruct:full_allthemodium_set"
+    }
+  ],
+  "priority": 126,
+  "tooltip_display": "never"
+}

@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/vibranium"
+    }
+  ],
+  "type": "tconstruct:material_melting",
+  "id": "tconstruct:tools/materials/melting/vibranium",
+  "input": "tconstruct:vibranium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_vibranium"
+  },
+  "temperature": 1500
+}

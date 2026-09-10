@@ -124,7 +124,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   protected ModifiableArmorItem(Properties properties, ToolDefinition toolDefinition, ArmorType type,
                                 Holder<SoundEvent> equipSound, ResourceKey<EquipmentAsset> equipmentAsset) {
     super(slimeknights.mantle.registration.deferred.ItemDeferredRegister.setIdFromCurrentKey(
-      addEquippable(properties, type, equipSound, equipmentAsset)));
+      TooltipUtil.hideVanillaEnchantments(addEquippable(properties, type, equipSound, equipmentAsset))));
     this.toolDefinition = toolDefinition;
     this.type = type;
   }

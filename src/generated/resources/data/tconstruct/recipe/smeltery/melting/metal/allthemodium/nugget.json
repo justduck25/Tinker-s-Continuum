@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:nuggets/allthemodium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/allthemodium/nugget",
+  "ingredient": "#c:nuggets/allthemodium",
+  "result": {
+    "amount": 10,
+    "tag": "c:molten_allthemodium"
+  },
+  "temperature": 1500,
+  "time": 27
+}
