@@ -37,9 +37,9 @@ public class AgeableSeveringRecipe extends SeveringRecipe {
   @Override
   public ItemStack getOutput(Entity entity) {
     if (entity instanceof LivingEntity && ((LivingEntity) entity).isBaby()) {
-      return childOutput.get().copy();
+      return childOutput.copy();
     }
-    return getOutput().copy();
+    return output.copy();
   }
 
   @Override

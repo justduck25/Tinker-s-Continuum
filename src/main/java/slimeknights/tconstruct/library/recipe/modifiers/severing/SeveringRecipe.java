@@ -78,7 +78,7 @@ public class SeveringRecipe implements ICustomOutputRecipe<IEmptyContainer> {
    * @return  Item output
    */
   public ItemStack getOutput(Entity entity) {
-    return getOutput().copy();
+    return output.copy();
   }
 
   @Override

@@ -10,6 +10,7 @@ Improvements
 - Added matching harvest tiers for Allthemodium, Vibranium, and Unobtainium harvest tools.
 
 Fixes
+- Fixed cleaver/severing drops copying early-loaded recipe outputs with temporary direct item holders, which could spam NBT predicate warnings after pickup.
 - Fixed AllTheModium ores refusing to break even when Continuum tools displayed the correct harvest tier.
 - Added vanilla tool component syncing so mods that check DataComponents.TOOL can recognize Continuum harvest tools correctly.
 - Fixed older Continuum tools missing the new vanilla tool component after loading an existing world.
