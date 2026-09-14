@@ -205,6 +205,9 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addDefaultTraits(MaterialIds.nitroCrystal, ModifierIds.enhanced);
     addTraits(MaterialIds.nitroCrystal, ARMOR, ModifierIds.projectileProtection);
     addDefaultTraits(MaterialIds.uraninite, ModifierIds.magnetic);
+    addDefaultTraits(MaterialIds.allthemodium, ModifierIds.modiumForged);
+    addDefaultTraits(MaterialIds.vibranium, ModifierIds.modiumForged);
+    addDefaultTraits(MaterialIds.unobtainium, ModifierIds.modiumForged);
 
     // slimesuit slime
     addTraits(MaterialIds.earthslime, SlimeStats.ID, ModifierIds.overgrowth, TinkerModifiers.overslime.getId());

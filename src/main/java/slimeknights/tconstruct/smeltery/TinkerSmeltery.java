@@ -587,6 +587,7 @@ public final class TinkerSmeltery extends TinkerModule {
 
     // casts
     addCasts(output, CastItemObject::get);
+    output.accept(arrowCast);
     output.accept(blankSandCast);
     addCasts(output, CastItemObject::getSand);
     output.accept(blankRedSandCast);
@@ -639,7 +640,6 @@ public final class TinkerSmeltery extends TinkerModule {
     // ranged
     accept(output, getter, bowLimbCast);
     accept(output, getter, bowGripCast);
-    output.accept(arrowCast);
     // no binding cast
     // armor
     accept(output, getter, helmetPlatingCast);

@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/unobtainium"
+    }
+  ],
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 241,
+  "fluid": {
+    "amount": 810,
+    "tag": "c:molten_unobtainium"
+  },
+  "id": "tconstruct:smeltery/casting/metal/unobtainium/block",
+  "result": {
+    "tag": "c:storage_blocks/unobtainium"
+  }
+}

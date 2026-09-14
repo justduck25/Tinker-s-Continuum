@@ -95,7 +95,7 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
   private ItemStack toolForRendering;
 
   public ModifiableLauncherItem(Properties properties, ToolDefinition toolDefinition) {
-    super(slimeknights.mantle.registration.deferred.ItemDeferredRegister.setIdFromCurrentKey(properties));
+    super(slimeknights.mantle.registration.deferred.ItemDeferredRegister.setIdFromCurrentKey(TooltipUtil.hideVanillaEnchantments(properties)));
     this.toolDefinition = toolDefinition;
   }
 

@@ -3,6 +3,7 @@ package slimeknights.tconstruct.tools.data.material;
 import net.minecraft.data.PackOutput;
 import slimeknights.tconstruct.library.data.material.AbstractMaterialDataProvider;
 import slimeknights.tconstruct.library.data.material.AbstractMaterialStatsDataProvider;
+import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.tools.stats.GripMaterialStats;
 import slimeknights.tconstruct.tools.stats.HandleMaterialStats;
 import slimeknights.tconstruct.tools.stats.HeadMaterialStats;
@@ -19,6 +20,9 @@ import static net.minecraft.world.item.ToolMaterial.IRON;
 import static net.minecraft.world.item.ToolMaterial.NETHERITE;
 import static net.minecraft.world.item.ToolMaterial.STONE;
 import static net.minecraft.world.item.ToolMaterial.WOOD;
+import static slimeknights.tconstruct.library.utils.HarvestTiers.ALLTHEMODIUM;
+import static slimeknights.tconstruct.library.utils.HarvestTiers.UNOBTAINIUM;
+import static slimeknights.tconstruct.library.utils.HarvestTiers.VIBRANIUM;
 
 public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider {
   public MaterialStatsDataProvider(PackOutput packOutput, AbstractMaterialDataProvider materials) {
@@ -322,6 +326,18 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
                      new HeadMaterialStats(360, 5.5f, IRON, 1.75f),
                      HandleMaterialStats.multipliers().durability(0.85f).miningSpeed(0.95f).attackSpeed(0.95f).build(),
                      StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.allthemodium,
+                     new HeadMaterialStats(32767, 15.0f, ALLTHEMODIUM, 12.0f),
+                     HandleMaterialStats.multipliers().durability(1.30f).miningSpeed(1.15f).attackSpeed(1.05f).attackDamage(1.20f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.vibranium,
+                     new HeadMaterialStats(32767, 20.0f, VIBRANIUM, 25.0f),
+                     HandleMaterialStats.multipliers().durability(1.50f).miningSpeed(1.25f).attackSpeed(1.10f).attackDamage(1.35f).build(),
+                     StatlessMaterialStats.BINDING);
+    addMaterialStats(MaterialIds.unobtainium,
+                     new HeadMaterialStats(32767, 25.0f, UNOBTAINIUM, 35.0f),
+                     HandleMaterialStats.multipliers().durability(1.75f).miningSpeed(1.35f).attackSpeed(1.15f).attackDamage(1.50f).build(),
+                     StatlessMaterialStats.BINDING);
   }
 
   private void addRanged() {
@@ -531,6 +547,15 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.uraninite,
                      new LimbMaterialStats(360, -0.05f, 0.05f, 0.05f),
                      new GripMaterialStats(-0.15f, 0.05f, 1.75f));
+    addMaterialStats(MaterialIds.allthemodium,
+                     new LimbMaterialStats(32767, 0.25f, 0.25f, 0.10f),
+                     new GripMaterialStats(0.15f, 0.10f, 12.0f));
+    addMaterialStats(MaterialIds.vibranium,
+                     new LimbMaterialStats(32767, 0.40f, 0.50f, 0.20f),
+                     new GripMaterialStats(0.30f, 0.20f, 25.0f));
+    addMaterialStats(MaterialIds.unobtainium,
+                     new LimbMaterialStats(32767, 0.55f, 0.70f, 0.25f),
+                     new GripMaterialStats(0.40f, 0.25f, 35.0f));
   }
 
   private void addAmmo() {
@@ -583,6 +608,9 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.spiritedCrystal, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.nitroCrystal, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.uraninite, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.allthemodium, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.vibranium, StatlessMaterialStats.ARROW_HEAD);
+    addMaterialStats(MaterialIds.unobtainium, StatlessMaterialStats.ARROW_HEAD);
     addMaterialStats(MaterialIds.blazewood, StatlessMaterialStats.ARROW_SHAFT);
     addMaterialStats(MaterialIds.blazingBone, StatlessMaterialStats.ARROW_SHAFT);
     addMaterialStats(MaterialIds.knightly, StatlessMaterialStats.ARROW_HEAD);
@@ -675,6 +703,9 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addArmorShieldStats(MaterialIds.spiritedCrystal, PlatingMaterialStats.builder().durabilityFactor(30).armor(2, 5, 7, 2).toughness(1), StatlessMaterialStats.MAILLE);
     addArmorShieldStats(MaterialIds.nitroCrystal,    PlatingMaterialStats.builder().durabilityFactor(38).armor(3, 6, 8, 3).toughness(2), StatlessMaterialStats.MAILLE);
     addArmorShieldStats(MaterialIds.uraninite,       PlatingMaterialStats.builder().durabilityFactor(12).armor(1, 3, 4, 1), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.allthemodium, PlatingMaterialStats.builder().durabilityFactor(2048).armor(4, 9, 7, 4).toughness(5).knockbackResistance(0.5f), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.vibranium,    PlatingMaterialStats.builder().durabilityFactor(2048).armor(6, 11, 9, 6).toughness(9).knockbackResistance(0.8f), StatlessMaterialStats.MAILLE);
+    addArmorShieldStats(MaterialIds.unobtainium,  PlatingMaterialStats.builder().durabilityFactor(2048).armor(8, 13, 11, 8).toughness(15).knockbackResistance(1.0f), StatlessMaterialStats.MAILLE);
   }
 
   private void addSlimesuit() {

@@ -1,0 +1,19 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:rods/allthemodium"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/multi_use/rod",
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 45,
+    "tag": "c:molten_allthemodium"
+  },
+  "id": "tconstruct:smeltery/casting/metal/allthemodium/rod_gold_cast",
+  "result": {
+    "tag": "c:rods/allthemodium"
+  }
+}

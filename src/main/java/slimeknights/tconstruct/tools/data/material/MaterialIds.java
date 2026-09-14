@@ -140,6 +140,9 @@ public final class MaterialIds {
   public static final MaterialId spiritedCrystal = id("spirited_crystal");
   public static final MaterialId nitroCrystal = id("nitro_crystal");
   public static final MaterialId uraninite = id("uraninite");
+  public static final MaterialId allthemodium = id("allthemodium");
+  public static final MaterialId vibranium = id("vibranium");
+  public static final MaterialId unobtainium = id("unobtainium");
   // twilight forest
   public static final MaterialId ironwood = id("ironwood");
   public static final MaterialId steeleaf = id("steeleaf");

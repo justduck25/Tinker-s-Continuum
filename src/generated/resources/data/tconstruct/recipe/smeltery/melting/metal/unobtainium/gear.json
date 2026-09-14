@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:gears/unobtainium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/unobtainium/gear",
+  "ingredient": "#c:gears/unobtainium",
+  "result": {
+    "amount": 360,
+    "tag": "c:molten_unobtainium"
+  },
+  "temperature": 1500,
+  "time": 160
+}

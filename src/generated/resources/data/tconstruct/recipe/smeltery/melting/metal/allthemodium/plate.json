@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:plates/allthemodium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/allthemodium/plate",
+  "ingredient": "#c:plates/allthemodium",
+  "result": {
+    "amount": 90,
+    "tag": "c:molten_allthemodium"
+  },
+  "temperature": 1500,
+  "time": 80
+}

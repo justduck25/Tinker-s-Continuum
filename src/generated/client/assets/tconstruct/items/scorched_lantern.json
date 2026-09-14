@@ -1,18 +1,6 @@
 {
   "model": {
-    "type": "minecraft:composite",
-    "models": [
-      {
-        "type": "minecraft:model",
-        "model": "tconstruct:item/scorched_lantern"
-      },
-      {
-        "type": "minecraft:special",
-        "base": "tconstruct:item/scorched_lantern",
-        "model": {
-          "type": "tconstruct:tank_fluid"
-        }
-      }
-    ]
+    "type": "minecraft:model",
+    "model": "tconstruct:item/scorched_lantern"
   }
 }

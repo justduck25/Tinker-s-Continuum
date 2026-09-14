@@ -59,7 +59,7 @@ public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay
   private ItemStack toolForRendering;
 
   public ModifiableArrowItem(Properties props, ToolDefinition toolDefinition) {
-    super(slimeknights.mantle.registration.deferred.ItemDeferredRegister.setIdFromCurrentKey(props));
+    super(slimeknights.mantle.registration.deferred.ItemDeferredRegister.setIdFromCurrentKey(TooltipUtil.hideVanillaEnchantments(props)));
     this.toolDefinition = toolDefinition;
   }
 

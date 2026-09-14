@@ -1,0 +1,16 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:ingots/unobtainium"
+    }
+  ],
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "c:molten_unobtainium"
+  },
+  "id": "tconstruct:tools/materials/casting/unobtainium",
+  "output": "tconstruct:unobtainium",
+  "temperature": 1500
+}

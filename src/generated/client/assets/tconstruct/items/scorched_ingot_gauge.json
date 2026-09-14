@@ -1,18 +1,6 @@
 {
   "model": {
-    "type": "minecraft:composite",
-    "models": [
-      {
-        "type": "minecraft:model",
-        "model": "tconstruct:item/scorched_ingot_gauge"
-      },
-      {
-        "type": "minecraft:special",
-        "base": "tconstruct:item/scorched_ingot_gauge",
-        "model": {
-          "type": "tconstruct:tank_fluid"
-        }
-      }
-    ]
+    "type": "minecraft:model",
+    "model": "tconstruct:item/scorched_ingot_gauge"
   }
 }

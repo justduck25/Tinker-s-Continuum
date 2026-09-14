@@ -25,6 +25,7 @@ import slimeknights.tconstruct.library.tools.nbt.MaterialNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.part.IToolPart;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -124,18 +125,28 @@ public final class ToolBuildHandler {
    * @param item   item being created
    */
   public static void addVariants(Consumer<ItemStack> tab, IModifiable item, String showOnlyMaterial) {
+    List<ItemStack> addedStacks = new ArrayList<>();
+    Consumer<ItemStack> output = stack -> {
+      for (ItemStack added : addedStacks) {
+        if (ItemStack.isSameItemSameComponents(added, stack)) {
+          return;
+        }
+      }
+      addedStacks.add(stack.copy());
+      tab.accept(stack);
+    };
     ToolDefinition definition = item.getToolDefinition();
     if (definition == null || !definition.isDataLoaded()) {
-      tab.accept(new ItemStack(item));
+      output.accept(new ItemStack(item));
       return;
     }
     boolean hasMaterials = definition.hasMaterials();
     if (hasMaterials && !MaterialRegistry.isFullyLoaded()) {
       // not loaded? cannot properly build it
-      tab.accept(new ItemStack(item));
+      output.accept(new ItemStack(item));
     } else if (!hasMaterials) {
       // no parts? just add this item
-      tab.accept(buildItemFromMaterials(item, MaterialNBT.EMPTY));
+      output.accept(buildItemFromMaterials(item, MaterialNBT.EMPTY));
     } else {
       // if a specific material is set, show just that in search
       boolean added = false;
@@ -146,7 +157,7 @@ public final class ToolBuildHandler {
           if (material != IMaterial.UNKNOWN) {
             ItemStack tool = createSingleMaterial(item, MaterialVariant.of(material));
             if (!tool.isEmpty()) {
-              tab.accept(tool);
+              output.accept(tool);
               added = true;
             }
           }
@@ -158,7 +169,7 @@ public final class ToolBuildHandler {
           // if we added it and we want a single material, we are done
           ItemStack tool = createSingleMaterial(item, MaterialVariant.of(material));
           if (!tool.isEmpty()) {
-            tab.accept(tool);
+            output.accept(tool);
             // if filter is set we wanted just the 1 item
             if (!showOnlyMaterial.isEmpty()) {
               break;

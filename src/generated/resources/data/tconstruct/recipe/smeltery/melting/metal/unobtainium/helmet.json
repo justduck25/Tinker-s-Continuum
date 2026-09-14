@@ -1,0 +1,18 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:armors/helmets/unobtainium"
+    }
+  ],
+  "type": "tconstruct:damagable_melting",
+  "id": "tconstruct:smeltery/melting/metal/unobtainium/helmet",
+  "ingredient": "#c:armors/helmets/unobtainium",
+  "result": {
+    "amount": 450,
+    "tag": "c:molten_unobtainium",
+    "unit_size": 10
+  },
+  "temperature": 1500,
+  "time": 179
+}

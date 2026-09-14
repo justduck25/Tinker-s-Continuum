@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "type": "neoforge:or",
+    "values": [
+      {
+        "type": "tconstruct:config",
+        "prop": "force_integration_materials"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:ingots/unobtainium"
+      },
+      {
+        "type": "mantle:tag_filled",
+        "tag": "c:storage_blocks/unobtainium"
+      }
+    ]
+  },
+  "craftable": true,
+  "hidden": false,
+  "sortOrder": 20,
+  "tier": 5
+}

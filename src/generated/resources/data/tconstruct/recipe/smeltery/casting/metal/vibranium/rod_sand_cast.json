@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:rods/vibranium"
+    }
+  ],
+  "type": "tconstruct:casting_table",
+  "cast": "#tconstruct:casts/single_use/rod",
+  "cast_consumed": true,
+  "cooling_time": 57,
+  "fluid": {
+    "amount": 45,
+    "tag": "c:molten_vibranium"
+  },
+  "id": "tconstruct:smeltery/casting/metal/vibranium/rod_sand_cast",
+  "result": {
+    "tag": "c:rods/vibranium"
+  }
+}

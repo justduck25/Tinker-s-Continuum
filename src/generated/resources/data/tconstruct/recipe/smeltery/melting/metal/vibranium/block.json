@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "mantle:tag_filled",
+      "tag": "c:storage_blocks/vibranium"
+    }
+  ],
+  "type": "tconstruct:melting",
+  "id": "tconstruct:smeltery/melting/metal/vibranium/block",
+  "ingredient": "#c:storage_blocks/vibranium",
+  "result": {
+    "amount": 810,
+    "tag": "c:molten_vibranium"
+  },
+  "temperature": 1500,
+  "time": 241
+}

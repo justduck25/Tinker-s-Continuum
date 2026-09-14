@@ -1180,6 +1180,26 @@
   "fluid.tconstruct.flowing_molten_end_steel": "Flowing Molten End Steel",
   "item.tconstruct.molten_end_steel_bucket": "Molten End Steel Bucket",
 
+  "_comment": "AllTheModium Fluids",
+
+  "block.tconstruct.molten_allthemodium_fluid": "Molten Allthemodium",
+  "item.tconstruct.molten_allthemodium_fluid": "Molten Allthemodium",
+  "fluid.tconstruct.molten_allthemodium": "Molten Allthemodium",
+  "fluid.tconstruct.flowing_molten_allthemodium": "Flowing Molten Allthemodium",
+  "item.tconstruct.molten_allthemodium_bucket": "Molten Allthemodium Bucket",
+
+  "block.tconstruct.molten_vibranium_fluid": "Molten Vibranium",
+  "item.tconstruct.molten_vibranium_fluid": "Molten Vibranium",
+  "fluid.tconstruct.molten_vibranium": "Molten Vibranium",
+  "fluid.tconstruct.flowing_molten_vibranium": "Flowing Molten Vibranium",
+  "item.tconstruct.molten_vibranium_bucket": "Molten Vibranium Bucket",
+
+  "block.tconstruct.molten_unobtainium_fluid": "Molten Unobtainium",
+  "item.tconstruct.molten_unobtainium_fluid": "Molten Unobtainium",
+  "fluid.tconstruct.molten_unobtainium": "Molten Unobtainium",
+  "fluid.tconstruct.flowing_molten_unobtainium": "Flowing Molten Unobtainium",
+  "item.tconstruct.molten_unobtainium_bucket": "Molten Unobtainium Bucket",
+
   "_comment": "Mekanism Alloys",
 
   "block.tconstruct.molten_refined_glowstone_fluid": "Molten Refined Glowstone",
@@ -3059,6 +3079,24 @@
   "material.tconstruct.uraninite.ranged": "Arrows carry a faint mineral pull.",
   "material.tconstruct.uraninite.armor": "Dense mineral plating for early technical armor.",
 
+  "material.tconstruct.allthemodium": "Allthemodium",
+  "material.tconstruct.allthemodium.flavor": "Golden power from the deep dark.",
+  "material.tconstruct.allthemodium.encyclopedia": "A very strong late-game metal. A full AllTheModium-family tool set becomes unbreakable.",
+  "material.tconstruct.allthemodium.ranged": "Heavy limbs with excellent force and durability.",
+  "material.tconstruct.allthemodium.armor": "Exceptionally durable plating with strong knockback resistance.",
+
+  "material.tconstruct.vibranium": "Vibranium",
+  "material.tconstruct.vibranium.flavor": "Bright resonance in metal form.",
+  "material.tconstruct.vibranium.encyclopedia": "A stronger late-game metal. A full AllTheModium-family tool set becomes unbreakable.",
+  "material.tconstruct.vibranium.ranged": "Fast, powerful ranged components with steady accuracy.",
+  "material.tconstruct.vibranium.armor": "High armor, toughness, and knockback resistance.",
+
+  "material.tconstruct.unobtainium": "Unobtainium",
+  "material.tconstruct.unobtainium.flavor": "A violet edge from the end of progression.",
+  "material.tconstruct.unobtainium.encyclopedia": "An apex late-game metal. A full AllTheModium-family tool set becomes unbreakable.",
+  "material.tconstruct.unobtainium.ranged": "Extreme durability and projectile force.",
+  "material.tconstruct.unobtainium.armor": "Top-end plating with extreme toughness.",
+
 
   "_comment": "Tier 4 Integration Materials",
 
@@ -3570,6 +3608,9 @@
   "modifier.tconstruct.unbreakable.flavor": "Frozen state!",
   "modifier.tconstruct.unbreakable.description": "Tool no longer takes damage from normal usage",
   "modifier.tconstruct.unbreakable.requirements": "Unbreakable requires Netherite and Reinforced V to apply",
+  "modifier.tconstruct.modium_forged": "Modium Forged",
+  "modifier.tconstruct.modium_forged.flavor": "Every part has to mean it.",
+  "modifier.tconstruct.modium_forged.description": "If every material-bearing part is from the AllTheModium family, the tool no longer takes durability damage.",
   "modifier.tconstruct.dual_wielding": "Dual Wielding",
   "modifier.tconstruct.dual_wielding.flavor": "Double action!",
   "modifier.tconstruct.dual_wielding.description": "Can attack from the offhand. Tools with dual wielding have reduced stats",
@@ -4485,6 +4526,9 @@
   "stat.tconstruct.harvest_tier.minecraft.iron": "Iron",
   "stat.tconstruct.harvest_tier.minecraft.diamond": "Diamond",
   "stat.tconstruct.harvest_tier.minecraft.netherite": "Netherite",
+  "stat.tconstruct.harvest_tier.allthemodium.allthemodium": "Allthemodium",
+  "stat.tconstruct.harvest_tier.allthemodium.vibranium": "Vibranium",
+  "stat.tconstruct.harvest_tier.allthemodium.unobtainium": "Unobtainium",
 
   "stat.tconstruct.slot.prefix.upgrades": "Upgrades: ",
   "stat.tconstruct.slot.prefix.abilities": "Abilities: ",

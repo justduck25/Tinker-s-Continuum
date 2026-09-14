@@ -56,7 +56,7 @@ public class ModifiableShurikenItem extends Item implements IModifiableDisplay {
   private ItemStack toolForRendering;
 
   public ModifiableShurikenItem(Properties props, ToolDefinition toolDefinition) {
-    super(slimeknights.mantle.registration.deferred.ItemDeferredRegister.setIdFromCurrentKey(props));
+    super(slimeknights.mantle.registration.deferred.ItemDeferredRegister.setIdFromCurrentKey(TooltipUtil.hideVanillaEnchantments(props)));
     this.toolDefinition = toolDefinition;
   }
 

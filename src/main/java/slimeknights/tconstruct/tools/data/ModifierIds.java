@@ -32,6 +32,7 @@ public class ModifierIds {
   public static final ModifierId reinforced = id("reinforced");
   public static final ModifierId mossy      = id("mossy");
   public static final ModifierId unbreakable = id("unbreakable");
+  public static final ModifierId modiumForged = id("modium_forged");
   public static final ModifierId overforced = id("overforced");
   public static final ModifierId worldbound = id("worldbound");
   public static final ModifierId shiny      = id("shiny");
