@@ -293,6 +293,25 @@ public class TinkerItemModelProvider implements DataProvider {
   private static JsonObject itemDefinition(Identifier item) {
     JsonObject definition = new JsonObject();
     JsonObject model = new JsonObject();
+    if (isTankFluidItem(item)) {
+      String modelName = item.getNamespace() + ":item/" + item.getPath();
+      model.addProperty("type", "minecraft:composite");
+      JsonArray models = new JsonArray();
+      JsonObject base = new JsonObject();
+      base.addProperty("type", "minecraft:model");
+      base.addProperty("model", modelName);
+      models.add(base);
+      JsonObject fluidLayer = new JsonObject();
+      fluidLayer.addProperty("type", "minecraft:special");
+      fluidLayer.addProperty("base", modelName);
+      JsonObject special = new JsonObject();
+      special.addProperty("type", "tconstruct:tank_fluid");
+      fluidLayer.add("model", special);
+      models.add(fluidLayer);
+      model.add("models", models);
+      definition.add("model", model);
+      return definition;
+    }
     model.addProperty("type", isRetexturedItem(item) ? "mantle:retextured_item" : "minecraft:model");
     model.addProperty("model", item.getNamespace() + ":item/" + item.getPath());
     if ("tinkers_chest".equals(item.getPath())) {
@@ -307,6 +326,19 @@ public class TinkerItemModelProvider implements DataProvider {
     }
     definition.add("model", model);
     return definition;
+  }
+
+  private static boolean isTankFluidItem(Identifier item) {
+    if (!TConstruct.MOD_ID.equals(item.getNamespace())) {
+      return false;
+    }
+    String path = item.getPath();
+    return path.equals("seared_casting_tank")
+      || path.endsWith("_fuel_tank")
+      || path.endsWith("_ingot_tank")
+      || path.endsWith("_fuel_gauge")
+      || path.endsWith("_ingot_gauge")
+      || path.endsWith("_lantern");
   }
 
   private static JsonObject materialItemDefinition(String texture, int x, int y, boolean hasOffset) {

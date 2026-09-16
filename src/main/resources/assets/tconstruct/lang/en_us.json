@@ -1613,6 +1613,7 @@
   "item.tconstruct.tank.drained": "Drained %s mb %s",
   "block.tconstruct.tank.filled": "Filled %s mb %s",
   "item.tconstruct.tank.filled": "Filled %s mb %s",
+  "item.tconstruct.tank.contents": "%s / %s mB",
 
   "block.tconstruct.copper_gauge": "Copper Gauge",
   "item.tconstruct.copper_gauge": "Copper Gauge",
