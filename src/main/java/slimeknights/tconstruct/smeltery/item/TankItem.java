@@ -42,6 +42,7 @@ import java.util.function.Predicate;
 
 public class TankItem extends BlockTooltipItem {
   public static final String FLUID_ID = TConstruct.makeTranslationKey("item", "tank.fluid_id");
+  public static final String FLUID_CONTENTS = TConstruct.makeTranslationKey("item", "tank.contents");
   private static final Predicate<FluidStack> NO_FILL = FluidStack::isEmpty;
   private final boolean limitStackSize;
 
@@ -83,6 +84,7 @@ public class TankItem extends BlockTooltipItem {
       if (tank.getFluidAmount() > 0) {
         FluidStack fluid = tank.getFluid();
         tooltip.accept(Component.translatable(fluid.getFluid().getFluidType().getDescriptionId(fluid)).withStyle(ChatFormatting.GRAY));
+        tooltip.accept(Component.translatable(FLUID_CONTENTS, fluid.getAmount(), tank.getCapacity()).withStyle(ChatFormatting.GRAY));
         if (flag.isAdvanced()) {
           tooltip.accept(Component.translatable(FLUID_ID, Loadables.FLUID.getKey(fluid.getFluid()).toString()).withStyle(ChatFormatting.DARK_GRAY));
         }
@@ -175,6 +177,23 @@ public class TankItem extends BlockTooltipItem {
     return stack;
   }
 
+  /** Reads tank item fluid, accepting both item and block-entity custom data shapes. */
+  private static FluidStack readTankFluid(CompoundTag root) {
+    return root.getCompound(NBTTags.TANK)
+      .map(tankTag -> {
+        FluidStack fluid = FluidStackNbt.read(tankTag);
+        if (fluid.isEmpty()) {
+          fluid = tankTag.getCompound("fluid")
+            .map(FluidStackNbt::read)
+            .orElseGet(() -> tankTag.getCompound("Fluid")
+              .map(FluidStackNbt::read)
+              .orElse(FluidStack.EMPTY));
+        }
+        return fluid;
+      })
+      .orElse(FluidStack.EMPTY);
+  }
+
   private static ItemStack setTank(ItemLike item, Identifier fluid, int amount) {
     Fluid registered = BuiltInRegistries.FLUID.getValue(fluid);
     return setTank(new ItemStack(item), registered == null ? FluidStack.EMPTY : new FluidStack(registered, amount));
@@ -189,7 +208,7 @@ public class TankItem extends BlockTooltipItem {
 
   public static FluidTank getTank(ItemStack stack, int scale) {
     FluidTank tank = ScaledFluidTank.create(TankBlockEntity.getCapacity(stack.getItem()), scale);
-    FluidStack fluid = FluidStackNbt.read(getRoot(stack), NBTTags.TANK);
+    FluidStack fluid = readTankFluid(getRoot(stack));
     if (!fluid.isEmpty()) {
       fluid = fluid.copy();
       fluid.setAmount(fluid.getAmount() * scale);
@@ -199,9 +218,8 @@ public class TankItem extends BlockTooltipItem {
   }
 
   public static String getSubtype(ItemStack stack) {
-    return getRoot(stack).getCompound(NBTTags.TANK)
-      .flatMap(tag -> tag.getString("id"))
-      .orElse("");
+    FluidStack fluid = readTankFluid(getRoot(stack));
+    return fluid.isEmpty() ? "" : BuiltInRegistries.FLUID.getKey(fluid.getFluid()).toString();
   }
 
   @SuppressWarnings("deprecation")

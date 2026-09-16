@@ -1,3 +1,13 @@
+Continuum Construct 26.1.2-3.11.9.1
+
+Fixes
+- Fixed a crash when Continuum Construct was loaded without JEI installed.
+- JEI integration now stays optional and only hooks recipe sync when JEI is present.
+
+Compatibility
+- Updated the required Continuum Core dependency to 1.11.6.
+- Built against NeoForge 26.1.2.109.
+
 Continuum Construct 26.1.2-3.11.9
 
 New

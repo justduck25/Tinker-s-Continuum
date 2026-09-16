@@ -69,6 +69,31 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
     this.capacity = maxCapacity;
   }
 
+  /** Snapshot used by NeoForge transfer transactions. */
+  public State createSnapshot() {
+    List<FluidStack> copy = Lists.newArrayListWithCapacity(fluids.size());
+    for (FluidStack fluid : fluids) {
+      copy.add(fluid.copy());
+    }
+    return new State(copy, capacity, contained);
+  }
+
+  /** Restores tank contents without routing through fill/drain side effects. */
+  public void restoreSnapshot(State state) {
+    fluids.clear();
+    for (FluidStack fluid : state.fluids) {
+      if (!fluid.isEmpty()) {
+        fluids.add(fluid.copy());
+      }
+    }
+    capacity = state.capacity;
+    contained = state.contained;
+    parent.notifyFluidsChanged(FluidChange.ORDER_CHANGED, getFluidInTank(0));
+    tankListChange.run();
+  }
+
+  public record State(List<FluidStack> fluids, int capacity, int contained) {}
+
   /**
    * Gets the maximum amount of space in the smeltery tank
    * @return  Tank capacity

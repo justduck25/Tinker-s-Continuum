@@ -8,6 +8,8 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
@@ -63,6 +65,15 @@ public class DuctBlockEntity extends SmelteryFluidIO implements MenuProvider {
     return new DuctTankWrapper(handler, itemHandler);
   }
 
+  /** Called when the filter item changes or loads from disk. */
+  public void onFilterChanged() {
+    clearHandler();
+    setChangedFast();
+    if (level != null) {
+      updateFluid();
+    }
+  }
+
   // TODO: Rewrite for NeoForge 1.21.4 - ModelData/ModelProperties removed
   //@Nonnull
   //@Override
@@ -88,19 +99,41 @@ public class DuctBlockEntity extends SmelteryFluidIO implements MenuProvider {
 
   public void load(CompoundTag tags) {
     super.load(tags);
-    tags.getCompound(TAG_ITEM).ifPresent(itemHandler::readFromNBT);
+    tags.getCompound(TAG_ITEM).ifPresent(tag -> {
+      itemHandler.readFromNBT(tag);
+      itemHandler.refreshFluid();
+    });
   }
 
   public void handleUpdateTag(CompoundTag tag) {
     super.load(tag);
+    tag.getCompound(TAG_ITEM).ifPresent(item -> {
+      itemHandler.readFromNBT(item);
+      itemHandler.refreshFluid();
+    });
     if (level != null && level.isClientSide()) {
       updateFluid();
     }
   }
 
   @Override
+  protected void loadAdditional(ValueInput input) {
+    super.loadAdditional(input);
+    input.read(TAG_ITEM, CompoundTag.CODEC).ifPresent(tag -> {
+      itemHandler.readFromNBT(tag);
+      itemHandler.refreshFluid();
+    });
+  }
+
+  @Override
   public void saveSynced(CompoundTag tags) {
     super.saveSynced(tags);
     tags.put(TAG_ITEM, itemHandler.writeToNBT());
+  }
+
+  @Override
+  public void saveAdditional(ValueOutput output) {
+    super.saveAdditional(output);
+    output.store(TAG_ITEM, CompoundTag.CODEC, itemHandler.writeToNBT());
   }
 }

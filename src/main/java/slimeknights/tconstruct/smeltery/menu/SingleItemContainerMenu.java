@@ -7,6 +7,7 @@ import slimeknights.mantle.inventory.SmartItemHandlerSlot;
 import slimeknights.tconstruct.shared.inventory.TriggeringBaseContainerMenu;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.smeltery.block.entity.HeaterBlockEntity;
+import slimeknights.tconstruct.smeltery.block.entity.component.DuctBlockEntity;
 
 import javax.annotation.Nullable;
 
@@ -19,6 +20,8 @@ public class SingleItemContainerMenu extends TriggeringBaseContainerMenu<BlockEn
     if (te != null) {
       if (te instanceof HeaterBlockEntity heater) {
         this.addSlot(new SmartItemHandlerSlot(heater.getItemCapability(), 0, 80, 20));
+      } else if (te instanceof DuctBlockEntity duct) {
+        this.addSlot(new SmartItemHandlerSlot(duct.getItemHandler(), 0, 80, 20));
       }
       this.addInventorySlots();
     }

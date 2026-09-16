@@ -17,6 +17,7 @@ import slimeknights.mantle.Mantle;
 import slimeknights.mantle.util.RetexturedHelper;
 import slimeknights.tconstruct.common.multiblock.IMasterLogic;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.smeltery.block.entity.controller.HeatingStructureBlockEntity;
 import slimeknights.tconstruct.smeltery.block.entity.tank.ISmelteryTankHandler;
 
 import javax.annotation.Nonnull;
@@ -91,16 +92,19 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
         if (master != null && this.level != null) {
           BlockEntity te = level.getBlockEntity(master);
           if (te != null) {
-            cachedHandler = getHandler(te);
+            T handler = getHandler(te);
+            if (handler != emptyInstance) {
+              cachedHandler = handler;
+            }
             if (true) {
             }
-            return cachedHandler;
+            return handler;
           }
         }
       }
       if (true) {
       }
-      cachedHandler = emptyInstance;
+      return emptyInstance;
     }
     return cachedHandler;
   }
@@ -164,7 +168,8 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
     @Override
     protected IFluidHandler getHandler(BlockEntity parent) {
       if (parent instanceof ISmelteryTankHandler tankHandler) {
-        return makeWrapper(tankHandler.getFluidCapability());
+        IFluidHandler handler = tankHandler.getFluidCapability();
+        return handler == emptyInstance ? emptyInstance : makeWrapper(handler);
       }
       return emptyInstance;
     }
@@ -178,6 +183,14 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
 
     protected ChuteBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
       super(type, pos, state, EmptyItemHandler.INSTANCE);
+    }
+
+    @Override
+    protected IItemHandler getHandler(BlockEntity parent) {
+      if (parent instanceof HeatingStructureBlockEntity structure) {
+        return structure.getItemCapability();
+      }
+      return emptyInstance;
     }
   }
 }

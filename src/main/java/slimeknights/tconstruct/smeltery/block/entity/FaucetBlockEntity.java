@@ -54,6 +54,10 @@ public class FaucetBlockEntity extends MantleBlockEntity {
   private FluidStack renderFluid = FluidStack.EMPTY;
   /** Used for pulse detection */
   private boolean lastRedstoneState = false;
+  /** Defers redstone state restoration until neighbor signals are stable after load. */
+  private boolean checkRedstoneOnNextTick = false;
+  /** Restores saved in-flight fluid after load before resuming redstone automation. */
+  private boolean restoreDrainedOnNextTick = false;
 
 
   public FaucetBlockEntity(BlockPos pos, BlockState state) {
@@ -164,6 +168,17 @@ public class FaucetBlockEntity extends MantleBlockEntity {
     }
   }
 
+  /** Starts or keeps pouring from redstone without toggling a powered faucet back off. */
+  public void activateFromRedstone() {
+    if (level == null || level.isClientSide()) {
+      return;
+    }
+    stopPouring = false;
+    if (faucetState == FaucetState.OFF || faucetState == FaucetState.POWERED) {
+      doTransfer(true);
+    }
+  }
+
   /**
    * Flips hasSignal and schedules a tick if appropriate.
    * @param hasSignal  New signal state
@@ -172,9 +187,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
     if (hasSignal != lastRedstoneState) {
       lastRedstoneState = hasSignal;
       if (hasSignal) {
-        if (level != null){
-          level.scheduleTick(worldPosition, this.getBlockState().getBlock(), 2);
-        }
+        activateFromRedstone();
       } else if (faucetState == FaucetState.POWERED) {
         faucetState = FaucetState.OFF;
         syncToClient(FluidStack.EMPTY, false);
@@ -187,6 +200,16 @@ public class FaucetBlockEntity extends MantleBlockEntity {
 
   /** Handles server ticks */
   private void tick() {
+    if (restoreDrainedOnNextTick) {
+      if (!restoreDrainedToInput()) {
+        return;
+      }
+    }
+    if (checkRedstoneOnNextTick) {
+      checkRedstoneOnNextTick = false;
+      lastRedstoneState = false;
+      handleRedstone(level != null && level.hasNeighborSignal(worldPosition));
+    }
     // nothing to do if not pouring
     if (faucetState == FaucetState.OFF) {
       return;
@@ -255,8 +278,15 @@ public class FaucetBlockEntity extends MantleBlockEntity {
         return false;
       }
     }
-    // reset if not powered, or if nothing to do
-    if (execute) {
+    // If redstone is holding the faucet on, stay in a waiting state and retry on
+    // later ticks. This covers world-load ordering where drains/ducts may not
+    // have reconnected to the smeltery master yet.
+    if (lastRedstoneState) {
+      if (execute && (faucetState == FaucetState.OFF || !FluidStack.isSameFluidSameComponents(renderFluid, FluidStack.EMPTY))) {
+        syncToClient(FluidStack.EMPTY, true);
+      }
+      faucetState = FaucetState.POWERED;
+    } else if (execute) {
       reset();
     }
     return false;
@@ -276,13 +306,6 @@ public class FaucetBlockEntity extends MantleBlockEntity {
       FluidStack fillStack = drained.copy();
       fillStack.setAmount(Math.min(drained.getAmount(), MB_PER_TICK));
 
-      IFluidHandler input = getInputHandler();
-      FluidStack currentInput = input == EmptyFluidHandler.INSTANCE ? FluidStack.EMPTY : input.drain(MB_PER_TICK, SIMULATE);
-      if (!currentInput.isEmpty() && !FluidStack.isSameFluidSameComponents(currentInput, drained)) {
-        reset();
-        return;
-      }
-
       // can we fill?
       int filled = output.fill(fillStack, SIMULATE);
       if (filled > 0) {
@@ -292,18 +315,57 @@ public class FaucetBlockEntity extends MantleBlockEntity {
         }
 
         // transfer it
-        this.drained.shrink(filled);
         fillStack.setAmount(filled);
         int execFilled = output.fill(fillStack, EXECUTE);
+        if (execFilled > 0) {
+          this.drained.shrink(execFilled);
+        } else {
+          pausePouring();
+        }
       } else {
-        // If the destination no longer accepts the buffered fluid, discard it so a changed source can start cleanly.
-        reset();
+        pausePouring();
       }
     }
     else {
-      // output got lost. all liquid buffered is lost.
-      reset();
+      pausePouring();
     }
+  }
+
+  /** Returns saved faucet buffer to the input after a world reload before resuming automation. */
+  private boolean restoreDrainedToInput() {
+    restoreDrainedOnNextTick = false;
+    if (drained.isEmpty()) {
+      return true;
+    }
+    IFluidHandler input = getInputHandler();
+    if (input == EmptyFluidHandler.INSTANCE) {
+      restoreDrainedOnNextTick = true;
+      faucetState = FaucetState.POWERED;
+      return false;
+    }
+    int filled = input.fill(drained.copy(), SIMULATE);
+    if (filled < drained.getAmount()) {
+      restoreDrainedOnNextTick = true;
+      faucetState = FaucetState.POWERED;
+      return false;
+    }
+    input.fill(drained.copy(), EXECUTE);
+    drained = FluidStack.EMPTY;
+    stopPouring = false;
+    faucetState = FaucetState.OFF;
+    syncToClient(FluidStack.EMPTY, false);
+    return true;
+  }
+
+  /**
+   * Stops pouring without discarding liquid already drained into the faucet buffer.
+   * This handles cases where the output changes or refuses the fluid after the faucet
+   * already removed a packet from the source tank.
+   */
+  private void pausePouring() {
+    stopPouring = true;
+    faucetState = FaucetState.POURING;
+    syncToClient(drained, true);
   }
 
   /**
@@ -320,6 +382,17 @@ public class FaucetBlockEntity extends MantleBlockEntity {
 
   public AABB getRenderBoundingBox() {
     return new AABB(worldPosition.getX(), worldPosition.getY() - 1, worldPosition.getZ(), worldPosition.getX() + 1, worldPosition.getY() + 1, worldPosition.getZ() + 1);
+  }
+
+  @Override
+  public void onLoad() {
+    super.onLoad();
+    if (level == null || level.isClientSide()) {
+      return;
+    }
+    lastRedstoneState = false;
+    restoreDrainedOnNextTick = !drained.isEmpty();
+    checkRedstoneOnNextTick = true;
   }
 
 

@@ -25,6 +25,10 @@ public class TankItemFluidSpecialRenderer implements SpecialModelRenderer<TankIt
     .from(0.08f, 0.08f, 0.08f)
     .to(15.92f, 15.92f, 15.92f)
     .build();
+  private static final FluidCuboid CASTING_TANK_FLUID = FluidCuboid.builder()
+    .from(0.08f, 0.08f, 0.08f)
+    .to(15.92f, 10.92f, 15.92f)
+    .build();
   private static final FluidCuboid LANTERN_FLUID = FluidCuboid.builder()
     .from(5.05f, 1.0f, 5.05f)
     .to(10.95f, 6.0f, 10.95f)
@@ -41,7 +45,8 @@ public class TankItemFluidSpecialRenderer implements SpecialModelRenderer<TankIt
       return null;
     }
     Identifier itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
-    FluidCuboid cuboid = itemId.getPath().endsWith("_lantern") ? LANTERN_FLUID : TANK_FLUID;
+    String path = itemId.getPath();
+    FluidCuboid cuboid = path.endsWith("_lantern") ? LANTERN_FLUID : path.equals("seared_casting_tank") ? CASTING_TANK_FLUID : TANK_FLUID;
     return new TankContents(fluid.copy(), tank.getCapacity(), cuboid);
   }
 
