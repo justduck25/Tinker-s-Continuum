@@ -1,10 +1,18 @@
 package slimeknights.tconstruct.smeltery.block.entity.inventory;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.transfer.ResourceHandler;
+import net.neoforged.neoforge.transfer.ResourceHandlerUtil;
+import net.neoforged.neoforge.transfer.access.ItemAccess;
+import net.neoforged.neoforge.transfer.fluid.FluidResource;
+import net.neoforged.neoforge.transfer.transaction.Transaction;
 import slimeknights.mantle.inventory.SingleItemHandler;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.network.InventorySlotSyncPacket;
@@ -28,6 +36,12 @@ public class DuctItemHandler extends SingleItemHandler<DuctBlockEntity> {
   private void updateFluid() {
     fluid = null;
     onUpdate.run();
+    parent.onFilterChanged();
+  }
+
+  /** Clears cached fluid state after loading directly from NBT. */
+  public void refreshFluid() {
+    updateFluid();
   }
 
   /**
@@ -64,15 +78,18 @@ public class DuctItemHandler extends SingleItemHandler<DuctBlockEntity> {
 
   @Override
   protected boolean isItemValid(ItemStack stack) {
-    // the item or its container must be in the tag
-    if (!stack.is(TinkerTags.Items.DUCT_CONTAINERS)) {
-      ItemStack container = ItemStack.EMPTY;
-      if (container.isEmpty() || !container.is(TinkerTags.Items.DUCT_CONTAINERS)) {
-        return false;
-      }
+    if (getContainedFluid(stack).isEmpty()) {
+      return false;
     }
-    // the item must contain fluid (handled by Mantle transfer helpers in NeoForge port)
-    return true;
+    // the item or its empty container must be in the tag
+    if (stack.is(TinkerTags.Items.DUCT_CONTAINERS)) {
+      return true;
+    }
+    if (stack.getItem() instanceof BucketItem bucket && bucket.getContent() != Fluids.EMPTY) {
+      return true;
+    }
+    ItemStack container = stack.getCraftingRemainder() == null ? ItemStack.EMPTY : stack.getCraftingRemainder().create();
+    return !container.isEmpty() && container.is(TinkerTags.Items.DUCT_CONTAINERS);
   }
 
   /**
@@ -81,15 +98,35 @@ public class DuctItemHandler extends SingleItemHandler<DuctBlockEntity> {
    */
   public FluidStack getFluid() {
     if (fluid == null) {
-      ItemStack stack = getStack();
-      if (stack.isEmpty()) {
-        fluid = FluidStack.EMPTY;
-      } else {
-        fluid = FluidUtil.getFluidHandler(stack)
-          .map(handler -> handler.getFluidInTank(0))
-          .orElse(FluidStack.EMPTY);
-      }
+      fluid = getContainedFluid(getStack());
     }
     return fluid;
+  }
+
+  /** Gets the fluid stored inside the filter item. */
+  private static FluidStack getContainedFluid(ItemStack stack) {
+    if (stack.isEmpty()) {
+      return FluidStack.EMPTY;
+    }
+    ResourceHandler<FluidResource> handler = ItemAccess.forStack(stack).oneByOne().getCapability(Capabilities.Fluid.ITEM);
+    if (handler != null) {
+      for (int i = 0; i < handler.size(); i++) {
+        FluidResource resource = handler.getResource(i);
+        int amount = handler.getAmountAsInt(i);
+        if (!resource.isEmpty() && amount > 0) {
+          return resource.toStack(amount);
+        }
+      }
+      try (Transaction tx = Transaction.open(Transaction.getCurrentOpenedTransaction())) {
+        var extracted = ResourceHandlerUtil.extractFirst(handler, resource -> !resource.isEmpty(), Integer.MAX_VALUE, tx);
+        if (extracted != null && extracted.amount() > 0) {
+          return extracted.resource().toStack(extracted.amount());
+        }
+      }
+    }
+    if (stack.getItem() instanceof BucketItem bucket && bucket.getContent() != Fluids.EMPTY) {
+      return new FluidStack(bucket.getContent(), FluidType.BUCKET_VOLUME);
+    }
+    return FluidStack.EMPTY;
   }
 }

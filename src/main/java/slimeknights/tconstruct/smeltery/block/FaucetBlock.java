@@ -128,7 +128,7 @@ public class FaucetBlock extends Block implements EntityBlock {
   @SuppressWarnings("deprecation")
   @Override
   public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
-    getFaucet(worldIn, pos).ifPresent(FaucetBlockEntity::activate);
+    getFaucet(worldIn, pos).ifPresent(FaucetBlockEntity::activateFromRedstone);
   }
 
   /**

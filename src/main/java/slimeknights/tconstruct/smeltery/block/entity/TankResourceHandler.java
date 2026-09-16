@@ -9,6 +9,7 @@ import net.neoforged.neoforge.transfer.fluid.FluidResource;
 import net.neoforged.neoforge.transfer.transaction.SnapshotJournal;
 import net.neoforged.neoforge.transfer.transaction.TransactionContext;
 import slimeknights.tconstruct.smeltery.block.entity.tank.CastingFluidHandler;
+import slimeknights.tconstruct.smeltery.block.entity.tank.SmelteryTank;
 
 /** Bridges Tinkers' legacy IFluidHandler tanks to NeoForge's ResourceHandler fluid capability. */
 public class TankResourceHandler implements ResourceHandler<FluidResource> {
@@ -69,6 +70,9 @@ public class TankResourceHandler implements ResourceHandler<FluidResource> {
       if (tank instanceof CastingFluidHandler casting) {
         return casting.createSnapshot();
       }
+      if (tank instanceof SmelteryTank<?> smeltery) {
+        return smeltery.createSnapshot();
+      }
       FluidStack[] fluids = new FluidStack[tank.getTanks()];
       for (int i = 0; i < fluids.length; i++) {
         fluids[i] = tank.getFluidInTank(i).copy();
@@ -80,6 +84,10 @@ public class TankResourceHandler implements ResourceHandler<FluidResource> {
     protected void revertToSnapshot(Object snapshot) {
       if (tank instanceof CastingFluidHandler casting && snapshot instanceof CastingFluidHandler.State state) {
         casting.restoreSnapshot(state);
+        return;
+      }
+      if (tank instanceof SmelteryTank<?> smeltery && snapshot instanceof SmelteryTank.State state) {
+        smeltery.restoreSnapshot(state);
         return;
       }
       FluidStack[] fluids = (FluidStack[])snapshot;

@@ -565,7 +565,6 @@ FluidUpdatePacket.IFluidPacketReceiver {
         super.setLevel(pLevel);
         if (this.recipeName != null) {
             this.loadRecipe(pLevel, this.recipeName);
-            this.recipeName = null;
         }
     }
 
