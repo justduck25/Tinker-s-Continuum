@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
@@ -116,15 +117,12 @@ public class FaucetBlock extends Block implements EntityBlock {
     return InteractionResult.SUCCESS;
   }
 
-  @SuppressWarnings("deprecation")
-  public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+  @Override
+  protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, Orientation orientation, boolean isMoving) {
     if (worldIn.isClientSide()) {
       return;
     }
-    getFaucet(worldIn, pos).ifPresent(faucet -> {
-      faucet.neighborChanged(fromPos);
-      faucet.handleRedstone(worldIn.hasNeighborSignal(pos));
-    });
+    getFaucet(worldIn, pos).ifPresent(faucet -> faucet.handleRedstone(worldIn.hasNeighborSignal(pos)));
   }
 
   @SuppressWarnings("deprecation")
