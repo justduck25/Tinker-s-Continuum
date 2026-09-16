@@ -1,8 +1,5 @@
 package slimeknights.tconstruct.plugin.jei;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.api.distmarker.Dist;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -87,12 +84,10 @@ import slimeknights.tconstruct.tools.item.CreativeSlotItem;
 import slimeknights.tconstruct.tools.item.ModifierCrystalItem;
 
 @JeiPlugin
-@EventBusSubscriber(modid = TConstruct.MOD_ID, value = Dist.CLIENT)
 public class TConstructJEIPlugin implements IModPlugin {
   /** Client recipe map received after tags are bound; used for multi-recipe expansion. */
   private static RecipeMap clientRecipeMap = RecipeMap.EMPTY;
 
-  @SubscribeEvent
   public static void onRecipesReceived(RecipesReceivedEvent event) {
     clientRecipeMap = event.getRecipeMap();
     Minecraft minecraft = Minecraft.getInstance();

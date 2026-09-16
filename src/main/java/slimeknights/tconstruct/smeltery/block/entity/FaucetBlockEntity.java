@@ -276,13 +276,6 @@ public class FaucetBlockEntity extends MantleBlockEntity {
       FluidStack fillStack = drained.copy();
       fillStack.setAmount(Math.min(drained.getAmount(), MB_PER_TICK));
 
-      IFluidHandler input = getInputHandler();
-      FluidStack currentInput = input == EmptyFluidHandler.INSTANCE ? FluidStack.EMPTY : input.drain(MB_PER_TICK, SIMULATE);
-      if (!currentInput.isEmpty() && !FluidStack.isSameFluidSameComponents(currentInput, drained)) {
-        reset();
-        return;
-      }
-
       // can we fill?
       int filled = output.fill(fillStack, SIMULATE);
       if (filled > 0) {
@@ -292,18 +285,31 @@ public class FaucetBlockEntity extends MantleBlockEntity {
         }
 
         // transfer it
-        this.drained.shrink(filled);
         fillStack.setAmount(filled);
         int execFilled = output.fill(fillStack, EXECUTE);
+        if (execFilled > 0) {
+          this.drained.shrink(execFilled);
+        } else {
+          pausePouring();
+        }
       } else {
-        // If the destination no longer accepts the buffered fluid, discard it so a changed source can start cleanly.
-        reset();
+        pausePouring();
       }
     }
     else {
-      // output got lost. all liquid buffered is lost.
-      reset();
+      pausePouring();
     }
+  }
+
+  /**
+   * Stops pouring without discarding liquid already drained into the faucet buffer.
+   * This handles cases where the output changes or refuses the fluid after the faucet
+   * already removed a packet from the source tank.
+   */
+  private void pausePouring() {
+    stopPouring = true;
+    faucetState = FaucetState.POURING;
+    syncToClient(drained, true);
   }
 
   /**
