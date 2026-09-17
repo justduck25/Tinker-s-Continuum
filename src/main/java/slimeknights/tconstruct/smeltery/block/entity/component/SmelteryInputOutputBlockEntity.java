@@ -34,6 +34,8 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
   protected final T emptyInstance;
   @Nullable
   private T cachedHandler = null;
+  @Nullable
+  private BlockEntity cachedMaster = null;
 
   /* Retexturing */
   @Nonnull
@@ -48,6 +50,7 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
   /** Clears all cached handlers. */
   protected void clearHandler() {
     cachedHandler = null;
+    cachedMaster = null;
   }
 
   public void invalidateCaps() {
@@ -86,25 +89,24 @@ public abstract class SmelteryInputOutputBlockEntity<T> extends SmelteryComponen
   /** Fetches the cached handler, falling back to the empty handler when no valid master exists. */
   @Nonnull
   public T getHandler() {
-    if (cachedHandler == null) {
-      if (validateMaster()) {
-        BlockPos master = getMasterPos();
-        if (master != null && this.level != null) {
-          BlockEntity te = level.getBlockEntity(master);
-          if (te != null) {
-            T handler = getHandler(te);
-            if (handler != emptyInstance) {
-              cachedHandler = handler;
-            }
-            if (true) {
-            }
-            return handler;
-          }
-        }
-      }
-      if (true) {
-      }
+    if (level == null || !validateMaster()) {
+      clearHandler();
       return emptyInstance;
+    }
+    BlockPos master = getMasterPos();
+    BlockEntity te = master == null ? null : level.getBlockEntity(master);
+    if (!(te instanceof HeatingStructureBlockEntity structure) || structure.getStructure() == null) {
+      clearHandler();
+      return emptyInstance;
+    }
+    if (cachedHandler == null || cachedMaster != te) {
+      T handler = getHandler(te);
+      if (handler == emptyInstance) {
+        clearHandler();
+        return emptyInstance;
+      }
+      cachedHandler = handler;
+      cachedMaster = te;
     }
     return cachedHandler;
   }

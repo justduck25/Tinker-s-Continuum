@@ -10,6 +10,9 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -292,6 +295,7 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
         if (fluidUpdateQueued) {
           fluidUpdateQueued = false;
           tank.syncFluids();
+          syncTankToViewers();
         }
       }
     } else {
@@ -477,6 +481,17 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
     tank.setFluids(fluids);
   }
 
+  private void syncTankToViewers() {
+    if (level instanceof ServerLevel server) {
+      ClientboundBlockEntityDataPacket packet = ClientboundBlockEntityDataPacket.create(this);
+      for (ServerPlayer viewer : server.players()) {
+        if (viewer.containerMenu instanceof HeatingStructureContainerMenu menu && menu.getTile() == this) {
+          viewer.connection.send(packet);
+        }
+      }
+    }
+  }
+
   /** Updates all fluid display listeners */
   private void updateListeners(FluidStack fluid) {
     Iterator<WeakReference<IDisplayFluidListener>> iterator = fluidDisplayListeners.iterator();
@@ -557,6 +572,9 @@ public abstract class HeatingStructureBlockEntity extends NameableBlockEntity im
   @Nullable
   @Override
   public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
+    if (player instanceof ServerPlayer serverPlayer) {
+      serverPlayer.connection.send(ClientboundBlockEntityDataPacket.create(this));
+    }
     return new HeatingStructureContainerMenu(id, inv, this);
   }
 

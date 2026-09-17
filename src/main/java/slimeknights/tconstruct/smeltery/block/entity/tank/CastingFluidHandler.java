@@ -19,11 +19,15 @@ import javax.annotation.Nonnull;
 @RequiredArgsConstructor
 public class CastingFluidHandler implements IFluidHandler {
   private final CastingBlockEntity tile;
-  @Getter @Setter
+  @Getter
   private FluidStack fluid = FluidStack.EMPTY;
   @Setter
   private int capacity = 0;
   private FluidStack filter = FluidStack.EMPTY;
+
+  public void setFluid(FluidStack fluid) {
+    this.fluid = FluidStackNbt.registeredCopy(fluid);
+  }
 
   /** Checks if the given fluid is valid */
   public boolean isFluidValid(FluidStack stack) {
@@ -79,14 +83,14 @@ public class CastingFluidHandler implements IFluidHandler {
       }
       if (action.execute()) {
         this.capacity = capacity;
-        this.filter = resource.copyWithAmount(1);
+        this.filter = FluidStackNbt.registeredCopy(resource).copyWithAmount(1);
       }
     }
 
     if (fluid.isEmpty()) {
       int amount = Math.min(capacity, resource.getAmount());
       if (action.execute()) {
-        fluid = resource.copyWithAmount(amount);
+        setFluid(resource.copyWithAmount(amount));
         tile.onContentsChanged();
       }
       return amount;
@@ -181,7 +185,7 @@ public class CastingFluidHandler implements IFluidHandler {
       setFluid(FluidStackNbt.read(nbt, TAG_FLUID));
     }
     if (nbt.contains(TAG_FILTER_FLUID)) {
-      filter = FluidStackNbt.read(nbt, TAG_FILTER_FLUID).copyWithAmount(1);
+      filter = FluidStackNbt.registeredCopy(FluidStackNbt.read(nbt, TAG_FILTER_FLUID)).copyWithAmount(1);
     } else if (nbt.contains(TAG_FILTER)) {
       net.minecraft.world.level.material.Fluid legacyFilter = BuiltInRegistries.FLUID.getValue(Identifier.parse(nbt.getString(TAG_FILTER).orElse("")));
       if (legacyFilter != null) {
@@ -194,7 +198,7 @@ public class CastingFluidHandler implements IFluidHandler {
   public void readFromInput(ValueInput input) {
     capacity = input.getIntOr(TAG_CAPACITY, 0);
     setFluid(input.read(TAG_FLUID, FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY));
-    filter = input.read(TAG_FILTER_FLUID, FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY).copyWithAmount(1);
+    filter = FluidStackNbt.registeredCopy(input.read(TAG_FILTER_FLUID, FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY)).copyWithAmount(1);
     if (filter.isEmpty()) {
       String filterName = input.getStringOr(TAG_FILTER, "");
       if (!filterName.isEmpty()) {

@@ -16,6 +16,11 @@ public class FluidTankBase<T extends MantleBlockEntity> extends FluidTank {
     this.parent = parent;
   }
 
+  @Override
+  public void setFluid(FluidStack stack) {
+    super.setFluid(FluidStackNbt.registeredCopy(stack));
+  }
+
   // override to fix bug with onContentsChanged during fill
   @Override
   public int fill(FluidStack resource, FluidAction action) {
@@ -35,7 +40,7 @@ public class FluidTankBase<T extends MantleBlockEntity> extends FluidTank {
       // FIX: the Forge implementation returns fluid.getAmount() here, which may be wrong if the fluid gets changed during onContentsChanged()
       // we instead use a local variable for the amount filled to guarantee its accurate
       int filled = Math.min(capacity, resource.getAmount());
-      fluid = resource.copyWithAmount(filled);
+      fluid = FluidStackNbt.registeredCopy(resource).copyWithAmount(filled);
       onContentsChanged();
       return filled;
     }
