@@ -41,7 +41,7 @@ public class ScorchedAnvilBlock extends TinkerStationBlock {
   @Deprecated
   public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
     Direction direction = state.getValue(FACING);
-    return direction.getAxis() == Direction.Axis.X ? X_AXIS_AABB : Z_AXIS_AABB;
+    return direction.getAxis() == Direction.Axis.X ? Z_AXIS_AABB : X_AXIS_AABB;
   }
 
   @Override
