@@ -155,6 +155,7 @@ import slimeknights.tconstruct.library.modifiers.modules.combat.ProjectileExplos
 import slimeknights.tconstruct.library.modifiers.modules.combat.SlingForceModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.DurabilityBarColorModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.MaterialVariantColorModule;
+import slimeknights.tconstruct.library.modifiers.modules.display.MeleeInstrumentModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ModifierVariantColorModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ModifierVariantNameModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ShowInteractionSourceModule;
@@ -869,6 +870,7 @@ public final class TinkerModifiers extends TinkerModule {
       ModifierModule.LOADER.register(getResource("tool_actions"), ToolActionsModule.LOADER);
       ModifierModule.LOADER.register(getResource("tool_action_transform"), ToolActionTransformModule.LOADER);
       ModifierModule.LOADER.register(getResource("edible"), EdibleModule.LOADER);
+      ModifierModule.LOADER.register(getResource("melee_instrument"), MeleeInstrumentModule.LOADER);
       // build
       ModifierModule.LOADER.register(getResource("conditional_stat"), ConditionalStatModule.LOADER);
       ModifierModule.LOADER.register(getResource("modifier_slot"), ModifierSlotModule.LOADER);

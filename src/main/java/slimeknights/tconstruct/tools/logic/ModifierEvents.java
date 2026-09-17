@@ -1,11 +1,11 @@
 package slimeknights.tconstruct.tools.logic;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Multiset;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.Identifier;
@@ -94,6 +94,7 @@ import slimeknights.tconstruct.tools.modifiers.effect.MagneticEffect;
 import slimeknights.tconstruct.tools.modules.ranged.RestrictAngleModule;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Events to implement modifier specific behaviors, such as those defined by {@link TinkerDataKeys}. General hooks will typically be in {@link ToolEvents} */
@@ -153,17 +154,10 @@ public class ModifierEvents {
   /** Prevents effects on the entity */
   @SubscribeEvent
   static void isPotionApplicable(MobEffectEvent.Applicable event) {
-    TinkerDataCapability.Holder data = TinkerDataCapability.getData((LivingEntity) event.getEntity());
-    if (data != null) {
-      Multiset<MobEffect> multiset = data.get(EffectImmunityModule.EFFECT_IMMUNITY);
-      if (multiset != null) {
-        // only grant immunity if the amount is high enough
-        MobEffectInstance effectInstance = event.getEffectInstance();
-        if (multiset.count(effectInstance.getEffect().value()) > effectInstance.getAmplifier()) {
-          event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
-        }
-      }
-    };
+    MobEffectInstance effectInstance = event.getEffectInstance();
+    if (effectInstance != null && EffectImmunityModule.getImmunity((LivingEntity) event.getEntity(), effectInstance.getEffect()) > effectInstance.getAmplifier()) {
+      event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+    }
   }
 
   /** Called when the player dies to store the item in the original inventory */

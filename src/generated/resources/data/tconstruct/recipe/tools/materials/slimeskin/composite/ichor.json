@@ -1,9 +1,15 @@
 {
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 250,
-    "fluid": "tconstruct:ichor"
-  },
+  "fluid": [
+    {
+      "amount": 250,
+      "fluid": "tconstruct:ichor"
+    },
+    {
+      "amount": 250,
+      "fluid": "tconstruct:ichor"
+    }
+  ],
   "id": "tconstruct:tools/materials/slimeskin/composite/ichor",
   "input": "tconstruct:leather",
   "output": "tconstruct:ichorskin",

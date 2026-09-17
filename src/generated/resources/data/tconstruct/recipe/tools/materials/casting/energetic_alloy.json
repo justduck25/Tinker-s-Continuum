@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_energetic_alloy"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_energetic_alloy"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_energetic_alloy"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/energetic_alloy",
   "output": "tconstruct:energetic_alloy",
   "temperature": 950

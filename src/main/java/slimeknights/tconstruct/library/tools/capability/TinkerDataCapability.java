@@ -10,8 +10,10 @@ import slimeknights.mantle.registration.object.IdAwareObject;
 import slimeknights.tconstruct.TConstruct;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Map;
+import java.util.WeakHashMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -26,6 +28,8 @@ public class TinkerDataCapability {
   private static final Identifier ID = TConstruct.getResource("modifier_data");
   /** Capability type */
   public static final EntityCapability<Holder, Void> CAPABILITY = EntityCapability.create(ID, Holder.class, Void.class);
+  /** NeoForge queries entity capabilities without caching the returned instance. */
+  private static final Map<LivingEntity, Holder> CACHE = Collections.synchronizedMap(new WeakHashMap<>());
 
   /** Registers this capability */
   public static void register() {
@@ -34,10 +38,9 @@ public class TinkerDataCapability {
 
   /** Registers this capability */
   public static void register(RegisterCapabilitiesEvent event) {
+    // 26.1 EntityType.getBaseClass() is always Entity, so filter at lookup time instead.
     for (EntityType<?> type : BuiltInRegistries.ENTITY_TYPE.stream().toList()) {
-      if (LivingEntity.class.isAssignableFrom(type.getBaseClass())) {
-        event.registerEntity(CAPABILITY, type, (entity, ctx) -> new Holder());
-      }
+      event.registerEntity(CAPABILITY, type, (entity, ctx) -> entity instanceof LivingEntity living ? CACHE.computeIfAbsent(living, ignored -> new Holder()) : null);
     }
   }
 

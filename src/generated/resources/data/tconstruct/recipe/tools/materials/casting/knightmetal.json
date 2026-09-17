@@ -1,9 +1,15 @@
 {
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "fluid": "tconstruct:molten_knightmetal"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_knightmetal"
+    },
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_knightmetal"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/knightmetal",
   "output": "tconstruct:knightmetal",
   "temperature": 1300

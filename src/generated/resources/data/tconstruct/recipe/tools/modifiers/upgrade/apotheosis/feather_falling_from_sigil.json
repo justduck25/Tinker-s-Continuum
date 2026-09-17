@@ -24,8 +24,8 @@
     }
   ],
   "level": {
-    "min": 3,
-    "max": 15
+    "max": 15,
+    "min": 3
   },
   "result": "tconstruct:feather_falling",
   "slots": {

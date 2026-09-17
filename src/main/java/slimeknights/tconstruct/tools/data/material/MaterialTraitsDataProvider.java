@@ -103,6 +103,7 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addDefaultTraits(MaterialIds.nahuatl, TinkerModifiers.lacerating);
     addDefaultTraits(MaterialIds.roseGold, ModifierIds.enhanced);
     addDefaultTraits(MaterialIds.pigIron, ModifierIds.tasty);
+    addDefaultTraits(MaterialIds.cheese, ModifierIds.savory);
     addTraits(MaterialIds.obsidian, ARMOR, ModifierIds.blastProtection);
     // tier 3 - nether
     addDefaultTraits(MaterialIds.cobalt, ModifierIds.lightweight);
@@ -218,6 +219,7 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addTraits(MaterialIds.blood, SlimeStats.ID, ModifierIds.reverted, TinkerModifiers.overslime.getId(), ModifierIds.overslimeFriend);
     // pseudoslime
     addTraits(MaterialIds.clay, SlimeStats.ID, ModifierIds.forming);
+    addTraits(MaterialIds.honey, SlimeStats.ID, ModifierIds.scrumptious);
     addTraits(MaterialIds.enderPearl, SlimeStats.ID, ModifierIds.magicProtection);
 
     // slimeskull
@@ -253,11 +255,15 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addTraits(MaterialIds.blazingBone, cage, ModifierIds.conductive);
     addDefaultTraits(MaterialIds.jadeite, TinkerModifiers.insatiable);
     addTraits(MaterialIds.endRod, cage, ModifierIds.floaty);
+    addTraits(MaterialIds.horn, cage, ModifierIds.ramAttack);
 
     // slimeshell
     MaterialStatsId shell = RepairStats.SHELL.getStatsId();
     // shells
     addTraits(MaterialIds.turtle, shell, ModifierIds.turtlesGrace);
+    addTraits(MaterialIds.nautilus, shell, ModifierIds.shellGut);
+    addTraits(MaterialIds.phantom, shell, ModifierIds.skyfall);
+    addTraits(MaterialIds.prismarine, shell, ModifierIds.thornsShell);
     addTraits(MaterialIds.shulker, shell, ModifierIds.shulkerBox);
     addTraits(MaterialIds.dragonScale, shell, ModifierIds.dragonfall);
     // shards
@@ -276,9 +282,5 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addTraits(MaterialIds.weepingVine, laces, ModifierIds.soulspeed);
     addTraits(MaterialIds.jeweledHide, laces, ModifierIds.fortunate);
     // enderslime vine uses standard armor
-
-    // slimesuit - repair
-    noTraits(MaterialIds.honey);
-    noTraits(MaterialIds.phantom);
   }
 }

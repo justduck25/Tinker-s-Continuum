@@ -24,8 +24,8 @@
         }
       ],
       "modifier_level": {
-        "min": 4,
-        "max": 15
+        "max": 15,
+        "min": 4
       },
       "requirement": {
         "type": "tconstruct:has_modifier",

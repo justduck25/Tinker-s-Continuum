@@ -14,15 +14,15 @@
         {
           "type": "tconstruct:random",
           "tier": {
-            "min": 1,
-            "max": 2
+            "max": 2,
+            "min": 1
           }
         },
         {
           "type": "tconstruct:random",
           "tier": {
-            "min": 1,
-            "max": 2
+            "max": 2,
+            "min": 1
           }
         }
       ]

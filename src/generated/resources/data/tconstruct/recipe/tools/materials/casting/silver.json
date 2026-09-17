@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_silver"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_silver"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_silver"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/silver",
   "output": "tconstruct:silver",
   "temperature": 790

@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_end_steel"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_end_steel"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_end_steel"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/end_steel",
   "output": "tconstruct:end_steel",
   "temperature": 1350

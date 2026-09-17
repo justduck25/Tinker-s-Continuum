@@ -45,6 +45,11 @@ public class CompositeCastingRecipe extends MaterialCastingRecipe {
     this.castingStatConflict = castingStatConflict;
   }
 
+  @Override
+  protected boolean matchesCast(ItemStack stack) {
+    return !stack.isEmpty() && stack.getItem() == result.asItem();
+  }
+
   /** @deprecated use {@link #CompositeCastingRecipe(TypeAwareRecipeSerializer, Identifier, String, int, IMaterialItem, IJsonPredicate, MaterialStatsId)} */
   @Deprecated(forRemoval = true)
   public CompositeCastingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, String group, IMaterialItem result, int itemCost, @Nullable MaterialStatsId castingStatConflict) {
@@ -57,12 +62,11 @@ public class CompositeCastingRecipe extends MaterialCastingRecipe {
     if (castingStatConflict != null) {
       // if we have casting recipe that matches our fluid and is valid for the result, return no match
       // used to prevent conflicts between tool casting and composite part casting
-      MaterialFluidRecipe recipe = MaterialCastingLookup.getCastingFluid(fluid); // TODO: does this need a filter?
+      MaterialFluidRecipe recipe = MaterialCastingLookup.getCastingFluid(fluid);
       if (recipe != MaterialFluidRecipe.EMPTY && castingStatConflict.canUseMaterial(recipe.getOutput().getId())) {
         return MaterialFluidRecipe.EMPTY;
       }
     }
-    // find a composite match, requires fetching the material ID but not a huge deal as we already validated the cast (won't be calling this for multiple fluids)
     return MaterialCastingLookup.getCompositeFluid(fluid, IMaterialItem.getMaterialFromStack(inv.getStack()), materials);
   }
 

@@ -57,6 +57,7 @@ import slimeknights.tconstruct.library.json.predicate.EntityVariableRangePredica
 import slimeknights.tconstruct.library.json.predicate.HarvestTierPredicate;
 import slimeknights.tconstruct.library.json.predicate.HasMobEffectPredicate;
 import slimeknights.tconstruct.library.json.predicate.TinkerPredicate;
+import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.library.recipe.ingredient.BlockTagIngredient;
 import slimeknights.tconstruct.library.recipe.ingredient.NoContainerIngredient;
 import slimeknights.tconstruct.library.utils.SlimeBounceHandler;
@@ -169,6 +170,7 @@ public final class TinkerCommons extends TinkerModule {
     TConstructCommand.init();
     NeoForge.EVENT_BUS.addListener(RecipeCacheInvalidator::onReloadListenerReload);
     NeoForge.EVENT_BUS.addListener(RecipeCacheInvalidator::onServerStarted);
+    NeoForge.EVENT_BUS.addListener(TinkerRecipeTypes::sendRecipesToClient);
   }
 
   @SubscribeEvent

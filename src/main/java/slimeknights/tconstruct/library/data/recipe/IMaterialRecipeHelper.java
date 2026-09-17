@@ -17,6 +17,7 @@ import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.casting.material.MaterialFluidRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.material.MaterialRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.melting.MaterialMeltingRecipeBuilder;
+import slimeknights.mantle.recipe.ingredient.FluidIngredient;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -78,7 +79,7 @@ public interface IMaterialRecipeHelper extends IRecipeHelper {
   /** Adds recipes to melt and cast a material */
   default void materialMeltingCasting(RecipeOutput consumer, MaterialVariantId material, FluidObject<?> fluid, int fluidAmount, String folder) {
     MaterialFluidRecipeBuilder.material(material)
-                              .setFluid(fluid.ingredient(fluidAmount))
+                              .setFluid(castingFluid(fluid, fluidAmount))
                               .setTemperature(getTemperature(fluid))
                               .save(consumer, location(folder + "casting/" + material.getLocation('_').getPath()));
     materialMelting(consumer, material, fluid, fluidAmount, folder);
@@ -109,12 +110,17 @@ public interface IMaterialRecipeHelper extends IRecipeHelper {
   default void materialComposite(RecipeOutput consumer, MaterialVariantId input, MaterialVariantId output, FluidObject<?> fluid, int amount, String folder, String name) {
     MaterialFluidRecipeBuilder.material(output)
                               .setInputId(input)
-                              .setFluid(fluid.ingredient(amount))
+                              .setFluid(castingFluid(fluid, amount))
                               .setTemperature(getTemperature(fluid))
                               .save(consumer, location(folder + "composite/" + name));
   }
 
   default void materialComposite(RecipeOutput consumer, MaterialVariantId input, MaterialVariantId output, FluidObject<?> fluid, int amount, String folder) {
     materialComposite(consumer, input, output, fluid, amount, folder, output.getLocation('_').getPath());
+  }
+
+  /** Matches the still fluid plus any common tag, so smeltery output is accepted even when tag lookup is empty. */
+  default FluidIngredient castingFluid(FluidObject<?> fluid, int amount) {
+    return FluidIngredient.of(FluidIngredient.of(fluid.get(), amount), fluid.ingredient(amount));
   }
 }

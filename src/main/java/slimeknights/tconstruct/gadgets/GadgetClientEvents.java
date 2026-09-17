@@ -7,6 +7,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.ClientEventBase;
+import slimeknights.tconstruct.gadgets.client.FancyArmorStandRenderer;
 import slimeknights.tconstruct.gadgets.client.FancyItemFrameRenderer;
 import slimeknights.tconstruct.tools.client.material.ThrownShurikenRenderer;
 
@@ -16,6 +17,7 @@ public class GadgetClientEvents extends ClientEventBase {
   @SubscribeEvent
   static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
     event.registerEntityRenderer(TinkerGadgets.itemFrameEntity.get(), FancyItemFrameRenderer::new);
+    event.registerEntityRenderer(TinkerGadgets.armorStandEntity.get(), FancyArmorStandRenderer::new);
     event.registerEntityRenderer(TinkerGadgets.glowBallEntity.get(), ctx -> new ThrownItemRenderer(ctx));
     event.registerEntityRenderer(TinkerGadgets.eflnEntity.get(), ctx -> new ThrownItemRenderer(ctx));
     event.registerEntityRenderer(TinkerGadgets.quartzShurikenEntity.get(), ThrownShurikenRenderer::new);

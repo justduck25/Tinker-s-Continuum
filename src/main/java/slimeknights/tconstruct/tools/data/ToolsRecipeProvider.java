@@ -304,22 +304,38 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .setCast(Items.ELYTRA, CastPurpose.CONSUMED)
       .setItemCost(8)
       .save(consumer, location(armorFolder + "slimelytra"));
+    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimeWings.get())
+      .setCast(Items.ELYTRA, CastPurpose.CONSUMED)
+      .setItemCost(8)
+      .save(consumer, location(armorFolder + "table/slimelytra"));
 
     // slimecage
     MaterialCastingRecipeBuilder.basinRecipe(TinkerTools.slimesuit.get(ArmorType.CHESTPLATE))
       .setPart(TinkerToolParts.ribcage, true)
       .setItemCost(8)
       .save(consumer, location(folder + "slimecage"));
+    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.CHESTPLATE))
+      .setPart(TinkerToolParts.ribcage, true)
+      .setItemCost(8)
+      .save(consumer, location(folder + "table/slimecage"));
     // slimeshell
     MaterialCastingRecipeBuilder.basinRecipe(TinkerTools.slimesuit.get(ArmorType.LEGGINGS))
       .setPart(TinkerToolParts.shell, true)
       .setItemCost(7)
       .save(consumer, location(folder + "slimeshell"));
+    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.LEGGINGS))
+      .setPart(TinkerToolParts.shell, true)
+      .setItemCost(7)
+      .save(consumer, location(folder + "table/slimeshell"));
     // slime boots
     MaterialCastingRecipeBuilder.basinRecipe(TinkerTools.slimesuit.get(ArmorType.BOOTS))
       .setPart(TinkerToolParts.laces, true)
       .setItemCost(4)
       .save(consumer, location(folder + "slime_boots"));
+    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.BOOTS))
+      .setPart(TinkerToolParts.laces, true)
+      .setItemCost(4)
+      .save(consumer, location(folder + "table/slime_boots"));
   }
 
   private void addRecycleRecipes(RecipeOutput consumer) {
@@ -514,6 +530,11 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .addExtraMaterial(material)
       .setItemCost(5)
       .save(consumer, location(folder + "slime_skull/" + material.getPath()));
+    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.HELMET))
+      .setCast(skull, CastPurpose.CONSUMED_OFFSET)
+      .addExtraMaterial(material)
+      .setItemCost(5)
+      .save(consumer, location(folder + "slime_skull/table/" + material.getPath()));
     MaterialSwappingRecipeBuilder.tools(TinkerTags.Items.SWAPPABLE_SKULLS)
       .index(0).material(material, skull).repairValue((int) (MaterialRecipe.INGOTS_PER_REPAIR * 2))
       .save(consumer, location(folder + "slime_skull/swapping/" + material.getPath()));

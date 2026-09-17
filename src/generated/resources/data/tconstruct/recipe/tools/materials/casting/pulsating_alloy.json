@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_pulsating_alloy"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_pulsating_alloy"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_pulsating_alloy"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/pulsating_alloy",
   "output": "tconstruct:pulsating_alloy",
   "temperature": 900

@@ -123,6 +123,7 @@ public class TConstructJEIPlugin implements IModPlugin {
         com.mojang.serialization.Codec.INT.fieldOf("count").forGetter(slots -> slots.count())
       ).apply(instance, slimeknights.tconstruct.library.tools.SlotType.SlotCount::new)));
   }
+  @Override
   public void registerItemSubtypes(ISubtypeRegistration registration) {
     ISubtypeInterpreter<ItemStack> tables = (stack, context) ->
       context == UidContext.Ingredient ? RetexturedHelper.getTextureName(stack) : new String();

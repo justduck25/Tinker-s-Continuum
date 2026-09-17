@@ -88,7 +88,7 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
 
   @Override
   public boolean matches(ICastingContainer inv, Level level) {
-    return bottle.test(inv.getStack()) && fluid.test(inv.getFluid());
+    return slimeknights.mantle.recipe.helper.IngredientHelper.test(bottle, inv.getStack()) && fluid.test(inv.getFluid());
   }
 
   @Override

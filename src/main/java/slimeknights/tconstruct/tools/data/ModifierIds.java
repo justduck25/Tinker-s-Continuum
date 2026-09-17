@@ -331,6 +331,11 @@ public class ModifierIds {
   public static final ModifierId revenge = id("revenge");
   public static final ModifierId fireborn = id("fireborn");
   public static final ModifierId dragonheart = id("dragonheart");
+  public static final ModifierId ramAttack = id("ram_attack");
+  public static final ModifierId shellGut = id("shell_gut");
+  public static final ModifierId thornsShell = id("thorns_shell");
+  public static final ModifierId savory = id("savory");
+  public static final ModifierId scrumptious = id("scrumptious");
   /** @deprecated cave spider's trait was switched to {@link #balmOfSssss}. Reimplement if you need this functionality */
   @Deprecated(forRemoval = true)
   public static final ModifierId mithridatism = id("mithridatism");

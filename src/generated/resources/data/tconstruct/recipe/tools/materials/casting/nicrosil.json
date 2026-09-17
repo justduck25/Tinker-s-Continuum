@@ -23,10 +23,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_nicrosil"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_nicrosil"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_nicrosil"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/nicrosil",
   "output": "tconstruct:nicrosil",
   "temperature": 1100

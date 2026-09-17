@@ -3,10 +3,12 @@ package slimeknights.tconstruct.library.tools.capability.inventory;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -574,6 +576,29 @@ public class ToolInventoryCapability extends InventoryModifierHookIterator<Modif
       return player.level().isClientSide() ? InteractionResult.SUCCESS : InteractionResult.CONSUME;
     }
     return InteractionResult.PASS;
+  }
+
+  /** Called when a tool item entity is destroyed to drop its inventory items. */
+  public static void onDestroyed(ItemEntity entity) {
+    if (!(entity.level() instanceof ServerLevel serverLevel)) {
+      return;
+    }
+    ItemStack stack = entity.getItem();
+    IToolStackView tool = ToolStack.from(stack);
+    if (tool.getVolatileData().getInt(TOTAL_SLOTS) <= 0) {
+      return;
+    }
+    for (ModifierEntry entry : tool.getModifierList()) {
+      InventoryModifierHook inventory = entry.getHook(HOOK);
+      int slots = inventory.getSlots(tool, entry);
+      for (int i = 0; i < slots; i++) {
+        ItemStack nested = inventory.getStack(tool, entry, i);
+        if (!nested.isEmpty()) {
+          entity.spawnAtLocation(serverLevel, nested);
+          inventory.setStack(tool, entry, i, ItemStack.EMPTY);
+        }
+      }
+    }
   }
 
   /** Iterator that goes through a list in reverse order */

@@ -1,0 +1,33 @@
+{
+  "level_display": "tconstruct:single_level",
+  "modules": [
+    {
+      "type": "tconstruct:edible",
+      "counter_chance": {
+        "each_level": 0.15
+      },
+      "cure_random": true,
+      "durability_usage": {
+        "each_level": 4,
+        "flat": 4
+      },
+      "duration": {
+        "flat": 16
+      },
+      "representative_item": "tconstruct:cheese_ingot"
+    },
+    {
+      "type": "tconstruct:stat_boost",
+      "each_level": 1.0,
+      "operation": "add",
+      "stat": "tconstruct:hunger"
+    },
+    {
+      "type": "tconstruct:stat_boost",
+      "flat": 0.4,
+      "operation": "add",
+      "stat": "tconstruct:saturation"
+    }
+  ],
+  "tooltip_display": "always"
+}

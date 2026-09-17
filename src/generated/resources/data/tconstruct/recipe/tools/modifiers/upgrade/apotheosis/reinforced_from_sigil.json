@@ -24,8 +24,8 @@
     }
   ],
   "level": {
-    "min": 6,
-    "max": 15
+    "max": 15,
+    "min": 6
   },
   "result": "tconstruct:reinforced",
   "slots": {

@@ -1,9 +1,15 @@
 {
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 200,
-    "fluid": "tconstruct:blazing_blood"
-  },
+  "fluid": [
+    {
+      "amount": 200,
+      "fluid": "tconstruct:blazing_blood"
+    },
+    {
+      "amount": 200,
+      "fluid": "tconstruct:blazing_blood"
+    }
+  ],
   "id": "tconstruct:tools/materials/composite/blazewood",
   "input": "tconstruct:slimewood#bloodshroom",
   "output": "tconstruct:blazewood",

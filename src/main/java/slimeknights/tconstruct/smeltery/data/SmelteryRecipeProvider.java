@@ -2800,13 +2800,16 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
    */
   private void slimeMelting(RecipeOutput consumer, FluidObject<?> fluid, SlimeType type, String folder) {
     String slimeFolder = folder + type.getSerializedName() + "/";
-    MeltingRecipeBuilder.melting(LegacyIngredientType.ofTag(type.getSlimeballTag()), fluid, FluidValues.SLIMEBALL, 1.0f)
+    Ingredient slimeball = CompoundIngredient.of(
+      Ingredient.of(TinkerCommons.slimeball.get(type)),
+      LegacyIngredientType.ofTag(type.getSlimeballTag()));
+    MeltingRecipeBuilder.melting(slimeball, fluid.get(), FluidValues.SLIMEBALL, 1.0f)
                         .save(consumer, recipeKey(location(slimeFolder + "ball")));
     ItemLike item = TinkerWorld.congealedSlime.get(type);
-    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid, FluidValues.SLIME_CONGEALED, 2.0f)
+    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid.get(), FluidValues.SLIME_CONGEALED, 2.0f)
                         .save(consumer, recipeKey(location(slimeFolder + "congealed")));
     item = TinkerWorld.slime.get(type);
-    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid, FluidValues.SLIME_BLOCK, 3.0f)
+    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid.get(), FluidValues.SLIME_BLOCK, 3.0f)
                         .save(consumer, recipeKey(location(slimeFolder + "block")));
   }
 

@@ -26,6 +26,7 @@ import java.util.concurrent.CompletableFuture;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.tags.InstrumentTags;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -156,6 +157,7 @@ import slimeknights.tconstruct.library.modifiers.modules.combat.ProjectileExplos
 import slimeknights.tconstruct.library.modifiers.modules.combat.SlingForceModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.DurabilityBarColorModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.MaterialVariantColorModule;
+import slimeknights.tconstruct.library.modifiers.modules.display.MeleeInstrumentModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ModifierVariantColorModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ModifierVariantNameModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ShowInteractionSourceModule;
@@ -187,11 +189,11 @@ import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import slimeknights.tconstruct.shared.TinkerAttributes;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.TinkerEffects;
+import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.shared.block.SlimeType;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerToolActions;
 import slimeknights.tconstruct.tools.TinkerTools;
-import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.tools.entity.ThrownTool;
 import slimeknights.tconstruct.tools.item.CrystalshotItem;
 import slimeknights.tconstruct.tools.logic.ModifierEvents;
@@ -1309,6 +1311,14 @@ public class ModifierProvider extends AbstractModifierProvider {
       .addModule(EdibleModule.create(TinkerCommons.bacon, LevelingInt.flat(16), new LevelingInt(5, 5), LevelingValue.eachLevel(0.15f)))
       .addModule(StatBoostModule.add(EdibleModule.HUNGER).eachLevel(1))
       .addModule(StatBoostModule.add(EdibleModule.SATURATION).flat(0.6f));
+    buildModifier(ModifierIds.scrumptious).levelDisplay(ModifierLevelDisplay.SINGLE_LEVEL)
+      .addModule(EdibleModule.create(Items.HONEY_BOTTLE, LevelingInt.flat(16), new LevelingInt(5, 3), LevelingValue.eachLevel(0.15f), false, MobEffects.POISON.value()))
+      .addModule(StatBoostModule.add(EdibleModule.HUNGER).eachLevel(1))
+      .addModule(StatBoostModule.add(EdibleModule.SATURATION).flat(0.1f));
+    buildModifier(ModifierIds.savory).levelDisplay(ModifierLevelDisplay.SINGLE_LEVEL)
+      .addModule(EdibleModule.create(TinkerCommons.cheeseIngot, LevelingInt.flat(16), new LevelingInt(4, 4), LevelingValue.eachLevel(0.15f), true, null))
+      .addModule(StatBoostModule.add(EdibleModule.HUNGER).eachLevel(1))
+      .addModule(StatBoostModule.add(EdibleModule.SATURATION).flat(0.4f));
     buildModifier(ModifierIds.crystalbound)
       .addModule(RestrictAngleModule.INSTANCE)
       .addModule(StatBoostModule.add(ToolStats.VELOCITY).toolTag(TinkerTags.Items.RANGED).eachLevel(0.1f))
@@ -1681,6 +1691,16 @@ public class ModifierProvider extends AbstractModifierProvider {
 
     // ribcages
     buildModifier(ModifierIds.floaty).addModule(MobEffectModule.builder(MobEffects.LEVITATION.value()).time(RandomLevelingValue.random(20*2, 20*5)).buildWeapon());
+    buildModifier(ModifierIds.ramAttack).levelDisplay(ModifierLevelDisplay.SINGLE_LEVEL)
+      .addModule(ConditionalMeleeDamageModule.builder().attacker(LivingEntityPredicate.SPRINTING).eachLevel(4))
+      .addModule(MeleeInstrumentModule.tag(InstrumentTags.REGULAR_GOAT_HORNS).material(MaterialIds.horn).attacker(LivingEntityPredicate.SPRINTING).build(), ModifierHooks.MELEE_HIT, ModifierHooks.MONSTER_MELEE_HIT);
+    buildModifier(ModifierIds.shellGut).levelDisplay(ModifierLevelDisplay.SINGLE_LEVEL)
+      .addModule(new EffectImmunityModule(MobEffects.POISON.value(), LevelingInt.LEVEL))
+      .addModule(new EffectImmunityModule(MobEffects.HUNGER.value(), new LevelingInt(1, 1)))
+      .addModule(new EffectImmunityModule(MobEffects.NAUSEA.value(), LevelingInt.LEVEL));
+    buildModifier(ModifierIds.thornsShell).tooltipDisplay(TooltipDisplay.NEVER)
+      .addModule(new ModifierTraitModule(ModifierIds.thorns, 1, false))
+      .addModule(new ModifierTraitModule(ModifierIds.thorns, 1, true));
 
     // internal modifier to restore older slots to slimesuit
     IJsonPredicate<IToolContext> notSlimelytra = ToolContextPredicate.set(TinkerTools.slimeWings.get()).inverted();

@@ -719,6 +719,7 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.blood,      new SlimeStats(150, 125)); // 275
     // pseudo-slime
     addMaterialStats(MaterialIds.clay,       new SlimeStats(150, 0));
+    addMaterialStats(MaterialIds.honey,      new SlimeStats(200, 0));
     addMaterialStats(MaterialIds.enderPearl, new SlimeStats(250, 0));
 
     // slimeskull
@@ -757,9 +758,13 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.blaze,        RepairStats.ribcage(150));
     addMaterialStats(MaterialIds.jadeite,      RepairStats.ribcage(616));
     addMaterialStats(MaterialIds.endRod,       RepairStats.ribcage(250));
+    addMaterialStats(MaterialIds.horn,         RepairStats.ribcage(275));
 
     // slimeshell
-    addMaterialStats(MaterialIds.turtle, RepairStats.shell(150));
+    addMaterialStats(MaterialIds.turtle, RepairStats.shell(275));
+    addMaterialStats(MaterialIds.nautilus, RepairStats.shell(350));
+    addMaterialStats(MaterialIds.phantom, RepairStats.shell(432));
+    addMaterialStats(MaterialIds.prismarine, RepairStats.shell(175));
     addMaterialStats(MaterialIds.shulker, RepairStats.shell(250));
     addMaterialStats(MaterialIds.dragonScale, RepairStats.shell(100));
     // shards
@@ -777,6 +782,8 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.weepingVine, RepairStats.laces(90));
     addMaterialStats(MaterialIds.jeweledHide, RepairStats.laces(250));
     addMaterialStats(MaterialIds.enderslimeVine, RepairStats.laces(180));
+    addMaterialStats(MaterialIds.cheese, RepairStats.laces(111));
+    addMaterialStats(MaterialIds.cheese, StatlessMaterialStats.BOWSTRING);
 
     // slimelytra - repair
     addMaterialStats(MaterialIds.phantom, StatlessMaterialStats.REPAIR_KIT);

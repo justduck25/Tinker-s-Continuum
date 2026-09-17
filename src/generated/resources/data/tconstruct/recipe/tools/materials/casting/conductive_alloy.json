@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_conductive_alloy"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_conductive_alloy"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_conductive_alloy"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/conductive_alloy",
   "output": "tconstruct:conductive_alloy",
   "temperature": 800

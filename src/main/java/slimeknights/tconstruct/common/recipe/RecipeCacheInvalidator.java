@@ -92,6 +92,13 @@ public class RecipeCacheInvalidator implements IEarlySafeManagerReloadListener {
     }
 
     /**
+     * Drops a queued client clear without wiping. Used when a rebuild keeps existing fluid recipes.
+     */
+    public void cancelQueued() {
+      clearQueued = false;
+    }
+
+    /**
      * Clears the cache based on the runnable
      */
     public void clearCache() {

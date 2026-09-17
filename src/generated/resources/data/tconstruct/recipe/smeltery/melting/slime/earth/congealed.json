@@ -4,7 +4,7 @@
   "ingredient": "tconstruct:earth_congealed_slime",
   "result": {
     "amount": 1000,
-    "tag": "c:slime"
+    "fluid": "tconstruct:earth_slime"
   },
   "temperature": 50,
   "time": 62
