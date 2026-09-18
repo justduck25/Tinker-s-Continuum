@@ -18,6 +18,7 @@ import slimeknights.tconstruct.library.module.HookProvider;
 import slimeknights.tconstruct.library.module.ModuleHook;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ModifierNBT;
+import slimeknights.tconstruct.tools.entity.CustomFireball;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -45,6 +46,10 @@ public record ProjectileBounceModule(LevelingInt bounces) implements ModifierMod
 
   @Override
   public boolean onProjectileHitsBlock(ModifierNBT modifiers, ModDataNBT persistentData, ModifierEntry modifier, Projectile projectile, BlockHitResult hit, @Nullable LivingEntity owner) {
+    if (projectile instanceof CustomFireball) {
+      // CustomFireball keeps 1.20 xPower after reversing the hit axis; ToolEvents already applied that bounce.
+      return false;
+    }
     Identifier key = modifier.getId().getId();
     int bounces = persistentData.getInt(key);
     if (bounces < this.bounces.compute(modifier.getEffectiveLevel())) {

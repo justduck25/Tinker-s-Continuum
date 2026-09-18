@@ -87,6 +87,7 @@ import slimeknights.tconstruct.library.utils.BlockSideHitListener;
 import slimeknights.tconstruct.shared.TinkerAttributes;
 import slimeknights.tconstruct.shared.TinkerEffects;
 import slimeknights.tconstruct.tools.TinkerModifiers;
+import slimeknights.tconstruct.tools.entity.CustomFireball;
 import slimeknights.tconstruct.tools.network.SyncProjectileModifiersPacket;
 
 import java.util.List;
@@ -584,6 +585,10 @@ public class ToolEvents {
         }
         case BLOCK -> {
           BlockHitResult blockHit = (BlockHitResult)hit;
+          if (projectile instanceof CustomFireball fireball && fireball.bounceOff(blockHit)) {
+            event.setCanceled(true);
+            break;
+          }
           for (ModifierEntry entry : modifiers.getModifiers()) {
             if (entry.getHook(hook).onProjectileHitsBlock(modifiers, nbt, entry, projectile, blockHit, attacker)) {
               event.setCanceled(true);
