@@ -265,6 +265,12 @@ public class ToolAttackContext {
       return this;
     }
 
+    /** Adds additional base damage, used for unarmed chestplate attacks from monsters. */
+    public Builder addBaseDamage(float damage) {
+      baseDamage += damage;
+      return this;
+    }
+
     /** Sets the cooldown */
     public Builder cooldown(float cooldown) {
       if (cooldown > 1 || cooldown < 0) {
