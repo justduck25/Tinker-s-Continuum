@@ -22,12 +22,15 @@ import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.data.BaseRecipeProvider;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.gadgets.TinkerGadgets;
+import slimeknights.tconstruct.gadgets.entity.FancyArmorStandEntity.StandType;
 import slimeknights.tconstruct.gadgets.entity.FrameType;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.shared.block.SlimeType;
+import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.tables.TinkerTables;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.FoliageType;
 
@@ -74,12 +77,12 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .group(prefix("fancy_item_frame"))
                        .save(consumer, recipeKey(location("gadgets/frame/" + FrameType.DIAMOND.getSerializedName())));
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.DECORATIONS, TinkerGadgets.itemFrame.get(FrameType.CLEAR))
-                       .define('e', Tags.Items.GLASS_PANES_COLORLESS)
-                       .define('M', Tags.Items.GLASS_BLOCKS_COLORLESS)
+                       .define('e', TinkerCommons.clearGlassPane)
+                       .define('M', TinkerCommons.clearGlass)
                        .pattern(" e ")
                        .pattern("eMe")
                        .pattern(" e ")
-                       .unlockedBy("has_item", has(Tags.Items.GLASS_PANES_COLORLESS))
+                       .unlockedBy("has_item", has(TinkerCommons.clearGlassPane))
                        .group(prefix("fancy_item_frame"))
                        .save(consumer, recipeKey(location(folder + FrameType.CLEAR.getSerializedName())));
     Item goldFrame = TinkerGadgets.itemFrame.get(FrameType.GOLD);
@@ -131,6 +134,32 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .pattern("MMM").pattern("SES").pattern("WWW")
                        .unlockedBy("has_slime", has(bucket))
                        .save(consumer, recipeKey(location(cakeFolder + "magma")));
+
+    String standFolder = "gadgets/armor_stands/";
+    ShapedRecipeBuilder.shaped(this.items, RecipeCategory.DECORATIONS, TinkerGadgets.armorStand.get(StandType.BAMBOO))
+      .define('S', Items.BAMBOO)
+      .define('B', TinkerTables.pattern)
+      .pattern("SSS").pattern(" S ").pattern("SBS")
+      .unlockedBy("has_base", has(TinkerTables.pattern))
+      .save(consumer, recipeKey(location(standFolder + "bamboo")));
+    ShapedRecipeBuilder.shaped(this.items, RecipeCategory.DECORATIONS, TinkerGadgets.armorStand.get(StandType.BONE))
+      .define('S', TinkerTags.Items.BONES)
+      .define('B', TinkerSmeltery.searedPaver.getSlab())
+      .pattern("SSS").pattern(" S ").pattern("SBS")
+      .unlockedBy("has_base", has(TinkerSmeltery.searedPaver.getSlab()))
+      .save(consumer, recipeKey(location(standFolder + "bone")));
+    ShapedRecipeBuilder.shaped(this.items, RecipeCategory.DECORATIONS, TinkerGadgets.armorStand.get(StandType.NECROTIC_BONE))
+      .define('S', TinkerTags.Items.WITHER_BONES)
+      .define('B', TinkerMaterials.blazewood.getSlab())
+      .pattern("SSS").pattern(" S ").pattern("SBS")
+      .unlockedBy("has_base", has(TinkerMaterials.blazewood.getSlab()))
+      .save(consumer, recipeKey(location(standFolder + "necrotic_bone")));
+    ShapedRecipeBuilder.shaped(this.items, RecipeCategory.DECORATIONS, TinkerGadgets.armorStand.get(StandType.CLEAR))
+      .define('S', TinkerCommons.clearGlassPane)
+      .define('B', TinkerCommons.clearGlass)
+      .pattern("SSS").pattern(" S ").pattern("SBS")
+      .unlockedBy("has_base", has(TinkerCommons.clearGlass))
+      .save(consumer, recipeKey(location(standFolder + "clear")));
   }
 
 

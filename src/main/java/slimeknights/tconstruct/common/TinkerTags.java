@@ -213,6 +213,8 @@ public class TinkerTags {
     // ceramics compat
     @SuppressWarnings("removal")
     public static final TagKey<Block> CISTERN_CONNECTIONS = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("ceramics", "cistern_connections"));
+    /** Compat: Create root harvesters treat enderbark roots as mangrove-style roots */
+    public static final TagKey<Block> CREATE_ROOTS = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath("create", "roots"));
 
     /** Makes a tag in the tinkers domain */
     private static TagKey<Block> local(String name) {
@@ -567,6 +569,8 @@ public class TinkerTags {
     public static final TagKey<Item> URANIUM_INGOTS = common("ingots/uranium");
     /** Tag of trophies from bosses, to grant an additional upgrade slot to tools. Meant for Twilight Forest boss trophies, but suppose you can add other bosses that are not easily farmed. */
     public static final TagKey<Item> BOSS_TROPHIES = local("boss_trophies");
+    /** Create tree attachment items. */
+    public static final TagKey<Item> TREE_ATTACHMENTS = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("create", "tree_attachments"));
 
     /** Fluids in this tag won't show in JEI */
     public static final TagKey<Item> HIDDEN_IN_RECIPE_VIEWERS = hiddenFromRecipeViewers(Registries.ITEM);
@@ -652,6 +656,8 @@ public class TinkerTags {
     public static final TagKey<EntityType<?>> ILLAGERS = common("illagers");
     /** Entities in this tag may spawn with battle signs */
     public static final TagKey<EntityType<?>> PIGLINS = common("piglins");
+    public static final TagKey<EntityType<?>> SHULKERS = common("shulkers");
+    public static final TagKey<EntityType<?>> FROGS = common("frogs");
     /** @deprecated use the chance fields on the severing recipe to adjust rates. */
     @Deprecated(forRemoval = true)
     public static final TagKey<EntityType<?>> RARE_MOBS = local("rare_mobs");
@@ -852,6 +858,8 @@ public class TinkerTags {
 
   public static class Materials {
     private static void init() {}
+    /** Materials to render with an enchanted glint. See also {@link slimeknights.tconstruct.tools.data.ModifierIds#shiny}. */
+    public static final TagKey<IMaterial> SHINY = local("shiny");
     /** Materials available in nether. */
     public static final TagKey<IMaterial> NETHER = local("nether");
     /** Materials that cannot be obtained without going to the nether. */
@@ -921,6 +929,10 @@ public class TinkerTags {
 
     /** Damage types that can use modifiers. */
     public static final TagKey<DamageType> MODIFIER_WHITELIST = local("modifier_whitelist");
+    /** Damage types treated as melee for protection and loot. */
+    public static final TagKey<DamageType> IS_MELEE = local("is_melee");
+    /** Damage types that should run held-tool loot modifier hooks. */
+    public static final TagKey<DamageType> LOOT_MODIFIER_WHITELIST = local("loot_modifier_whitelist");
 
     private static TagKey<DamageType> local(String name) {
       return TagKey.create(Registries.DAMAGE_TYPE, getResource(name));

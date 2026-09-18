@@ -88,8 +88,10 @@ import slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.molding.MoldingRecipeBuilder;
 import slimeknights.tconstruct.shared.TinkerCommons;
+import slimeknights.tconstruct.shared.TinkerEffects;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.shared.block.SlimeType;
+import slimeknights.mantle.registration.deferred.PotionDeferredRegister.PotionType;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock.TankType;
 import slimeknights.tconstruct.tools.TinkerModifiers;
@@ -2195,10 +2197,10 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.PHANTOM), PotionFluidType.potionResult(Potions.SLOW_FALLING, FluidValues.BOTTLE / 5), 4)
                               .save(consumer, recipeKey(location(folder + "phantom")));
     // its not quite levitation, but close enough
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.SHULKER), PotionFluidType.potionResult(Potions.LEAPING, FluidValues.BOTTLE / 10), 3)
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.SHULKERS), PotionFluidType.potionResult(TinkerEffects.levitationPotion.get(PotionType.NORMAL), FluidValues.BOTTLE / 5), 3)
                               .save(consumer, recipeKey(location(folder + "shulker")));
     // frogs leap too
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.FROG), PotionFluidType.potionResult(Potions.LEAPING, FluidValues.BOTTLE / 5), 2)
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.FROGS), PotionFluidType.potionResult(Potions.LEAPING, FluidValues.BOTTLE / 5), 2)
                               .save(consumer, recipeKey(location(folder + "frog")));
     // just making brewing recipes now
     EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.SQUID, EntityType.PUFFERFISH), PotionFluidType.potionResult(Potions.WATER_BREATHING, FluidValues.BOTTLE / 5), 2)
@@ -2800,13 +2802,16 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
    */
   private void slimeMelting(RecipeOutput consumer, FluidObject<?> fluid, SlimeType type, String folder) {
     String slimeFolder = folder + type.getSerializedName() + "/";
-    MeltingRecipeBuilder.melting(LegacyIngredientType.ofTag(type.getSlimeballTag()), fluid, FluidValues.SLIMEBALL, 1.0f)
+    Ingredient slimeball = CompoundIngredient.of(
+      Ingredient.of(TinkerCommons.slimeball.get(type)),
+      LegacyIngredientType.ofTag(type.getSlimeballTag()));
+    MeltingRecipeBuilder.melting(slimeball, fluid.get(), FluidValues.SLIMEBALL, 1.0f)
                         .save(consumer, recipeKey(location(slimeFolder + "ball")));
     ItemLike item = TinkerWorld.congealedSlime.get(type);
-    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid, FluidValues.SLIME_CONGEALED, 2.0f)
+    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid.get(), FluidValues.SLIME_CONGEALED, 2.0f)
                         .save(consumer, recipeKey(location(slimeFolder + "congealed")));
     item = TinkerWorld.slime.get(type);
-    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid, FluidValues.SLIME_BLOCK, 3.0f)
+    MeltingRecipeBuilder.melting(Ingredient.of(item), fluid.get(), FluidValues.SLIME_BLOCK, 3.0f)
                         .save(consumer, recipeKey(location(slimeFolder + "block")));
   }
 

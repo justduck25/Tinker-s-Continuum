@@ -3,6 +3,7 @@ package slimeknights.tconstruct.library.materials.definition;
 import lombok.Getter;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Rarity;
 
 public class Material implements IMaterial {
   /** Default white color */
@@ -24,21 +25,31 @@ public class Material implements IMaterial {
   /** if true, this material is hidden */
   @Getter
   private final boolean hidden;
+  /** Rarity for this material's name */
+  @Getter
+  private final Rarity rarity;
 
   /**
    * Materials should only be created by the MaterialManager, except when used for data gen
    * They're synced over the network and other classes might lead to unexpected behaviour.
    */
-  public Material(Identifier identifier, int tier, int order, boolean craftable, boolean hidden) {
+  public Material(Identifier identifier, int tier, int order, Rarity rarity, boolean craftable, boolean hidden) {
     this.identifier = new MaterialId(identifier);
     this.tier = tier;
     this.sortOrder = order;
+    this.rarity = rarity;
     this.craftable = craftable;
     this.hidden = hidden;
   }
 
+  /** @deprecated use {@link #Material(Identifier, int, int, Rarity, boolean, boolean)} */
+  @Deprecated(forRemoval = true)
+  public Material(Identifier identifier, int tier, int order, boolean craftable, boolean hidden) {
+    this(identifier, tier, order, IMaterial.computeRarity(tier), craftable, hidden);
+  }
+
   protected Material(Identifier identifier, boolean craftable, boolean hidden) {
-    this(identifier, 0, -1, craftable, hidden);
+    this(identifier, 0, -1, Rarity.COMMON, craftable, hidden);
   }
 
   @Override

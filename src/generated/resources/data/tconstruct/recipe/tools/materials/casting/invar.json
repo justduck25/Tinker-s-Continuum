@@ -15,10 +15,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_invar"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_invar"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_invar"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/invar",
   "output": "tconstruct:invar",
   "temperature": 900

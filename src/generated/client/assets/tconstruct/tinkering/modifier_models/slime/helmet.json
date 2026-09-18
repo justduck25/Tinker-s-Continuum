@@ -1,5 +1,17 @@
 {
+  "constant": {
+    "__skull": {
+      "type": "tconstruct:slimeskull",
+      "skull_index": 0,
+      "slime_index": 1,
+      "texture": "tconstruct:item/tool/armor/slime/helmet/skull"
+    }
+  },
   "modifiers": {
+    "tconstruct:fiery": {
+      "luminosity": 10,
+      "texture": "tconstruct:item/tool/armor/modifiers/helmet/tconstruct_fiery"
+    },
     "tconstruct:trim": {
       "type": "tconstruct:armor_trim",
       "slot": "helmet"

@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_cadmium"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_cadmium"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_cadmium"
+    }
+  ],
   "id": "tconstruct:tools/materials/composite/whitestone_from_cadmium",
   "input": "tconstruct:rock",
   "output": "tconstruct:whitestone#composite",

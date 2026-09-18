@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
  */
 public final class MaterialId extends ResourceId implements MaterialVariantId {
   public static final IdParser<MaterialId> PARSER = new IdParser<>(MaterialId::new, "Material");
+  public static final MaterialId UNKNOWN = new MaterialId("tconstruct", "unknown");
 
   public MaterialId(String resourceName) {
     super(Identifier.parse(resourceName));

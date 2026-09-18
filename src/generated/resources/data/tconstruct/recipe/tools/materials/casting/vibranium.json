@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_vibranium"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_vibranium"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_vibranium"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/vibranium",
   "output": "tconstruct:vibranium",
   "temperature": 1500

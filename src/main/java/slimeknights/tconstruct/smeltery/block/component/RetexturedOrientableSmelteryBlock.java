@@ -25,7 +25,7 @@ public class RetexturedOrientableSmelteryBlock extends OrientableSmelteryBlock {
 
   public void appendHoverText(ItemStack stack, net.minecraft.world.item.Item.TooltipContext context, net.minecraft.world.item.component.TooltipDisplay display, java.util.function.Consumer<Component> tooltip, TooltipFlag flag) {
     List<Component> lines = new java.util.ArrayList<>();
-    RetexturedHelper.addTooltip(stack, lines);
+    RetexturedHelper.addTooltip(stack, lines, flag);
     lines.forEach(tooltip);
   }
 

@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:modifier_salvage",
+  "id": "tconstruct:tools/modifiers/salvage/upgrade/feather_fall_level_3",
+  "level": 3,
+  "modifier": "tconstruct:feather_fall",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": "#tconstruct:modifiable/armor/boots"
+}

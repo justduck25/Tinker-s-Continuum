@@ -15,6 +15,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -54,6 +57,15 @@ public abstract class TableBlock extends InventoryBlock implements SimpleWaterlo
   public BlockState getStateForPlacement(BlockPlaceContext context) {
     boolean flag = context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
     return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, flag);
+  }
+
+  @Deprecated
+  @Override
+  protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighbor, RandomSource random) {
+    if (state.getValue(WATERLOGGED)) {
+      ticks.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+    }
+    return super.updateShape(state, level, ticks, pos, direction, neighborPos, neighbor, random);
   }
 
   @Deprecated

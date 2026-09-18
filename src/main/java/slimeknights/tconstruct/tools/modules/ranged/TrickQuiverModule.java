@@ -39,6 +39,8 @@ public enum TrickQuiverModule implements ModifierModule, BowAmmoModifierHook, Ge
   private static final List<ModuleHook<?>> DEFAULT_HOOKS = HookProvider.<TrickQuiverModule>defaultHooks(ModifierHooks.BOW_AMMO, ModifierHooks.GENERAL_INTERACT, ModifierHooks.REMOVE);
   /** Key for the currently selected arrow */
   private static final Identifier SELECTED_SLOT = TConstruct.getResource("trick_quiver_selected");
+  /** Slot actually consumed, which may differ from the selected slot when that slot is empty */
+  private static final Identifier LAST_SLOT = TConstruct.getResource("trick_quiver_last");
   /** Message when disabling the trick quiver */
   private static final String DISABLED = TConstruct.makeTranslationKey("modifier", "trick_quiver.disabled");
   /** Message to display selected slot */
@@ -56,15 +58,32 @@ public enum TrickQuiverModule implements ModifierModule, BowAmmoModifierHook, Ge
 
   @Override
   public ItemStack findAmmo(IToolStackView tool, ModifierEntry modifier, LivingEntity shooter, ItemStack standardAmmo, Predicate<ItemStack> ammoPredicate) {
-    // if selected is too big (disabled), will automatially return nothing
-    return modifier.getHook(ToolInventoryCapability.HOOK).getStack(tool, modifier, tool.getPersistentData().getInt(SELECTED_SLOT));
+    ToolInventoryCapability.InventoryModifierHook inventory = modifier.getHook(ToolInventoryCapability.HOOK);
+    int slots = inventory.getSlots(tool, modifier);
+    int selected = tool.getPersistentData().getInt(SELECTED_SLOT);
+    // cycling past the last slot disables the quiver so player inventory ammo can be used
+    if (selected >= slots) {
+      return ItemStack.EMPTY;
+    }
+    ItemStack selectedStack = inventory.getStack(tool, modifier, selected);
+    if (!selectedStack.isEmpty() && ammoPredicate.test(selectedStack)) {
+      tool.getPersistentData().putInt(LAST_SLOT, selected);
+      return selectedStack;
+    }
+    // empty selected slot still prefers any other sliver ammo over the player's inventory
+    ToolInventoryCapability.StackMatch match = inventory.findStack(tool, modifier, ammoPredicate);
+    if (!match.isEmpty()) {
+      tool.getPersistentData().putInt(LAST_SLOT, match.slot());
+      return match.stack();
+    }
+    return ItemStack.EMPTY;
   }
 
   @Override
   public void shrinkAmmo(IToolStackView tool, ModifierEntry modifier, LivingEntity shooter, ItemStack ammo, int needed) {
-    // assume no one else touched our selected slot, good assumption
+    int slot = tool.getPersistentData().contains(LAST_SLOT) ? tool.getPersistentData().getInt(LAST_SLOT) : tool.getPersistentData().getInt(SELECTED_SLOT);
     ammo.shrink(needed);
-    modifier.getHook(ToolInventoryCapability.HOOK).setStack(tool, modifier, tool.getPersistentData().getInt(SELECTED_SLOT), ammo);
+    modifier.getHook(ToolInventoryCapability.HOOK).setStack(tool, modifier, slot, ammo);
   }
 
   @Override
@@ -89,7 +108,8 @@ public enum TrickQuiverModule implements ModifierModule, BowAmmoModifierHook, Ge
 
   @Override
   public InteractionResult onToolUse(IToolStackView tool, ModifierEntry modifier, Player player, InteractionHand hand, InteractionSource source) {
-    if (!player.isCrouching()) {
+    // staffs/bows shoot on right click; swap the selected sliver slot on left click instead
+    if (source == InteractionSource.LEFT_CLICK) {
       return selectNext(tool, modifier, player, SELECTED_SLOT) ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
     return InteractionResult.PASS;

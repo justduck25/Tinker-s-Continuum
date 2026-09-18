@@ -11,6 +11,7 @@ import net.neoforged.neoforge.capabilities.EntityCapability;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.events.ToolEquipmentChangeEvent;
@@ -40,6 +41,7 @@ public class EquipmentChangeWatcher {
 
     // equipment change is used on both sides
     NeoForge.EVENT_BUS.addListener(EquipmentChangeWatcher::onEquipmentChange);
+    NeoForge.EVENT_BUS.addListener(EquipmentChangeWatcher::onPlayerLoggedIn);
 
     // only need to use the cap and the player tick on the client
     NeoForge.EVENT_BUS.addListener(EquipmentChangeWatcher::onPlayerTick);
@@ -56,6 +58,17 @@ public class EquipmentChangeWatcher {
   /** Serverside modifier hooks */
   private static void onEquipmentChange(LivingEquipmentChangeEvent event) {
     runModifierHooks((LivingEntity) event.getEntity(), event.getSlot(), event.getFrom(), event.getTo());
+  }
+
+  /** Login does not fire equipment-change events, so armor traits never get applied until a slot actually changes. */
+  private static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+    Player player = event.getEntity();
+    for (EquipmentSlot slot : EquipmentSlot.values()) {
+      ItemStack stack = player.getItemBySlot(slot);
+      if (!stack.isEmpty()) {
+        runModifierHooks(player, slot, ItemStack.EMPTY, stack);
+      }
+    }
   }
 
   /** Client side modifier hooks */

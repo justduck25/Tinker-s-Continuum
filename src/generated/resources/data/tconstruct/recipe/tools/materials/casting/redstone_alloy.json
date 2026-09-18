@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_redstone_alloy"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_redstone_alloy"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_redstone_alloy"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/redstone_alloy",
   "output": "tconstruct:redstone_alloy",
   "temperature": 600

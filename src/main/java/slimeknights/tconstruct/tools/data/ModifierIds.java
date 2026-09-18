@@ -167,6 +167,7 @@ public class ModifierIds {
   public static final ModifierId depthStrider = id("depth_strider");
   public static final ModifierId soulspeed = id("soulspeed");
   public static final ModifierId featherFalling = id("feather_falling");
+  public static final ModifierId featherFall = id("feather_fall");
   public static final ModifierId longFall = id("long_fall");
   public static final ModifierId frostWalker = id("frost_walker");
   public static final ModifierId snowdrift = id("snowdrift");
@@ -211,6 +212,8 @@ public class ModifierIds {
   // internal
   public static final ModifierId overslimeFriend = id("overslime_friend");
   public static final ModifierId snowBoots = id("snow_boots");
+  public static final ModifierId edibleTooltip = id("edible_tooltip");
+  public static final ModifierId ironArmor = id("iron_armor");
 
   // traits - tier 1
   public static final ModifierId cultivated = id("cultivated");
@@ -322,15 +325,24 @@ public class ModifierIds {
   // traits - slimesuit
   public static final ModifierId reverted = id("reverted");
   // traits - slimeskull
+  public static final ModifierId consecratedSkull = id("consecrated_skull");
+  public static final ModifierId respirationSkull = id("respiration_skull");
+  public static final ModifierId vitalProtectionSkull = id("vital_protection_skull");
   public static final ModifierId boonOfSssss = id("boon_of_sssss");
   public static final ModifierId balmOfSssss = id("balm_of_sssss");
   public static final ModifierId slowBones = id("slow_bones");
+  public static final ModifierId witheredBones = id("withered");
   public static final ModifierId magicBones = id("magic_bones");
   public static final ModifierId flamingBones = id("flaming_bones");
   public static final ModifierId decayedBones = id("decayed_bones");
   public static final ModifierId revenge = id("revenge");
   public static final ModifierId fireborn = id("fireborn");
   public static final ModifierId dragonheart = id("dragonheart");
+  public static final ModifierId ramAttack = id("ram_attack");
+  public static final ModifierId shellGut = id("shell_gut");
+  public static final ModifierId thornsShell = id("thorns_shell");
+  public static final ModifierId savory = id("savory");
+  public static final ModifierId scrumptious = id("scrumptious");
   /** @deprecated cave spider's trait was switched to {@link #balmOfSssss}. Reimplement if you need this functionality */
   @Deprecated(forRemoval = true)
   public static final ModifierId mithridatism = id("mithridatism");

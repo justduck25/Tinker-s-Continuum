@@ -15,10 +15,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_brass"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_brass"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_brass"
+    }
+  ],
   "id": "tconstruct:tools/materials/composite/plated_slimewood",
   "input": "tconstruct:slimewood",
   "output": "tconstruct:plated_slimewood",

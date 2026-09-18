@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import slimeknights.tconstruct.TConstruct;
@@ -52,6 +53,29 @@ public class TinkerRecipeTypes {
   /** Initializes the deferred register */
   public static void init(IEventBus bus) {
     TYPES.register(bus);
+  }
+
+  /**
+   * NeoForge 26 only sends requested recipe types to the client. JEI and client-side lookups
+   * need Continuum Construct's custom types, including part builder and tinker station recipes.
+   */
+  public static void sendRecipesToClient(OnDatapackSyncEvent event) {
+    event.sendRecipes(
+      PART_BUILDER.get(),
+      MATERIAL.get(),
+      TINKER_STATION.get(),
+      MODIFIER_WORKTABLE.get(),
+      CASTING_BASIN.get(),
+      CASTING_TABLE.get(),
+      MOLDING_TABLE.get(),
+      MOLDING_BASIN.get(),
+      MELTING.get(),
+      ENTITY_MELTING.get(),
+      FUEL.get(),
+      ALLOYING.get(),
+      SEVERING.get(),
+      DATA.get()
+    );
   }
 
   /**

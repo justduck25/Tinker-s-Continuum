@@ -5,8 +5,13 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleResources;
 import net.minecraft.client.player.ClientInput;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.ItemEntityRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.PlayerModelType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.util.Mth;
@@ -79,6 +84,7 @@ import slimeknights.tconstruct.tools.client.FluidEffectProjectileRenderer;
 import slimeknights.tconstruct.tools.client.OverslimeModifierModel;
 import slimeknights.tconstruct.tools.client.ShieldBannerModifierSpriteSource;
 import slimeknights.tconstruct.tools.client.SlimeskullArmorModel;
+import slimeknights.tconstruct.tools.client.SlimeskullLayer;
 import slimeknights.tconstruct.tools.client.ToolContainerScreen;
 import slimeknights.tconstruct.tools.client.ToolRenderEvents;
 import slimeknights.tconstruct.tools.client.material.CombatFishingHookRenderer;
@@ -91,6 +97,8 @@ import slimeknights.tconstruct.tools.modules.ranged.ammo.SmashingModule;
 import slimeknights.tconstruct.tools.network.TinkerControlPacket;
 
 import java.util.function.Consumer;
+
+import javax.annotation.Nullable;
 
 import static slimeknights.tconstruct.TConstruct.getResource;
 @SuppressWarnings("unused")
@@ -148,6 +156,24 @@ public class ToolClientEvents extends ClientEventBase {
     event.registerEntityRenderer(TinkerTools.thrownTool.get(), ThrownToolRenderer::new);
     event.registerEntityRenderer(TinkerModifiers.fluidSpitEntity.get(), FluidEffectProjectileRenderer::new);
     event.registerEntityRenderer(TinkerModifiers.fireball.get(), context -> new ThrownItemRenderer<>(context, 0.75f, true));
+  }
+
+  @SubscribeEvent
+  static void addLayers(EntityRenderersEvent.AddLayers event) {
+    for (EntityType<?> type : event.getEntityTypes()) {
+      addSlimeskullLayer(event.getRenderer(type));
+    }
+    for (PlayerModelType skin : event.getSkins()) {
+      addSlimeskullLayer(event.getPlayerRenderer(skin));
+      addSlimeskullLayer(event.getMannequinRenderer(skin));
+    }
+  }
+
+  @SuppressWarnings({"rawtypes", "unchecked"})
+  private static void addSlimeskullLayer(@Nullable EntityRenderer<?, ?> renderer) {
+    if (renderer instanceof LivingEntityRenderer living && living.getModel() instanceof HumanoidModel) {
+      living.addLayer(new SlimeskullLayer(living));
+    }
   }
 
   @SubscribeEvent

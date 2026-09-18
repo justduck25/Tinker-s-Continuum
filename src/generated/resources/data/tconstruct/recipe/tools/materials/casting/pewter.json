@@ -19,10 +19,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_pewter"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_pewter"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_pewter"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/pewter",
   "output": "tconstruct:pewter",
   "temperature": 400

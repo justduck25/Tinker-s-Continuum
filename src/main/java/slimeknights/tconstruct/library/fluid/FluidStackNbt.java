@@ -9,6 +9,17 @@ import net.neoforged.neoforge.fluids.FluidStack;
 public final class FluidStackNbt {
   private FluidStackNbt() {}
 
+  /** Replaces a direct fluid holder with its registered holder before persistence or networking. */
+  public static FluidStack registeredCopy(FluidStack stack) {
+    if (stack.isEmpty()) {
+      return FluidStack.EMPTY;
+    }
+    if (stack.typeHolder().unwrapKey().isPresent()) {
+      return stack.copy();
+    }
+    return new FluidStack(stack.getFluid().builtInRegistryHolder(), stack.getAmount(), stack.getComponentsPatch());
+  }
+
   /** Reads a fluid stack from a compound tag. */
   public static FluidStack read(CompoundTag tag) {
     if (tag.isEmpty()) {

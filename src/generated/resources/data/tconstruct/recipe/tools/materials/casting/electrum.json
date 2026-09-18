@@ -15,10 +15,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_electrum"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_electrum"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_electrum"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/electrum",
   "output": "tconstruct:electrum",
   "temperature": 760

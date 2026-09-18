@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_vibrant_alloy"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_vibrant_alloy"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_vibrant_alloy"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/vibrant_alloy",
   "output": "tconstruct:vibrant_alloy",
   "temperature": 1050

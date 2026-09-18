@@ -33,6 +33,9 @@ public class MaterialFluidRecipeBuilder extends AbstractRecipeBuilder<MaterialFl
   /** Material base for composite */
   @Setter @Nullable
   private MaterialVariantId inputId;
+  /** If true, hide this recipe from in-game books */
+  @Setter
+  private boolean hideInBook = false;
 
   /**
    * Sets the fluid for this recipe, and cooling time if unset.
@@ -72,6 +75,6 @@ public class MaterialFluidRecipeBuilder extends AbstractRecipeBuilder<MaterialFl
     }
     var key = recipeKey(id);
     var advancement = this.buildOptionalAdvancement(key, "materials");
-    consumer.accept(key, new MaterialFluidRecipe(id, fluid, temperature, inputId, outputId), advancement);
+    consumer.accept(key, new MaterialFluidRecipe(id, fluid, temperature, inputId, outputId, hideInBook), advancement);
   }
 }

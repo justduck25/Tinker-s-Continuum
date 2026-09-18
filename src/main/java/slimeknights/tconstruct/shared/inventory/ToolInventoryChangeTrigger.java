@@ -6,6 +6,7 @@ import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.ContextAwarePredicate;
 import net.minecraft.advancements.criterion.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import slimeknights.tconstruct.library.json.predicate.tool.ToolStackItemPredicate;
 
@@ -21,6 +22,13 @@ public class ToolInventoryChangeTrigger extends SimpleCriterionTrigger<ToolInven
 
   public void trigger(ServerPlayer player, ItemStack stack) {
     this.trigger(player, instance -> instance.matches(stack));
+  }
+
+  /** Triggers when a modifiable tool is in a player's inventory. No-op for non-players. */
+  public void trigger(Entity entity, ItemStack stack) {
+    if (entity instanceof ServerPlayer player) {
+      trigger(player, stack);
+    }
   }
 
   public record Instance(Optional<ContextAwarePredicate> player, ToolStackItemPredicate tool) implements SimpleInstance {

@@ -109,7 +109,7 @@ public class ModifierTagProvider extends AbstractModifierTagProvider {
     );
     tag(AOE_INTERACTION).add(ModifierIds.pathing, ModifierIds.stripping, ModifierIds.tilling, ModifierIds.brushing, ModifierIds.splashing, ModifierIds.harvest);
     tag(CHARGE_EMPTY_BOW_WITH_DRAWTIME).add(ModifierIds.flinging, ModifierIds.springing, ModifierIds.bonking, ModifierIds.warping, ModifierIds.throwing);
-    tag(CHARGE_EMPTY_BOW_WITHOUT_DRAWTIME).add(ModifierIds.blocking, ModifierIds.scope, ModifierIds.zoom, ModifierIds.slurping, ModifierIds.tasty);
+    tag(CHARGE_EMPTY_BOW_WITHOUT_DRAWTIME).add(ModifierIds.blocking, ModifierIds.scope, ModifierIds.zoom, ModifierIds.slurping, ModifierIds.tasty, ModifierIds.savory, ModifierIds.scrumptious);
     tag(DRILL_ATTACKS).add(ModifierIds.flinging, ModifierIds.springing, ModifierIds.grapple);
     tag(SELF_KNOCKBACK_SLINGS).add(ModifierIds.flinging, ModifierIds.springing);
     tag(TARGET_KNOCKBACK_SLINGS).add(ModifierIds.bonking);
@@ -163,7 +163,7 @@ public class ModifierTagProvider extends AbstractModifierTagProvider {
     this.tag(HELMET_UPGRADES).add(TinkerModifiers.itemFrame.getId(), ModifierIds.respiration, ModifierIds.minimap).addOptional(ModifierIds.headlight);
     this.tag(CHESTPLATE_UPGRADES).add(ModifierIds.haste, ModifierIds.knockback, TinkerModifiers.sleeves.getId());
     this.tag(LEGGING_UPGRADES).add(ModifierIds.leaping, TinkerModifiers.shieldStrap.getId(), ModifierIds.speedy, ModifierIds.swiftSneak, ModifierIds.stepUp);
-    this.tag(BOOT_UPGRADES).add(ModifierIds.depthStrider, ModifierIds.featherFalling, ModifierIds.longFall, ModifierIds.lightspeed, ModifierIds.soulspeed);
+    this.tag(BOOT_UPGRADES).add(ModifierIds.depthStrider, ModifierIds.featherFall, ModifierIds.longFall, ModifierIds.lightspeed, ModifierIds.soulspeed);
 
     this.tag(RANGED_UPGRADES).add(
       ModifierIds.pierce, ModifierIds.power, ModifierIds.punch, ModifierIds.quickCharge,

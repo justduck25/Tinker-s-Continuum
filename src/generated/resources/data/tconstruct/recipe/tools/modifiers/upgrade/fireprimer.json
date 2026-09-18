@@ -4,7 +4,7 @@
   "id": "tconstruct:tools/modifiers/upgrade/fireprimer",
   "inputs": [
     {
-      "ingredient": "#c:ingots/steel"
+      "ingredient": "#c:ingots/amethyst_bronze"
     },
     {
       "ingredient": "minecraft:flint"

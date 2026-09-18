@@ -14,6 +14,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.client.MossyModifierModel;
+import slimeknights.tconstruct.tools.client.SlimeskullModifierModel;
 import slimeknights.tconstruct.tools.data.ModifierIds;
 
 import javax.annotation.Nullable;
@@ -262,7 +263,27 @@ public class ModifierModelMapProvider extends AbstractModifierModelMapProvider {
     for (ArmorType type : ModifiableArmorMaterial.ARMOR_TYPES) {
       tool("slime/" + type.getName()).trim(type);
     }
-    tool("slime/wings").modifier(TinkerModifiers.trim.getId(), new TrimModifierModel.Custom(toolMaterial("armor/slime/wings/trim").sprite(), null));
+    tool("slime/wings")
+      .modifier(TinkerModifiers.trim.getId(), new TrimModifierModel.Custom(toolMaterial("armor/slime/wings/trim").sprite(), null))
+      .modifier(dyed, new DyedModifierModel(toolMaterial("armor/slime/wings/slime"), null));
+    tool("slime/wings_broken").modifier(dyed, new DyedModifierModel(toolMaterial("armor/slime/wings/slime_broken"), null));
+    tool("slime/helmet")
+      .constant("__skull", new SlimeskullModifierModel(toolMaterial("armor/slime/helmet/skull"), 0, 1))
+      .luminosity(10, "armor/modifiers/helmet", null, ModifierIds.fiery);
+    tool("slime/leggings").modifier(dyed, new DyedModifierModel(toolMaterial("armor/slime/leggings/shell"), null));
+    tool("slime/leggings_broken").modifier(dyed, new DyedModifierModel(toolMaterial("armor/slime/leggings/shell_broken"), null));
+    tool("slime/boots").modifier(dyed, new DyedModifierModel(toolMaterial("armor/slime/boots/laces"), null));
+    String ribcage = "armor/slime/chestplate/ribcage";
+    tool("slime/chestplate").modifier(dyed, new MaterialHasFallbackModifierModel(0,
+      new DyedModifierModel(toolMaterial(ribcage + "_bone"), null),
+      new DyedModifierModel(toolMaterial(ribcage), null),
+      "bone"
+    ));
+    tool("slime/chestplate_broken").modifier(dyed, new MaterialHasFallbackModifierModel(0,
+      new DyedModifierModel(toolMaterial(ribcage + "_broken_bone"), null),
+      new DyedModifierModel(toolMaterial(ribcage + "_broken"), null),
+      "bone"
+    ));
 
     // ammo
     tool(TinkerTools.arrow).tipped("ammo/arrow_modifiers/tipped").smashing("ammo/arrow_modifiers/smashing")

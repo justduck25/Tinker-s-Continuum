@@ -1,9 +1,15 @@
 {
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_manyullyn"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_manyullyn"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_manyullyn"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/manyullyn",
   "output": "tconstruct:manyullyn",
   "temperature": 1200

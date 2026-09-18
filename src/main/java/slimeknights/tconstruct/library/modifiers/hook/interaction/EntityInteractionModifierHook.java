@@ -108,12 +108,14 @@ public interface EntityInteractionModifierHook {
         // TODO: should this be in the event?
         for (ModifierEntry entry : modifiers) {
           if (entry.getHook(ModifierHooks.ENTITY_INTERACT).beforeEntityUse(tool, entry, player, target, InteractionHand.MAIN_HAND, InteractionSource.LEFT_CLICK).consumesAction()) {
+            tool.updateStack(stack, false);
             return true;
           }
         }
         if (target instanceof LivingEntity living) {
           for (ModifierEntry entry : modifiers) {
             if (entry.getHook(ModifierHooks.ENTITY_INTERACT).afterEntityUse(tool, entry, player, living, InteractionHand.MAIN_HAND, InteractionSource.LEFT_CLICK).consumesAction()) {
+              tool.updateStack(stack, false);
               return true;
             }
           }
@@ -123,6 +125,7 @@ public interface EntityInteractionModifierHook {
         if (noMelee || !tool.hasTag(TinkerTags.Items.MELEE)) {
           for (ModifierEntry entry : modifiers) {
             if (entry.getHook(ModifierHooks.GENERAL_INTERACT).onToolUse(tool, entry, player, InteractionHand.MAIN_HAND, InteractionSource.LEFT_CLICK).consumesAction()) {
+              tool.updateStack(stack, false);
               return true;
             }
           }

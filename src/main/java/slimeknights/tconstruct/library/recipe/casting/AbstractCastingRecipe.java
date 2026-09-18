@@ -52,6 +52,6 @@ public abstract class AbstractCastingRecipe implements ICastingRecipe {
 
   /** Checks if the casting input matches this recipe's cast slot, including intentionally empty casts. */
   protected boolean matchesCast(ItemStack stack) {
-    return this.cast.test(stack) || (this.cast == EMPTY_INGREDIENT && stack.isEmpty());
+    return slimeknights.mantle.recipe.helper.IngredientHelper.test(this.cast, stack);
   }
 }

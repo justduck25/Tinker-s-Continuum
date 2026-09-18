@@ -28,6 +28,7 @@ import slimeknights.tconstruct.common.TinkerModule;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.common.data.AdvancementsProvider;
+import slimeknights.tconstruct.common.data.advancement.FunctionProvider;
 import slimeknights.tconstruct.common.data.ConfigurationDataProvider;
 import slimeknights.tconstruct.common.data.DamageTypeProvider;
 import slimeknights.tconstruct.common.data.loot.GlobalLootModifiersProvider;
@@ -110,6 +111,8 @@ public class TConstruct {
     // TODO NeoForge 26.1: port missing mapping handlers to current registry remap API.
     // base
     bus.register(new TinkerCommons());
+    // Constructor registers potion DeferredRegister; this class has no @SubscribeEvent methods.
+    new TinkerEffects();
     bus.register(new TinkerMaterials());
     bus.register(new TinkerGadgets());
     bus.register(new TinkerAttributes());
@@ -185,6 +188,7 @@ public class TConstruct {
     // other datagen
     generator.addProvider(server, new TConstructLootTableProvider(packOutput, lookupProvider));
     generator.addProvider(server, new AdvancementsProvider(packOutput));
+    generator.addProvider(server, new FunctionProvider(packOutput));
     generator.addProvider(server, new GlobalLootModifiersProvider(packOutput, lookupProvider));
     generator.addProvider(server, new LootTableInjectionProvider(packOutput));
     generator.addProvider(server, new ConfigurationDataProvider(packOutput));

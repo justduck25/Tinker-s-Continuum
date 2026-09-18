@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:fixed_material_swapping",
+  "id": "tconstruct:tools/armor/slime_skull/swapping/gunpowder",
+  "index": 0,
+  "ingredient": {
+    "ingredient": "minecraft:creeper_head"
+  },
+  "material": "tconstruct:gunpowder",
+  "max_stack_size": 16,
+  "repair_value": 6,
+  "tools": "#tconstruct:modifiable/skulls/swappable"
+}

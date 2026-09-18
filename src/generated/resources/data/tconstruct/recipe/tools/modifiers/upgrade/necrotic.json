@@ -4,7 +4,7 @@
   "id": "tconstruct:tools/modifiers/upgrade/necrotic",
   "inputs": [
     {
-      "ingredient": "tconstruct:necrotic_bone"
+      "ingredient": "#c:wither_bones"
     },
     {
       "ingredient": "tconstruct:ichor_congealed_slime"

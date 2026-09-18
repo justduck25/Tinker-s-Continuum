@@ -12,6 +12,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.component.CustomData;
 import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.client.materials.MaterialTooltipCache;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.definition.IMaterial;
@@ -103,7 +104,13 @@ public class MaterialItem extends Item implements IMaterialItem {
 
   @Override
   public Component getName(ItemStack stack) {
+    applyMaterialDisplay(stack, getMaterial(stack));
     return getName(this, stack);
+  }
+
+  @Override
+  public boolean isFoil(ItemStack stack) {
+    return MaterialRegistry.getInstance().isInTag(getMaterial(stack).getMaterialId(), TinkerTags.Materials.SHINY);
   }
 
   @Override
@@ -120,7 +127,7 @@ public class MaterialItem extends Item implements IMaterialItem {
       }
     }
   }
-
+
 
   /** Gets the creator mod ID based on the material. */
   @SuppressWarnings("deprecation")  // deprecation? more like not deprecation

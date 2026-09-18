@@ -33,7 +33,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
-import java.util.List;
 
 public abstract class ArmoredSlimeEntity extends Slime {
   private static final EntityDataAccessor<Boolean> METAL = SynchedEntityData.defineId(ArmoredSlimeEntity.class, EntityDataSerializers.BOOLEAN);
@@ -106,14 +105,15 @@ public abstract class ArmoredSlimeEntity extends Slime {
     // no-op, unused
   }
 
-  public Iterable<ItemStack> getArmorSlots() {
-    return List.of(getItemBySlot(EquipmentSlot.HEAD));
-  }
-
   @Override
   public boolean canHoldItem(ItemStack stack) {
     // only pick up items that go in the head slot, don't have a renderer for other slots
     return getEquipmentSlotForItem(stack) == EquipmentSlot.HEAD;
+  }
+
+  @Override
+  public float getArmorCoverPercentage() {
+    return this.getItemBySlot(EquipmentSlot.HEAD).isEmpty() ? 0.0F : 1.0F;
   }
 
   @Override

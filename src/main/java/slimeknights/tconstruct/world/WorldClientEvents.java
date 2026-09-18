@@ -117,7 +117,7 @@ public class WorldClientEvents extends ClientEventBase {
       registerHeadModel(TinkerHeadType.BLAZE, MaterialIds.blaze, Identifier.parse("textures/entity/blaze/blaze.png"));
       registerHeadModel(TinkerHeadType.ENDERMAN, MaterialIds.enderPearl, TConstruct.getResource("textures/entity/skull/enderman.png"));
       SlimeskullArmorModel.registerHeadModel(MaterialIds.dragonScale, modelSet -> new DragonSkullModel(modelSet.bakeLayer(ModelLayers.DRAGON_SKULL)), Identifier.parse("textures/entity/enderdragon/dragon.png"));
-      SlimeskullArmorModel.registerHeadModel(MaterialIds.glass, ModelLayers.CREEPER_HEAD, Identifier.parse("textures/entity/creeper/creeper.png"));
+      SlimeskullArmorModel.registerHeadModel(MaterialIds.gunpowder, ModelLayers.CREEPER_HEAD, Identifier.parse("textures/entity/creeper/creeper.png"));
       // skeleton
       SlimeskullArmorModel.registerHeadModel(MaterialIds.bone, ModelLayers.SKELETON_SKULL, Identifier.parse("textures/entity/skeleton/skeleton.png"));
       SlimeskullArmorModel.registerHeadModel(MaterialIds.necroticBone, ModelLayers.WITHER_SKELETON_SKULL, Identifier.parse("textures/entity/skeleton/wither_skeleton.png"));

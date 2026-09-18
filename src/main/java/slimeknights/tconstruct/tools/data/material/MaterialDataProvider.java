@@ -68,6 +68,7 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
     addMaterial(MaterialIds.weepingVine,  2, ORDER_BINDING, true);
     addMaterial(MaterialIds.twistingVine, 2, ORDER_BINDING, true);
     addMaterial(MaterialIds.turtle,       2, ORDER_BINDING, true);
+    addMaterial(MaterialIds.nautilus,     2, ORDER_BINDING, true);
     // tier 2 - ammo
     addMaterial(MaterialIds.amethyst,   2, ORDER_REPAIR, false);
     addMaterial(MaterialIds.prismarine, 2, ORDER_REPAIR, true);
@@ -118,7 +119,7 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
     // tier 4 - binding
     addMaterial(MaterialIds.jeweledHide, 4, ORDER_BINDING, false);
     addMaterial(MaterialIds.ancientHide, 4, ORDER_BINDING, false, true, null);
-    addMaterial(MaterialIds.ancient,     4, ORDER_NETHER,  false, true, null);
+    addMaterial(MaterialIds.ancient,     5, ORDER_NETHER,  false, true, null);
     addMaterial(MaterialIds.blazewood,   4, ORDER_BINDING, true);
     // tier 4 - ammo
     addMaterial(MaterialIds.shulker,     4, ORDER_REPAIR, true);
@@ -179,8 +180,10 @@ public class MaterialDataProvider extends AbstractMaterialDataProvider {
     addMaterial(MaterialIds.clay,  2, ORDER_REPAIR + 5, true);
     addMaterial(MaterialIds.honey, 2, ORDER_REPAIR + 5, true);
     addMaterial(MaterialIds.blood, 5, ORDER_REPAIR, false, true, null);
+    addMaterial(MaterialIds.horn,  1, ORDER_REPAIR, true);
+    addMaterial(MaterialIds.cheese, 2, ORDER_REPAIR, true);
     // slimesuit - repair
-    addMaterial(MaterialIds.phantom, 1, ORDER_REPAIR, true);
+    addMaterial(MaterialIds.phantom, 2, ORDER_REPAIR + 5, true);
 
     // rose gold is most comparable to chain as you can use the extra slot for reinforced
     addRedirect(id("chain"), redirect(MaterialIds.roseGold));

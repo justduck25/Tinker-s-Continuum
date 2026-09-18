@@ -393,6 +393,9 @@ public class InteractionHandler {
     for (ModifierEntry entry : tool.getModifierList()) {
       InteractionResult result = entry.getHook(ModifierHooks.GENERAL_INTERACT).onToolUse(tool, entry, player, hand, InteractionSource.LEFT_CLICK);
       if (result.consumesAction()) {
+        if (tool instanceof ToolStack toolStack) {
+          toolStack.updateStack(player.getItemInHand(hand), false);
+        }
         return result;
       }
     }
@@ -476,6 +479,7 @@ public class InteractionHandler {
     for (ModifierEntry entry : modifiers) {
       InteractionResult result = entry.getHook(ModifierHooks.BLOCK_INTERACT).beforeBlockUse(tool, entry, context, InteractionSource.LEFT_CLICK);
       if (result.consumesAction()) {
+        tool.updateStack(stack, false);
         setLeftClickEventResult(event, result);
         // always cancel block interaction, prevents breaking glows/fires
         event.setCanceled(true);
@@ -486,6 +490,7 @@ public class InteractionHandler {
     for (ModifierEntry entry : modifiers) {
       InteractionResult result = entry.getHook(ModifierHooks.BLOCK_INTERACT).afterBlockUse(tool, entry, context, InteractionSource.LEFT_CLICK);
       if (result.consumesAction()) {
+        tool.updateStack(stack, false);
         setLeftClickEventResult(event, result);
         // always cancel block interaction, prevents breaking glows/fires
         event.setCanceled(true);

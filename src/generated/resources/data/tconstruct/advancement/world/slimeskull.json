@@ -169,30 +169,6 @@
       },
       "trigger": "tconstruct:tool_inventory_changed"
     },
-    "glass": {
-      "conditions": {
-        "tool": {
-          "type": "tconstruct:tool_stack",
-          "predicate": {
-            "type": "mantle:and",
-            "predicates": [
-              {
-                "type": "mantle:set",
-                "items": [
-                  "tconstruct:slime_helmet"
-                ]
-              },
-              {
-                "type": "tconstruct:has_material",
-                "index": 0,
-                "material": "tconstruct:glass"
-              }
-            ]
-          }
-        }
-      },
-      "trigger": "tconstruct:tool_inventory_changed"
-    },
     "gold": {
       "conditions": {
         "tool": {
@@ -210,6 +186,30 @@
                 "type": "tconstruct:has_material",
                 "index": 0,
                 "material": "tconstruct:gold"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "gunpowder": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:set",
+                "items": [
+                  "tconstruct:slime_helmet"
+                ]
+              },
+              {
+                "type": "tconstruct:has_material",
+                "index": 0,
+                "material": "tconstruct:gunpowder"
               }
             ]
           }
@@ -448,7 +448,7 @@
   },
   "requirements": [
     [
-      "glass"
+      "gunpowder"
     ],
     [
       "blaze"

@@ -53,8 +53,22 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
   public void syncFluids() {
     Level world = parent.getLevel();
     if (world != null && !world.isClientSide()) {
+      normalizeFluids();
       BlockPos pos = parent.getBlockPos();
       TinkerNetwork.getInstance().sendToClientsAround(new SmelteryTankUpdatePacket(pos, fluids), world, pos);
+    }
+  }
+
+  private static FluidStack registeredStack(FluidStack stack) {
+    return FluidStackNbt.registeredCopy(stack);
+  }
+
+  private void normalizeFluids() {
+    for (int i = 0; i < fluids.size(); i++) {
+      FluidStack fluid = fluids.get(i);
+      if (!fluid.isEmpty() && fluid.typeHolder().unwrapKey().isEmpty()) {
+        fluids.set(i, registeredStack(fluid));
+      }
     }
   }
 
@@ -188,6 +202,9 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
     if (action.simulate()) {
       return usable;
     }
+
+    resource = registeredStack(resource);
+    normalizeFluids();
 
     // add contained fluid amount
     contained += usable;
@@ -325,6 +342,7 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
 
   /** Writes the tank to NBT */
   public CompoundTag write(CompoundTag nbt) {
+    normalizeFluids();
     ListTag list = new ListTag();
     for (FluidStack liquid : fluids) {
       CompoundTag fluidTag = new CompoundTag();
@@ -338,6 +356,7 @@ public class SmelteryTank<T extends MantleBlockEntity & ISmelteryTankHandler> im
 
   /** Writes the tank to a NeoForge value output. */
   public void write(ValueOutput output) {
+    normalizeFluids();
     ValueOutput.TypedOutputList<FluidStack> list = output.list(TAG_FLUIDS, FluidStack.OPTIONAL_CODEC);
     for (FluidStack liquid : fluids) {
       list.add(liquid);

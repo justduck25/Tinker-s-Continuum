@@ -26,7 +26,7 @@ public abstract class NestedIngredient implements ICustomIngredient {
 
   @Override
   public boolean test(@Nullable ItemStack stack) {
-    return nested.test(stack);
+    return stack != null && slimeknights.mantle.recipe.helper.IngredientHelper.test(nested, stack);
   }
 
   @Override

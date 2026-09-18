@@ -25,6 +25,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.EnderMan;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -197,6 +198,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   @Override
   public void onCraftedBy(ItemStack stack, Player playerIn) {
     ToolStack.ensureInitialized(stack, getToolDefinition());
+    TinkerCommons.TOOL_INVENTORY_CHANGED_TRIGGER.trigger(playerIn, stack);
   }
   public InteractionResult use(Level levelIn, Player playerIn, InteractionHand handIn) {
     if (playerIn.isCrouching()) {
@@ -207,6 +209,10 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
       }
     }
     return super.use(levelIn, playerIn, handIn);
+  }
+
+  public void onDestroyed(ItemEntity entity) {
+    ToolInventoryCapability.onDestroyed(entity);
   }
 
 
@@ -358,6 +364,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /* Ticking */
   @Override
   public void inventoryTick(ItemStack stack, ServerLevel levelIn, Entity entityIn, @Nullable EquipmentSlot slot) {
+    TinkerCommons.TOOL_INVENTORY_CHANGED_TRIGGER.trigger(entityIn, stack);
     // don't care about non-living, they skip most tool context
     if (entityIn instanceof LivingEntity living) {
       ToolStack tool = ToolStack.from(stack);
@@ -382,6 +389,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
 
   /* Tooltips */
   public Component getName(ItemStack stack) {
+    RarityModule.applyToStack(stack);
     return ToolNameHook.getName(getToolDefinition(), stack);
   }
   @Override

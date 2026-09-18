@@ -253,7 +253,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
             // execute if requested
             if (execute) {
               // drain the liquid and transfer it, buffer the amount for delay
-              this.drained = input.drain(filled, EXECUTE);
+              this.drained = FluidStackNbt.registeredCopy(input.drain(filled, EXECUTE));
 
               // sync to clients if we have changes
               if (faucetState == FaucetState.OFF || !FluidStack.isSameFluidSameComponents(renderFluid, drained)) {
@@ -404,7 +404,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
    * @param isPouring   New isPouring status
    */
   private void syncToClient(FluidStack fluid, boolean isPouring) {
-    renderFluid = fluid.copy();
+    renderFluid = FluidStackNbt.registeredCopy(fluid);
     if (level instanceof ServerLevel) {
       TinkerNetwork.getInstance().sendToClientsAround(new FaucetActivationPacket(worldPosition, fluid, isPouring), (ServerLevel) level, getBlockPos());
     }
@@ -417,7 +417,7 @@ public class FaucetBlockEntity extends MantleBlockEntity {
   public void onActivationPacket(FluidStack fluid, boolean isPouring) {
     // pouring and powered are interchangable on the client
     this.faucetState = isPouring ? FaucetState.POURING : FaucetState.OFF;
-    this.renderFluid = fluid;
+    this.renderFluid = FluidStackNbt.registeredCopy(fluid);
   }
 
   @Override
@@ -454,8 +454,8 @@ public class FaucetBlockEntity extends MantleBlockEntity {
     faucetState = FaucetState.fromIndex(input.getByteOr(TAG_STATE, (byte)0));
     stopPouring = input.getBooleanOr(TAG_STOP, false);
     lastRedstoneState = input.getBooleanOr(TAG_LAST_REDSTONE, false);
-    drained = input.read(TAG_DRAINED, FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY);
-    renderFluid = input.read(TAG_RENDER_FLUID, FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY);
+    drained = FluidStackNbt.registeredCopy(input.read(TAG_DRAINED, FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY));
+    renderFluid = FluidStackNbt.registeredCopy(input.read(TAG_RENDER_FLUID, FluidStack.OPTIONAL_CODEC).orElse(FluidStack.EMPTY));
   }
 
   private enum FaucetState {

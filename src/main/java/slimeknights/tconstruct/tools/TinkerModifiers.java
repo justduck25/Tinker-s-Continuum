@@ -155,9 +155,11 @@ import slimeknights.tconstruct.library.modifiers.modules.combat.ProjectileExplos
 import slimeknights.tconstruct.library.modifiers.modules.combat.SlingForceModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.DurabilityBarColorModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.MaterialVariantColorModule;
+import slimeknights.tconstruct.library.modifiers.modules.display.MeleeInstrumentModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ModifierVariantColorModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ModifierVariantNameModule;
 import slimeknights.tconstruct.library.modifiers.modules.display.ShowInteractionSourceModule;
+import slimeknights.tconstruct.library.modifiers.modules.display.StatTooltipModule;
 import slimeknights.tconstruct.library.modifiers.modules.mining.ConditionalMiningSpeedModule;
 import slimeknights.tconstruct.library.modifiers.modules.technical.ArmorLevelModule;
 import slimeknights.tconstruct.library.modifiers.modules.technical.ArmorStatModule;
@@ -240,7 +242,6 @@ import slimeknights.tconstruct.tools.modifiers.traits.skull.PlagueModifier;
 import slimeknights.tconstruct.tools.modifiers.traits.skull.SelfDestructiveModifier;
 import slimeknights.tconstruct.tools.modifiers.traits.skull.StrongBonesModifier;
 import slimeknights.tconstruct.tools.modifiers.traits.skull.WildfireModifier;
-import slimeknights.tconstruct.tools.modifiers.traits.skull.WitheredModifier;
 import slimeknights.tconstruct.tools.modifiers.upgrades.melee.PiercingModifier;
 import slimeknights.tconstruct.tools.modifiers.upgrades.melee.SweepingEdgeModifier;
 import slimeknights.tconstruct.tools.modifiers.upgrades.ranged.SinistralModifier;
@@ -385,7 +386,7 @@ public final class TinkerModifiers extends TinkerModule {
   // entity
   public static final DeferredHolder<EntityType<?>, EntityType<FluidEffectProjectile>> fluidSpitEntity = ENTITIES.register("fluid_spit", () ->
     EntityType.Builder.<FluidEffectProjectile>of(FluidEffectProjectile::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).setShouldReceiveVelocityUpdates(false));
-  public static final DeferredHolder<EntityType<?>, EntityType<CustomFireball>> fireball = ENTITIES.register("fireball", () -> EntityType.Builder.<CustomFireball>of(CustomFireball::new, MobCategory.MISC).sized(0.3125F, 0.3125F).clientTrackingRange(4).updateInterval(10));
+  public static final DeferredHolder<EntityType<?>, EntityType<CustomFireball>> fireball = ENTITIES.register("fireball", () -> EntityType.Builder.<CustomFireball>of(CustomFireball::new, MobCategory.MISC).sized(0.3125F, 0.3125F).clientTrackingRange(4).updateInterval(1).setShouldReceiveVelocityUpdates(true));
 
   /*
    * Modifiers
@@ -485,9 +486,9 @@ public final class TinkerModifiers extends TinkerModule {
   /** @deprecated drowned's trait was switched to {@link slimeknights.tconstruct.tools.data.ModifierIds#respiration}. Reimplement if you need its behavior. */
   @Deprecated(forRemoval = true)
   public static final StaticModifier<BreathtakingModifier> breathtaking = MODIFIERS.register("breathtaking", BreathtakingModifier::new);
-  /** @deprecated wither skeleton's trait was switched to {@link slimeknights.tconstruct.tools.data.ModifierIds#restore}. Reimplement if you need its behavior. */
+  /** @deprecated use {@link slimeknights.tconstruct.tools.data.ModifierIds#witheredBones} */
   @Deprecated(forRemoval = true)
-  public static final StaticModifier<WitheredModifier> withered = MODIFIERS.register("withered", WitheredModifier::new);
+  public static final StaticModifier<?> withered = MODIFIERS.registerDynamic("withered");
   /** @deprecated blazes trait was switched to {@link slimeknights.tconstruct.tools.data.ModifierIds#fireborn} and helmet projectile was switched to {@link slimeknights.tconstruct.tools.data.ModifierIds#spitting} */
   @Deprecated(forRemoval = true)
   public static final StaticModifier<FirebreathModifier> firebreath = MODIFIERS.register("firebreath", FirebreathModifier::new);
@@ -842,6 +843,7 @@ public final class TinkerModifiers extends TinkerModule {
       ModifierLevelDisplay.LOADER.register(getResource("pluses"), ModifierLevelDisplay.PLUSES.getLoader());
       ModifierLevelDisplay.LOADER.register(getResource("unique"), ModifierLevelDisplay.UniqueForLevels.LOADER);
       ModifierLevelDisplay.LOADER.register(getResource("cap_level"), ModifierLevelDisplay.LevelCap.LOADER);
+      ModifierLevelDisplay.LOADER.register(getResource("map_level"), ModifierLevelDisplay.MapLevel.LOADER);
 
       // modifier modules //
       ModifierModule.LOADER.register(getResource("empty"), ModifierModule.EMPTY.getLoader());
@@ -869,6 +871,7 @@ public final class TinkerModifiers extends TinkerModule {
       ModifierModule.LOADER.register(getResource("tool_actions"), ToolActionsModule.LOADER);
       ModifierModule.LOADER.register(getResource("tool_action_transform"), ToolActionTransformModule.LOADER);
       ModifierModule.LOADER.register(getResource("edible"), EdibleModule.LOADER);
+      ModifierModule.LOADER.register(getResource("melee_instrument"), MeleeInstrumentModule.LOADER);
       // build
       ModifierModule.LOADER.register(getResource("conditional_stat"), ConditionalStatModule.LOADER);
       ModifierModule.LOADER.register(getResource("modifier_slot"), ModifierSlotModule.LOADER);
@@ -903,6 +906,7 @@ public final class TinkerModifiers extends TinkerModule {
       ModifierModule.LOADER.register(getResource("variant_color"), ModifierVariantColorModule.LOADER);
       ModifierModule.LOADER.register(getResource("material_variant_color"), MaterialVariantColorModule.LOADER);
       ModifierModule.LOADER.register(getResource("show_interaction_source"), ShowInteractionSourceModule.LOADER);
+      ModifierModule.LOADER.register(getResource("stat_tooltip"), StatTooltipModule.LOADER);
       // enchantment
       ModifierModule.LOADER.register(getResource("constant_enchantment"), EnchantmentModule.Constant.LOADER);
       ModifierModule.LOADER.register(getResource("main_hand_harvest_enchantment"), EnchantmentModule.MainHandHarvest.LOADER);

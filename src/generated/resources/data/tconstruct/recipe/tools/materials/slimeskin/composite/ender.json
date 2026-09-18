@@ -1,9 +1,15 @@
 {
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 250,
-    "fluid": "tconstruct:ender_slime"
-  },
+  "fluid": [
+    {
+      "amount": 250,
+      "fluid": "tconstruct:ender_slime"
+    },
+    {
+      "amount": 250,
+      "fluid": "tconstruct:ender_slime"
+    }
+  ],
   "id": "tconstruct:tools/materials/slimeskin/composite/ender",
   "input": "tconstruct:leather",
   "output": "tconstruct:enderslime_vine#slimeskin",

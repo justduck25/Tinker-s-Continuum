@@ -1,9 +1,15 @@
 {
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 250,
-    "tag": "c:slime"
-  },
+  "fluid": [
+    {
+      "amount": 250,
+      "fluid": "tconstruct:earth_slime"
+    },
+    {
+      "amount": 250,
+      "tag": "c:slime"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/earthslime",
   "output": "tconstruct:earthslime",
   "temperature": 50

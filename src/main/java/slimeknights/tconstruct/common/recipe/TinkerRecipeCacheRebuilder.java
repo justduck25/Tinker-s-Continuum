@@ -37,10 +37,15 @@ public final class TinkerRecipeCacheRebuilder {
       getRecipes(recipeMap, TinkerRecipeTypes.CASTING_TABLE.get(), ToolCastingRecipe.class).stream(),
       getRecipes(recipeMap, TinkerRecipeTypes.CASTING_BASIN.get(), ToolCastingRecipe.class).stream()).toList();
 
-    MaterialCastingLookup.rebuildRecipes(
-      getRecipes(recipeMap, TinkerRecipeTypes.DATA.get(), MaterialFluidRecipe.class),
-      materialCastingRecipes,
-      toolCastingRecipes);
+    List<MaterialFluidRecipe> fluids = getRecipes(recipeMap, TinkerRecipeTypes.DATA.get(), MaterialFluidRecipe.class);
+    if (fluids.isEmpty()) {
+      var server = net.neoforged.neoforge.server.ServerLifecycleHooks.getCurrentServer();
+      if (server != null) {
+        fluids = getRecipes(server.getRecipeManager().recipeMap(), TinkerRecipeTypes.DATA.get(), MaterialFluidRecipe.class);
+      }
+    }
+
+    MaterialCastingLookup.rebuildRecipes(fluids, materialCastingRecipes, toolCastingRecipes);
   }
 
   /** Gets all recipes of the given type and class from a loaded recipe map. */

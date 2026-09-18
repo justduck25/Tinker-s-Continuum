@@ -76,6 +76,8 @@ public class ToolAttackContext {
   private final boolean isExtraAttack;
   /** Sound to play for this attack */
   private final SoundEvent sound;
+  /** Whether the attacker was sprinting when the attack started. Vanilla clears sprint after knockback. */
+  private final boolean sprinting;
 
   /** @deprecated use {@link Builder */
   @Deprecated(forRemoval = true)
@@ -84,7 +86,8 @@ public class ToolAttackContext {
       (float) attacker.getAttributeValue(Attributes.ATTACK_DAMAGE),
       (float) attacker.getAttributeValue(Attributes.ATTACK_KNOCKBACK) + (livingTarget != null ? 0.4f : 0) + (cooldown > 0.9f && attacker.isSprinting() ? 0.5f : 0),
       cooldown, isCritical ? 1.5f : 1.0f, isExtraAttack,
-      cooldown > 0.9f ? attacker.isSprinting() ? SoundEvents.PLAYER_ATTACK_KNOCKBACK : SoundEvents.PLAYER_ATTACK_STRONG : SoundEvents.PLAYER_ATTACK_WEAK);
+      cooldown > 0.9f ? attacker.isSprinting() ? SoundEvents.PLAYER_ATTACK_KNOCKBACK : SoundEvents.PLAYER_ATTACK_STRONG : SoundEvents.PLAYER_ATTACK_WEAK,
+      attacker.isSprinting());
   }
 
   /** @deprecated use {@link Builder */
@@ -131,7 +134,7 @@ public class ToolAttackContext {
 
   /** Creates a new context targeting the given entity */
   public ToolAttackContext withAOETarget(Entity target, @Nullable LivingEntity livingTarget) {
-    return new ToolAttackContext(attacker, playerAttacker, hand, slotType, projectile, target, livingTarget, baseDamage, baseKnockback, cooldown, 1.0f, true, sound);
+    return new ToolAttackContext(attacker, playerAttacker, hand, slotType, projectile, target, livingTarget, baseDamage, baseKnockback, cooldown, 1.0f, true, sound, sprinting);
   }
 
   /** Creates a new context targeting the given entity */
@@ -262,6 +265,12 @@ public class ToolAttackContext {
       return this;
     }
 
+    /** Adds additional base damage, used for unarmed chestplate attacks from monsters. */
+    public Builder addBaseDamage(float damage) {
+      baseDamage += damage;
+      return this;
+    }
+
     /** Sets the cooldown */
     public Builder cooldown(float cooldown) {
       if (cooldown > 1 || cooldown < 0) {
@@ -336,7 +345,7 @@ public class ToolAttackContext {
         }
       }
       // build final context
-      return new ToolAttackContext(attacker, playerAttacker, hand, slot, projectile, target, targetLiving, baseDamage, baseKnockback, cooldown, criticalModifier, extraAttack, sound);
+      return new ToolAttackContext(attacker, playerAttacker, hand, slot, projectile, target, targetLiving, baseDamage, baseKnockback, cooldown, criticalModifier, extraAttack, sound, attacker.isSprinting());
     }
   }
 }

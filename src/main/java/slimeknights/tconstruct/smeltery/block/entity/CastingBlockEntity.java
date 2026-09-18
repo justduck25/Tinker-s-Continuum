@@ -340,6 +340,9 @@ FluidUpdatePacket.IFluidPacketReceiver {
 
     @Nullable
     private RecipeManager getRecipeManager(Level level) {
+        if (level.recipeAccess() instanceof RecipeManager manager) {
+            return manager;
+        }
         return level.getServer() == null ? null : level.getServer().getRecipeManager();
     }
 
@@ -356,7 +359,14 @@ FluidUpdatePacket.IFluidPacketReceiver {
         for (Object rawHolder : recipes) {
             RecipeHolder<?> holder = (RecipeHolder<?>)rawHolder;
             ICastingRecipe recipe = (ICastingRecipe)holder.value();
-            if (!recipe.matches((ICastingContainer)this.castingInventory, this.level)) continue;
+            boolean matches;
+            try {
+                matches = recipe.matches((ICastingContainer)this.castingInventory, this.level);
+            } catch (RuntimeException e) {
+                TConstruct.LOG.error("Casting recipe {} failed while matching, skipping", holder.id(), e);
+                continue;
+            }
+            if (!matches) continue;
             this.lastCastingRecipe = recipe;
             return new CastingRecipeMatch((RecipeHolder<ICastingRecipe>)holder);
         }

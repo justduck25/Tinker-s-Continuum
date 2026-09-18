@@ -164,6 +164,7 @@ public class ModifiableArrowItem extends ArrowItem implements IModifiableDisplay
 
   /* Tooltips */
   public Component getName(ItemStack stack) {
+    RarityModule.applyToStack(stack);
     return ToolNameHook.getName(getToolDefinition(), stack);
   }
   @Override

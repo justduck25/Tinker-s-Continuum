@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "tag": "c:molten_dark_steel"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_dark_steel"
+    },
+    {
+      "amount": 90,
+      "tag": "c:molten_dark_steel"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/dark_steel",
   "output": "tconstruct:dark_steel",
   "temperature": 1200

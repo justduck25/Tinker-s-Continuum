@@ -5,7 +5,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.decoration.ArmorStand;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.tconstruct.library.json.LevelingValue;
@@ -66,10 +65,6 @@ public record CircleWeaponAttack(LevelingValue diameter) implements MeleeHitTool
       }
 
       level.playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), SoundEvents.PLAYER_ATTACK_SWEEP, attacker.getSoundSource(), 1.0F, 1.0F);
-      Player player = context.getPlayerAttacker();
-      if (!context.isProjectile() && player != null) {
-        // TODO 1.21: restore sweep animation hook if NeoForge exposes one.
-      }
     }
   }
 }

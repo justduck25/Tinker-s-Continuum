@@ -2,8 +2,8 @@
   "type": "tconstruct:modifier_salvage",
   "id": "tconstruct:tools/modifiers/salvage/ability/returning_level_2",
   "level": {
-    "min": 2,
-    "max": 4
+    "max": 4,
+    "min": 2
   },
   "modifier": "tconstruct:returning",
   "slots": {

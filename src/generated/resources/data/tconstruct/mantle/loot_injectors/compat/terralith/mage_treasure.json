@@ -31,8 +31,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "min": 3,
-                    "max": 4
+                    "max": 4,
+                    "min": 3
                   }
                 },
                 {
@@ -44,8 +44,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "min": 3,
-                    "max": 4
+                    "max": 4,
+                    "min": 3
                   }
                 }
               ],
@@ -97,8 +97,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "min": 3,
-                    "max": 4
+                    "max": 4,
+                    "min": 3
                   }
                 },
                 {
@@ -110,8 +110,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "min": 3,
-                    "max": 4
+                    "max": 4,
+                    "min": 3
                   }
                 },
                 {
@@ -123,8 +123,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "min": 3,
-                    "max": 4
+                    "max": 4,
+                    "min": 3
                   }
                 },
                 {
@@ -136,8 +136,8 @@
                     "tag": "tconstruct:exclude_from_loot"
                   },
                   "tier": {
-                    "min": 3,
-                    "max": 4
+                    "max": 4,
+                    "min": 3
                   }
                 }
               ],

@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/cheese_ingot",
+  "ingredient": "tconstruct:cheese_ingot",
+  "material": "tconstruct:cheese",
+  "needed": 1,
+  "value": 1
+}

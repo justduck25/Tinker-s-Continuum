@@ -46,4 +46,9 @@ public class FakeIngotItem extends RepairKitItem {
   public boolean canRepairInCraftingTable() {
     return false;
   }
+
+  @Override
+  public boolean usesMaterialRarity() {
+    return false;
+  }
 }

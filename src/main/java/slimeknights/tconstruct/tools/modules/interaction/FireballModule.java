@@ -4,10 +4,10 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -33,6 +33,8 @@ import slimeknights.mantle.data.loadable.common.IngredientLoadable;
 import slimeknights.mantle.data.loadable.primitive.FloatLoadable;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.tconstruct.common.TinkerDamageTypes;
+import slimeknights.tconstruct.shared.TinkerCommons;
+import slimeknights.tconstruct.shared.block.SlimeType;
 import slimeknights.tconstruct.library.json.LevelingInt;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
@@ -49,7 +51,6 @@ import slimeknights.tconstruct.library.modifiers.modules.util.ModifierCondition.
 import slimeknights.tconstruct.library.modifiers.modules.util.ModuleBuilder;
 import slimeknights.tconstruct.library.module.HookProvider;
 import slimeknights.tconstruct.library.module.ModuleHook;
-import slimeknights.tconstruct.library.tools.capability.EntityModifierCapability;
 import slimeknights.tconstruct.library.tools.capability.PersistentDataCapability;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
@@ -131,12 +132,66 @@ public record FireballModule(List<FireballType> options, DamageTypePair damageTy
 
   /** Gets the fireball type for the given stack */
   private FireballType getFireballType(ItemStack stack) {
+    Item item = stack.getItem();
     for (FireballType type : options) {
-      if (type.match.test(stack)) {
+      if (matchesOption(type.match, item, stack)) {
         return type;
       }
     }
+    SlimeType slimeType = slimeTypeOf(item);
+    if (slimeType != null && slimeType.ordinal() < options.size()) {
+      return options.get(slimeType.ordinal());
+    }
+    if (item == Items.MAGMA_CREAM && options.size() > SlimeType.values().length) {
+      return options.get(SlimeType.values().length);
+    }
     return FireballType.EMPTY;
+  }
+
+  /** Matches a fireball option by item identity first; 26.1 tag ingredients often have empty holders. */
+  private static boolean matchesOption(Ingredient match, Item item, ItemStack stack) {
+    if (match.test(stack) || match.test(new ItemStack(item))) {
+      return true;
+    }
+    try {
+      if (match.items().anyMatch(holder -> holder.value() == item)) {
+        return true;
+      }
+    } catch (RuntimeException ignored) {}
+    String text = serializeIngredient(match);
+    Identifier itemId = BuiltInRegistries.ITEM.getKey(item);
+    if (itemId != null && (text.contains(itemId.toString()) || text.contains(itemId.getPath()))) {
+      return true;
+    }
+    SlimeType slimeType = slimeTypeOf(item);
+    if (slimeType != null && ingredientMentions(text, slimeType)) {
+      return true;
+    }
+    return item == Items.MAGMA_CREAM && text.contains("magma_cream");
+  }
+
+  private static SlimeType slimeTypeOf(Item item) {
+    for (SlimeType slimeType : SlimeType.values()) {
+      if (item == TinkerCommons.slimeball.get(slimeType)) {
+        return slimeType;
+      }
+    }
+    return null;
+  }
+
+  private static String serializeIngredient(Ingredient match) {
+    try {
+      return IngredientLoadable.DISALLOW_EMPTY.serialize(match).toString();
+    } catch (RuntimeException ex) {
+      return "";
+    }
+  }
+
+  private static boolean ingredientMentions(String text, SlimeType slimeType) {
+    String loc = slimeType.getSlimeballTag().location().toString();
+    return text.contains(loc)
+      || text.contains(slimeType.getSerializedName() + "_slime_ball")
+      || text.contains("/" + slimeType.getSerializedName());
   }
 
   @Override
@@ -160,11 +215,11 @@ public record FireballModule(List<FireballType> options, DamageTypePair damageTy
         float inaccuracy = ModifierUtil.getInaccuracy(tool, entity) / 16f;
 
 
-        // prepare projectile
         Vec3 lookVec = entity.getLookAngle().scale(2);
         RandomSource random = entity.getRandom();
-        CustomFireball projectile = new CustomFireball(level, entity, lookVec.x + random.nextGaussian() * inaccuracy, lookVec.y, lookVec.z + random.nextGaussian() * inaccuracy);
-        projectile.setDeltaMovement(projectile.getDeltaMovement().scale(velocity));
+        CustomFireball projectile = new CustomFireball(level, entity,
+          lookVec.x + random.nextGaussian() * inaccuracy, lookVec.y, lookVec.z + random.nextGaussian() * inaccuracy);
+        projectile.initOriginalFlight(velocity);
 
 
         projectile.setPower(power);
@@ -177,16 +232,12 @@ public record FireballModule(List<FireballType> options, DamageTypePair damageTy
         DamageTypePair damageTypes = type.damageType(this.damageType);
         projectile.setDamageType(damageTypes.ranged(), damageTypes.melee());
 
-        // set projectile modifiers
-        ModifierNBT modifiers = tool.getModifiers();
-        if (!ammoModifiers.isEmpty()) {
-          ModifierNBT.Builder builder = ModifierNBT.builder();
-          builder.add(modifiers);
-          builder.add(ammoModifiers);
-          builder.add(type.ammoModifiers);
-          modifiers = builder.build();
-        }
-        EntityModifierCapability.getCapability(projectile).setModifiers(modifiers);
+        // copy bounce plus the ammo type's extra modifiers onto the projectile
+        ModifierNBT.Builder builder = ModifierNBT.builder();
+        builder.add(tool.getModifiers());
+        builder.add(ammoModifiers);
+        builder.add(type.ammoModifiers);
+        projectile.applyTinkersModifiers(builder.build());
 
         // fetch the persistent data for the fireball as modifiers may want to store data
         ModDataNBT projectileData = PersistentDataCapability.getOrWarn(projectile);
@@ -211,6 +262,9 @@ public record FireballModule(List<FireballType> options, DamageTypePair damageTy
 
   @Override
   public InteractionResult onToolUse(IToolStackView tool, ModifierEntry modifier, Player player, InteractionHand hand, InteractionSource source) {
+    if (source != InteractionSource.RIGHT_CLICK || player.isCrouching()) {
+      return InteractionResult.PASS;
+    }
     if (condition.matches(tool, modifier) && !tool.isBroken() && tool.getHook(ToolHooks.INTERACTION).canInteract(tool, modifier.getId(), source)) {
       if (shoot(tool, modifier, player, player, Util.getSlotType(hand))) {
         GeneralInteractionModifierHook.addCooldown(tool, player, 1);

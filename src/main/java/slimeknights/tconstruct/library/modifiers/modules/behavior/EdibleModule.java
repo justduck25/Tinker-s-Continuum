@@ -2,6 +2,7 @@ package slimeknights.tconstruct.library.modifiers.modules.behavior;
 
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -16,7 +17,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.effect.MobEffect;
+import slimeknights.mantle.data.loadable.Loadables;
 import slimeknights.mantle.data.loadable.common.ItemStackLoadable;
+import slimeknights.mantle.data.loadable.primitive.BooleanLoadable;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.data.predicate.item.ItemPredicate;
 import slimeknights.tconstruct.TConstruct;
@@ -41,8 +45,10 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.StatsNBT;
 import slimeknights.tconstruct.library.tools.stat.FloatToolStat;
 import slimeknights.tconstruct.library.tools.stat.ToolStatId;
+import slimeknights.tconstruct.shared.item.CheeseItem;
 import slimeknights.tconstruct.tools.modules.armor.CounterModule;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -55,6 +61,8 @@ public class EdibleModule implements ModifierModule, GeneralInteractionModifierH
     LevelingInt.LOADABLE.requiredField("duration", EdibleModule::duration),
     LevelingInt.LOADABLE.requiredField("durability_usage", EdibleModule::durabilityUsage),
     LevelingValue.LOADABLE.requiredField("counter_chance", EdibleModule::chance),
+    BooleanLoadable.DEFAULT.defaultField("cure_random", false, false, EdibleModule::cureRandom),
+    Loadables.MOB_EFFECT.nullableField("remove_effect", EdibleModule::removeEffect),
     ModifierCondition.TOOL_FIELD, EdibleModule::new);
   /** Tool stat for the amount of hunger restored upon eating this. */
   public static final FloatToolStat HUNGER = new FloatToolStat(new ToolStatId(TConstruct.MOD_ID, "hunger"), 0xFFF0A8A4, 0, 0, 200, ItemPredicate.or(ItemPredicate.tag(TinkerTags.Items.INTERACTABLE_CHARGE), ItemPredicate.tag(TinkerTags.Items.ARMOR)));
@@ -65,18 +73,23 @@ public class EdibleModule implements ModifierModule, GeneralInteractionModifierH
   private final LevelingInt duration;
   private final LevelingInt durabilityUsage;
   private final LevelingValue chance;
+  private final boolean cureRandom;
+  @Nullable
+  private final MobEffect removeEffect;
   private final ModifierCondition<IToolStackView> condition;
 
-  public EdibleModule(ItemStack representativeItem, LevelingInt duration, LevelingInt durabilityUsage, LevelingValue chance, ModifierCondition<IToolStackView> condition) {
+  public EdibleModule(ItemStack representativeItem, LevelingInt duration, LevelingInt durabilityUsage, LevelingValue chance, boolean cureRandom, @Nullable MobEffect removeEffect, ModifierCondition<IToolStackView> condition) {
     this.representativeItem = representativeItem;
     this.duration = duration;
     this.durabilityUsage = durabilityUsage;
     this.chance = chance;
+    this.cureRandom = cureRandom;
+    this.removeEffect = removeEffect;
     this.condition = condition;
   }
 
   public EdibleModule(ItemLike representativeItem, LevelingInt duration, LevelingInt durabilityUsage, LevelingValue chance) {
-    this(safeRepresentativeStack(representativeItem), duration, durabilityUsage, chance, ModifierCondition.ANY_TOOL);
+    this(safeRepresentativeStack(representativeItem), duration, durabilityUsage, chance, false, null, ModifierCondition.ANY_TOOL);
   }
 
   /**
@@ -96,10 +109,17 @@ public class EdibleModule implements ModifierModule, GeneralInteractionModifierH
     return new EdibleModule(representativeItem, duration, durabilityUsage, chance);
   }
 
+  public static EdibleModule create(ItemLike representativeItem, LevelingInt duration, LevelingInt durabilityUsage, LevelingValue chance, boolean cureRandom, @Nullable MobEffect removeEffect) {
+    return new EdibleModule(safeRepresentativeStack(representativeItem), duration, durabilityUsage, chance, cureRandom, removeEffect, ModifierCondition.ANY_TOOL);
+  }
+
   public ItemStack representativeItem() { return representativeItem; }
   public LevelingInt duration() { return duration; }
   public LevelingInt durabilityUsage() { return durabilityUsage; }
   public LevelingValue chance() { return chance; }
+  public boolean cureRandom() { return cureRandom; }
+  @Nullable
+  public MobEffect removeEffect() { return removeEffect; }
   public ModifierCondition<IToolStackView> condition() { return condition; }
 
   @Override
@@ -138,6 +158,12 @@ public class EdibleModule implements ModifierModule, GeneralInteractionModifierH
       ModifierUtil.foodConsumer.onConsume(player, representativeItem, hunger, saturation);
       world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EAT, SoundSource.NEUTRAL, 1.0F, 1.0F + (world.getRandom().nextFloat() - world.getRandom().nextFloat()) * 0.4F);
       world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.PLAYER_BURP, SoundSource.NEUTRAL, 0.5F, world.getRandom().nextFloat() * 0.1F + 0.9F);
+      if (cureRandom) {
+        CheeseItem.removeRandomEffect(player);
+      }
+      if (removeEffect != null) {
+        player.removeEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(removeEffect));
+      }
 
       int damage = durabilityUsage.compute(modifier.getEffectiveLevel());
       ToolDamageUtil.directDamage(tool, damage, player, player.getUseItem());
@@ -193,7 +219,7 @@ public class EdibleModule implements ModifierModule, GeneralInteractionModifierH
     if (!tool.isBroken() && tool.hasTag(TinkerTags.Items.ARMOR) && condition.matches(tool, modifier) && tool.getStats().getInt(HUNGER) > 0) {
       LivingEntity entity = context.getEntity();
       float level = CounterModule.getLevel(tool, modifier, slotType, entity);
-      if (context.getLevel().getRandom().nextFloat() < chance.compute(level) && entity instanceof Player player && player.canEat(false)) {
+      if (context.getLevel().getRandom().nextFloat() < chance.compute(level) && entity instanceof Player player && player.canEat(true)) {
         eat(tool, modifier, player, !representativeItem.isEmpty() ? representativeItem : entity.getItemBySlot(slotType));
       }
     }

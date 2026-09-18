@@ -1,0 +1,106 @@
+{
+  "criteria": {
+    "boots": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:tag",
+                "tag": "tconstruct:modifiable/armor/boots"
+              },
+              {
+                "type": "tconstruct:has_volatile_key",
+                "key": "tconstruct:netherite"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "chestplate": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:tag",
+                "tag": "tconstruct:modifiable/armor/chestplate"
+              },
+              {
+                "type": "tconstruct:has_volatile_key",
+                "key": "tconstruct:netherite"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "helmet": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:tag",
+                "tag": "tconstruct:modifiable/armor/helmets"
+              },
+              {
+                "type": "tconstruct:has_volatile_key",
+                "key": "tconstruct:netherite"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    },
+    "leggings": {
+      "conditions": {
+        "tool": {
+          "type": "tconstruct:tool_stack",
+          "predicate": {
+            "type": "mantle:and",
+            "predicates": [
+              {
+                "type": "mantle:tag",
+                "tag": "tconstruct:modifiable/armor/leggings"
+              },
+              {
+                "type": "tconstruct:has_volatile_key",
+                "key": "tconstruct:netherite"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "tconstruct:tool_inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "helmet"
+    ],
+    [
+      "chestplate"
+    ],
+    [
+      "leggings"
+    ],
+    [
+      "boots"
+    ]
+  ],
+  "rewards": {
+    "function": "tconstruct:grant_advancement/nether_netherite_armor"
+  },
+  "sends_telemetry_event": true
+}

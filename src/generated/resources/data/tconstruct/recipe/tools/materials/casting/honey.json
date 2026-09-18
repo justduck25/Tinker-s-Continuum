@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": [
+    {
+      "amount": 250,
+      "fluid": "tconstruct:honey"
+    },
+    {
+      "amount": 250,
+      "tag": "c:honey"
+    }
+  ],
+  "id": "tconstruct:tools/materials/casting/honey",
+  "output": "tconstruct:honey",
+  "temperature": 1
+}

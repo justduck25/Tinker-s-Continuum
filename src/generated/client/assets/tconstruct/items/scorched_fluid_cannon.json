@@ -1,6 +1,18 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "tconstruct:item/scorched_fluid_cannon"
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:model",
+        "model": "tconstruct:item/scorched_fluid_cannon"
+      },
+      {
+        "type": "minecraft:special",
+        "base": "tconstruct:item/scorched_fluid_cannon",
+        "model": {
+          "type": "tconstruct:tank_fluid"
+        }
+      }
+    ]
   }
 }

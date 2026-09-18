@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.equipment.ArmorType;
 import slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial;
@@ -266,17 +267,18 @@ public final class TinkerSmeltery extends TinkerModule {
   static {
     Function<Block, BlockItem> tankItem = b -> new TankItem(b, itemProps(), true);
     Function<Block, BlockItem> lanternItem = b -> new TankItem(b, itemProps(), false);
+    Function<Block, BlockItem> cannonItem = b -> new TankItem(b, itemProps().equippable(EquipmentSlot.HEAD), true);
     // seared
     searedTank = BLOCKS.registerEnum("seared", SearedTankBlock.TankType.values(), type -> new SearedTankBlock(searedTankProps(), type.getCapacity(), PushReaction.DESTROY), tankItem);
     searedCastingTank = BLOCKS.register("seared_casting_tank", () -> new CastingTankBlock(searedTankProps()), b -> new TankItem(b, itemProps(), true));
-    searedFluidCannon = BLOCKS.register("seared_fluid_cannon", () -> new FluidCannonBlock(searedTankProps(), FluidType.BUCKET_VOLUME * 2, 1.0f, 1.1f, 6.0f), tankItem);
+    searedFluidCannon = BLOCKS.register("seared_fluid_cannon", () -> new FluidCannonBlock(searedTankProps(), FluidType.BUCKET_VOLUME * 2, 1.0f, 1.1f, 6.0f), cannonItem);
     searedLantern = BLOCKS.register("seared_lantern", () -> new SearedLanternBlock(searedLanternProps(), FluidValues.LANTERN_CAPACITY), lanternItem);
     // scorched
     scorchedTank = BLOCKS.registerEnum("scorched", SearedTankBlock.TankType.values(), type -> new SearedTankBlock(scorchedTankProps(), type.getCapacity(), PushReaction.DESTROY), tankItem);
-    scorchedFluidCannon = BLOCKS.register("scorched_fluid_cannon", () -> new FluidCannonBlock(scorchedTankProps(), FluidType.BUCKET_VOLUME * 2, 2.0f, 1.5f, 7.0f), tankItem);
+    scorchedFluidCannon = BLOCKS.register("scorched_fluid_cannon", () -> new FluidCannonBlock(scorchedTankProps(), FluidType.BUCKET_VOLUME * 2, 2.0f, 1.5f, 7.0f), cannonItem);
     scorchedLantern = BLOCKS.register("scorched_lantern", () -> new SearedLanternBlock(scorchedLanternProps(), FluidValues.LANTERN_CAPACITY), lanternItem);
     // end
-    endFluidCannon = BLOCKS.register("end_fluid_cannon", () -> new KnightMetalFluidCannonBlock(searedTankProps(), FluidType.BUCKET_VOLUME * 4, 1.5f, 3.0f, 6.0f), tankItem);
+    endFluidCannon = BLOCKS.register("end_fluid_cannon", () -> new KnightMetalFluidCannonBlock(searedTankProps(), FluidType.BUCKET_VOLUME * 4, 1.5f, 3.0f, 3.0f), cannonItem);
   }
 
   // utility

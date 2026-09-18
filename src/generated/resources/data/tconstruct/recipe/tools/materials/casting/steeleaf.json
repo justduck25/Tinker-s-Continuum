@@ -6,10 +6,16 @@
     }
   ],
   "type": "tconstruct:material_fluid",
-  "fluid": {
-    "amount": 90,
-    "fluid": "tconstruct:molten_steeleaf"
-  },
+  "fluid": [
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_steeleaf"
+    },
+    {
+      "amount": 90,
+      "fluid": "tconstruct:molten_steeleaf"
+    }
+  ],
   "id": "tconstruct:tools/materials/casting/steeleaf",
   "output": "tconstruct:steeleaf",
   "temperature": 934
