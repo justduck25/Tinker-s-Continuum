@@ -219,7 +219,7 @@ public class EdibleModule implements ModifierModule, GeneralInteractionModifierH
     if (!tool.isBroken() && tool.hasTag(TinkerTags.Items.ARMOR) && condition.matches(tool, modifier) && tool.getStats().getInt(HUNGER) > 0) {
       LivingEntity entity = context.getEntity();
       float level = CounterModule.getLevel(tool, modifier, slotType, entity);
-      if (context.getLevel().getRandom().nextFloat() < chance.compute(level) && entity instanceof Player player && player.canEat(false)) {
+      if (context.getLevel().getRandom().nextFloat() < chance.compute(level) && entity instanceof Player player && player.canEat(true)) {
         eat(tool, modifier, player, !representativeItem.isEmpty() ? representativeItem : entity.getItemBySlot(slotType));
       }
     }
