@@ -1,7 +1,9 @@
 package slimeknights.tconstruct.common.data.loot;
 
 import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.NbtPredicate;
+import net.minecraft.advancements.criterion.SlimePredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +19,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -27,14 +30,12 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.block.SlimeType;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
-import slimeknights.tconstruct.gadgets.TinkerGadgets;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 
 import javax.annotation.Nullable;
-import java.util.Map.Entry;
 import java.util.stream.Stream;
 
 public class EntityLootTableProvider extends EntityLootSubProvider {
@@ -60,12 +61,6 @@ public class EntityLootTableProvider extends EntityLootSubProvider {
     this.add(TinkerModifiers.fireball.get(), LootTable.lootTable());
     this.add(TinkerWorld.skySlimeEntity.get(), dropSlimeballs(SlimeType.SKY, TinkerWorld.steelShard.get()));
     this.add(TinkerWorld.enderSlimeEntity.get(), dropSlimeballs(SlimeType.ENDER, TinkerWorld.knightmetalShard.get()));
-    this.add(TinkerWorld.terracubeEntity.get(),
-                           LootTable.lootTable().withPool(LootPool.lootPool()
-                                                                   .setRolls(ConstantValue.exactly(1))
-                                                                   .add(LootItem.lootTableItem(Items.CLAY_BALL)
-                                                                                          .apply(SetItemCountFunction.setCount(UniformGenerator.between(-2.0F, 1.0F)))
-                                                                                          .apply(SmeltItemFunction.smelted()).when(shouldSmeltLoot()))));
 
     LootItemCondition.Builder killedByFrog = killedByFrog(registries.lookupOrThrow(Registries.ENTITY_TYPE));
     this.add(TinkerWorld.terracubeEntity.get(),
@@ -74,17 +69,20 @@ public class EntityLootTableProvider extends EntityLootSubProvider {
                                         .setRolls(ConstantValue.exactly(1))
                                         .add(LootItem.lootTableItem(Items.CLAY_BALL)
                                                      .apply(SetItemCountFunction.setCount(UniformGenerator.between(-2.0F, 1.0F)))
-                                                     .when(killedByFrog.invert()))
+                                                     .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))
+                                                     .when(killedByFrog.invert())
+                                                     .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().subPredicate(SlimePredicate.sized(MinMaxBounds.Ints.atLeast(2))))))
                                         .add(LootItem.lootTableItem(TinkerSmeltery.searedLamp)
                                                      .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))
                                                      .when(killedByFrog))
-                                        .apply(SmeltItemFunction.smelted()).when(shouldSmeltLoot())));
+                                        .apply(SmeltItemFunction.smelted().when(shouldSmeltLoot()))));
   }
 
   /** Drops an item using the same chances as slimeballs */
-  private static LootPoolEntryContainer.Builder<?> slimeball(Item item) {
+  private LootPoolEntryContainer.Builder<?> slimeball(Item item) {
     return LootItem.lootTableItem(item)
-      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)));
+      .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+      .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)));
   }
 
   /** Drops a frog slimeball */
@@ -94,11 +92,11 @@ public class EntityLootTableProvider extends EntityLootSubProvider {
 
   /** Drops slimeballs, and optionally nuggets for metal slimes. */
   private LootTable.Builder dropSlimeballs(SlimeType type, @Nullable Item nugget) {
+    LootItemCondition.Builder small = LootItemEntityPropertyCondition.hasProperties(EntityTarget.THIS, EntityPredicate.Builder.entity().subPredicate(SlimePredicate.sized(MinMaxBounds.Ints.exactly(1))));
     LootItemCondition.Builder killedByFrog = killedByFrog(registries.lookupOrThrow(Registries.ENTITY_TYPE));
-    LootPool.Builder noFrog = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(killedByFrog.invert());
-    LootPool.Builder frog = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(killedByFrog);
+    LootPool.Builder noFrog = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(killedByFrog.invert()).when(small);
+    LootPool.Builder frog = LootPool.lootPool().setRolls(ConstantValue.exactly(1)).when(killedByFrog).when(small);
     Item slimeball = TinkerCommons.slimeball.get(type);
-    // if given a nugget, add that drop when metal
     if (nugget != null) {
       CompoundTag isMetal = new CompoundTag();
       isMetal.putBoolean(ArmoredSlimeEntity.TAG_METAL, true);
