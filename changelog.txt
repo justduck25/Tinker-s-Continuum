@@ -1,3 +1,49 @@
+Continuum Construct 26.1.2-3.12.0.0
+
+This release ports remaining Tinkers' Construct 3.12 gameplay onto NeoForge 26.1 and includes smeltery, anvil, and rendering fixes that landed after 3.11.9.1.
+
+New
+- Added fancy armor stands in bamboo, bone, clear glass, and necrotic bone variants, with dispenser support and custom rendering.
+- Added cheese, horn, and nautilus materials, plus the matching 3.12 honey, phantom, prismarine, and slimesuit material updates.
+- Added 3.12 slimesuit traits and related modifiers, including ram attack, shell gut, savory, scrumptious, and thorns shell.
+- Creeper slimeskulls now use gunpowder instead of glass, with the 3.12 skull trait wrappers for consecrated, respiration, vital protection, and withered bones.
+- Feather Falling is now Feather Fall with 3.12 multi-level recipes. Long Fall requires four Feather Fall levels.
+- Tinkers tools and armor can now grant the matching vanilla story, nether, and husbandry advancements.
+- Fluid cannons can be equipped on the head.
+- Enderbark roots are tagged so Create root harvesters treat them like mangrove-style roots.
+
+Improvements
+- Slimesuit armor models now cover chestplate, leggings, and wing overlays, including broken states.
+- Tasty, savory, and scrumptious now show hunger and saturation on tooltips.
+- Material and modifier rarity now writes to Minecraft 26.1 item rarity components so names color correctly in inventories.
+- Hide-cleaning composite recipes are hidden from the in-game book.
+- Left-click cycles the selected sliver slimeball slot, and sliver ammo is used before the player inventory.
+- Slimeball projectiles keep the original Tinkers fireball speed. After hitting a wall they bounce once, then veer left, right, up, or down and continue at that speed.
+- Empty-handed mobs wearing slimecage can use unarmed chest attacks.
+- Clear fancy item frames now craft from Tinkers clear glass instead of vanilla glass panes.
+
+Fixes
+- Fixed Tinkers and scorched anvil hitboxes facing the wrong way (#16).
+- Fixed smeltery and melter fluid state after reloads and faucet use, including drains, ducts, tanks, and in-progress casting (#18).
+- Fixed retained tank, gauge, lantern, and casting tank fluids not rendering on item stacks after the block is broken (#13).
+- Fixed retained tank item tooltips reading the wrong saved fluid format on some dropped tanks.
+- Fixed smeltery drains and ducts losing their structure connection after reloading a world while a redstone faucet was active (#14).
+- Fixed casting recipes remaining molten if the world was exited before cooling completed.
+- Fixed duct filters losing stored copper cans or fluid containers after reloading, and modded fluid buckets not being accepted as duct filters.
+- Fixed faucet redstone handling and melter hopper input.
+- Fixed JEI entity melting and severing recipe layouts crashing from mismatched focus links.
+- Fixed 26.1 casting, JEI, and bamboo armor stand rendering issues from the 3.12 gadget port.
+- Projectile fiery, freeze, bounce, and related slimeball effects now persist instead of being lost on each capability lookup.
+- Slimeball ammo matches correctly when 26.1 datapack tags are unbound during recipe load.
+- Sky slime, ender slime, and terracube loot tables now generate valid 26.1 loot.
+- Frog and shulker entity melting now uses dedicated entity type tags.
+- Combat fishing hooks stay in sync on 26.1.
+- Held-tool loot modifiers only run for melee damage sources they should apply to.
+
+Compatibility
+- Requires Continuum Core 1.12.0.
+- Built against Minecraft 26.1.2 / NeoForge 26.1.2.109.
+
 Continuum Construct 26.1.2-3.11.9.1
 
 Fixes
