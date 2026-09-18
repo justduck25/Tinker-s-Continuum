@@ -10,6 +10,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -19,6 +22,7 @@ import slimeknights.mantle.data.loadable.field.LoadableField;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.data.predicate.IJsonPredicate;
 import slimeknights.mantle.data.predicate.item.ItemPredicate;
+import slimeknights.mantle.util.RegistryHelper;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.json.IntRange;
 import slimeknights.tconstruct.library.json.LevelingInt;
@@ -46,10 +50,12 @@ import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolDataNBT;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @Getter
 @Accessors(fluent = true)
@@ -124,7 +130,68 @@ public class InventoryModule implements ModifierModule, InventoryModifierHook, V
 
   @Override
   public boolean isItemValid(IToolStackView tool, ModifierEntry modifier, int slot, ItemStack stack) {
-    return condition.matches(tool, modifier) && filter.matches(stack.getItem());
+    if (!condition.matches(tool, modifier)) {
+      return false;
+    }
+    Item item = stack.getItem();
+    if (filter.matches(item)) {
+      return true;
+    }
+    // 26.1: builtin item holders often omit datapack tags, so also accept stacks whose live tags match this filter
+    String filterJson = serializeFilter();
+    Identifier itemId = BuiltInRegistries.ITEM.getKey(item);
+    if (filterJson.contains(itemId.toString()) || filterJson.contains(itemId.getPath())) {
+      return true;
+    }
+    if ((itemId.getPath().contains("slime_ball") || itemId.getPath().equals("magma_cream"))
+      && (filterJson.contains("slimeball") || filterJson.contains("slime_ball") || filterJson.contains("magma_cream"))) {
+      return true;
+    }
+    return mentionedTags(filterJson).anyMatch(tag -> stack.is(tag) || RegistryHelper.contains(tag, stack.getItem()));
+  }
+
+  private String serializeFilter() {
+    try {
+      return ItemPredicate.LOADER.serialize(filter).toString();
+    } catch (RuntimeException ex) {
+      return "";
+    }
+  }
+
+  private static Stream<TagKey<Item>> mentionedTags(String filterJson) {
+    List<TagKey<Item>> tags = new ArrayList<>();
+    int index = 0;
+    while (true) {
+      int tagKey = filterJson.indexOf("\"tag\"", index);
+      int hash = filterJson.indexOf("#", index);
+      int next = tagKey < 0 ? hash : hash < 0 ? tagKey : Math.min(tagKey, hash);
+      if (next < 0) {
+        break;
+      }
+      int start = filterJson.indexOf('"', next + 1);
+      if (tagKey == next) {
+        start = filterJson.indexOf('"', tagKey + 5);
+      }
+      if (start < 0) {
+        break;
+      }
+      int end = filterJson.indexOf('"', start + 1);
+      if (end < 0) {
+        break;
+      }
+      String raw = filterJson.substring(start + 1, end);
+      if (raw.startsWith("#")) {
+        raw = raw.substring(1);
+      }
+      if (raw.contains(":")) {
+        try {
+          tags.add(TagKey.create(Registries.ITEM, Identifier.parse(raw)));
+        } catch (RuntimeException ignored) {
+        }
+      }
+      index = end + 1;
+    }
+    return tags.stream();
   }
 
   @Nullable
