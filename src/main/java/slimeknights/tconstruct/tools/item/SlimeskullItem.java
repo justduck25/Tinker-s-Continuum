@@ -1,7 +1,5 @@
 package slimeknights.tconstruct.tools.item;
 
-import net.minecraft.client.model.Model;
-import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -10,13 +8,10 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.armor.ArmorModelManager.ArmorModelDispatcher;
-import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier.TextureType;
 import slimeknights.tconstruct.library.tools.definition.ModifiableArmorMaterial;
 import slimeknights.tconstruct.library.tools.helper.ArmorUtil;
 import slimeknights.tconstruct.library.tools.item.armor.ModifiableArmorItem;
-import slimeknights.tconstruct.tools.client.SlimeskullArmorModel;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
@@ -46,17 +41,6 @@ public class SlimeskullItem extends ModifiableArmorItem {
       @Override
       protected Identifier getName() {
         return name;
-      }
-
-      @Nonnull
-      @Override
-      public Model getGenericArmorModel(ItemStack stack, EquipmentClientInfo.LayerType layerType, Model original) {
-        TextureType textureType = switch (layerType) {
-          case HUMANOID_LEGGINGS -> TextureType.LEGGINGS;
-          case WINGS -> TextureType.WINGS;
-          default -> TextureType.ARMOR;
-        };
-        return SlimeskullArmorModel.INSTANCE.setup(stack, textureType, original, getModel(stack));
       }
     });
   }

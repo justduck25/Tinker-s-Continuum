@@ -509,10 +509,10 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
 
     // tier 4 (end)
     addMaterialStats(MaterialIds.knightmetal,
-      new LimbMaterialStats(512, 0.15f, 0.05f, -0.1f),
+      new LimbMaterialStats(512, 0, 0.15f, -0.1f),
       new GripMaterialStats(0, 0.1f, 3.0f));
     addMaterialStats(MaterialIds.knightslime,
-      new LimbMaterialStats(1047, 0, 0.15f, -0.15f),
+      new LimbMaterialStats(1047, 0.15f, 0.05f, -0.15f),
       new GripMaterialStats(-0.05f, 0.1f, 3.25f));
     addMaterialStats(MaterialIds.enderslimeVine, StatlessMaterialStats.BOWSTRING);
 
@@ -723,7 +723,7 @@ public class MaterialStatsDataProvider extends AbstractMaterialStatsDataProvider
     addMaterialStats(MaterialIds.enderPearl, new SlimeStats(250, 0));
 
     // slimeskull
-    addMaterialStats(MaterialIds.glass,        new SkullStats( 90));
+    addMaterialStats(MaterialIds.gunpowder,    new SkullStats( 90));
     addMaterialStats(MaterialIds.blaze,        new SkullStats(150));
     // end
     addMaterialStats(MaterialIds.enderPearl,   new SkullStats(250));
