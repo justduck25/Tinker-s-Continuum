@@ -10,6 +10,7 @@
       "fluid": "tconstruct:venom"
     }
   ],
+  "hide_in_book": true,
   "id": "tconstruct:tools/materials/slimeskin/composite/earth_cleaning",
   "input": "tconstruct:slimeskin",
   "output": "tconstruct:leather",

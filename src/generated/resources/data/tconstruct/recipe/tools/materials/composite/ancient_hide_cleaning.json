@@ -10,6 +10,7 @@
       "fluid": "tconstruct:venom"
     }
   ],
+  "hide_in_book": true,
   "id": "tconstruct:tools/materials/composite/ancient_hide_cleaning",
   "input": "tconstruct:ancient_hide",
   "output": "tconstruct:leather",
