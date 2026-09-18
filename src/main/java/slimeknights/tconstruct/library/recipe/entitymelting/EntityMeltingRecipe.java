@@ -17,6 +17,7 @@ import slimeknights.mantle.recipe.ICustomOutputRecipe;
 import slimeknights.mantle.recipe.container.IEmptyContainer;
 import slimeknights.mantle.recipe.helper.FluidOutput;
 import slimeknights.mantle.recipe.ingredient.EntityIngredient;
+import slimeknights.tconstruct.fluids.fluids.PotionFluidType;
 import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 
@@ -53,7 +54,7 @@ public class EntityMeltingRecipe implements ICustomOutputRecipe<IEmptyContainer>
 
   /** Gets the non-entity sensitive recipe result */
   public FluidStack getOutput() {
-    return output.get();
+    return resolvePotionOutput(output.get());
   }
 
   /**
@@ -62,7 +63,14 @@ public class EntityMeltingRecipe implements ICustomOutputRecipe<IEmptyContainer>
    * @return  Fluid output
    */
   public FluidStack getOutput(LivingEntity entity) {
-    return output.copy();
+    return resolvePotionOutput(output.copy());
+  }
+
+  private static FluidStack resolvePotionOutput(FluidStack stack) {
+    if (!stack.isEmpty() && stack.getFluidType() instanceof PotionFluidType) {
+      PotionFluidType.getPotionContents(stack);
+    }
+    return stack;
   }
 
   /**
