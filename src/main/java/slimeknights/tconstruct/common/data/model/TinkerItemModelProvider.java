@@ -338,7 +338,8 @@ public class TinkerItemModelProvider implements DataProvider {
       || path.endsWith("_ingot_tank")
       || path.endsWith("_fuel_gauge")
       || path.endsWith("_ingot_gauge")
-      || path.endsWith("_lantern");
+      || path.endsWith("_lantern")
+      || path.endsWith("_fluid_cannon");
   }
 
   private static JsonObject materialItemDefinition(String texture, int x, int y, boolean hasOffset) {

@@ -33,6 +33,14 @@ public class TankItemFluidSpecialRenderer implements SpecialModelRenderer<TankIt
     .from(5.05f, 1.0f, 5.05f)
     .to(10.95f, 6.0f, 10.95f)
     .build();
+  private static final FluidCuboid CANNON_FLUID = FluidCuboid.builder()
+    .from(0.08f, 8.08f, 0.08f)
+    .to(15.92f, 15.92f, 15.92f)
+    .build();
+  private static final FluidCuboid END_CANNON_FLUID = FluidCuboid.builder()
+    .from(1.08f, 5.08f, 1.08f)
+    .to(14.92f, 14.92f, 14.92f)
+    .build();
 
   @Override
   public @Nullable TankContents extractArgument(ItemStack stack) {
@@ -46,7 +54,18 @@ public class TankItemFluidSpecialRenderer implements SpecialModelRenderer<TankIt
     }
     Identifier itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
     String path = itemId.getPath();
-    FluidCuboid cuboid = path.endsWith("_lantern") ? LANTERN_FLUID : path.equals("seared_casting_tank") ? CASTING_TANK_FLUID : TANK_FLUID;
+    FluidCuboid cuboid;
+    if (path.endsWith("_lantern")) {
+      cuboid = LANTERN_FLUID;
+    } else if (path.equals("seared_casting_tank")) {
+      cuboid = CASTING_TANK_FLUID;
+    } else if (path.equals("end_fluid_cannon")) {
+      cuboid = END_CANNON_FLUID;
+    } else if (path.endsWith("_fluid_cannon")) {
+      cuboid = CANNON_FLUID;
+    } else {
+      cuboid = TANK_FLUID;
+    }
     return new TankContents(fluid.copy(), tank.getCapacity(), cuboid);
   }
 

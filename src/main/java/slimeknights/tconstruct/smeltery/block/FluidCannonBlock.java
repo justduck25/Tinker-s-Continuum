@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import slimeknights.mantle.block.InventoryBlock;
@@ -103,9 +104,8 @@ public class FluidCannonBlock extends SearedTankBlock implements IFluidCannon {
     return new FluidCannonBlockEntity(pos, state, this);
   }
 
-  @SuppressWarnings("deprecation")
-  @Deprecated
-  public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+  @Override
+  protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean isMoving) {
     boolean hasSignal = level.hasNeighborSignal(pos) || level.hasNeighborSignal(pos.above());
     boolean wasTriggered = state.getValue(TRIGGERED);
     if (hasSignal && !wasTriggered) {
@@ -116,7 +116,8 @@ public class FluidCannonBlock extends SearedTankBlock implements IFluidCannon {
     }
   }
 
-  public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+  @Override
+  protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
     if (level.getBlockEntity(pos) instanceof FluidCannonBlockEntity cannon) {
       cannon.shoot(state, level, random);
     }
