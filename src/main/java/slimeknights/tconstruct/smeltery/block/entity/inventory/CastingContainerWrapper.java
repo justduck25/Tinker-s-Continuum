@@ -35,6 +35,11 @@ public class CastingContainerWrapper implements ICastingContainer {
     return fluid.getFluid();
   }
 
+  @Override
+  public FluidStack getFluidStack() {
+    return fluid;
+  }
+
   @Nullable
   @Override
   public CompoundTag getFluidTag() {

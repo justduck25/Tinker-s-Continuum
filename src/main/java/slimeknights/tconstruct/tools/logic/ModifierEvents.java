@@ -152,7 +152,7 @@ public class ModifierEvents {
   }
 
   /** Prevents effects on the entity */
-  @SubscribeEvent
+  @SubscribeEvent(priority = EventPriority.HIGH)
   static void isPotionApplicable(MobEffectEvent.Applicable event) {
     MobEffectInstance effectInstance = event.getEffectInstance();
     if (effectInstance != null && EffectImmunityModule.getImmunity((LivingEntity) event.getEntity(), effectInstance.getEffect()) > effectInstance.getAmplifier()) {
@@ -298,7 +298,7 @@ public class ModifierEvents {
   static void bounceOnFall(LivingFallEvent event) {
     LivingEntity living = (LivingEntity) event.getEntity();
     // using fall distance as the event distance could be reduced by jump boost
-    if (living == null || (living.getDeltaMovement().y > -0.3 && living.fallDistance < 3)) {
+    if (living == null || (living.fallDistance < 3 && living.getDeltaMovement().y > -0.3) || living.fallDistance <= 0.5f + living.getAttributeValue(Attributes.STEP_HEIGHT)) {
       return;
     }
     // can the entity bounce?
