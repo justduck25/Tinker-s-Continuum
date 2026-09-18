@@ -13,6 +13,7 @@ public class MaterialTagProvider extends AbstractMaterialTagProvider {
 
   @Override
   protected void addTags() {
+    tag(TinkerTags.Materials.SHINY);
     tag(TinkerTags.Materials.EXCLUDE_FROM_LOOT)
       // ancient hide is deprecated, don't add it to new tools
       .add(MaterialIds.ancientHide)
@@ -208,7 +209,7 @@ public class MaterialTagProvider extends AbstractMaterialTagProvider {
     // slimeskull sort order
     tag(TinkerTags.Materials.SLIMESKULL).add(
       // creeper
-      MaterialIds.glass,
+      MaterialIds.gunpowder,
       // zombie
       MaterialIds.leather, MaterialIds.iron, MaterialIds.copper,
       // spider

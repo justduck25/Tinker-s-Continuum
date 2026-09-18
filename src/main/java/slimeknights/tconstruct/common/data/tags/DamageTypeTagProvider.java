@@ -60,6 +60,8 @@ import static slimeknights.tconstruct.common.TinkerDamageTypes.WATER;
 import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.BLAST_PROTECTION;
 import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.FALL_PROTECTION;
 import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.FIRE_PROTECTION;
+import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.IS_MELEE;
+import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.LOOT_MODIFIER_WHITELIST;
 import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.MAGIC_PROTECTION;
 import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.MELEE_PROTECTION;
 import static slimeknights.tconstruct.common.TinkerTags.DamageTypes.MODIFIER_WHITELIST;
@@ -88,6 +90,8 @@ public class DamageTypeTagProvider extends DamageTypeTagsProvider {
 
     // modifiers
     tag(MODIFIER_WHITELIST).add(MOB_ATTACK, MOB_ATTACK_NO_AGGRO);
+    tag(IS_MELEE).add(PLAYER_ATTACK, MOB_ATTACK, MOB_ATTACK_NO_AGGRO, STING, FLUID_IMPACT.melee(), FLUID_SPIKE.melee());
+    tag(LOOT_MODIFIER_WHITELIST).addTag(IS_MELEE).add(PIERCING, FLUID_FIRE.melee(), FLUID_COLD.melee(), FLUID_MAGIC.melee(), WATER.melee(), EXPLOSION.melee(), MOB_EXPLOSION.melee());
 
     // protection modifier tags
     tag(MELEE_PROTECTION).add(PLAYER_ATTACK, MOB_ATTACK, MOB_ATTACK_NO_AGGRO, CRAMMING, STING, FLUID_IMPACT.melee(), FLUID_SPIKE.melee());
@@ -100,6 +104,7 @@ public class DamageTypeTagProvider extends DamageTypeTagsProvider {
     // TF support
     String tf = "twilightforest";
     addOptional(MODIFIER_WHITELIST, tf, "axing", "slam", "ant");
+    addOptional(IS_MELEE, tf, "ghast_tear", "hydra_bite", "squish", "axing", "slam", "yeeted", "ant", "clamped", "spiked");
     addOptional(MELEE_PROTECTION, tf, "ghast_tear", "hydra_bite", "squish", "axing", "slam", "yeeted", "ant", "clamped", "spiked");
     addOptional(MAGIC_PROTECTION, tf, "haunt", "ominous_fire", "twilight_scepter");
     addOptional(PROJECTILE_PROTECTION, tf, "falling_ice");

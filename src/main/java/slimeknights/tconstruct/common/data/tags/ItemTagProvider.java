@@ -19,6 +19,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import slimeknights.mantle.datagen.MantleTags;
 import slimeknights.mantle.registration.object.EnumObject;
 import slimeknights.mantle.registration.object.FluidObject;
@@ -159,13 +160,18 @@ public class ItemTagProvider extends TagsProvider<Item> {
     this.tag(TinkerTags.Items.GUIDEBOOKS).addTag(TinkerTags.Items.TINKERS_GUIDES);
     this.tag(TinkerTags.Items.BOOKS).addTag(TinkerTags.Items.GUIDEBOOKS);
 
-    var slimeballs = this.tag(ItemTags.create(Identifier.parse("c:slimeballs")));
+    var slimeballs = this.tag(Tags.Items.SLIME_BALLS);
+    var legacySlimeballs = this.tag(ItemTags.create(Identifier.parse("c:slimeballs")));
     var slimeballAmmo = this.tag(TinkerTags.Items.SLIMEBALL_AMMO);
     for (SlimeType type : SlimeType.values()) {
       slimeballs.addTag(type.getSlimeballTag());
+      legacySlimeballs.addTag(type.getSlimeballTag());
       slimeballAmmo.addTag(type.getSlimeballTag());
     }
-    TinkerCommons.slimeball.forEach((type, ball) -> this.tag(type.getSlimeballTag()).add(ball));
+    TinkerCommons.slimeball.forEach((type, ball) -> {
+      this.tag(type.getSlimeballTag()).add(ball);
+      this.tag(TinkerTags.Items.SLIMEBALL_AMMO).add(ball);
+    });
     this.tag(TinkerTags.Items.SLIMEBALL_AMMO).add(Items.MAGMA_CREAM);
 
     this.tag(ItemTags.create(Identifier.parse("c:ingots/iron"))).add(Items.IRON_INGOT);
@@ -267,6 +273,7 @@ public class ItemTagProvider extends TagsProvider<Item> {
         .add(TinkerModifiers.goldReinforcement.get(), TinkerGadgets.itemFrame.get(FrameType.GOLD), TinkerGadgets.itemFrame.get(FrameType.REVERSED_GOLD), TinkerFluids.moltenGold.asItem(), TinkerCommons.goldBars.asItem(), TinkerCommons.goldPlatform.asItem())
         .addTag(TinkerTags.Items.GOLD_CASTS);
     this.tag(ItemTags.PIGLIN_REPELLENTS).add(TinkerWorld.headItems.get(TinkerHeadType.ZOMBIFIED_PIGLIN));
+    this.tag(TinkerTags.Items.TREE_ATTACHMENTS).add(TinkerWorld.slimeSapling.get(FoliageType.ENDER).asItem());
 
     // beacons are happy to accept any expensive ingots
     // mirrors the block list
@@ -413,8 +420,8 @@ public class ItemTagProvider extends TagsProvider<Item> {
     // armor
     addArmorTags(TinkerTools.travelersGear, SINGLEPART_TOOL, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, ItemTags.FREEZE_IMMUNE_WEARABLES);
     addArmorTags(TinkerTools.plateArmor,    MULTIPART_TOOL, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM);
-    addArmorTags(TinkerTools.slimesuit,     DURABILITY, BONUS_SLOTS, TRIM, SINGLEPART_TOOL, UNRECYCLABLE);
-    addToolTags(TinkerTools.slimeWings, DURABILITY, BONUS_SLOTS, TRIM, SINGLEPART_TOOL, CHESTPLATES, ItemTags.create(Identifier.parse("c:armors/chestplates")));
+    addArmorTags(TinkerTools.slimesuit,     DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, SINGLEPART_TOOL, UNRECYCLABLE);
+    addToolTags(TinkerTools.slimeWings, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, SINGLEPART_TOOL, CHESTPLATES, ItemTags.create(Identifier.parse("c:armors/chestplates")));
     addToolTags(TinkerTools.slimesuit.get(ArmorType.HELMET), SWAPPABLE_SKULLS);
 
     // shields
