@@ -8,6 +8,7 @@ import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -240,10 +241,9 @@ public class CombatFishingHook extends FishingHook implements ProjectileWithKnoc
         AttributeInstance knockback = ToolAttackUtil.disableKnockback(targetLiving);
         // actually hurt the entity
         float oldHealth = targetLiving != null ? targetLiving.getHealth() : 0;
-        target.hurt(source, damage);
-        if (!this.level().isClientSide() && owner instanceof LivingEntity ownerLiving) {
-
-             // run modifier hook
+        if (this.level() instanceof ServerLevel serverLevel && target.hurtServer(serverLevel, source, damage)) {
+          if (!this.level().isClientSide() && owner instanceof LivingEntity ownerLiving) {
+            // run modifier hook
             modifierHook: {
               // find out which stack was used
               ItemStack stack = ownerLiving.getMainHandItem();
@@ -264,9 +264,10 @@ public class CombatFishingHook extends FishingHook implements ProjectileWithKnoc
                 IToolStackView tool = ToolStack.from(stack);
                 for (ModifierEntry modifier : tool.getModifiers()) {
                   modifier.getHook(ModifierHooks.LAUNCHER_HIT).onLauncherHitEntity(tool, modifier, this, ownerLiving, target, targetLiving, damageDealt);
-      }
-    }
-  }
+                }
+              }
+            }
+          }
         }
         ToolAttackUtil.enableKnockback(knockback);
       }
