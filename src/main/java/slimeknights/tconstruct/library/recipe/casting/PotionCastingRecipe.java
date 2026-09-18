@@ -32,6 +32,7 @@ import slimeknights.mantle.recipe.helper.TypeAwareRecipeSerializer;
 import slimeknights.mantle.recipe.ingredient.FluidIngredient;
 
 import javax.annotation.Nullable;
+import slimeknights.tconstruct.fluids.fluids.PotionFluidType;
 import slimeknights.tconstruct.library.recipe.material.MaterialRecipeCache;
 import java.util.List;
 
@@ -113,7 +114,10 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
 
   public ItemStack assemble(ICastingContainer inv) {
     ItemStack result = new ItemStack(this.result);
-    PotionContents contents = getPotionContents(inv.getFluidTag());
+    PotionContents contents = PotionFluidType.getPotionContents(inv.getFluidStack());
+    if (contents == PotionContents.EMPTY) {
+      contents = getPotionContents(inv.getFluidTag());
+    }
     if (contents != PotionContents.EMPTY) {
       result.set(DataComponents.POTION_CONTENTS, contents);
     }
@@ -129,7 +133,7 @@ public class PotionCastingRecipe implements ICastingRecipe, IMultiRecipe<Display
       return PotionContents.EMPTY;
     }
     String potion = tag.getString("Potion").orElse("");
-    return potion.isEmpty() ? PotionContents.EMPTY : BuiltInRegistries.POTION.get(Identifier.parse(potion)).map(PotionContents::new).orElse(PotionContents.EMPTY);
+    return potion.isEmpty() ? PotionContents.EMPTY : PotionFluidType.fromPotionId(potion);
   }
 
   protected static String getPotionId(PotionContents contents) {

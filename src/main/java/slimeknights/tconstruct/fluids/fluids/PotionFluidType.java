@@ -1,8 +1,10 @@
 package slimeknights.tconstruct.fluids.fluids;
 
+import com.google.gson.JsonObject;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.nbt.CompoundTag;
@@ -85,18 +87,64 @@ public class PotionFluidType extends FluidType {
     return potion.isEmpty() ? new CompoundTag() : legacyPotionTag(Identifier.parse(potion));
   }
 
+  /** Looks up a potion id, including the `_name` normal variant from PotionDeferredRegister. */
+  private static Optional<Holder<Potion>> lookupPotion(String id) {
+    if (id == null || id.isEmpty()) {
+      return Optional.empty();
+    }
+    Identifier loc = Identifier.parse(id);
+    Optional<Holder<Potion>> found = holderOf(loc);
+    if (found.isPresent()) {
+      return found;
+    }
+    String path = loc.getPath();
+    Identifier alt = path.startsWith("_")
+      ? Identifier.fromNamespaceAndPath(loc.getNamespace(), path.substring(1))
+      : Identifier.fromNamespaceAndPath(loc.getNamespace(), "_" + path);
+    found = holderOf(alt);
+    if (found.isPresent()) {
+      return found;
+    }
+    return BuiltInRegistries.POTION.listElements()
+      .filter(holder -> {
+        Identifier key = holder.key().identifier();
+        return key.equals(loc) || key.equals(alt) || key.getPath().equals(path) || key.getPath().equals(alt.getPath());
+      })
+      .map(holder -> (Holder<Potion>) holder)
+      .findFirst();
+  }
+
+  private static Optional<Holder<Potion>> holderOf(Identifier loc) {
+    return BuiltInRegistries.POTION.get(ResourceKey.create(Registries.POTION, loc)).map(holder -> holder);
+  }
+
+  /** True when the fluid has a real potion, not just the empty default component. */
+  private static boolean hasPotion(PotionContents contents) {
+    return contents != null && contents != PotionContents.EMPTY
+      && (contents.potion().isPresent() || !contents.customEffects().isEmpty());
+  }
+
   /** Reads potion contents from modern components, falling back to legacy NBT used by generated recipe JSON. */
   public static PotionContents getPotionContents(FluidStack stack) {
+    if (stack.isEmpty()) {
+      return PotionContents.EMPTY;
+    }
     PotionContents contents = stack.get(DataComponents.POTION_CONTENTS);
-    if (contents != null) {
+    if (hasPotion(contents)) {
       return contents;
     }
     CompoundTag tag = getLegacyPotionTag(stack);
     String potion = tag.getString("Potion").orElse("");
-    if (!potion.isEmpty()) {
-      return BuiltInRegistries.POTION.get(Identifier.parse(potion)).map(PotionContents::new).orElse(PotionContents.EMPTY);
+    PotionContents parsed = lookupPotion(potion).map(PotionContents::new).orElse(PotionContents.EMPTY);
+    if (hasPotion(parsed)) {
+      stack.set(DataComponents.POTION_CONTENTS, parsed);
     }
-    return PotionContents.EMPTY;
+    return parsed;
+  }
+
+  /** Resolves a potion id from recipe NBT, including the `_name` normal variant. */
+  public static PotionContents fromPotionId(String id) {
+    return lookupPotion(id).map(PotionContents::new).orElse(PotionContents.EMPTY);
   }
   /** Creates a fluid stack for the given potion */
   public static FluidStack potionFluid(ResourceKey<Potion> potion, int size) {
@@ -112,7 +160,7 @@ public class PotionFluidType extends FluidType {
   }
 
   private static void setPotionComponent(FluidStack stack, ResourceKey<Potion> key) {
-    BuiltInRegistries.POTION.get(key).ifPresent(holder -> {
+    lookupPotion(key.identifier().toString()).ifPresent(holder -> {
       PotionContents contents = new PotionContents(Optional.of(holder), Optional.empty(), List.of(), Optional.empty());
       stack.set(DataComponents.POTION_CONTENTS, contents);
     });
@@ -127,17 +175,51 @@ public class PotionFluidType extends FluidType {
 
   /** Creates a fluid output for the given potion */
   public static FluidOutput potionResult(Holder<Potion> potion, int size) {
-    return potion.unwrapKey().map(key -> FluidOutput.fromTag(Objects.requireNonNull(TinkerFluids.potion.getCommonTag()), size, legacyPotionTag(key.identifier()))).orElseGet(() -> FluidOutput.fromFluid(TinkerFluids.potion.get(), size));
+    return potion.unwrapKey().map(key -> potionResult(key, size)).orElseGet(() -> FluidOutput.fromFluid(TinkerFluids.potion.get(), size));
   }
 
   /** Creates a fluid output for the given potion */
   public static FluidOutput potionResult(ResourceKey<Potion> potion, int size) {
-    return FluidOutput.fromTag(Objects.requireNonNull(TinkerFluids.potion.getCommonTag()), size, legacyPotionTag(potion.identifier()));
+    return new PotionResult(potion, size);
   }
 
   /** Creates a fluid output for the given potion */
   public static FluidOutput potionResult(Potion potion, int size) {
-    return BuiltInRegistries.POTION.getResourceKey(potion).map(key -> potionResult(key, size)).orElseGet(() -> FluidOutput.fromFluid(TinkerFluids.potion.get(), size));
+    return BuiltInRegistries.POTION.wrapAsHolder(potion).unwrapKey()
+      .or(() -> BuiltInRegistries.POTION.getResourceKey(potion))
+      .map(key -> potionResult(key, size))
+      .orElseGet(() -> FluidOutput.fromFluid(TinkerFluids.potion.get(), size));
+  }
+
+  /** Tag output that also stamps modern potion contents when the stack is resolved. */
+  private static final class PotionResult extends FluidOutput {
+    private final FluidOutput base;
+    private final ResourceKey<Potion> potion;
+
+    private PotionResult(ResourceKey<Potion> potion, int size) {
+      this.potion = potion;
+      this.base = FluidOutput.fromTag(Objects.requireNonNull(TinkerFluids.potion.getCommonTag()), size, legacyPotionTag(potion.identifier()));
+    }
+
+    @Override
+    public FluidStack get() {
+      FluidStack stack = base.copy();
+      setPotionComponent(stack, potion);
+      if (!hasPotion(stack.get(DataComponents.POTION_CONTENTS))) {
+        getPotionContents(stack);
+      }
+      return stack;
+    }
+
+    @Override
+    public int getAmount() {
+      return base.getAmount();
+    }
+
+    @Override
+    public void serialize(JsonObject json) {
+      base.serialize(json);
+    }
   }
 
   /** Creates a potion bucket for the given potion */
