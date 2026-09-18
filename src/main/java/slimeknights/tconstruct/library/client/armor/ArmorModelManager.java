@@ -157,17 +157,25 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
       if (texture instanceof TintedArmorTexture tinted) {
         return tinted.texture();
       }
-      return EMPTY_ARMOR_TEXTURE;
+      return texture == ArmorTexture.EMPTY ? original : EMPTY_ARMOR_TEXTURE;
     }
 
     @Override
     public int getArmorLayerTintColor(ItemStack stack, EquipmentClientInfo.Layer layer, int layerIndex, int currentTint) {
       syncVanillaTrim(stack);
+      int index = getLayerIndex(layer.textureId());
+      ArmorModel model = getModel(stack);
+      if (index < 0 || index >= model.layers().size() || model.layers().get(index) instanceof TrimArmorTextureSupplier) {
+        return 0;
+      }
       ArmorTexture texture = getTinkerTexture(stack, TextureType.ARMOR, layer);
+      if (texture == ArmorTexture.EMPTY) {
+        return 0;
+      }
       if (texture instanceof TintedArmorTexture tinted && tinted.color() != -1) {
         return tinted.color();
       }
-      return texture == ArmorTexture.EMPTY ? 0 : -1;
+      return -1;
     }
 
     private static void syncVanillaTrim(ItemStack stack) {
