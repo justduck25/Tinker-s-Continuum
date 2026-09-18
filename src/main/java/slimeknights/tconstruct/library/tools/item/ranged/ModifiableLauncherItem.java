@@ -327,6 +327,7 @@ public abstract class ModifiableLauncherItem extends ProjectileWeaponItem implem
 
   /* Tooltips */
   public Component getName(ItemStack stack) {
+    RarityModule.applyToStack(stack);
     return ToolNameHook.getName(getToolDefinition(), stack);
   }
   @Override

@@ -167,6 +167,7 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
   @Override
   public void onCraftedBy(ItemStack stack, Player playerIn) {
     ToolStack.ensureInitialized(stack, getToolDefinition());
+    TinkerCommons.TOOL_INVENTORY_CHANGED_TRIGGER.trigger(playerIn, stack);
   }
 
 
@@ -292,6 +293,7 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
   /* Modifier interactions */
   @Override
   public void inventoryTick(ItemStack stack, ServerLevel worldIn, Entity entityIn, @Nullable EquipmentSlot slot) {
+    TinkerCommons.TOOL_INVENTORY_CHANGED_TRIGGER.trigger(entityIn, stack);
     if (stack.has(DataComponents.CUSTOM_DATA) && stack.is(TinkerTags.Items.HARVEST) && !stack.has(DataComponents.TOOL)) {
       ToolStack.from(stack).updateStack(stack, false);
     }
@@ -381,7 +383,7 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
         }
       }
     }
-    if (playerIn.isCrouching() && ToolTankHelper.TANK_HELPER.getCapacity(tool) > 0) {
+    if (playerIn.isCrouching() && (ToolTankHelper.TANK_HELPER.getCapacity(tool) > 0 || tool.getVolatileData().getInt(ToolInventoryCapability.TOTAL_SLOTS) > 0)) {
       return ToolInventoryCapability.tryOpenContainer(stack, tool, tool.getDefinition(), playerIn, hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
     }
     return InteractionResult.PASS;
@@ -462,6 +464,7 @@ public class ModifiableItem extends Item implements IModifiableDisplay {
 
   /* Tooltips */
   public Component getName(ItemStack stack) {
+    RarityModule.applyToStack(stack);
     return ToolNameHook.getName(getToolDefinition(), stack);
   }
   @Override

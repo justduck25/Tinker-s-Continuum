@@ -47,6 +47,16 @@ public class AnvilBlockItem extends MaterialBlockItem {
     return MaterialRegistry.getInstance().isInTag(material, validMaterials) && matching.get().canUseMaterial(material);
   }
 
+  @Override
+  public boolean usesMaterialRarity() {
+    return false;
+  }
+
+  @Override
+  public boolean isFoil(ItemStack stack) {
+    return false;
+  }
+
 
   /* Tooltip */
 

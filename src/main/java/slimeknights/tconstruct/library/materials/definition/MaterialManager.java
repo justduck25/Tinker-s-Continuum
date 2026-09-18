@@ -26,6 +26,8 @@ import slimeknights.tconstruct.library.utils.GenericTagUtil;
 import slimeknights.tconstruct.library.utils.Util;
 import slimeknights.tconstruct.library.utils.IdentifierGsonAdapter;
 
+import net.minecraft.world.item.Rarity;
+
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Comparator;
@@ -278,9 +280,13 @@ public class MaterialManager extends SimpleJsonResourceReloadListener<JsonElemen
 
       boolean isCraftable = Boolean.TRUE.equals(materialJson.getCraftable());
       boolean hidden = Boolean.TRUE.equals(materialJson.getHidden());
+      int tier = requireNonNullElse(materialJson.getTier(), 0);
+      Rarity rarity = materialJson.getRarity();
+      if (rarity == null) {
+        rarity = IMaterial.computeRarity(tier);
+      }
 
-      // parse trait
-      return new Material(materialId, requireNonNullElse(materialJson.getTier(), 0), requireNonNullElse(materialJson.getSortOrder(), 100), isCraftable, hidden);
+      return new Material(materialId, tier, requireNonNullElse(materialJson.getSortOrder(), 100), rarity, isCraftable, hidden);
     } catch (Exception e) {
       log.error("Could not deserialize material {}. JSON: {}", materialId, jsonObject, e);
       return null;

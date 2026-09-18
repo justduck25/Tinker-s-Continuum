@@ -14,6 +14,8 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.utils.GenericTagUtil;
 
+import net.minecraft.world.item.Rarity;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -39,9 +41,10 @@ public class UpdateMaterialsPacket implements IThreadsafePacket, CustomPacketPay
       MaterialId id = new MaterialId(buffer.readIdentifier());
       int tier = buffer.readVarInt();
       int sortOrder = buffer.readVarInt();
+      Rarity rarity = buffer.readEnum(Rarity.class);
       boolean craftable = buffer.readBoolean();
       boolean hidden = buffer.readBoolean();
-      materials.put(id, new Material(id.getId(), tier, sortOrder, craftable, hidden));
+      materials.put(id, new Material(id.getId(), tier, sortOrder, rarity, craftable, hidden));
     }
     this.materials = materials.build();
     // process redirects
@@ -64,6 +67,7 @@ public class UpdateMaterialsPacket implements IThreadsafePacket, CustomPacketPay
       buffer.writeIdentifier(material.getIdentifier().getId());
       buffer.writeVarInt(material.getTier());
       buffer.writeVarInt(material.getSortOrder());
+      buffer.writeEnum(material.getRarity());
       buffer.writeBoolean(material.isCraftable());
       buffer.writeBoolean(material.isHidden());
     });

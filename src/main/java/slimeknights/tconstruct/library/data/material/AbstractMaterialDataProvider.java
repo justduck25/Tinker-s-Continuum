@@ -19,6 +19,8 @@ import slimeknights.tconstruct.library.materials.definition.MaterialManager;
 import slimeknights.tconstruct.library.materials.json.MaterialJson;
 import slimeknights.tconstruct.library.utils.Util;
 
+import net.minecraft.world.item.Rarity;
+
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -203,9 +205,13 @@ public abstract class AbstractMaterialDataProvider extends GenericDataProvider {
       redirect = null;
     }
     if (material == null) {
-      return new MaterialJson(data.condition, null, null, null, null, redirect);
+      return new MaterialJson(data.condition, null, null, null, null, null, redirect);
     }
-    return new MaterialJson(data.condition, material.isCraftable(), material.getTier(), material.getSortOrder(), material.isHidden(), redirect);
+    Rarity rarity = material.getRarity();
+    if (rarity == IMaterial.computeRarity(material.getTier())) {
+      rarity = null;
+    }
+    return new MaterialJson(data.condition, material.isCraftable(), material.getTier(), material.getSortOrder(), rarity, material.isHidden(), redirect);
   }
 
   private record DataMaterial(@Nullable IMaterial material, @Nullable ICondition condition, JsonRedirect[] redirect) {}

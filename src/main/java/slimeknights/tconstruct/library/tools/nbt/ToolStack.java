@@ -25,6 +25,7 @@ import slimeknights.tconstruct.library.materials.definition.MaterialVariant;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
+import slimeknights.tconstruct.library.modifiers.modules.build.RarityModule;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.ModifierManager;
 import slimeknights.tconstruct.library.modifiers.hook.build.ModifierTraitHook.TraitBuilder;
@@ -156,6 +157,8 @@ public class ToolStack implements IToolStackView {
     if (hasTag(TinkerTags.Items.HARVEST)) {
       stack.set(DataComponents.TOOL, buildToolComponent());
     }
+    // 26.1 colors the item name from DataComponents.RARITY, not Item.getRarity(ItemStack)
+    RarityModule.applyToStack(stack);
   }
 
   /** Builds a vanilla tool component so external mods checking DataComponents.TOOL see Tinkers' dynamic mining tier. */

@@ -3,6 +3,7 @@ package slimeknights.tconstruct.library.tools.part;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
@@ -40,7 +41,22 @@ public interface IMaterialItem extends ItemLike {
   default ItemStack setMaterialForced(ItemStack stack, MaterialVariantId material) {
     // FIXME: it is odd that we assume the NBT format in this method but not in getMaterial, should be consistent in the implementation location
     CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> tag.putString(MATERIAL_TAG, material.toString()));
+    applyMaterialDisplay(stack, material);
     return stack;
+  }
+
+  /** If false, this item stores a material but should keep a vanilla common name color. */
+  default boolean usesMaterialRarity() {
+    return true;
+  }
+
+  /** Writes this material's rarity onto the vanilla 26.1 name-color component. */
+  default void applyMaterialDisplay(ItemStack stack, MaterialVariantId material) {
+    if (usesMaterialRarity()) {
+      stack.set(DataComponents.RARITY, MaterialRegistry.getMaterial(material.getMaterialId()).getRarity());
+    } else {
+      stack.set(DataComponents.RARITY, Rarity.COMMON);
+    }
   }
 
   /** Creates a stack without requiring bound registry components during datagen bootstrap. */

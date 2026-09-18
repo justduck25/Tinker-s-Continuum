@@ -1,5 +1,6 @@
 package slimeknights.tconstruct.library.modifiers.modules.build;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
@@ -19,6 +20,8 @@ import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolDataNBT;
 
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 /**
  * Module for setting tool's display name rarity
@@ -50,7 +53,12 @@ public record RarityModule(Rarity rarity) implements VolatileDataModifierHook, M
   public static Rarity getRarity(ItemStack stack) {
     int rarity = ModifierUtil.getVolatileInt(stack, RARITY);
     Rarity[] values = Rarity.values();
-    return values[Mth.clamp(rarity, 0, values.length)];
+    return values[Mth.clamp(rarity, 0, values.length - 1)];
+  }
+
+  /** Writes the computed tool rarity onto the vanilla 26.1 name-color component. */
+  public static void applyToStack(ItemStack stack) {
+    stack.set(DataComponents.RARITY, getRarity(stack));
   }
 
   /**
@@ -64,5 +72,13 @@ public record RarityModule(Rarity rarity) implements VolatileDataModifierHook, M
     if (rarity.ordinal() > current) {
       volatileData.putInt(RARITY, rarity.ordinal());
     }
+  }
+
+  /** Gets the larger rarity */
+  public static Rarity max(@Nullable Rarity prev, Rarity rarity) {
+    if (prev == null || rarity.ordinal() > prev.ordinal()) {
+      return rarity;
+    }
+    return prev;
   }
 }

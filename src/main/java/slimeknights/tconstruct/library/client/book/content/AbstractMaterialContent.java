@@ -357,7 +357,7 @@ public abstract class AbstractMaterialContent extends PageContent {
     // regular casting recipes
     List<MaterialFluidRecipe> fluids = MaterialCastingLookup.getCastingFluids(materialId);
     if (!fluids.isEmpty()) {
-      ItemElement elementItem = new TinkerItemElement(0, 0, 1, fluids.stream().flatMap(recipe -> recipe.getFluids().stream())
+      ItemElement elementItem = new TinkerItemElement(0, 0, 1, fluids.stream().filter(recipe -> !recipe.isHideInBook()).flatMap(recipe -> recipe.getFluids().stream())
                                                                      .map(fluid -> new ItemStack(fluid.getFluid().getBucket()))
                                                                      .collect(Collectors.toList()));
       FluidStack firstFluid = fluids.stream()
@@ -374,7 +374,7 @@ public abstract class AbstractMaterialContent extends PageContent {
     List<MaterialFluidRecipe> composites = MaterialCastingLookup.getCompositeFluids(materialId);
     for (MaterialFluidRecipe composite : composites) {
       MaterialVariant input = composite.getInput();
-      if (input != null && !materialVariant.matchesVariant(input.getVariant())) {
+      if (input != null && !composite.isHideInBook() && !materialVariant.matchesVariant(input.getVariant())) {
         MaterialVariantId inputId = input.getVariant();
         // TODO: filter out tool parts that cannot be casted due to a composite cast conflict
         List<ItemStack> compositeParts = MaterialCastingLookup.getAllItemCosts().stream()

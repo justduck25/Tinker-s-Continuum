@@ -43,4 +43,9 @@ public class FakeStorageBlockItem extends MaterialBlockItem implements IRepairKi
   public boolean canRepairInCraftingTable() {
     return false;
   }
+
+  @Override
+  public boolean usesMaterialRarity() {
+    return false;
+  }
 }

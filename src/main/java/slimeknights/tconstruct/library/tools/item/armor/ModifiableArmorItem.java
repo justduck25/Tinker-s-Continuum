@@ -198,6 +198,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   @Override
   public void onCraftedBy(ItemStack stack, Player playerIn) {
     ToolStack.ensureInitialized(stack, getToolDefinition());
+    TinkerCommons.TOOL_INVENTORY_CHANGED_TRIGGER.trigger(playerIn, stack);
   }
   public InteractionResult use(Level levelIn, Player playerIn, InteractionHand handIn) {
     if (playerIn.isCrouching()) {
@@ -363,6 +364,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /* Ticking */
   @Override
   public void inventoryTick(ItemStack stack, ServerLevel levelIn, Entity entityIn, @Nullable EquipmentSlot slot) {
+    TinkerCommons.TOOL_INVENTORY_CHANGED_TRIGGER.trigger(entityIn, stack);
     // don't care about non-living, they skip most tool context
     if (entityIn instanceof LivingEntity living) {
       ToolStack tool = ToolStack.from(stack);
@@ -387,6 +389,7 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
 
   /* Tooltips */
   public Component getName(ItemStack stack) {
+    RarityModule.applyToStack(stack);
     return ToolNameHook.getName(getToolDefinition(), stack);
   }
   @Override

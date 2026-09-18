@@ -94,11 +94,23 @@ public class CreativeSlotItem extends Item {
     return player.isCreative() || (Config.COMMON.quickApplyToolModifiersSurvival.get() && player.canUseGameMasterBlocks());
   }
 
+  /**
+   * Creative inventory menus have a null {@link net.minecraft.world.inventory.MenuType}, and {@code getType()} throws then.
+   * Client-side slot apply only runs for that typeless menu, matching 1.20 creative inventory prediction.
+   */
+  public static boolean isTypelessMenu(Player player) {
+    try {
+      return player.containerMenu.getType() == null;
+    } catch (UnsupportedOperationException e) {
+      return true;
+    }
+  }
+
   /** Common logic between two stack methods */
   private static boolean handleStackOn(ItemStack stack, ItemStack toolItem, Player player, int amount) {
     SlotType slotType = getSlot(stack);
     if (slotType != null && !toolItem.isEmpty() && toolItem.is(TinkerTags.Items.MODIFIABLE)) {
-      if (!player.level().isClientSide() || (player.isCreative() && player.containerMenu.getType() == null)) {
+      if (!player.level().isClientSide() || (player.isCreative() && isTypelessMenu(player))) {
         if (canApply(player)) {
           ToolStack tool = ToolStack.from(toolItem);
           // do nothing if the tool already has 0 slots and we are removing
@@ -124,6 +136,7 @@ public class CreativeSlotItem extends Item {
           } else {
             slots.putInt(name, updated);
           }
+          persistentData.put(CreativeSlotModifier.KEY_SLOTS, slots);
 
           // if no slot remain in the creative modifier, remove it
           ModifierId creative = TinkerModifiers.creativeSlot.getId();
@@ -139,6 +152,8 @@ public class CreativeSlotItem extends Item {
             // neither add or removing modifier, just build it
             tool.rebuildStats();
           }
+          // 26.1 CustomData is a copy; write the mutated NBT back onto the live stack
+          tool.updateStack(toolItem);
           if (amount > 0) {
             FluidTransferHelper.playUISound(player, SoundEvents.ENCHANTMENT_TABLE_USE);
           } else {
