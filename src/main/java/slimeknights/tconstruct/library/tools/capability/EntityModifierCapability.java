@@ -12,7 +12,10 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.tools.nbt.ModifierNBT;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 import java.util.function.Predicate;
 
 /** Capability to allow an entity to store modifiers, used on projectiles fired from modifiable items. */
@@ -28,6 +31,8 @@ public class EntityModifierCapability {
   private static final List<Predicate<Entity>> ENTITY_PREDICATES = new ArrayList<>();
   private static final Identifier ID = TConstruct.getResource("modifiers");
   public static final EntityCapability<EntityModifiers, Void> CAPABILITY = EntityCapability.createVoid(ID, EntityModifiers.class);
+  /** NeoForge queries entity capabilities without caching the returned instance. */
+  private static final Map<Entity, Provider> CACHE = Collections.synchronizedMap(new WeakHashMap<>());
 
   public static EntityModifiers getCapability(Entity entity) {
     EntityModifiers modifiers = CAPABILITY.getCapability(entity, null);
@@ -57,7 +62,7 @@ public class EntityModifierCapability {
 
   private static void registerCapabilities(RegisterCapabilitiesEvent event) {
     for (EntityType<?> type : BuiltInRegistries.ENTITY_TYPE.stream().toList()) {
-      event.registerEntity(CAPABILITY, type, (entity, ctx) -> supportCapability(entity) ? new Provider() : null);
+      event.registerEntity(CAPABILITY, type, (entity, ctx) -> supportCapability(entity) ? CACHE.computeIfAbsent(entity, ignored -> new Provider()) : null);
     }
   }
 

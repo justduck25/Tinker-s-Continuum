@@ -18,12 +18,18 @@ import slimeknights.tconstruct.common.network.SyncPersistentDataPacket;
 import slimeknights.tconstruct.common.network.TinkerNetwork;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.WeakHashMap;
+
 /** Persistent Tinkers data attached to entities. */
 public class PersistentDataCapability {
   private PersistentDataCapability() {}
 
   private static final Identifier ID = TConstruct.getResource("persistent_data");
   public static final EntityCapability<ModDataNBT, Void> CAPABILITY = EntityCapability.createVoid(ID, ModDataNBT.class);
+  /** NeoForge queries entity capabilities without caching the returned instance. */
+  private static final Map<Entity, ModDataNBT> CACHE = Collections.synchronizedMap(new WeakHashMap<>());
 
   public static ModDataNBT getOrWarn(Entity entity) {
     ModDataNBT data = CAPABILITY.getCapability(entity, null);
@@ -44,7 +50,9 @@ public class PersistentDataCapability {
 
   private static void registerCapabilities(RegisterCapabilitiesEvent event) {
     for (EntityType<?> type : BuiltInRegistries.ENTITY_TYPE.stream().toList()) {
-      event.registerEntity(CAPABILITY, type, (entity, ctx) -> entity instanceof LivingEntity || EntityModifierCapability.supportCapability(entity) ? new ModDataNBT() : null);
+      event.registerEntity(CAPABILITY, type, (entity, ctx) -> entity instanceof LivingEntity || EntityModifierCapability.supportCapability(entity)
+        ? CACHE.computeIfAbsent(entity, ignored -> new ModDataNBT())
+        : null);
     }
   }
 
