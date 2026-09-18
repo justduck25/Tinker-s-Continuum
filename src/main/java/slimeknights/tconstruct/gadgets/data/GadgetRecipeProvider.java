@@ -77,12 +77,12 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
                        .group(prefix("fancy_item_frame"))
                        .save(consumer, recipeKey(location("gadgets/frame/" + FrameType.DIAMOND.getSerializedName())));
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.DECORATIONS, TinkerGadgets.itemFrame.get(FrameType.CLEAR))
-                       .define('e', Tags.Items.GLASS_PANES_COLORLESS)
-                       .define('M', Tags.Items.GLASS_BLOCKS_COLORLESS)
+                       .define('e', TinkerCommons.clearGlassPane)
+                       .define('M', TinkerCommons.clearGlass)
                        .pattern(" e ")
                        .pattern("eMe")
                        .pattern(" e ")
-                       .unlockedBy("has_item", has(Tags.Items.GLASS_PANES_COLORLESS))
+                       .unlockedBy("has_item", has(TinkerCommons.clearGlassPane))
                        .group(prefix("fancy_item_frame"))
                        .save(consumer, recipeKey(location(folder + FrameType.CLEAR.getSerializedName())));
     Item goldFrame = TinkerGadgets.itemFrame.get(FrameType.GOLD);
