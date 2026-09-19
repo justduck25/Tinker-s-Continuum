@@ -2,6 +2,8 @@ package slimeknights.tconstruct.library.recipe.modifiers;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.world.item.ItemStack;
 import slimeknights.tconstruct.common.recipe.RecipeCacheInvalidator;
 import slimeknights.tconstruct.common.recipe.RecipeCacheInvalidator.DuelSidedListener;
@@ -29,6 +31,8 @@ public class ModifierRecipeLookup {
   private static final Multimap<SlotType,ModifierId> RECIPE_MODIFIER_IDS = HashMultimap.create();
   /** List of modifiers to show in JEI */
   private static List<ModifierEntry> RECIPE_MODIFIER_LIST = null;
+  /** Map of modifier to the highest level any recipe can produce */
+  private static final Object2IntMap<ModifierId> RECIPE_MAX_LEVELS = new Object2IntOpenHashMap<>();
 
   /** Listener for clearing the caches on recipe reload */
   private static final DuelSidedListener LISTENER = RecipeCacheInvalidator.addDuelSidedListener(() -> {
@@ -36,6 +40,7 @@ public class ModifierRecipeLookup {
     RECIPE_MODIFIERS.clear();
     RECIPE_MODIFIER_IDS.clear();
     RECIPE_MODIFIER_LIST = null;
+    RECIPE_MAX_LEVELS.clear();
   });
 
 
@@ -111,5 +116,29 @@ public class ModifierRecipeLookup {
   /** Checks if the given modifier ID is a recipe modifier */
   public static boolean isRecipeModifier(@Nullable SlotType slotType, ModifierId modifier) {
     return RECIPE_MODIFIER_IDS.containsEntry(slotType, modifier);
+  }
+
+
+  /* Level caps */
+
+  /**
+   * Records the highest level a recipe can bring a modifier to, typically called by the recipe
+   * @param modifier  Modifier added by the recipe
+   * @param maxLevel  Highest level that recipe produces
+   */
+  public static void addRecipeMaxLevel(ModifierId modifier, int maxLevel) {
+    LISTENER.checkClear();
+    if (maxLevel > RECIPE_MAX_LEVELS.getInt(modifier)) {
+      RECIPE_MAX_LEVELS.put(modifier, maxLevel);
+    }
+  }
+
+  /**
+   * {@return highest level of the modifier reachable through recipes}
+   * Modifiers with no recipe, such as material traits, have no cap to report and return {@link ModifierEntry#VALID_LEVEL} max.
+   */
+  public static int getRecipeMaxLevel(ModifierId modifier) {
+    int max = RECIPE_MAX_LEVELS.getInt(modifier);
+    return max == 0 ? ModifierEntry.VALID_LEVEL.max() : max;
   }
 }

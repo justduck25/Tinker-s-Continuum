@@ -7,10 +7,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.neoforged.neoforge.common.NeoForge;
-//import net.neoforged.neoforge.event.entity.living.LootingLevelEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.bus.api.EventPriority;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.enchanting.EnchantedEntityLootEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerLoggedOutEvent;
 import slimeknights.tconstruct.common.TinkerDamageTypes;
 import slimeknights.tconstruct.common.TinkerEffect;
 import slimeknights.tconstruct.common.TinkerTags;
@@ -45,7 +46,9 @@ public class ModifierLootingHandler {
       return;
     }
     init = true;
-    // LootingLevelEvent was removed in NeoForge 26; modifier looting is applied from the direct combat/drop contexts.
+    // NeoForge 26 replaced LootingLevelEvent with EnchantedEntityLootEvent.
+    // Block loot and enchantment level queries are covered by the item level overrides in ModifiableItem and friends.
+    NeoForge.EVENT_BUS.addListener(EventPriority.HIGH, false, EnchantedEntityLootEvent.class, ModifierLootingHandler::onEntityLoot);
     NeoForge.EVENT_BUS.addListener(ModifierLootingHandler::onLeaveServer);
   }
 
@@ -68,8 +71,57 @@ public class ModifierLootingHandler {
   }
 
   /** Applies the looting bonus for modifiers */
-  //private static void onLooting(LootingLevelEvent event) {
-  //}
+  private static void onEntityLoot(EnchantedEntityLootEvent event) {
+    if (!event.getEnchantment().is(Enchantments.LOOTING)) {
+      return;
+    }
+    DamageSource damageSource = event.getDamageSource();
+    if (damageSource == null) {
+      return;
+    }
+    LivingEntity target = event.getEntity();
+
+    // bleeding kills use the level of the effect for looting
+    if (damageSource.is(TinkerDamageTypes.BLEEDING)) {
+      event.setEnchantmentLevel(Math.max(0, TinkerEffect.getAmplifier(target, TinkerEffects.bleeding.get())));
+      return;
+    }
+
+    Entity source = damageSource.getEntity();
+    if (source instanceof LivingEntity holder) {
+      Entity direct = damageSource.getDirectEntity();
+      int level = event.getEnchantmentLevel();
+
+      LootingContext context;
+      IToolStackView tool = null;
+      if (direct instanceof Projectile) {
+        ModifierNBT modifiers = EntityModifierCapability.getOrEmpty(direct);
+        context = new LootingContext(holder, target, damageSource, null);
+        if (!modifiers.isEmpty()) {
+          ModDataNBT persistentData = direct.getCapability(PersistentDataCapability.CAPABILITY);
+          if (persistentData == null) {
+            persistentData = new ModDataNBT();
+          }
+          // Tinker projectiles do not store vanilla looting, so start from 0 like 1.20 LootingLevelEvent.
+          level = LootingModifierHook.getLooting(new DummyToolStack(Items.AIR, modifiers, persistentData), context, 0);
+        }
+      } else {
+        EquipmentSlot slotType = getLootingSlot(holder);
+        context = new LootingContext(holder, target, damageSource, slotType);
+        ItemStack held = holder.getItemBySlot(slotType);
+
+        if (held.is(TinkerTags.Items.MODIFIABLE)) {
+          tool = ToolStack.from(held);
+          // Looting from modifiers replaces the vanilla level rather than adding to it, matching the 1.20 LootingLevelEvent.
+          level = LootingModifierHook.getLooting(tool, context, 0);
+        } else if (slotType != EquipmentSlot.MAINHAND) {
+          level = 0;
+        }
+      }
+      level = ArmorLootingModifierHook.getLooting(tool, context, level);
+      event.setEnchantmentLevel(Math.max(level, 0));
+    }
+  }
 
   /** Called when a player leaves the server to clear the face */
   private static void onLeaveServer(PlayerLoggedOutEvent event) {

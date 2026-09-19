@@ -16,6 +16,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.util.LazyModifier;
 import slimeknights.tconstruct.library.recipe.RecipeResult;
+import slimeknights.tconstruct.library.recipe.modifiers.ModifierRecipeLookup;
 import slimeknights.tconstruct.library.recipe.tinkerstation.ITinkerStationContainer;
 import slimeknights.tconstruct.library.tools.SlotType.SlotCount;
 import slimeknights.tconstruct.library.tools.nbt.LazyToolStack;
@@ -48,6 +49,8 @@ public class MultilevelModifierRecipe extends ModifierRecipe implements IMultiRe
   protected MultilevelModifierRecipe(Identifier id, List<SizedIngredient> inputs, Ingredient toolRequirement, int maxToolSize, ModifierId result, boolean allowCrystal, List<LevelEntry> levels, boolean checkTraitLevel) {
     super(id, inputs, toolRequirement, maxToolSize, result, levels.get(0).level, levels.get(0).slots, allowCrystal, checkTraitLevel);
     this.levels = levels;
+    // super only sees the first entry, the recipe actually reaches the last entry's max
+    ModifierRecipeLookup.addRecipeMaxLevel(result, levels.get(levels.size() - 1).level.max());
   }
 
   /** Gets the error for the level being out of range for this recipe. */

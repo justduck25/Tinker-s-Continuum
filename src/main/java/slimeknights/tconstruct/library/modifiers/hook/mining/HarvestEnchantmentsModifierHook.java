@@ -25,11 +25,22 @@ public interface HarvestEnchantmentsModifierHook {
   EquipmentSlot[] APPLICABLE_SLOTS = { EquipmentSlot.OFFHAND, EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET };
   /** Original enchantments for stacks temporarily prepared for vanilla block drops during {@link net.neoforged.neoforge.event.level.block.BreakBlockEvent}. */
   Map<ItemStack,ItemEnchantments> ACTIVE_HARVEST_ENCHANTMENTS = java.util.Collections.synchronizedMap(new IdentityHashMap<>());
+  /**
+   * Snapshot of a stack taken right after its modifier enchantments were written into the enchantment component.
+   * Vanilla copies the tool before {@code mineBlock} but only computes loot after it, so the copy handed to the loot
+   * table still carries the written enchantments once the original has been restored. Matching on components rather
+   * than identity lets that copy be recognised, and the snapshot is deliberately kept past the restore to cover it.
+   */
+  ThreadLocal<ItemStack> BAKED_STACK = new ThreadLocal<>();
 
   void updateHarvestEnchantments(IToolStackView tool, ModifierEntry modifier, ToolHarvestContext context, EquipmentContext equipment, EquipmentSlot slot, Map<Enchantment,Integer> map);
 
   @Nullable
   static ItemEnchantments updateHarvestEnchantments(IToolStackView tool, ItemStack stack, ToolHarvestContext context) {
+    // already prepared earlier in this break, writing again would stack the modifier levels on top of themselves
+    if (hasBakedEnchantments(stack)) {
+      return null;
+    }
     Player player = context.getPlayer();
     if (player == null || !player.isCreative()) {
       EquipmentContext equipmentContext = EquipmentContext.withTool(context.getLiving(), tool, EquipmentSlot.MAINHAND);
@@ -63,19 +74,26 @@ public interface HarvestEnchantmentsModifierHook {
           mutable.set(registryHolder(context, entry.getKey()), entry.getValue());
         }
         EnchantmentHelper.setEnchantments(stack, mutable.toImmutable());
+        BAKED_STACK.set(stack.copy());
         return originalEnchants;
       }
     }
+    BAKED_STACK.remove();
     return null;
+  }
+
+  /**
+   * {@return true while the given stack already has its modifier enchantments written into NBT for block loot}
+   * While set, {@link EnchantmentModifierHook} must not add modifier levels on top of the component, as that would double the bonus.
+   */
+  static boolean hasBakedEnchantments(ItemStack stack) {
+    ItemStack baked = BAKED_STACK.get();
+    return baked != null && ItemStack.isSameItemSameComponents(baked, stack);
   }
 
   /** Finds the registry holder for the enchantment, as vanilla loot checks registry holders rather than direct holders. */
   static Holder<Enchantment> registryHolder(ToolHarvestContext context, Enchantment enchantment) {
-    return context.getWorld().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).listElements()
-                  .filter(holder -> holder.value() == enchantment)
-                  .findFirst()
-                  .map(holder -> (Holder<Enchantment>)holder)
-                  .orElseGet(() -> Holder.direct(enchantment));
+    return EnchantmentModifierHook.getHolder(context.getWorld().registryAccess().lookupOrThrow(Registries.ENCHANTMENT), enchantment);
   }
 
   /** Checks if a stack already has temporary harvest enchantments prepared. */
@@ -94,6 +112,10 @@ public interface HarvestEnchantmentsModifierHook {
     return ACTIVE_HARVEST_ENCHANTMENTS.remove(stack);
   }
 
+  /**
+   * Restores the enchantment component saved by {@link #updateHarvestEnchantments(IToolStackView, ItemStack, ToolHarvestContext)}.
+   * The baked snapshot is intentionally left in place, as vanilla still has to compute loot from a copy taken while the tool was baked.
+   */
   static void restoreEnchantments(ItemStack stack, ItemEnchantments originalTag) {
     EnchantmentHelper.setEnchantments(stack, originalTag);
   }

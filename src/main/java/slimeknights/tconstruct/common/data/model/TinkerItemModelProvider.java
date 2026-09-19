@@ -436,7 +436,7 @@ public class TinkerItemModelProvider implements DataProvider {
 
   private static String headTexture(TinkerHeadType type) {
     return switch (type) {
-      case BLAZE -> "minecraft:blaze";
+      case BLAZE -> "minecraft:blaze/blaze";
       case ENDERMAN -> "tconstruct:skull/enderman";
       case STRAY -> "tconstruct:skull/stray";
       case HUSK -> "minecraft:zombie/husk";

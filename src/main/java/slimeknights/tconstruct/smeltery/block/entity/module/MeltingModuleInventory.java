@@ -3,8 +3,10 @@ package slimeknights.tconstruct.smeltery.block.entity.module;
 import static slimeknights.tconstruct.library.fluid.FluidActions.EXECUTE;
 import static slimeknights.tconstruct.library.fluid.FluidActions.SIMULATE;
 
+import net.minecraft.nbt.ByteTag;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NumericTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -319,15 +321,29 @@ public class MeltingModuleInventory implements IItemHandlerModifiable {
     for (int i = 0; i < modules.length; i++) {
       if (modules[i] != null && !modules[i].getStack().isEmpty()) {
         CompoundTag moduleTag = modules[i].writeToTag();
-        moduleTag.putByte(TAG_SLOT, (byte)i);
+        moduleTag.putInt(TAG_SLOT, i);
         list.add(moduleTag);
       }
     }
     if (!list.isEmpty()) {
       nbt.put(TAG_ITEMS, list);
     }
-    nbt.putByte(TAG_SIZE, (byte)modules.length);
+    nbt.putInt(TAG_SIZE, modules.length);
     return nbt;
+  }
+
+  /**
+   * Reads a slot count or index, which older versions stored as an unsigned byte and thus could not exceed 255.
+   * @param nbt       Tag to read from
+   * @param key       Key to read
+   * @param fallback  Value to use when the key holds no number
+   */
+  private static int readSlotNumber(CompoundTag nbt, String key, int fallback) {
+    Tag tag = nbt.get(key);
+    if (tag instanceof NumericTag numeric) {
+      return tag instanceof ByteTag ? numeric.intValue() & 255 : numeric.intValue();
+    }
+    return fallback;
   }
 
   /**
@@ -336,7 +352,7 @@ public class MeltingModuleInventory implements IItemHandlerModifiable {
    */
   public void readFromTag(CompoundTag nbt) {
     if (!strictSize) {
-      int newSize = nbt.getByte(TAG_SIZE).orElse((byte)modules.length) & 255;
+      int newSize = readSlotNumber(nbt, TAG_SIZE, modules.length);
       if (newSize != modules.length) {
         modules = Arrays.copyOf(modules, newSize);
       }
@@ -352,7 +368,7 @@ public class MeltingModuleInventory implements IItemHandlerModifiable {
     for (int i = 0; i < list.size(); i++) {
       CompoundTag item = list.getCompound(i).orElseGet(CompoundTag::new);
       if (item.contains(TAG_SLOT)) {
-        int slot = item.getByte(TAG_SLOT).orElse((byte)0) & 255;
+        int slot = readSlotNumber(item, TAG_SLOT, -1);
         if (validSlot(slot)) {
           getModule(slot).readFromTag(item);
         }

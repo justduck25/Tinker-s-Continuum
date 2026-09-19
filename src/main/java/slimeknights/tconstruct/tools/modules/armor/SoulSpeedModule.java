@@ -59,7 +59,7 @@ public record SoulSpeedModule(LevelingInt level, ModifierCondition<IToolStackVie
 
   @Override
   public int updateEnchantmentLevel(IToolStackView tool, ModifierEntry modifier, Enchantment enchantment, int level) {
-    if (getSoulSpeed().filter(soulSpeed -> enchantment == soulSpeed).isPresent() && condition.matches(tool, modifier)) {
+    if (getSoulSpeed().filter(soulSpeed -> EnchantmentModifierHook.matches(enchantment, soulSpeed)).isPresent() && condition.matches(tool, modifier)) {
       level += this.level.compute(modifier);
     }
     return level;

@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.mining.BlockHarvestModifierHook;
+import slimeknights.tconstruct.library.modifiers.hook.mining.HarvestEnchantmentsModifierHook;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
@@ -49,8 +50,27 @@ public interface EnchantmentModifierHook {
   /** Adds the given enchantment to the map */
   static void addEnchantment(Map<Enchantment,Integer> map, Enchantment enchantment, int amount) {
     if (amount != 0) {
-      map.put(enchantment, map.getOrDefault(enchantment, 0) + amount);
+      Enchantment key = existingKey(map, enchantment);
+      map.put(key, map.getOrDefault(key, 0) + amount);
     }
+  }
+
+  /** True if the two datapack enchantment instances represent the same registry entry. */
+  static boolean matches(Enchantment left, Enchantment right) {
+    return slimeknights.tconstruct.library.json.TinkerEnchantmentLoadable.matches(left, right);
+  }
+
+  /** Finds an equivalent key already present in the map so datapack copies of the same enchantment stack. */
+  static Enchantment existingKey(Map<Enchantment,Integer> map, Enchantment enchantment) {
+    if (map.containsKey(enchantment)) {
+      return enchantment;
+    }
+    for (Enchantment existing : map.keySet()) {
+      if (matches(existing, enchantment)) {
+        return existing;
+      }
+    }
+    return enchantment;
   }
 
   /**
@@ -61,7 +81,7 @@ public interface EnchantmentModifierHook {
    */
   static int getEnchantmentLevel(ItemInstance stack, Holder<Enchantment> enchantment) {
     int level = EnchantmentHelper.getTagEnchantmentLevel(enchantment, stack);
-    if (stack instanceof ItemStack itemStack) {
+    if (stack instanceof ItemStack itemStack && !HarvestEnchantmentsModifierHook.hasBakedEnchantments(itemStack)) {
       IToolStackView tool = ToolStack.from(itemStack);
       for (ModifierEntry entry : tool.getModifierList()) {
         level = entry.getHook(ModifierHooks.ENCHANTMENTS).updateEnchantmentLevel(tool, entry, enchantment.value(), level);
@@ -79,9 +99,11 @@ public interface EnchantmentModifierHook {
    */
   static int getEnchantmentLevel(ItemStack stack, Enchantment enchantment) {
     int level = EnchantmentHelper.getTagEnchantmentLevel(Holder.direct(enchantment), stack);
-    IToolStackView tool = ToolStack.from(stack);
-    for (ModifierEntry entry : tool.getModifierList()) {
-      level = entry.getHook(ModifierHooks.ENCHANTMENTS).updateEnchantmentLevel(tool, entry, enchantment, level);
+    if (!HarvestEnchantmentsModifierHook.hasBakedEnchantments(stack)) {
+      IToolStackView tool = ToolStack.from(stack);
+      for (ModifierEntry entry : tool.getModifierList()) {
+        level = entry.getHook(ModifierHooks.ENCHANTMENTS).updateEnchantmentLevel(tool, entry, enchantment, level);
+      }
     }
     // we allow hooks to return negative, such as to cancel out an enchantment
     return Math.max(level, 0);
@@ -89,8 +111,14 @@ public interface EnchantmentModifierHook {
 
   /** Finds a registry holder for the given enchantment value. */
   static Holder<Enchantment> getHolder(RegistryLookup<Enchantment> lookup, Enchantment enchantment) {
+    net.minecraft.resources.ResourceKey<Enchantment> key = slimeknights.tconstruct.library.json.TinkerEnchantmentLoadable.getKey(enchantment);
+    if (key != null) {
+      return lookup.get(key)
+                   .map(holder -> (Holder<Enchantment>)holder)
+                   .orElseGet(() -> Holder.direct(enchantment));
+    }
     return lookup.listElements()
-                 .filter(holder -> holder.value() == enchantment)
+                 .filter(holder -> holder.value() == enchantment || matches(holder.value(), enchantment))
                  .findFirst()
                  .map(holder -> (Holder<Enchantment>)holder)
                  .orElseGet(() -> Holder.direct(enchantment));
@@ -108,15 +136,16 @@ public interface EnchantmentModifierHook {
     for (java.util.Map.Entry<Holder<Enchantment>, Integer> entry : original.entrySet()) {
       enchantments.put(entry.getKey().value(), entry.getValue());
     }
-    IToolStackView tool = ToolStack.from(stack);
-    for (ModifierEntry entry : tool.getModifierList()) {
-      entry.getHook(ModifierHooks.ENCHANTMENTS).updateEnchantments(tool, entry, enchantments);
+    if (!HarvestEnchantmentsModifierHook.hasBakedEnchantments(stack)) {
+      IToolStackView tool = ToolStack.from(stack);
+      for (ModifierEntry entry : tool.getModifierList()) {
+        entry.getHook(ModifierHooks.ENCHANTMENTS).updateEnchantments(tool, entry, enchantments);
+      }
     }
     // we allow hooks to return negative, such as to cancel out an enchantment
     enchantments.values().removeIf(VALUE_REMOVER);
 
-    ItemEnchantments.Mutable mutable = new ItemEnchantments.Mutable(original);
-    mutable.removeIf(holder -> !enchantments.containsKey(holder.value()));
+    ItemEnchantments.Mutable mutable = new ItemEnchantments.Mutable(ItemEnchantments.EMPTY);
     for (java.util.Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {
       mutable.set(getHolder(lookup, entry.getKey()), entry.getValue());
     }
@@ -134,9 +163,11 @@ public interface EnchantmentModifierHook {
     for (java.util.Map.Entry<net.minecraft.core.Holder<Enchantment>, Integer> entry : itemEnchantments.entrySet()) {
       enchantments.put(entry.getKey().value(), entry.getValue());
     }
-    IToolStackView tool = ToolStack.from(stack);
-    for (ModifierEntry entry : tool.getModifierList()) {
-      entry.getHook(ModifierHooks.ENCHANTMENTS).updateEnchantments(tool, entry, enchantments);
+    if (!HarvestEnchantmentsModifierHook.hasBakedEnchantments(stack)) {
+      IToolStackView tool = ToolStack.from(stack);
+      for (ModifierEntry entry : tool.getModifierList()) {
+        entry.getHook(ModifierHooks.ENCHANTMENTS).updateEnchantments(tool, entry, enchantments);
+      }
     }
     // we allow hooks to return negative, such as to cancel out an enchantment
     enchantments.values().removeIf(VALUE_REMOVER);
@@ -186,7 +217,7 @@ public interface EnchantmentModifierHook {
 
     @Override
     default int updateEnchantmentLevel(IToolStackView tool, ModifierEntry modifier, Enchantment enchantment, int level) {
-      if (enchantment == getEnchantment(tool, modifier)) {
+      if (matches(enchantment, getEnchantment(tool, modifier))) {
         level += getEnchantmentLevel(tool, modifier);
       }
       return level;

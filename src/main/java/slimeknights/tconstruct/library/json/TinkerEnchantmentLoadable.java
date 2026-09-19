@@ -42,6 +42,52 @@ public class TinkerEnchantmentLoadable implements StringLoadable<Enchantment> {
     KEY_CACHE.put(enchantment, key);
   }
 
+  /** Resolves the registry key for an enchantment instance, including datapack copies that are not identity-equal. */
+  @javax.annotation.Nullable
+  public static ResourceKey<Enchantment> getKey(Enchantment enchantment) {
+    if (enchantment == null) {
+      return null;
+    }
+    ResourceKey<Enchantment> cached = KEY_CACHE.get(enchantment);
+    if (cached != null) {
+      return cached;
+    }
+    HolderLookup.Provider provider = lookupProvider();
+    if (provider != null) {
+      return provider.lookupOrThrow(Registries.ENCHANTMENT).listElements()
+        .filter(holder -> holder.value() == enchantment)
+        .findFirst()
+        .map(holder -> {
+          KEY_CACHE.put(enchantment, holder.key());
+          return holder.key();
+        })
+        .orElse(null);
+    }
+    return null;
+  }
+
+  /** Compares datapack enchantment instances by registry key instead of object identity. */
+  public static boolean matches(Enchantment left, Enchantment right) {
+    if (left == right) {
+      return true;
+    }
+    if (left == null || right == null) {
+      return false;
+    }
+    ResourceKey<Enchantment> leftKey = getKey(left);
+    ResourceKey<Enchantment> rightKey = getKey(right);
+    return leftKey != null && leftKey.equals(rightKey);
+  }
+
+  /** Compares a stored enchantment against a gameplay holder. */
+  public static boolean matches(Enchantment enchantment, net.minecraft.core.Holder<Enchantment> holder) {
+    if (holder.value() == enchantment) {
+      return true;
+    }
+    ResourceKey<Enchantment> key = getKey(enchantment);
+    return key != null && holder.is(key);
+  }
+
 
   private static HolderLookup.Provider lookupProvider() {
     HolderLookup.Provider provider = LOOKUP_SUPPLIER.get();
