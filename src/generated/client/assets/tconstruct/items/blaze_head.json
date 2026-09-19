@@ -5,7 +5,7 @@
     "model": {
       "type": "minecraft:head",
       "kind": "blaze",
-      "texture": "minecraft:blaze"
+      "texture": "minecraft:blaze/blaze"
     },
     "transformation": {
       "left_rotation": [

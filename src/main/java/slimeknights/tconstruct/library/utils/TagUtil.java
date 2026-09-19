@@ -23,10 +23,15 @@ public final class TagUtil {
    */
   @Nullable
   public static BlockPos readOptionalPos(CompoundTag parent, String key, BlockPos offset) {
-    if (parent.contains(key)) {
-      return BlockPos.CODEC.parse(NbtOps.INSTANCE, parent.get(key)).result().map(pos -> pos.offset(offset)).orElse(null);
+    Tag tag = parent.get(key);
+    if (tag == null) {
+      return null;
     }
-    return null;
+    // positions are written as a compound by BlockPosNbt, the int array form is only reachable from external data
+    if (tag instanceof CompoundTag compound) {
+      return BlockPosNbt.read(compound).offset(offset);
+    }
+    return BlockPos.CODEC.parse(NbtOps.INSTANCE, tag).result().map(pos -> pos.offset(offset)).orElse(null);
   }
 
   /**

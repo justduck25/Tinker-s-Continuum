@@ -1,4 +1,4 @@
-// 26.1.2	2026-09-10T15:25:22.9840259	Continuum Construct Modifier Model Map Provider
+// 26.1.2	2026-09-19T11:54:40.8853495	Continuum Construct Modifier Model Map Provider
 219bc0d4a1c41ffd2f306ca89c866637169f630d assets/tconstruct/tinkering/modifier_models/arrow.json
 2e08daea0190de097b4c0fec95b37e5920ccd508 assets/tconstruct/tinkering/modifier_models/battlesign.json
 a2f4f3bbef4103a6282bc5c9549d90f929919d4d assets/tconstruct/tinkering/modifier_models/broad_axe.json
@@ -30,11 +30,14 @@ f872dd91d79cc0e87a743b6b4d74e6c05e8b9159 assets/tconstruct/tinkering/modifier_mo
 0d3644fa8e702f22f93129657d442bd3a756b918 assets/tconstruct/tinkering/modifier_models/scythe.json
 5d8b892178fc8d873b0fdd9422ce6603f083135b assets/tconstruct/tinkering/modifier_models/shuriken.json
 37205ffd9bcb829f5288805f9ab5ae23474cae04 assets/tconstruct/tinkering/modifier_models/sledge_hammer.json
-55eaaea76100a215fae7ce7fa4eb1bf3323bd323 assets/tconstruct/tinkering/modifier_models/slime/boots.json
-32c9d5104ebbc699c60b2439a318ac405cd5b151 assets/tconstruct/tinkering/modifier_models/slime/chestplate.json
-937c4d4a75b31dffbeeaa68279c0be361e149080 assets/tconstruct/tinkering/modifier_models/slime/helmet.json
-6073fab403a02d169e8735c279741e21ea204df8 assets/tconstruct/tinkering/modifier_models/slime/leggings.json
-98e59cc790d7762970d21347b8eb429c50c59b19 assets/tconstruct/tinkering/modifier_models/slime/wings.json
+70142a92815a70f65aaa0f15988abaa1df310124 assets/tconstruct/tinkering/modifier_models/slime/boots.json
+80a1b88fc1c36f81e0938447b13f6850a0c9aa5c assets/tconstruct/tinkering/modifier_models/slime/chestplate.json
+a3cfe63ac1c8d6527cc26945fb12a740928425d2 assets/tconstruct/tinkering/modifier_models/slime/chestplate_broken.json
+63e036039d5ad9d6b4259744462d27406ae7a3cc assets/tconstruct/tinkering/modifier_models/slime/helmet.json
+6f24e6487d9f9680186bbf92a4913bae709b9560 assets/tconstruct/tinkering/modifier_models/slime/leggings.json
+733e9413e99140df6464955f1481f72b62c7f31a assets/tconstruct/tinkering/modifier_models/slime/leggings_broken.json
+ad57a7ace0bd9a05720129de85c6d08af2d2ff4d assets/tconstruct/tinkering/modifier_models/slime/wings.json
+4e9006050234e5135f83fa1cc76a220436521ce9 assets/tconstruct/tinkering/modifier_models/slime/wings_broken.json
 488bc732cae52f89f16c0555dd39073c13ead7b1 assets/tconstruct/tinkering/modifier_models/staff.json
 399688267023b47c0c6a71b0d134db8e698e2f89 assets/tconstruct/tinkering/modifier_models/staff/earth.json
 c8a2329f59ccb7facc30a2f3ab11334c98c6a07d assets/tconstruct/tinkering/modifier_models/staff/earth/1.json

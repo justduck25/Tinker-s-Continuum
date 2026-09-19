@@ -1,6 +1,6 @@
 Continuum Construct 26.1.2-3.12.1
 
-This release repairs the luck modifier, which did nothing in 3.12.0.0, and stops the debug modifier command from pushing modifiers past their crafting cap.
+This release repairs the luck modifier, which did nothing in 3.12.0.0, and stops the debug modifier command from pushing modifiers past their crafting cap. It also fixes large smelteries closing their own screen and the blaze head rendering as a black cube.
 
 Fixes
 - Luck once again grants fortune, looting, and luck of the sea. NeoForge 26 removed LootingLevelEvent, so modifier looting is now applied through EnchantedEntityLootEvent for melee, projectile, and bleeding kills.
@@ -9,6 +9,9 @@ Fixes
 - Luck is back to the 3.12 module set of constant fortune, weapon looting, armor fortune, armor looting, armor luck, and sea luck, replacing a custom module that applied only one of the three enchantments.
 - /tconstruct modifiers add no longer raises a modifier above the highest level its recipes can reach. Modifiers with no recipe, such as material traits, remain uncapped since no cap is defined for them.
 - /tconstruct modifiers remove now clears raw modifier NBT when the level reaches zero, instead of leaving stale data on the tool.
+- Fixed the smeltery and foundry screen closing by itself whenever the contents changed in a structure with more than 255 melting slots, such as a 9x5x9 interior. Slot counts and indices were saved as bytes, so the client saw a truncated slot count and dropped the screen on the next update. Items sitting in slots past 255 were also lost on save.
+- Fixed multiblock structures never loading back from saved data. Positions are written as x/y/z compounds but were read with the int array codec, so smelteries and foundries came back without a structure after a reload.
+- Fixed the blaze head item rendering as a black cube. Its item model pointed at textures/entity/blaze.png, which Minecraft 26.1 moved to textures/entity/blaze/blaze.png.
 
 Compatibility
 - Requires Continuum Core 1.12.0.
