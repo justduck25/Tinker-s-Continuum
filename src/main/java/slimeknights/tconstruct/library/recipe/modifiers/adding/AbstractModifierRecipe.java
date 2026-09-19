@@ -101,6 +101,7 @@ public abstract class AbstractModifierRecipe implements ITinkerStationRecipe, ID
     this.allowCrystal = allowCrystal;
     this.checkTraitLevel = checkTraitLevel;
     ModifierRecipeLookup.addRecipeModifier(SlotCount.type(slots), this.result);
+    ModifierRecipeLookup.addRecipeMaxLevel(result, level.max());
   }
 
   @Override

@@ -17,6 +17,7 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.build.ModifierRemovalHook;
+import slimeknights.tconstruct.library.recipe.modifiers.ModifierRecipeLookup;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.shared.command.HeldModifiableItemIterator;
 import slimeknights.tconstruct.shared.command.TConstructCommand;
@@ -31,6 +32,7 @@ public class ModifiersCommand {
   private static final String REMOVE_SUCCESS = TConstruct.makeTranslationKey("command", "modifiers.success.remove.single");
   private static final String REMOVE_SUCCESS_MULTIPLE = TConstruct.makeTranslationKey("command", "modifiers.success.remove.multiple");
   private static final Dynamic2CommandExceptionType CANNOT_REMOVE = new Dynamic2CommandExceptionType((name, entity) -> TConstruct.makeTranslation("command", "modifiers.failure.too_few_levels", name, entity));
+  private static final Dynamic2CommandExceptionType ABOVE_MAX_LEVEL = new Dynamic2CommandExceptionType((name, max) -> TConstruct.makeTranslation("command", "modifiers.failure.above_max_level", name, max));
 
   /**
    * Registers this sub command with the root command
@@ -59,6 +61,11 @@ public class ModifiersCommand {
     List<LivingEntity> successes = HeldModifiableItemIterator.apply(context, (living, stack) -> {
       // add modifier
       ToolStack tool = ToolStack.from(stack).copy();
+      // recipes are the only place a level cap is defined, so honour the highest level they can reach
+      int maxLevel = ModifierRecipeLookup.getRecipeMaxLevel(modifier.getId());
+      if (tool.getUpgrades().getLevel(modifier.getId()) + level > maxLevel) {
+        throw ABOVE_MAX_LEVEL.create(modifier.getDisplayName(), maxLevel);
+      }
       // add the modifier
       tool.addModifier(modifier.getId(), level);
       // ensure no modifier problems after adding
@@ -105,6 +112,7 @@ public class ModifiersCommand {
       // first remove hook, primarily for removing raw NBT which is highly discouraged using
       int newLevel = currentLevel - removeLevel;
       if (newLevel <= 0) {
+        modifier.getHook(ModifierHooks.RAW_DATA).removeRawData(tool, modifier, tool.getRestrictedData());
       }
 
       // remove the actual modifier
