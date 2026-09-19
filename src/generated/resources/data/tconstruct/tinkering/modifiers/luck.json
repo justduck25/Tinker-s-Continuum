@@ -6,10 +6,13 @@
   },
   "modules": [
     {
-      "type": "tconstruct:luck_enchantment",
-      "fortune": "minecraft:fortune",
-      "looting": "minecraft:looting",
-      "luck_of_the_sea": "minecraft:luck_of_the_sea"
+      "type": "tconstruct:constant_enchantment",
+      "level": 1,
+      "name": "minecraft:fortune",
+      "tool": {
+        "type": "mantle:tag",
+        "tag": "tconstruct:modifiable/harvest"
+      }
     },
     {
       "type": "tconstruct:armor_harvest_enchantment",

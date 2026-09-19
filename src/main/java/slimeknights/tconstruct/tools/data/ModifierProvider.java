@@ -208,7 +208,6 @@ import slimeknights.tconstruct.tools.modules.FovModule;
 import slimeknights.tconstruct.tools.modules.FovModule.FovAction;
 import slimeknights.tconstruct.tools.modules.HeadlightModule;
 import slimeknights.tconstruct.tools.modules.LuckApothicEnchantmentCapModule;
-import slimeknights.tconstruct.tools.modules.LuckEnchantmentModule;
 import slimeknights.tconstruct.tools.modules.MeltingModule;
 import slimeknights.tconstruct.tools.modules.OverburnModule;
 import slimeknights.tconstruct.tools.modules.OvergrowthModule;
@@ -550,7 +549,7 @@ public class ModifierProvider extends AbstractModifierProvider {
     LootingModule ARMOR_LOOTING = LootingModule.builder().toolItem(armor).armor(ARMOR_SLOTS);
     buildModifier(ModifierIds.luck)
       .levelDisplay(new UniqueForLevels(3))
-      .addModules(new LuckEnchantmentModule(enchantment(Enchantments.FORTUNE), enchantment(Enchantments.LOOTING), enchantment(Enchantments.LUCK_OF_THE_SEA)), ARMOR_FORTUNE, LUCK_WEAPON_LOOTING, ARMOR_LOOTING, SEA_LUCK, ARMOR_LUCK)
+      .addModules(CONSTANT_FORTUNE, ARMOR_FORTUNE, LUCK_WEAPON_LOOTING, ARMOR_LOOTING, SEA_LUCK, ARMOR_LUCK)
       .addModule(apotheosisRequirement(4, 5))
       .addModule(luckApothicCap(4, 5));
     buildModifier(ModifierIds.fortune).addModules(CONSTANT_FORTUNE, ARMOR_FORTUNE, SEA_LUCK, ARMOR_LUCK);

@@ -253,7 +253,6 @@ import slimeknights.tconstruct.tools.modules.DamageOnUnequipModule;
 import slimeknights.tconstruct.tools.modules.FovModule;
 import slimeknights.tconstruct.tools.modules.HeadlightModule;
 import slimeknights.tconstruct.tools.modules.LuckApothicEnchantmentCapModule;
-import slimeknights.tconstruct.tools.modules.LuckEnchantmentModule;
 import slimeknights.tconstruct.tools.modules.MeltingModule;
 import slimeknights.tconstruct.tools.modules.OverburnModule;
 import slimeknights.tconstruct.tools.modules.OvergrowthModule;
@@ -865,7 +864,6 @@ public final class TinkerModifiers extends TinkerModule {
       ModifierModule.LOADER.register(getResource("repair"), RepairModule.LOADER);
       ModifierModule.LOADER.register(getResource("material_repair"), MaterialRepairModule.LOADER);
       ModifierModule.LOADER.register(getResource("show_offhand"), ShowOffhandModule.LOADER);
-      ModifierModule.LOADER.register(getResource("luck_enchantment"), LuckEnchantmentModule.LOADER);
       ModifierModule.LOADER.register(getResource("apothic_enchantment_cap"), ApothicEnchantmentCapModule.LOADER);
       ModifierModule.LOADER.register(getResource("luck_apothic_enchantment_cap"), LuckApothicEnchantmentCapModule.LOADER);
       ModifierModule.LOADER.register(getResource("tool_actions"), ToolActionsModule.LOADER);
