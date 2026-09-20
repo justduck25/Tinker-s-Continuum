@@ -147,9 +147,60 @@ public class TinkerItemModelProvider implements DataProvider {
       TinkerHeadType type = TinkerHeadType.valueOf(typeName.toUpperCase(java.util.Locale.ROOT));
       headItemModel(tasks, cache, id, type);
     });
+    creativeSlot(tasks, cache);
     bridgeExistingItemModels(tasks, cache);
 
     return GenericDataProvider.allOf(tasks);
+  }
+
+  /** Textures each built in slot type uses, keyed by the slot name written into custom data */
+  private static final List<String[]> CREATIVE_SLOT_TEXTURES = List.of(
+    new String[] {"upgrades",  "tconstruct:item/slot/upgrade"},
+    new String[] {"abilities", "tconstruct:item/slot/ability"},
+    new String[] {"defense",   "tconstruct:item/slot/defense"},
+    new String[] {"souls",     "tconstruct:item/materials/hollow_gem"},
+    new String[] {"slotless",  "tconstruct:item/slot/slotless"});
+
+  /**
+   * Builds the creative modifier slot item, which picks its texture from the slot it grants.
+   * The 1.20 version used a Mantle model loader for this; 26.1 dispatches item models up front instead, so the
+   * built in slots each get a model and anything a datapack adds falls back to the blank slot outline.
+   */
+  private void creativeSlot(List<CompletableFuture<?>> tasks, CachedOutput cache) {
+    JsonArray cases = new JsonArray();
+    for (String[] slot : CREATIVE_SLOT_TEXTURES) {
+      Identifier model = TConstruct.getResource("item/slot/" + slot[0]);
+      JsonObject json = parent("minecraft:item/generated");
+      JsonObject textures = new JsonObject();
+      textures.addProperty("layer0", slot[1]);
+      json.add("textures", textures);
+      tasks.add(save(cache, itemModels.json(TConstruct.getResource("slot/" + slot[0])), json));
+
+      JsonObject switchCase = new JsonObject();
+      switchCase.addProperty("when", slot[0]);
+      switchCase.add("model", modelReference(model.toString()));
+      cases.add(switchCase);
+    }
+
+    JsonObject select = new JsonObject();
+    select.addProperty("type", "minecraft:select");
+    select.addProperty("property", "tconstruct:slot_type");
+    select.add("cases", cases);
+    select.add("fallback", modelReference("tconstruct:item/creative_slot"));
+    JsonObject definition = new JsonObject();
+    definition.add("model", select);
+
+    // claim the ID so the bridge below leaves the hand written model alone, it is only the select fallback now
+    Identifier id = TConstruct.getResource("creative_slot");
+    this.itemDefinitionIds.add(id);
+    tasks.add(save(cache, itemDefinitions.json(id), definition));
+  }
+
+  private static JsonObject modelReference(String model) {
+    JsonObject json = new JsonObject();
+    json.addProperty("type", "minecraft:model");
+    json.addProperty("model", model);
+    return json;
   }
 
   private void part(List<CompletableFuture<?>> tasks, CachedOutput cache, ItemObject<? extends MaterialItem> part) {

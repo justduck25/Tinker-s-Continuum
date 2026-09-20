@@ -1,4 +1,4 @@
-// 26.1.2	2026-09-19T11:54:40.8908625	Continuum Construct item model provider
+// 26.1.2	2026-09-20T19:02:46.9225705	Continuum Construct item model provider
 3dfe19fdc1521868d13178dc421daf189eb6bac3 assets/tconstruct/items/adze_head.json
 960bb3a54ef50940eb2f85c27e1a1e7e597e4276 assets/tconstruct/items/adze_head_cast.json
 f7ba2e2eeab78b6821b983937551407bd2b51d62 assets/tconstruct/items/adze_head_red_sand_cast.json
@@ -109,7 +109,7 @@ d364c97f6ac46f1801b4def77cd7fd52f6cc0ea4 assets/tconstruct/items/copper_gauge.js
 cf7df091e7aec84653da5bd98b101759eb99de21 assets/tconstruct/items/copper_nugget.json
 8d0232feebc33e112b172e0bdf7de92cec8b7a35 assets/tconstruct/items/copper_platform.json
 ae9e6565dd1def703eb237a12a4999b402b8cd09 assets/tconstruct/items/crafting_station.json
-b842a199f5c69564978d25b0aef29ec5d0db6a22 assets/tconstruct/items/creative_slot.json
+1ec407c68d16574ba004036c9c468835789a05b8 assets/tconstruct/items/creative_slot.json
 91aac67f5f6b60f39ac81863657c1f8c61ba2bfe assets/tconstruct/items/crystalshot.json
 a115ba2c7639a2d1470cb5ca41eb911bfa99a9f0 assets/tconstruct/items/debris_nugget.json
 f347247d58f4b2c56dfc1d96a326ee235ed30fd0 assets/tconstruct/items/diamond_item_frame.json
@@ -570,6 +570,11 @@ dc6d2f3a81110ee62f7ff6144f5872c97f3aa33d assets/tconstruct/models/item/plate_red
 1ee67d88b50d628a2420a18aadc6d8a11e76d551 assets/tconstruct/models/item/shell.json
 38f7ac3ca6fef1f79f2b50ca5183ce61d892e63f assets/tconstruct/models/item/shield_core.json
 77718f8924efcffc3b22e0065f6edcd8f5db0253 assets/tconstruct/models/item/sky_slime_crystal.json
+b2b3410c5e60f928aed3f912df901999b6510f6f assets/tconstruct/models/item/slot/abilities.json
+a099004f228e1e226be83a9b7baec79c1ef3558f assets/tconstruct/models/item/slot/defense.json
+897ed18c558e79813ca8565b665af576663cbc18 assets/tconstruct/models/item/slot/slotless.json
+0b6c1a95ed92badad6f89b65a61247da55a6e724 assets/tconstruct/models/item/slot/souls.json
+e48f304c04ebefd973f3339c96aa52ba5f9c859e assets/tconstruct/models/item/slot/upgrades.json
 b4dcb3c4b7b2e55fc986121cf38c550b9dbe2cff assets/tconstruct/models/item/small_axe_head.json
 611c10ef7228cc0724e72455e2fb784f88681c6c assets/tconstruct/models/item/small_axe_head_cast.json
 e3b92fde79b15bb529de6ac0029fb43a9ca50b53 assets/tconstruct/models/item/small_axe_head_red_sand_cast.json

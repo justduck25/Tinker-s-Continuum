@@ -30,6 +30,7 @@ import net.neoforged.neoforge.client.event.RegisterSpriteSourcesEvent;
 import net.neoforged.neoforge.client.event.RegisterItemModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
+import net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
@@ -109,6 +110,7 @@ public class TinkerClient {
     TConstruct.MOD_EVENT_BUS.addListener(TinkerClient::registerMaterialBlockStateModels);
     TConstruct.MOD_EVENT_BUS.addListener(TinkerClient::registerConditionalItemModelProperties);
     TConstruct.MOD_EVENT_BUS.addListener(TinkerClient::registerRangeItemModelProperties);
+    TConstruct.MOD_EVENT_BUS.addListener(TinkerClient::registerSelectItemModelProperties);
     FluidClientEvents.onConstruct(TConstruct.MOD_EVENT_BUS);
     TConstruct.MOD_EVENT_BUS.addListener((RegisterSpriteSourcesEvent event) -> ShieldBannerModifierSpriteSource.register(event));
     TinkerBook.initBook();
@@ -172,6 +174,10 @@ public class TinkerClient {
 
   private static void registerRangeItemModelProperties(RegisterRangeSelectItemModelPropertyEvent event) {
     TinkerItemProperties.registerRangeProperties(event);
+  }
+
+  private static void registerSelectItemModelProperties(RegisterSelectItemModelPropertyEvent event) {
+    TinkerItemProperties.registerSelectProperties(event);
   }
 
   private static void registerMaterialBlockStateModels(RegisterBlockStateModels event) {

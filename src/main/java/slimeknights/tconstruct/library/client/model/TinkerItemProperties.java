@@ -1,9 +1,11 @@
 package slimeknights.tconstruct.library.client.model;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperty;
 import net.minecraft.client.renderer.item.properties.numeric.RangeSelectItemModelProperty;
+import net.minecraft.client.renderer.item.properties.select.SelectItemModelProperty;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.CustomData;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
+import net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent;
 import org.jspecify.annotations.Nullable;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.modifiers.hook.interaction.GeneralInteractionModifierHook;
@@ -37,10 +40,16 @@ public final class TinkerItemProperties {
   private static final Identifier CAST_ID = TConstruct.getResource("cast");
   private static final Identifier CHARGING_ID = TConstruct.getResource("charging");
   private static final Identifier CHARGE_ID = TConstruct.getResource("charge");
+  private static final Identifier SLOT_TYPE_ID = TConstruct.getResource("slot_type");
 
   /** Registers conditional properties such as {@code tconstruct:broken}. */
   public static void registerConditionalProperties(RegisterConditionalItemModelPropertyEvent event) {
     event.register(BROKEN_ID, BrokenProperty.MAP_CODEC);
+  }
+
+  /** Registers select properties such as {@code tconstruct:slot_type}. */
+  public static void registerSelectProperties(RegisterSelectItemModelPropertyEvent event) {
+    event.register(SLOT_TYPE_ID, SlotTypeProperty.TYPE);
   }
 
   /** Registers numeric properties such as {@code tconstruct:charge}, {@code tconstruct:charging}, and {@code tconstruct:ammo}. */
@@ -49,6 +58,32 @@ public final class TinkerItemProperties {
     event.register(CAST_ID, CastProperty.MAP_CODEC);
     event.register(CHARGING_ID, ChargingProperty.MAP_CODEC);
     event.register(CHARGE_ID, ChargeProperty.MAP_CODEC);
+  }
+
+  /**
+   * Selects the creative modifier slot model by the slot it grants.
+   * The slot lives in custom data rather than in a component of its own, so no vanilla select property can read it.
+   */
+  private record SlotTypeProperty() implements SelectItemModelProperty<String> {
+    /** Matches the key written by {@code CreativeSlotItem} */
+    private static final String KEY = "slot";
+    private static final SelectItemModelProperty.Type<SlotTypeProperty,String> TYPE = SelectItemModelProperty.Type.create(MapCodec.unit(new SlotTypeProperty()), Codec.STRING);
+
+    @Nullable
+    @Override
+    public String get(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity owner, int seed, ItemDisplayContext displayContext) {
+      return stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag().getString(KEY).orElse(null);
+    }
+
+    @Override
+    public Codec<String> valueCodec() {
+      return Codec.STRING;
+    }
+
+    @Override
+    public SelectItemModelProperty.Type<? extends SelectItemModelProperty<String>,String> type() {
+      return TYPE;
+    }
   }
 
   private record BrokenProperty() implements ConditionalItemModelProperty {

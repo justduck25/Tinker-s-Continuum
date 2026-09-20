@@ -83,12 +83,14 @@ public enum SlotIngredientRenderer implements IIngredientRenderer<SlotCount> {
   private static final Function<SlotType,TextureAtlasSprite> SLOT_LOOKUP = slotType -> {
     Minecraft minecraft = Minecraft.getInstance();
     String name = slotType == null ? "slotless" : slotType.getName();
+    // keep these in sync with the creative slot item models, souls borrows the hollow gem as it has no slot icon
     String spriteName = switch (name) {
-      case "abilities" -> "ability";
-      case "upgrades" -> "upgrade";
-      default -> name;
+      case "abilities" -> "item/slot/ability";
+      case "upgrades" -> "item/slot/upgrade";
+      case "souls" -> "item/materials/hollow_gem";
+      default -> "item/slot/" + name;
     };
-    Identifier sprite = Identifier.fromNamespaceAndPath(TConstruct.MOD_ID, "item/slot/" + spriteName);
+    Identifier sprite = Identifier.fromNamespaceAndPath(TConstruct.MOD_ID, spriteName);
     return minecraft.getAtlasManager().get(new SpriteId(TextureAtlas.LOCATION_ITEMS, sprite));
   };
 
