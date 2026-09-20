@@ -17,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -297,7 +298,10 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
   @Override
   protected void applyImplicitComponents(DataComponentGetter components) {
     super.applyImplicitComponents(components);
-    updateTank(TankBlockEntity.readTankData(components));
+    CustomData data = components.get(DataComponents.CUSTOM_DATA);
+    if (data != null) {
+      updateTank(data.copyTag().getCompound(NBTTags.TANK).orElseGet(CompoundTag::new));
+    }
   }
 
   public void setTankTag(ItemStack stack) {

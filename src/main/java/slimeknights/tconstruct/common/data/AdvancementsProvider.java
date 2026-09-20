@@ -16,6 +16,9 @@ import net.minecraft.advancements.criterion.DataComponentMatchers;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.NbtPredicate;
+import net.minecraft.core.component.predicates.CustomDataPredicate;
+import net.minecraft.core.component.predicates.DataComponentPredicates;
 import net.minecraft.advancements.criterion.ItemUsedOnLocationTrigger;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.LocationPredicate;
@@ -385,14 +388,9 @@ public class AdvancementsProvider extends GenericDataProvider {
     AdvancementHolder blazingBlood = builder(TinkerSmeltery.scorchedTank.get(TankType.FUEL_GAUGE),
             resource("foundry/blaze"), foundry, AdvancementType.GOAL, builder -> {
       Consumer<SearedTankBlock> with = block -> {
-        CompoundTag nbt = filledTankData(TinkerFluids.blazingBlood.get(), block.getCapacity());
         builder.addCriterion(BuiltInRegistries.BLOCK.getKey(block).getPath(),
                               InventoryChangeTrigger.TriggerInstance.hasItems(
-                                ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, block)
-                                  .withComponents(DataComponentMatchers.Builder.components()
-                                    .exact(DataComponentExactPredicate.expect(DataComponents.CUSTOM_DATA, CustomData.of(nbt)))
-                                    .build())
-                                  .build()));
+                                filledTankPredicate(block, TinkerFluids.blazingBlood.get(), block.getCapacity(), MinMaxBounds.Ints.ANY)));
         builder.requirements(AdvancementRequirements.Strategy.OR);
       };
       TinkerSmeltery.searedTank.forEach(with);
@@ -403,14 +401,9 @@ public class AdvancementsProvider extends GenericDataProvider {
     builder(TinkerSmeltery.scorchedLantern,
             resource("foundry/manyullyn_lanterns"), foundry, AdvancementType.CHALLENGE, builder -> {
       Consumer<SearedLanternBlock> with = block -> {
-        CompoundTag nbt = filledTankData(TinkerFluids.moltenManyullyn.get(), block.getCapacity());
         builder.addCriterion(BuiltInRegistries.BLOCK.getKey(block).getPath(),
                               InventoryChangeTrigger.TriggerInstance.hasItems(
-                                ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, block.asItem())
-                                  .withComponents(DataComponentMatchers.Builder.components()
-                                    .exact(DataComponentExactPredicate.expect(DataComponents.CUSTOM_DATA, CustomData.of(nbt)))
-                                    .build())
-                                  .build()));
+                                filledTankPredicate(block, TinkerFluids.moltenManyullyn.get(), block.getCapacity(), MinMaxBounds.Ints.atLeast(64))));
         builder.requirements(AdvancementRequirements.Strategy.OR);
       };
       with.accept(TinkerSmeltery.searedLantern.get());
@@ -548,6 +541,21 @@ public class AdvancementsProvider extends GenericDataProvider {
 
   private static Criterion<InventoryChangeTrigger.TriggerInstance> hasItem(ItemLike item) {
     return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, item).build());
+  }
+
+  /**
+   * Matches a tank or lantern item that holds at least {@code amount} of {@code fluid}.
+   * Uses a partial custom-data predicate, like 1.20 {@code hasNbt}, because an exact
+   * {@link DataComponents#CUSTOM_DATA} match fails as soon as {@link FluidStack} writes extra keys.
+   */
+  private static ItemPredicate filledTankPredicate(ItemLike item, Fluid fluid, int amount, MinMaxBounds.Ints count) {
+    return ItemPredicate.Builder.item()
+      .of(BuiltInRegistries.ITEM, item)
+      .withCount(count)
+      .withComponents(DataComponentMatchers.Builder.components()
+        .partial(DataComponentPredicates.CUSTOM_DATA, CustomDataPredicate.customData(new NbtPredicate(filledTankData(fluid, amount))))
+        .build())
+      .build();
   }
 
   /**

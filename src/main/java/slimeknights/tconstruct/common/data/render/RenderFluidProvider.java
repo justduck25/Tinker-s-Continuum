@@ -77,6 +77,15 @@ public class RenderFluidProvider extends BlockStateDataMapProvider<List<FluidCub
       block(TinkerSmeltery.scorchedTank.get(type)).variant(tank);
     }
 
+    String lantern = "templates/lantern";
+    entry(lantern, List.of(
+      FluidCuboid.builder()
+                 .from(5.05f, 1f, 5.05f)
+                 .to(10.95f, 6f, 10.95f)
+                 .build()));
+    block(TinkerSmeltery.searedLantern).variant(lantern);
+    block(TinkerSmeltery.scorchedLantern).variant(lantern);
+
     block(TinkerSmeltery.searedCastingTank.get()).variant(List.of(
       FluidCuboid.builder()
                  .from(0.08f, 0.08f, 0.08f)

@@ -201,11 +201,19 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
     components.set(DataComponents.CUSTOM_DATA, writeTankData(tank.getFluid()));
   }
 
-  /** Fills the tank from a placed item, which also keeps the fluid out of the stored component patch. */
+  /**
+   * Fills the tank from a placed item, which also keeps the fluid out of the stored component patch.
+   * Only apply when the incoming components actually carry tank data: {@link #loadWithComponents} also
+   * calls this after {@link #loadAdditional}, and an absent custom-data component would wipe a tank
+   * that the update packet or world save just restored.
+   */
   @Override
   protected void applyImplicitComponents(DataComponentGetter components) {
     super.applyImplicitComponents(components);
-    updateTank(readTankData(components));
+    CustomData data = components.get(DataComponents.CUSTOM_DATA);
+    if (data != null) {
+      updateTank(data.copyTag().getCompound(NBTTags.TANK).orElseGet(CompoundTag::new));
+    }
   }
 
   public void setTankTag(ItemStack stack) {
@@ -238,15 +246,29 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
     return true;
   }
 
-  public void handleUpdateTag(CompoundTag tag) {
-    tag.getCompound(NBTTags.TANK).ifPresent(this::updateTank);
+  @Override
+  public void handleUpdateTag(ValueInput input) {
+    super.handleUpdateTag(input);
+    refreshTankRender();
   }
 
   @Override
   protected void loadAdditional(ValueInput input) {
     super.loadAdditional(input);
     tank.setCapacity(getCapacity(getBlockState().getBlock()));
-    input.child(NBTTags.TANK).flatMap(child -> child.read("fluid", FluidStack.OPTIONAL_CODEC)).ifPresent(tank::setFluid);
+    boolean[] readTank = {false};
+    input.child(NBTTags.TANK).flatMap(child -> child.read("fluid", FluidStack.OPTIONAL_CODEC)).ifPresent(fluid -> {
+      tank.setFluid(fluid);
+      readTank[0] = true;
+    });
+    // item custom data and older saves write the fluid stack directly under tank, not nested as tank.fluid
+    if (!readTank[0]) {
+      input.read(NBTTags.TANK, CompoundTag.CODEC).ifPresent(tag -> {
+        if (!tag.isEmpty()) {
+          updateTank(tag);
+        }
+      });
+    }
     refreshTankRender();
   }
 

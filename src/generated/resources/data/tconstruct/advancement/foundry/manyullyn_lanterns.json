@@ -5,15 +5,13 @@
       "conditions": {
         "items": [
           {
-            "components": {
-              "minecraft:custom_data": {
-                "tank": {
-                  "amount": 50,
-                  "id": "tconstruct:molten_manyullyn"
-                }
-              }
+            "count": {
+              "min": 64
             },
-            "items": "tconstruct:scorched_lantern"
+            "items": "tconstruct:scorched_lantern",
+            "predicates": {
+              "minecraft:custom_data": "{tank:{amount:50,id:\"tconstruct:molten_manyullyn\"}}"
+            }
           }
         ]
       },
@@ -23,15 +21,13 @@
       "conditions": {
         "items": [
           {
-            "components": {
-              "minecraft:custom_data": {
-                "tank": {
-                  "amount": 50,
-                  "id": "tconstruct:molten_manyullyn"
-                }
-              }
+            "count": {
+              "min": 64
             },
-            "items": "tconstruct:seared_lantern"
+            "items": "tconstruct:seared_lantern",
+            "predicates": {
+              "minecraft:custom_data": "{tank:{amount:50,id:\"tconstruct:molten_manyullyn\"}}"
+            }
           }
         ]
       },
