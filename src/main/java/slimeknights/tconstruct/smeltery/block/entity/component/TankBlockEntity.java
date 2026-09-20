@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.smeltery.block.entity.component;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.Direction;
@@ -33,6 +34,8 @@ import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock;
 import slimeknights.tconstruct.smeltery.block.component.SearedTankBlock.TankType;
 import slimeknights.tconstruct.smeltery.block.entity.ITankBlockEntity;
 import slimeknights.tconstruct.smeltery.item.TankItem;
+
+import javax.annotation.Nullable;
 
 public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITankBlockEntity {
   /** Max capacity for the tank */
@@ -165,18 +168,51 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
    */
 
   /**
-   * Sets the tag on the stack based on the contained tank
-   * @param stack  Stack
+   * Serializes a fluid into the custom data shape {@link TankItem} uses, so a broken tank stacks with a filled one.
+   * @return  Data to store, or null to clear the component for an empty tank
+   */
+  @Nullable
+  public static CustomData writeTankData(FluidStack fluid) {
+    if (fluid.isEmpty()) {
+      return null;
+    }
+    CompoundTag tag = new CompoundTag();
+    tag.put(NBTTags.TANK, FluidStackNbt.write(fluid));
+    return CustomData.of(tag);
+  }
+
+  /** Reads the tank subtag out of the given components, returning an empty tag when there is nothing stored. */
+  public static CompoundTag readTankData(DataComponentGetter components) {
+    CustomData data = components.get(DataComponents.CUSTOM_DATA);
+    if (data == null) {
+      return new CompoundTag();
+    }
+    return data.copyTag().getCompound(NBTTags.TANK).orElseGet(CompoundTag::new);
+  }
+
+  /**
+   * Sets the tag on the stack based on the contained tank.
+   * The component is written even when the tank is empty, as the value the block was placed with otherwise survives
+   * in the stored component patch and a drained tank drops still holding its original fluid.
    */
   @Override
   protected void collectImplicitComponents(DataComponentMap.Builder components) {
     super.collectImplicitComponents(components);
-    if (!tank.isEmpty()) {
-      CompoundTag tag = new CompoundTag();
-      CompoundTag tankTag = new CompoundTag();
-      tankTag.put("fluid", FluidStackNbt.write(tank.getFluid()));
-      tag.put(NBTTags.TANK, tankTag);
-      components.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+    components.set(DataComponents.CUSTOM_DATA, writeTankData(tank.getFluid()));
+  }
+
+  /**
+   * Fills the tank from a placed item, which also keeps the fluid out of the stored component patch.
+   * Only apply when the incoming components actually carry tank data: {@link #loadWithComponents} also
+   * calls this after {@link #loadAdditional}, and an absent custom-data component would wipe a tank
+   * that the update packet or world save just restored.
+   */
+  @Override
+  protected void applyImplicitComponents(DataComponentGetter components) {
+    super.applyImplicitComponents(components);
+    CustomData data = components.get(DataComponents.CUSTOM_DATA);
+    if (data != null) {
+      updateTank(data.copyTag().getCompound(NBTTags.TANK).orElseGet(CompoundTag::new));
     }
   }
 
@@ -210,15 +246,29 @@ public class TankBlockEntity extends SmelteryComponentBlockEntity implements ITa
     return true;
   }
 
-  public void handleUpdateTag(CompoundTag tag) {
-    tag.getCompound(NBTTags.TANK).ifPresent(this::updateTank);
+  @Override
+  public void handleUpdateTag(ValueInput input) {
+    super.handleUpdateTag(input);
+    refreshTankRender();
   }
 
   @Override
   protected void loadAdditional(ValueInput input) {
     super.loadAdditional(input);
     tank.setCapacity(getCapacity(getBlockState().getBlock()));
-    input.child(NBTTags.TANK).flatMap(child -> child.read("fluid", FluidStack.OPTIONAL_CODEC)).ifPresent(tank::setFluid);
+    boolean[] readTank = {false};
+    input.child(NBTTags.TANK).flatMap(child -> child.read("fluid", FluidStack.OPTIONAL_CODEC)).ifPresent(fluid -> {
+      tank.setFluid(fluid);
+      readTank[0] = true;
+    });
+    // item custom data and older saves write the fluid stack directly under tank, not nested as tank.fluid
+    if (!readTank[0]) {
+      input.read(NBTTags.TANK, CompoundTag.CODEC).ifPresent(tag -> {
+        if (!tag.isEmpty()) {
+          updateTank(tag);
+        }
+      });
+    }
     refreshTankRender();
   }
 

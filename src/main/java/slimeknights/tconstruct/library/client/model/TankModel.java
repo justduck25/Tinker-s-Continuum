@@ -212,11 +212,6 @@ public final class TankModel extends AbstractUnbakedModel {
     }
 
     @Override
-    public void collectParts(RandomSource random, List<BlockStateModelPart> parts) {
-      parts.add(basePart);
-    }
-
-    @Override
     public void collectParts(BlockAndTintGetter level, BlockPos pos, BlockState state,
                              RandomSource random, List<BlockStateModelPart> parts) {
       if (!original.forceModelFluid && !Config.CLIENT.tankFluidModel.get()) {

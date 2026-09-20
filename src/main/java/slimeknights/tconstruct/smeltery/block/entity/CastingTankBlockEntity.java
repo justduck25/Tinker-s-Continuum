@@ -3,6 +3,7 @@ package slimeknights.tconstruct.smeltery.block.entity;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.Direction;
@@ -283,18 +284,23 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
   private static final String TAG_REDSTONE = "redstone";
 
   /**
-   * Sets the tag on the stack based on the contained tank
-   * @param stack  Stack
+   * Sets the tag on the stack based on the contained tank.
+   * The component is written even when the tank is empty, as the value the block was placed with otherwise survives
+   * in the stored component patch and a drained tank drops still holding its original fluid.
    */
   @Override
   protected void collectImplicitComponents(DataComponentMap.Builder components) {
     super.collectImplicitComponents(components);
-    if (!tank.isEmpty()) {
-      CompoundTag tag = new CompoundTag();
-      CompoundTag tankTag = new CompoundTag();
-      tankTag.put("fluid", FluidStackNbt.write(tank.getFluid()));
-      tag.put(NBTTags.TANK, tankTag);
-      components.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+    components.set(DataComponents.CUSTOM_DATA, TankBlockEntity.writeTankData(tank.getFluid()));
+  }
+
+  /** Fills the tank from a placed item, which also keeps the fluid out of the stored component patch. */
+  @Override
+  protected void applyImplicitComponents(DataComponentGetter components) {
+    super.applyImplicitComponents(components);
+    CustomData data = components.get(DataComponents.CUSTOM_DATA);
+    if (data != null) {
+      updateTank(data.copyTag().getCompound(NBTTags.TANK).orElseGet(CompoundTag::new));
     }
   }
 

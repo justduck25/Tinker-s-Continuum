@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -36,7 +36,6 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ICondition.IContext;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.fml.ModContainer;
@@ -59,7 +58,6 @@ import javax.annotation.Nullable;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -124,8 +122,12 @@ public class ModifierManager extends SimplePreparableReloadListener<Map<Identifi
 
   /** List of tag to modifier mappings to try */
   private Map<TagKey<Enchantment>, Modifier> enchantmentTagMap = Collections.emptyMap();
-  /** Mapping from enchantment to modifiers, for conversions */
-  private Map<Enchantment,Modifier> enchantmentMap = Collections.emptyMap();
+  /**
+   * Mapping from enchantment to modifiers, for conversions.
+   * Keyed by registry key rather than by instance, as enchantments are datapack driven: a reload or a sync produces
+   * fresh instances, and {@link Enchantment} is a record holding holder sets that compare by identity.
+   */
+  private Map<ResourceKey<Enchantment>,Modifier> enchantmentMap = Collections.emptyMap();
 
   /** If true, dynamic modifiers have been loaded from datapacks, so its safe to fetch dynamic modifiers */
   boolean dynamicModifiersLoaded = false;
@@ -134,8 +136,12 @@ public class ModifierManager extends SimplePreparableReloadListener<Map<Identifi
     return dynamicModifiersLoaded;
   }
   private IContext conditionContext = IContext.EMPTY;
+  /** Registries of the running server, null on a client connected to a dedicated server */
   @Nullable
   private RegistryAccess registryAccess;
+  /** Registries the last modifier sync packet was decoded against, the only source a remote client has */
+  @Nullable
+  private RegistryAccess syncedRegistryAccess;
 
   private ModifierManager() {
     // create the empty modifier
@@ -303,15 +309,16 @@ public class ModifierManager extends SimplePreparableReloadListener<Map<Identifi
               if (optional) {
                 key = key.substring(0, key.length() - 1);
               }
-              Enchantment enchantment = Objects.requireNonNull(registryAccess, "Registry access not available during modifier reload").lookupOrThrow(Registries.ENCHANTMENT).get(ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse(key))).map(Holder::value).orElse(null);
-              if (enchantment == null) {
+              ResourceKey<Enchantment> enchantmentKey = ResourceKey.create(Registries.ENCHANTMENT, Identifier.parse(key));
+              // the enchantment is only looked up to validate it exists, the key is what gets stored
+              if (Objects.requireNonNull(registryAccess, "Registry access not available during modifier reload").lookupOrThrow(Registries.ENCHANTMENT).get(enchantmentKey).isEmpty()) {
                 if (optional) {
                   TConstruct.LOG.debug("Skipping modifier " + modifierId + " due to unknown optional enchantment " + key);
                   continue;
                 }
                 throw new JsonSyntaxException("Invalid enchantment ID " + key + " for modifier " + modifierId);
               }
-              enchantmentMap.put(enchantment, modifier);
+              enchantmentMap.put(enchantmentKey, modifier);
             }
           } catch (RuntimeException e) {
             log.info("Invalid enchantment to modifier mapping", e);
@@ -426,7 +433,9 @@ public class ModifierManager extends SimplePreparableReloadListener<Map<Identifi
   }
 
   /** Updates the modifiers from the server */
-  void updateModifiersFromServer(Map<ModifierId,Modifier> modifiers, Map<TagKey<Modifier>,List<Modifier>> tags, Map<Enchantment,Modifier> enchantmentMap, Map<TagKey<Enchantment>,Modifier> enchantmentTagMappings) {
+  void updateModifiersFromServer(RegistryAccess registryAccess, Map<ModifierId,Modifier> modifiers, Map<TagKey<Modifier>,List<Modifier>> tags, Map<ResourceKey<Enchantment>,Modifier> enchantmentMap, Map<TagKey<Enchantment>,Modifier> enchantmentTagMappings) {
+    // a client connected to a dedicated server never runs the reload listener, so this is its only source of registries
+    this.syncedRegistryAccess = registryAccess;
     this.dynamicModifiers = modifiers;
     this.dynamicModifiersLoaded = true;
     this.tags = tags;
@@ -471,24 +480,42 @@ public class ModifierManager extends SimplePreparableReloadListener<Map<Identifi
   }
 
   /**
-   * Gets the modifier for a given enchantment. Not currently synced to client side
-   * @param enchantment  Enchantment
+   * Gets the modifier for a given enchantment.
+   * @param enchantment  Enchantment holder. Must come from a registry, as both the key and the tags are needed.
    * @return Closest modifier to the enchantment, or null if no match
    */
-  @SuppressWarnings("deprecation")  // eventually it won't be if we move away from forge
   @Nullable
-  public Modifier get(Enchantment enchantment) {
-    // if we saw it before, return the last value
-    if (enchantmentMap.containsKey(enchantment)) {
-      return enchantmentMap.get(enchantment);
+  public Modifier get(Holder<Enchantment> enchantment) {
+    Modifier modifier = enchantment.unwrapKey().map(enchantmentMap::get).orElse(null);
+    if (modifier != null) {
+      return modifier;
     }
-    // did not find, check the tags
+    // did not find, check the tags. asking the holder avoids needing a registry, which the client does not always have
     for (Entry<TagKey<Enchantment>,Modifier> mapping : enchantmentTagMap.entrySet()) {
-      if (ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(mapping.getKey()).map(tag -> tag.stream().anyMatch(holder -> holder.value() == enchantment)).orElse(false)) {
+      if (enchantment.is(mapping.getKey())) {
         return mapping.getValue();
       }
     }
     return null;
+  }
+
+  /**
+   * Gets the modifier for a given enchantment.
+   * @deprecated use {@link #get(Holder)}. Enchantments are datapack driven, so finding the holder for a bare instance
+   * means scanning the registry, and the instance may not be in the registry at all.
+   */
+  @Deprecated
+  @Nullable
+  public Modifier get(Enchantment enchantment) {
+    HolderLookup.RegistryLookup<Enchantment> lookup = enchantmentLookup();
+    if (lookup == null) {
+      return null;
+    }
+    return lookup.listElements()
+                 .filter(holder -> holder.value() == enchantment)
+                 .findFirst()
+                 .map(holder -> get((Holder<Enchantment>) holder))
+                 .orElse(null);
   }
 
   /** Checks if the given modifier has an enchantment equivelent */
@@ -496,14 +523,35 @@ public class ModifierManager extends SimplePreparableReloadListener<Map<Identifi
     return enchantmentMap.containsValue(modifier) || enchantmentTagMap.containsValue(modifier);
   }
 
-  /** Gets a stream of all enchantments that match the given modifiers */
-  @SuppressWarnings("deprecation")  // eventually it won't be if we move away from forge
-  public Stream<Enchantment> getEquivalentEnchantments(Predicate<ModifierId> modifiers) {
-    Predicate<Entry<?,Modifier>> predicate = entry -> modifiers.test(entry.getValue().getId());
-    return Stream.concat(
-      enchantmentMap.entrySet().stream().filter(predicate).map(Entry::getKey),
-        enchantmentTagMap.entrySet().stream().filter(predicate).flatMap(entry -> ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(entry.getKey()).stream().flatMap(HolderSet::stream).map(Holder::value))
-    ).distinct().sorted(Comparator.comparing(enchantment -> ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).listElementIds().filter(key -> ServerLifecycleHooks.getCurrentServer().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(key).map(h -> h.value() == enchantment).orElse(false)).findFirst().orElseThrow()));
+  /**
+   * Gets a stream of all enchantments that match the given modifiers, in registry order.
+   * Empty if no enchantment registry is available, which is the case before the modifier sync packet arrives.
+   */
+  public Stream<Holder<Enchantment>> getEquivalentEnchantments(Predicate<ModifierId> modifiers) {
+    HolderLookup.RegistryLookup<Enchantment> lookup = enchantmentLookup();
+    if (lookup == null) {
+      return Stream.empty();
+    }
+    return lookup.listElements().<Holder<Enchantment>>map(holder -> holder).filter(holder -> {
+      Modifier modifier = get(holder);
+      return modifier != null && modifiers.test(modifier.getId());
+    });
+  }
+
+  /** Gets the enchantment registry, set by the reload listener on the server and by the sync packet on the client */
+  @Nullable
+  private HolderLookup.RegistryLookup<Enchantment> enchantmentLookup() {
+    HolderLookup.Provider provider = registryAccess;
+    if (provider == null) {
+      provider = syncedRegistryAccess;
+      if (provider == null) {
+        provider = RegistryHelper.getFallbackRegistryAccess();
+        if (provider == null) {
+          return null;
+        }
+      }
+    }
+    return provider.lookup(Registries.ENCHANTMENT).orElse(null);
   }
 
   /** Gets a list of all modifier IDs */

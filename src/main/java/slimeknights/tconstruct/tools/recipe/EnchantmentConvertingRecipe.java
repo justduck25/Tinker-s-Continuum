@@ -102,7 +102,7 @@ public class EnchantmentConvertingRecipe extends AbstractWorktableRecipe {
   public Component getDescription(@Nullable ITinkerableContainer inv) {
     // ensure we have at least one supported enchantment
     if (inv != null && getEnchantments(inv.getTinkerableStack()).entrySet().stream().noneMatch(entry -> {
-      Modifier modifier = ModifierManager.INSTANCE.get(entry.getKey().value());
+      Modifier modifier = ModifierManager.INSTANCE.get(entry.getKey());
       return modifier != null && modifierPredicate.matches(modifier.getId());
     })) {
       return NO_ENCHANTMENT;
@@ -140,7 +140,7 @@ public class EnchantmentConvertingRecipe extends AbstractWorktableRecipe {
     if (inv != null) {
       // map all enchantments to an equal level modifier
       return getEnchantments(inv.getTinkerableStack()).entrySet().stream().map(entry -> {
-        Modifier modifier = ModifierManager.INSTANCE.get(entry.getKey().value());
+        Modifier modifier = ModifierManager.INSTANCE.get(entry.getKey());
         if (modifier != null && modifierPredicate.matches(modifier.getId())) {
           return new ModifierEntry(modifier, returnInput ? 1 : entry.getIntValue());
         }
@@ -152,7 +152,7 @@ public class EnchantmentConvertingRecipe extends AbstractWorktableRecipe {
         Set<ModifierId> modifiers = getMatchingModifiers().stream().map(ModifierEntry::getId).collect(Collectors.toSet());
         Modifier defaultModifier = ModifierManager.INSTANCE.getDefaultValue();
         displayModifiers = ModifierManager.INSTANCE.getEquivalentEnchantments(modifiers::contains)
-          .flatMap(enchantment -> IntStream.rangeClosed(1, enchantment.getMaxLevel())
+          .flatMap(enchantment -> IntStream.rangeClosed(1, enchantment.value().getMaxLevel())
             .mapToObj(level -> new ModifierEntry(Objects.requireNonNullElse(ModifierManager.INSTANCE.get(enchantment), defaultModifier), level)))
           .toList();
       } else {
@@ -207,7 +207,7 @@ public class EnchantmentConvertingRecipe extends AbstractWorktableRecipe {
       ItemEnchantments.Mutable mutableEnchantments = new ItemEnchantments.Mutable(enchantments);
       for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
         Holder<Enchantment> enchantment = entry.getKey();
-        Modifier enchantmentModifier = ModifierManager.INSTANCE.get(enchantment.value());
+        Modifier enchantmentModifier = ModifierManager.INSTANCE.get(enchantment);
         if (enchantmentModifier != null && enchantmentModifier.getId().equals(modifier)) {
           int newLevel = entry.getIntValue() - 1;
           if (newLevel <= 0) {
@@ -273,8 +273,9 @@ public class EnchantmentConvertingRecipe extends AbstractWorktableRecipe {
       // don't use the cached value from getModifierOptions as that is going to contain some redundant listings
       Set<ModifierId> modifiers = getMatchingModifiers().stream().map(ModifierEntry::getId).collect(Collectors.toSet());
       tools = ModifierManager.INSTANCE.getEquivalentEnchantments(modifiers::contains)
-        .flatMap(enchantment -> IntStream.rangeClosed(1, enchantment.getMaxLevel())
-          .mapToObj(level -> EnchantmentHelper.createBook(new EnchantmentInstance(Holder.direct(enchantment), level))))
+        .flatMap(enchantment -> IntStream.rangeClosed(1, enchantment.value().getMaxLevel())
+          // the registry holder matters here, a direct holder produces a book that will not serialise or match
+          .mapToObj(level -> EnchantmentHelper.createBook(new EnchantmentInstance(enchantment, level))))
         .toList();
     }
     return tools;

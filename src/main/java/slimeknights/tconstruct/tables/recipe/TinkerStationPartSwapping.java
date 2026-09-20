@@ -26,7 +26,6 @@ import slimeknights.tconstruct.tables.TinkerTables;
 
 import java.util.BitSet;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * Recipe that replaces a tool part with another
@@ -96,18 +95,22 @@ public class TinkerStationPartSwapping extends MaterialSwappingRecipe {
           return RecipeResult.pass();
         }
 
-        // we have a part and its not at this index, find the first copy of this part
-        // means slot only matters if a tool uses a part twice
-        int index = i;
-        if (i >= parts.size() || parts.get(i) != part) {
-          index = IntStream.range(0, parts.size())
-                           .filter(pi -> parts.get(pi) == part)
-                           .findFirst().orElse(-1);
-          if (index == -1) {
-            return RecipeResult.pass();
+        // the slot index doubles as the part index, so a tool using a part twice can aim at either copy by slot
+        int cost = MaterialCastingLookup.getItemCost(part);
+        RecipeResult<LazyToolStack> result = RecipeResult.pass();
+        int index = -1;
+        if (i < parts.size() && parts.get(i) == part) {
+          index = i;
+          result = swapMaterial(inv, partVariant, index, cost);
+        }
+        // a pass means that copy already holds this material, so try the other copies before giving up
+        // otherwise a tool using a part twice could only ever swap whichever copy was filled first
+        for (int pi = 0; pi < parts.size() && !result.isSuccess() && !result.hasError(); pi++) {
+          if (pi != index && parts.get(pi) == part) {
+            result = swapMaterial(inv, partVariant, pi, cost);
           }
         }
-        return swapMaterial(inv, partVariant, index, MaterialCastingLookup.getItemCost(part));
+        return result;
       }
     }
     // no item found, should never happen

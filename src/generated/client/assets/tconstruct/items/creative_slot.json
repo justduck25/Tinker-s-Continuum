@@ -1,6 +1,47 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "tconstruct:item/creative_slot"
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "tconstruct:item/slot/upgrades"
+        },
+        "when": "upgrades"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "tconstruct:item/slot/abilities"
+        },
+        "when": "abilities"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "tconstruct:item/slot/defense"
+        },
+        "when": "defense"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "tconstruct:item/slot/souls"
+        },
+        "when": "souls"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "tconstruct:item/slot/slotless"
+        },
+        "when": "slotless"
+      }
+    ],
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "tconstruct:item/creative_slot"
+    },
+    "property": "tconstruct:slot_type"
   }
 }

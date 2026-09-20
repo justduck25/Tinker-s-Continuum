@@ -140,6 +140,9 @@ import slimeknights.tconstruct.smeltery.menu.MelterContainerMenu;
 import slimeknights.tconstruct.smeltery.menu.SingleItemContainerMenu;
 import slimeknights.tconstruct.tools.TinkerToolParts;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -458,6 +461,10 @@ public final class TinkerSmeltery extends TinkerModule {
   @SubscribeEvent
   void registerCapabilities(RegisterCapabilitiesEvent event) {
     event.registerBlockEntity(Capabilities.Fluid.BLOCK, tank.get(), (blockEntity, side) -> new TankResourceHandler(blockEntity.getTank()));
+    // lanterns and cannons are tanks too, they just live under their own block entity type and so need their own registration
+    event.registerBlockEntity(Capabilities.Fluid.BLOCK, lantern.get(), (blockEntity, side) -> new TankResourceHandler(blockEntity.getTank()));
+    event.registerBlockEntity(Capabilities.Fluid.BLOCK, fluidCannon.get(), (blockEntity, side) -> new TankResourceHandler(blockEntity.getTank()));
+    event.registerBlockEntity(Capabilities.Item.BLOCK, fluidCannon.get(), (blockEntity, side) -> new ItemHandlerResourceHandler(blockEntity.getItemCapability()));
     event.registerBlockEntity(Capabilities.Fluid.BLOCK, castingTank.get(), (blockEntity, side) -> new TankResourceHandler(blockEntity.getTank()));
     event.registerBlockEntity(Capabilities.Fluid.BLOCK, proxyTank.get(), (blockEntity, side) -> new TankResourceHandler(blockEntity.getItemTank()));
     event.registerBlockEntity(Capabilities.Fluid.BLOCK, table.get(), (blockEntity, side) -> new TankResourceHandler(blockEntity.getTank()));
@@ -472,8 +479,12 @@ public final class TinkerSmeltery extends TinkerModule {
     event.registerBlockEntity(Capabilities.Item.BLOCK, smeltery.get(), (blockEntity, side) -> new ItemHandlerResourceHandler(blockEntity.getMeltingInventory()));
     event.registerBlockEntity(Capabilities.Item.BLOCK, foundry.get(), (blockEntity, side) -> new ItemHandlerResourceHandler(blockEntity.getMeltingInventory()));
     event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new CopperCanFluidHandler(access.oneByOne()), copperCan.get());
-    searedTank.forEach(item -> event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new TankItemFluidHandler((TankItem) stack.getItem(), access.oneByOne()), item.asItem()));
-    scorchedTank.forEach(item -> event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new TankItemFluidHandler((TankItem) stack.getItem(), access.oneByOne()), item.asItem()));
+    // every TankItem holds its fluid the same way, so they all get the handler; casting recipes and faucets find a lantern through this
+    List<ItemLike> tankItems = new ArrayList<>();
+    searedTank.forEach((type, item) -> tankItems.add(item));
+    scorchedTank.forEach((type, item) -> tankItems.add(item));
+    Collections.addAll(tankItems, searedCastingTank.get(), searedFluidCannon.get(), scorchedFluidCannon.get(), endFluidCannon.get(), searedLantern.get(), scorchedLantern.get());
+    event.registerItem(Capabilities.Fluid.ITEM, (stack, access) -> new TankItemFluidHandler((TankItem) stack.getItem(), access.oneByOne()), tankItems.toArray(ItemLike[]::new));
   }
 
   @SubscribeEvent
