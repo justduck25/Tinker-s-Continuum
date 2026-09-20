@@ -6,6 +6,7 @@ import lombok.Getter;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup.RegistryLookup;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.Unit;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -24,7 +25,6 @@ import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
@@ -149,11 +149,17 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   public boolean canWalkOnPowderedSnow(ItemStack stack, LivingEntity wearer) {
     return type == ArmorType.BOOTS && ModifierUtil.checkVolatileFlag(stack, SNOW_BOOTS);
   }
-  public boolean isEnderMask(ItemStack stack, Player player, EnderMan endermanEntity) {
+  /** 26.1 renamed the enderman mask hook and widened it to cover every gaze attack, such as the creaking */
+  @Override
+  public boolean isGazeDisguise(ItemStack stack, Player player, @Nullable LivingEntity target) {
     return type == ArmorType.HELMET && ModifierUtil.checkVolatileFlag(stack, ENDERMASK);
   }
   public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
     return ModifierUtil.canPerformAction(ToolStack.from(stack), itemAbility);
+  }
+  @Override
+  public boolean canPerformAction(ItemInstance stack, ItemAbility itemAbility) {
+    return stack instanceof ItemStack itemStack && canPerformAction(itemStack, itemAbility);
   }
   public boolean isNotReplaceableByPickAction(ItemStack stack, Player player, int inventorySlot) {
     return true;
@@ -337,6 +343,12 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
     return type == ArmorType.CHESTPLATE && !ToolDamageUtil.isBroken(stack) && ModifierUtil.checkVolatileFlag(stack, ELYTRA);
   }
+
+  /**
+   * Runs the modifier flight hooks for a gliding wearer, called from {@link slimeknights.tconstruct.tools.logic.ModifierEvents}.
+   * Unlike older versions this does not damage the tool, as vanilla damages every glider it finds through {@link #damageItem}.
+   * @return  True if the wearer should keep flying
+   */
   public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
     if (type.getSlot() == EquipmentSlot.CHEST) {
       ToolStack tool = ToolStack.from(stack);
@@ -346,10 +358,6 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
           if (entry.getHook(ModifierHooks.ELYTRA_FLIGHT).elytraFlightTick(tool, entry, entity, flightTicks)) {
             return false;
           }
-        }
-        // damage the tool and keep flying
-        if (!entity.level().isClientSide() && (flightTicks + 1) % 20 == 0) {
-          ToolDamageUtil.damageAnimated(tool, 1, entity, EquipmentSlot.CHEST);
         }
         if (!entity.level().isClientSide()) {
           ToolElytraHooks.onFlightTick(tool, stack, entity, flightTicks);
@@ -369,6 +377,17 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
     if (entityIn instanceof LivingEntity living) {
       ToolStack tool = ToolStack.from(stack);
       tool.ensureHasData();
+      // chestplates saved before the glider component existed cannot gain it on load, as verifyTagAfterLoad only sees the tag
+      if (type == ArmorType.CHESTPLATE) {
+        boolean glides = canElytraFly(stack, living);
+        if (glides != stack.has(DataComponents.GLIDER)) {
+          if (glides) {
+            stack.set(DataComponents.GLIDER, Unit.INSTANCE);
+          } else {
+            stack.remove(DataComponents.GLIDER);
+          }
+        }
+      }
       List<ModifierEntry> modifiers = tool.getModifierList();
       if (!modifiers.isEmpty()) {
         boolean isCorrectSlot = living.getItemBySlot(type.getSlot()) == stack;

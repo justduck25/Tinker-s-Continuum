@@ -20,6 +20,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -81,6 +82,7 @@ import slimeknights.tconstruct.library.tools.capability.TinkerDataKeys;
 import slimeknights.tconstruct.library.tools.helper.ModifierLootingHandler;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
+import slimeknights.tconstruct.library.tools.item.armor.ModifiableArmorItem;
 import slimeknights.tconstruct.library.tools.item.ranged.ModifiableBowItem;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ModifierNBT;
@@ -553,6 +555,23 @@ public class ModifierEvents {
       if (level > 0) {
         MagneticEffect.applyMagnet(entity, level - 1);
       }
+    }
+    elytraFlightTick(entity);
+  }
+
+  /**
+   * Runs the elytra flight modifier hooks for a Tinkers chestplate.
+   * 26.1 dropped {@code IItemExtension#elytraFlightTick}, so gliding itself comes from the glider component
+   * and this only exists to keep the modifier hooks running.
+   */
+  private static void elytraFlightTick(LivingEntity entity) {
+    if (!entity.isFallFlying()) {
+      return;
+    }
+    ItemStack chestplate = entity.getItemBySlot(EquipmentSlot.CHEST);
+    if (chestplate.getItem() instanceof ModifiableArmorItem armor
+        && !armor.elytraFlightTick(chestplate, entity, entity.getFallFlyingTicks())) {
+      entity.stopFallFlying();
     }
   }
 }

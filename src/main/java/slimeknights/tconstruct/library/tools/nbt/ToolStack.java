@@ -9,6 +9,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.Unit;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -40,6 +41,7 @@ import slimeknights.tconstruct.library.tools.definition.module.material.MissingM
 import slimeknights.tconstruct.library.tools.definition.module.mining.MiningTierToolHook;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
+import slimeknights.tconstruct.library.tools.item.armor.ModifiableArmorItem;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import slimeknights.tconstruct.library.utils.RestrictedCompoundTag;
@@ -156,6 +158,12 @@ public class ToolStack implements IToolStackView {
     }
     if (hasTag(TinkerTags.Items.HARVEST)) {
       stack.set(DataComponents.TOOL, buildToolComponent());
+    }
+    // 26.1 gates gliding on DataComponents.GLIDER, the IItemExtension#canElytraFly hook no longer exists
+    if (!isBroken() && getVolatileData().getBoolean(ModifiableArmorItem.ELYTRA)) {
+      stack.set(DataComponents.GLIDER, Unit.INSTANCE);
+    } else {
+      stack.remove(DataComponents.GLIDER);
     }
     // 26.1 colors the item name from DataComponents.RARITY, not Item.getRarity(ItemStack)
     RarityModule.applyToStack(stack);
