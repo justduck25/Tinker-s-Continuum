@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.tables.block.entity.chest;
 
 import lombok.Getter;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.BlockPos;
@@ -62,15 +63,32 @@ public abstract class AbstractChestBlockEntity extends NameableBlockEntity {
     writeInventory(tags);
   }
 
+  /**
+   * Writes the inventory into the data components for the dropped chest.
+   * The component is cleared for an empty chest rather than skipped, as the contents the chest was placed with
+   * otherwise survive in the stored component patch and an emptied chest drops still holding its original items.
+   */
   @Override
   protected void collectImplicitComponents(DataComponentMap.Builder components) {
     super.collectImplicitComponents(components);
     CompoundTag inventory = new CompoundTag();
     writeInventory(inventory);
-    if (!inventory.isEmpty()) {
+    if (inventory.isEmpty()) {
+      components.set(DataComponents.CUSTOM_DATA, null);
+    } else {
       CompoundTag tag = new CompoundTag();
       tag.put("TinkerData", inventory);
       components.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
+    }
+  }
+
+  /** Fills the chest from a placed item, which also keeps the contents out of the stored component patch. */
+  @Override
+  protected void applyImplicitComponents(DataComponentGetter components) {
+    super.applyImplicitComponents(components);
+    CustomData data = components.get(DataComponents.CUSTOM_DATA);
+    if (data != null) {
+      data.copyTag().getCompound("TinkerData").ifPresent(this::readInventory);
     }
   }
 
