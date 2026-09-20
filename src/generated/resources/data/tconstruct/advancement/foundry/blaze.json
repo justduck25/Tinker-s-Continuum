@@ -8,8 +8,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4000,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4000,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },
@@ -26,8 +26,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4000,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4000,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },
@@ -44,8 +44,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4320,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4320,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },
@@ -62,8 +62,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4320,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4320,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },
@@ -80,8 +80,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4000,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4000,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },
@@ -98,8 +98,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4000,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4000,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },
@@ -116,8 +116,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4320,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4320,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },
@@ -134,8 +134,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 4320,
-                  "FluidName": "tconstruct:blazing_blood"
+                  "amount": 4320,
+                  "id": "tconstruct:blazing_blood"
                 }
               }
             },

@@ -49,6 +49,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.fluids.FluidInstance;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import slimeknights.mantle.data.GenericDataProvider;
@@ -384,11 +385,7 @@ public class AdvancementsProvider extends GenericDataProvider {
     AdvancementHolder blazingBlood = builder(TinkerSmeltery.scorchedTank.get(TankType.FUEL_GAUGE),
             resource("foundry/blaze"), foundry, AdvancementType.GOAL, builder -> {
       Consumer<SearedTankBlock> with = block -> {
-        CompoundTag nbt = new CompoundTag();
-        CompoundTag tankTag = new CompoundTag();
-        tankTag.putString("FluidName", BuiltInRegistries.FLUID.getKey(TinkerFluids.blazingBlood.get()).toString());
-        tankTag.putInt("Amount", block.getCapacity());
-        nbt.put(NBTTags.TANK, tankTag);
+        CompoundTag nbt = filledTankData(TinkerFluids.blazingBlood.get(), block.getCapacity());
         builder.addCriterion(BuiltInRegistries.BLOCK.getKey(block).getPath(),
                               InventoryChangeTrigger.TriggerInstance.hasItems(
                                 ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, block)
@@ -406,11 +403,7 @@ public class AdvancementsProvider extends GenericDataProvider {
     builder(TinkerSmeltery.scorchedLantern,
             resource("foundry/manyullyn_lanterns"), foundry, AdvancementType.CHALLENGE, builder -> {
       Consumer<SearedLanternBlock> with = block -> {
-        CompoundTag nbt = new CompoundTag();
-        CompoundTag tankTag = new CompoundTag();
-        tankTag.putString("FluidName", BuiltInRegistries.FLUID.getKey(TinkerFluids.moltenManyullyn.get()).toString());
-        tankTag.putInt("Amount", block.getCapacity());
-        nbt.put(NBTTags.TANK, tankTag);
+        CompoundTag nbt = filledTankData(TinkerFluids.moltenManyullyn.get(), block.getCapacity());
         builder.addCriterion(BuiltInRegistries.BLOCK.getKey(block).getPath(),
                               InventoryChangeTrigger.TriggerInstance.hasItems(
                                 ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, block.asItem())
@@ -555,6 +548,21 @@ public class AdvancementsProvider extends GenericDataProvider {
 
   private static Criterion<InventoryChangeTrigger.TriggerInstance> hasItem(ItemLike item) {
     return InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, item).build());
+  }
+
+  /**
+   * Builds the custom data a tank item holding the given fluid carries.
+   * Written by hand rather than through {@link FluidStack}, whose constructors read components off the fluid holder
+   * and those are not bound during datagen. The field names still come from the codec, as spelling them out is how
+   * these criteria ended up written in the pre 1.21 fluid format and never fired.
+   */
+  private static CompoundTag filledTankData(Fluid fluid, int amount) {
+    CompoundTag tankTag = new CompoundTag();
+    tankTag.putString(FluidInstance.FIELD_ID, BuiltInRegistries.FLUID.getKey(fluid).toString());
+    tankTag.putInt(FluidInstance.FIELD_AMOUNT, amount);
+    CompoundTag nbt = new CompoundTag();
+    nbt.put(NBTTags.TANK, tankTag);
+    return nbt;
   }
 
   private static Criterion<ToolInventoryChangeTrigger.Instance> hasTool(ToolStackItemPredicate predicate) {

@@ -8,8 +8,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 50,
-                  "FluidName": "tconstruct:molten_manyullyn"
+                  "amount": 50,
+                  "id": "tconstruct:molten_manyullyn"
                 }
               }
             },
@@ -26,8 +26,8 @@
             "components": {
               "minecraft:custom_data": {
                 "tank": {
-                  "Amount": 50,
-                  "FluidName": "tconstruct:molten_manyullyn"
+                  "amount": 50,
+                  "id": "tconstruct:molten_manyullyn"
                 }
               }
             },
