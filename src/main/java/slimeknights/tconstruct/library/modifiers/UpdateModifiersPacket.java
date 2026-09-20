@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableMap;
 import io.netty.handler.codec.DecoderException;
 import lombok.RequiredArgsConstructor;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -21,6 +22,7 @@ import slimeknights.tconstruct.library.json.TinkerEnchantmentLoadable;
 import slimeknights.tconstruct.library.modifiers.impl.ComposableModifier;
 import slimeknights.tconstruct.library.utils.GenericTagUtil;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -43,15 +45,19 @@ public class UpdateModifiersPacket implements IThreadsafePacket, CustomPacketPay
   /** Map of modifier redirect ID pairs */
   private Map<ModifierId,ModifierId> redirects;
   /** Map of enchantment to modifier pair */
-  private final Map<Enchantment,Modifier> enchantmentMap;
+  private final Map<ResourceKey<Enchantment>,Modifier> enchantmentMap;
   /** Collection of all enchantment tag mappings */
   private final Map<TagKey<Enchantment>, Modifier> enchantmentTagMappings;
+  /** Registries the packet was decoded against, null when the packet was built for sending */
+  @Nullable
+  private final RegistryAccess registryAccess;
 
-  public UpdateModifiersPacket(Map<ModifierId,Modifier> allModifiers, Map<TagKey<Modifier>,List<Modifier>> tags, Map<Enchantment,Modifier> enchantmentMap, Map<TagKey<Enchantment>, Modifier> enchantmentTagMappings) {
+  public UpdateModifiersPacket(Map<ModifierId,Modifier> allModifiers, Map<TagKey<Modifier>,List<Modifier>> tags, Map<ResourceKey<Enchantment>,Modifier> enchantmentMap, Map<TagKey<Enchantment>, Modifier> enchantmentTagMappings) {
     this.allModifiers = allModifiers;
     this.tags = tags;
     this.enchantmentMap = enchantmentMap;
     this.enchantmentTagMappings = enchantmentTagMappings;
+    this.registryAccess = null;
   }
 
   /** Ensures both the modifiers and redirects lists are calculated, allows one packet to be used multiple times without redundant work */
@@ -92,6 +98,7 @@ public class UpdateModifiersPacket implements IThreadsafePacket, CustomPacketPay
   }
 
   public UpdateModifiersPacket(RegistryFriendlyByteBuf buffer) {
+    this.registryAccess = buffer.registryAccess();
     // read in modifiers
     int size = buffer.readVarInt();
     Map<ModifierId,Modifier> modifiers = new HashMap<>();
@@ -121,11 +128,12 @@ public class UpdateModifiersPacket implements IThreadsafePacket, CustomPacketPay
     this.tags = GenericTagUtil.decodeTags(buffer, ModifierManager.REGISTRY_KEY, id -> getModifier(modifiers, new ModifierId(id)));
 
     // read in enchantment to modifier mapping
-    ImmutableMap.Builder<Enchantment,Modifier> enchantmentBuilder = ImmutableMap.builder();
+    ImmutableMap.Builder<ResourceKey<Enchantment>,Modifier> enchantmentBuilder = ImmutableMap.builder();
     size = buffer.readVarInt();
     for (int i = 0; i < size; i++) {
-      buffer.readIdentifier();
-      buffer.readIdentifier();
+      enchantmentBuilder.put(
+        ResourceKey.create(Registries.ENCHANTMENT, buffer.readIdentifier()),
+        getModifier(modifiers, new ModifierId(buffer.readIdentifier())));
     }
     enchantmentMap = enchantmentBuilder.build();
     ImmutableMap.Builder<TagKey<Enchantment>, Modifier> enchantmentTagBuilder = ImmutableMap.builder();
@@ -163,7 +171,11 @@ public class UpdateModifiersPacket implements IThreadsafePacket, CustomPacketPay
     GenericTagUtil.encodeTags(buffer, modifier -> modifier.getId().getId(), this.tags);
 
     // enchantment mapping
-    buffer.writeVarInt(0);
+    buffer.writeVarInt(enchantmentMap.size());
+    for (Entry<ResourceKey<Enchantment>,Modifier> entry : enchantmentMap.entrySet()) {
+      buffer.writeIdentifier(entry.getKey().identifier());
+      buffer.writeIdentifier(entry.getValue().getId().getId());
+    }
     buffer.writeVarInt(enchantmentTagMappings.size());
     for (Entry<TagKey<Enchantment>, Modifier> entry : enchantmentTagMappings.entrySet()) {
       buffer.writeIdentifier(entry.getKey().location());
@@ -178,6 +190,7 @@ public class UpdateModifiersPacket implements IThreadsafePacket, CustomPacketPay
 
   @Override
   public void handleThreadsafe(IPayloadContext context) {
-    ModifierManager.INSTANCE.updateModifiersFromServer(allModifiers, tags, enchantmentMap, enchantmentTagMappings);
+    assert registryAccess != null;
+    ModifierManager.INSTANCE.updateModifiersFromServer(registryAccess, allModifiers, tags, enchantmentMap, enchantmentTagMappings);
   }
 }
