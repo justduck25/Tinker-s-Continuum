@@ -24,6 +24,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import slimeknights.mantle.registration.RegistrationHelper;
+import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.common.TinkerModule;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.config.Config;
@@ -110,6 +111,7 @@ public class TConstruct {
     // initialize modules, done this way rather than with annotations to give us control over the order
     // TODO NeoForge 26.1: port missing mapping handlers to current registry remap API.
     // base
+    bus.register(Sounds.class);
     bus.register(new TinkerCommons());
     // Constructor registers potion DeferredRegister; this class has no @SubscribeEvent methods.
     new TinkerEffects();
