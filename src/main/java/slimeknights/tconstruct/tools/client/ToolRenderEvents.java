@@ -3,7 +3,10 @@ package slimeknights.tconstruct.tools.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.block.dispatch.BlockStateModel;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.ShapeRenderer;
 import net.minecraft.client.renderer.state.level.BlockOutlineRenderState;
@@ -14,18 +17,23 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.CustomBlockOutlineRenderer;
 import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent;
+import net.neoforged.neoforge.client.event.SubmitCustomGeometryEvent;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
+import slimeknights.tconstruct.library.tools.definition.module.aoe.AreaOfEffectIterator;
 import slimeknights.tconstruct.library.tools.definition.module.aoe.AreaOfEffectIterator.AOEMatchType;
 import slimeknights.tconstruct.library.tools.definition.module.mining.IsEffectiveToolHook;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.library.utils.BlockSideHitListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -113,61 +121,39 @@ public class ToolRenderEvents {
       return false;
     }
   }
-  /** Renders the block damage process on the extra blocks */
-    // TODO NeoForge 26.1: no equivalent public block-damage overlay pipeline is available.
-  // The old destroyingBlocks state, destroy texture render types, decal generator, and
-  // ModelBlockRenderer.renderBreakingTexture were removed; do not replace this with a no-op renderer.
-
-  /*
+  /**
+   * Submits the crack overlay for AOE blocks. Vanilla only cracks the targeted block.
+   * This runs in the same submit pass as {@code LevelRenderer#submitBlockDestroyAnimation}.
+   */
   @SubscribeEvent
-  static void renderBlockDamageProgress(RenderLevelStageEvent event) {
-        // Historical stage; retained only inside the disabled reference implementation.
-
-    if (event.getStage() != Stage.AFTER_TRIPWIRE_BLOCKS) {
-      return;
-    }
-
-    // validate required variables are set
+  static void renderBlockDamageProgress(SubmitCustomGeometryEvent event) {
     MultiPlayerGameMode controller = Minecraft.getInstance().gameMode;
     if (controller == null || !controller.isDestroying()) {
       return;
     }
-    Level world = Minecraft.getInstance().level;
-    Player player = Minecraft.getInstance().player;
-    if (world == null || player == null || Minecraft.getInstance().getCameraEntity() == null) {
+    int progress = controller.getDestroyStage();
+    if (progress < 0) {
       return;
     }
-    // must have the right tags
+    Level world = Minecraft.getInstance().level;
+    Player player = Minecraft.getInstance().player;
+    if (world == null || player == null) {
+      return;
+    }
     ItemStack stack = player.getMainHandItem();
     if (stack.isEmpty() || !stack.is(TinkerTags.Items.HARVEST)) {
       return;
     }
-    // must be targeting a block
     HitResult result = Minecraft.getInstance().hitResult;
-    if (result == null || result.getType() != Type.BLOCK) {
+    if (!(result instanceof BlockHitResult blockTrace) || result.getType() != HitResult.Type.BLOCK) {
       return;
     }
-    // must not be broken, must be right interface
     ToolStack tool = ToolStack.from(stack);
     if (tool.isBroken()) {
       return;
     }
-    // find breaking progress
-    BlockHitResult blockTrace = (BlockHitResult)result;
     BlockPos target = blockTrace.getBlockPos();
-    BlockDestructionProgress progress = null;
-    for (Int2ObjectMap.Entry<BlockDestructionProgress> entry : Minecraft.getInstance().levelRenderer.destroyingBlocks.int2ObjectEntrySet()) {
-      if (entry.getValue().getPos().equals(target)) {
-        progress = entry.getValue();
-        break;
-      }
-    }
-    if (progress == null) {
-      return;
-    }
-    // determine extra blocks to highlight
     BlockState state = world.getBlockState(target);
-    // must not be broken, and the tool definition must be effective
     if (!IsEffectiveToolHook.isEffective(tool, state)) {
       return;
     }
@@ -177,33 +163,25 @@ public class ToolRenderEvents {
       return;
     }
 
-    // set up buffers
-    PoseStack matrices = event.getPoseStack();
-    matrices.pushPose();
-    MultiBufferSource.BufferSource vertices = event.getLevelRenderer().renderBuffers.crumblingBufferSource();
-    VertexConsumer vertexBuilder = vertices.getBuffer(ModelBakery.DESTROY_TYPES.get(progress.getProgress()));
-
-    // finally, render the blocks
-    Camera renderInfo = Minecraft.getInstance().gameRenderer.getMainCamera();
-    double x = renderInfo.getPosition().x;
-    double y = renderInfo.getPosition().y;
-    double z = renderInfo.getPosition().z;
-    ModelBlockRenderer dispatcher = Minecraft.getInstance().getBlockRenderer();
+    Vec3 camera = event.getLevelRenderState().cameraRenderState.pos;
+    PoseStack poseStack = event.getPoseStack();
+    SubmitNodeCollector collector = event.getSubmitNodeCollector();
     int rendered = 0;
     do {
       BlockPos pos = extraBlocks.next();
-      matrices.pushPose();
-      matrices.translate(pos.getX() - x, pos.getY() - y, pos.getZ() - z);
-      PoseStack.Pose entry = matrices.last();
-      VertexConsumer blockBuilder = new SheetedDecalTextureGenerator(vertexBuilder, entry.pose(), entry.normal(), 1);
-      // TODO: is it practical to fetch model data here?
-      dispatcher.renderBreakingTexture(world.getBlockState(pos), pos, world, matrices, blockBuilder);
-      matrices.popPose();
+      if (pos.equals(target) || !world.getWorldBorder().isWithinBounds(pos)) {
+        continue;
+      }
+      BlockState extraState = world.getBlockState(pos);
+      if (extraState.getRenderShape() != RenderShape.MODEL) {
+        continue;
+      }
+      BlockStateModel model = Minecraft.getInstance().getModelManager().getBlockStateModelSet().get(extraState);
+      poseStack.pushPose();
+      poseStack.translate(pos.getX() - camera.x, pos.getY() - camera.y, pos.getZ() - camera.z);
+      collector.submitBreakingBlockModel(poseStack, model, extraState.getSeed(pos), progress);
+      poseStack.popPose();
       rendered++;
     } while (rendered < MAX_BLOCKS && extraBlocks.hasNext());
-    // finish rendering
-    matrices.popPose();
-    vertices.endBatch();
   }
-  */
 }
