@@ -1,3 +1,17 @@
+Continuum Construct 26.1.2-3.12.3
+
+This release keeps players moving in custom fluids, lets channels pour into tanks and casting tables, and shows fluid particles.
+
+Fixes
+- Joining a world with a tool table no longer crashes. Inventory updates use the world registry, so enchantments on stored items can be written. Requires the Continuum Core build that includes that registry lookup; the Core version number stays 1.12.0.
+- Channels pour into tanks and casting tables as well as other channels.
+- Molten fluids show surface, drip, faucet, and step-in particles, and standing in a full source block no longer freezes movement.
+- Area-harvest tools draw the break crack on the extra blocks, not only the block in the crosshair.
+
+Compatibility
+- Requires Continuum Core 1.12.0.
+- Built against Minecraft 26.1.2 / NeoForge 26.1.2.109.
+
 Continuum Construct 26.1.2-3.12.2
 
 This release restores wings and the enderman mask on Tinkers armor, lets tools that reuse a part swap either copy, and repairs tanks, lanterns, enchantment converting, and the creative slot icons.
@@ -12,10 +26,6 @@ Fixes
 - Creative modifier slots show their upgrade, ability, defense, soul, and slotless icons in JEI and the creative tab (#24).
 - The blazing blood and manyullyn lantern advancements trigger again. They now match the fluid format tanks actually write, and the lantern challenge still needs a full stack of 64.
 - Filled lanterns keep their fluid when placed, render it in world, and can be filled from a casting table, basin, faucet, or fluid container.
-- Joining a world with a tool table no longer crashes. Inventory updates use the world registry, so enchantments on stored items can be written.
-- Channels pour into tanks and casting tables as well as other channels.
-- Molten fluids show surface, drip, faucet, and step-in particles, and standing in a full source block no longer freezes movement.
-- Area-harvest tools draw the break crack on the extra blocks, not only the block in the crosshair.
 
 Compatibility
 - Requires Continuum Core 1.12.0.
