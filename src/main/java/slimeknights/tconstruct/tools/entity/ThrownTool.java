@@ -116,13 +116,24 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
 
   /** Sets any relevant properties from the stack */
   private void updateFromStack() {
-    this.entityData.set(STACK, getThrownStack());
-    this.entityData.set(LOYALTY_DATA, (byte) ModifierUtil.getVolatileInt(getThrownStack(), LOYALTY));
+    // Snapshot. The held stack can be shrunk after throw, and entity data must keep its own copy.
+    ItemStack thrown = getThrownStack();
+    this.entityData.set(STACK, thrown.copy());
+    this.entityData.set(LOYALTY_DATA, (byte) loyaltyLevel(thrown));
     this.entityData.set(FOIL_DATA, ModifierUtil.checkVolatileFlag(getThrownStack(), ModifiableItem.SHINY));
     this.noDespawn = ModifierUtil.checkVolatileFlag(getThrownStack(), IndestructibleItemEntity.INDESTRUCTIBLE_ENTITY);
     if (!level().isClientSide()) {
       this.magnet = ModifierUtil.getVolatileInt(getThrownStack(), MAGNET);
     }
+  }
+
+  /** Returning level on the thrown tool. Volatile data and the modifier level should match; use whichever is higher. */
+  private static int loyaltyLevel(ItemStack stack) {
+    int loyalty = ModifierUtil.getVolatileInt(stack, LOYALTY);
+    if (!stack.isEmpty() && stack.getItem() instanceof ModifiableItem) {
+      loyalty = Math.max(loyalty, ToolStack.from(stack).getModifiers().getLevel(ModifierIds.returning));
+    }
+    return Math.min(Math.max(loyalty, 0), 127);
   }
 
   /** Called after {@link #shoot(double, double, double, float, float)} but before the first tick of hte projectile to do final setup. */
@@ -212,6 +223,9 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
       }
       dealtDamage = true;
     }
+    // Vanilla return reads ThrownTrident's private loyalty accessor, which stays 0.
+    // Returning stores its level on this entity instead.
+    returnToOwner();
     super.tick();
 
     // magnet
@@ -355,6 +369,52 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
     super.onHitBlock(result);
   }
 
+
+  /**
+   * Pulls the thrown tool back to its owner.
+   * Level 1 uses the same acceleration as a loyalty I trident. Extra levels scale by the square,
+   * so Returning IV is obviously faster even on a short throw.
+   */
+  private void returnToOwner() {
+    Entity owner = this.getOwner();
+    int loyalty = this.entityData.get(LOYALTY_DATA) & 0xFF;
+    if (loyalty <= 0 || (!this.dealtDamage && !this.isNoPhysics()) || owner == null) {
+      return;
+    }
+    if (!isAcceptableReturnOwner()) {
+      if (this.level() instanceof ServerLevel level && this.pickup == AbstractArrow.Pickup.ALLOWED) {
+        this.spawnAtLocation(level, this.getPickupItem(), 0.1F);
+      }
+      this.discard();
+      return;
+    }
+    if (!(owner instanceof Player) && this.position().distanceTo(owner.getEyePosition()) < owner.getBbWidth() + 1.0) {
+      this.discard();
+      return;
+    }
+    this.setNoPhysics(true);
+    // Position is otherwise only synced every 20 ticks, which hides the level gap on a short throw.
+    this.needsSync = true;
+    double strength = (double) loyalty * loyalty;
+    Vec3 vec = owner.getEyePosition().subtract(this.position());
+    this.setPosRaw(this.getX(), this.getY() + vec.y * 0.015 * strength, this.getZ());
+    this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec.normalize().scale(0.05 * strength)));
+    if (this.clientSideReturnTridentTickCount == 0) {
+      this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
+    }
+    this.clientSideReturnTridentTickCount++;
+  }
+
+  /** Same owner check vanilla uses before a loyal trident flies back. */
+  private boolean isAcceptableReturnOwner() {
+    Entity owner = this.getOwner();
+    return owner != null && owner.isAlive() && (!(owner instanceof ServerPlayer) || !owner.isSpectator());
+  }
+
+  @Override
+  protected EntityHitResult findHitEntity(Vec3 from, Vec3 to) {
+    return this.dealtDamage ? null : super.findHitEntity(from, to);
+  }
 
   /* returning to slot */
 
