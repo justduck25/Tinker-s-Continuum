@@ -1,6 +1,5 @@
 package slimeknights.tconstruct.shared.particle;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import lombok.Getter;
 import net.minecraft.core.particles.ParticleOptions;
@@ -25,30 +24,30 @@ public class FluidParticleData implements ParticleOptions {
 
   /** Particle type for a fluid particle */
   public static class Type extends ParticleType<FluidParticleData> {
-    private static final MapCodec<FluidParticleData> CODEC = FluidStack.MAP_CODEC.xmap(
-      fluid -> new FluidParticleData(null, fluid), data -> data.fluid
-    ).fieldOf("fluid");
-
-    private static final StreamCodec<? super RegistryFriendlyByteBuf, FluidParticleData> STREAM_CODEC =
-      FluidStack.STREAM_CODEC.map(
-        fluid -> new FluidParticleData(null, fluid), data -> data.fluid
-      );
-
     private final Identifier id;
+    private final MapCodec<FluidParticleData> codec;
+    private final StreamCodec<? super RegistryFriendlyByteBuf, FluidParticleData> streamCodec;
 
     public Type(Identifier id) {
       super(false);
       this.id = id;
+      // The decoded options must keep this type. A null type makes the client drop the particle.
+      this.codec = FluidStack.MAP_CODEC.xmap(
+        fluid -> new FluidParticleData(this, fluid), data -> data.fluid
+      ).fieldOf("fluid");
+      this.streamCodec = FluidStack.STREAM_CODEC.map(
+        fluid -> new FluidParticleData(this, fluid), data -> data.fluid
+      );
     }
 
     @Override
     public MapCodec<FluidParticleData> codec() {
-      return CODEC;
+      return codec;
     }
 
     @Override
     public StreamCodec<? super RegistryFriendlyByteBuf, FluidParticleData> streamCodec() {
-      return STREAM_CODEC;
+      return streamCodec;
     }
   }
 }

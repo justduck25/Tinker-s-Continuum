@@ -10,6 +10,8 @@ import slimeknights.tconstruct.library.recipe.casting.material.MaterialCastingLo
 import slimeknights.tconstruct.library.recipe.casting.material.MaterialCastingRecipe;
 import slimeknights.tconstruct.library.recipe.casting.material.MaterialFluidRecipe;
 import slimeknights.tconstruct.library.recipe.casting.material.ToolCastingRecipe;
+import slimeknights.tconstruct.library.recipe.fuel.MeltingFuel;
+import slimeknights.tconstruct.library.recipe.fuel.MeltingFuelLookup;
 import slimeknights.tconstruct.library.recipe.material.MaterialRecipe;
 import slimeknights.tconstruct.library.recipe.material.MaterialRecipeCache;
 
@@ -46,6 +48,7 @@ public final class TinkerRecipeCacheRebuilder {
     }
 
     MaterialCastingLookup.rebuildRecipes(fluids, materialCastingRecipes, toolCastingRecipes);
+    MeltingFuelLookup.rebuild(getRecipes(recipeMap, TinkerRecipeTypes.FUEL.get(), MeltingFuel.class));
   }
 
   /** Gets all recipes of the given type and class from a loaded recipe map. */
