@@ -1,12 +1,13 @@
 Continuum Construct 26.1.2-3.12.4
 
-This release keeps other mods' tank colors, brings thrown tools back, heats a smeltery from a second fuel tank, and stops the part builder from freezing when a chest is beside it.
+This release keeps other mods' tank colors, brings thrown tools back, heats a smeltery from a second fuel tank, stops the part builder from freezing when a chest is beside it, and no longer crashes when tool damage math goes below zero.
 
 Fixes
 - Tanks tint from the fluid model, so other mods keep their color (#27).
 - Returning brings a thrown tool back, and a higher level is visibly faster (#28).
 - A smeltery keeps heating from a second fuel tank when the first is empty. Liquid fuel recipes are no longer wiped by the shared fallback id during world load.
 - Shift-clicking the part builder result no longer freezes when a chest is beside it, and the client no longer shows a ghost stack after the material runs out (#29).
+- Being hit no longer crashes the server when modifier or armor math would set damage below zero. NeoForge 26.1.2.112 rejects a negative amount, so incoming and final damage are clamped to zero.
 
 Compatibility
 - Requires Continuum Core 1.12.1.
