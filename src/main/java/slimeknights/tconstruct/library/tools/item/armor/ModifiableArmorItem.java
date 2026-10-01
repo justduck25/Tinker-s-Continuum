@@ -263,7 +263,11 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   }
   public void setDamage(ItemStack stack, int damage) {
     if (canBeDepleted()) {
-      ToolStack.from(stack).setDamage(damage);
+      // parity: ToolStack.from works on a copy of the custom data on 26.1, so write the damage back
+      // the same way ModifiableItem does; without this, vanilla repairs such as mending never changed Tinkers armor.
+      ToolStack tool = ToolStack.from(stack);
+      tool.setDamage(damage);
+      tool.updateStack(stack, false);
     }
   }
   public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, @Nullable T damager, Consumer<Item> onBroken) {
@@ -372,6 +376,8 @@ public class ModifiableArmorItem extends Item implements IModifiableDisplay {
   /* Ticking */
   @Override
   public void inventoryTick(ItemStack stack, ServerLevel levelIn, Entity entityIn, @Nullable EquipmentSlot slot) {
+    // 26.1 replacement for verifyTagAfterLoad, rebuilds stale derived stats once per loaded stack
+    slimeknights.tconstruct.tools.logic.ToolLoadVerification.verifyOnce(stack);
     TinkerCommons.TOOL_INVENTORY_CHANGED_TRIGGER.trigger(entityIn, stack);
     // don't care about non-living, they skip most tool context
     if (entityIn instanceof LivingEntity living) {

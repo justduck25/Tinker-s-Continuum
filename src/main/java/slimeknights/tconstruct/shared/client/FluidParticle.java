@@ -44,7 +44,9 @@ public class FluidParticle extends SingleQuadParticle {
 
   @Override
   protected Layer getLayer() {
-    return Layer.bySprite(this.sprite);
+    // Parity: official 3.12.1 draws this particle on TERRAIN_SHEET, which blends, so the fluid tint alpha
+    // always applies. Layer.bySprite would pick the opaque layer for an opaque still texture and drop that alpha.
+    return Layer.TRANSLUCENT_TERRAIN;
   }
 
   @Override
