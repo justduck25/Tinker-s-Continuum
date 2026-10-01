@@ -8,6 +8,9 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Instruments;
+import net.minecraft.tags.InstrumentTags;
+import slimeknights.tconstruct.library.recipe.ingredient.InstrumentIngredient;
 import net.minecraft.world.item.crafting.Ingredient;
 import slimeknights.tconstruct.library.recipe.ingredient.LegacyIngredientType;
 import net.minecraft.world.level.block.Blocks;
@@ -146,7 +149,7 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     materialRecipe(consumer, MaterialIds.blaze,      LegacyIngredientType.ofTag(Tags.Items.RODS_BLAZE),       1, 1, folder + "blaze");
     materialRecipe(consumer, MaterialIds.enderPearl, LegacyIngredientType.ofTag(Tags.Items.ENDER_PEARLS),     1, 1, folder + "ender_pearl");
     materialRecipe(consumer, MaterialIds.amethyst,   LegacyIngredientType.ofTag(Tags.Items.GEMS_AMETHYST),    1, 1, folder + "amethyst");
-    materialRecipe(consumer, MaterialIds.prismarine, LegacyIngredientType.ofTag(Tags.Items.GEMS_PRISMARINE), 1, 1, folder + "prismarine");
+    materialRecipe(consumer, MaterialIds.prismarine, Ingredient.of(Items.PRISMARINE_SHARD), 1, 1, folder + "prismarine"); // parity: official forge:dusts/prismarine is the shard; NeoForge c:gems/prismarine is crystals
     materialRecipe(consumer, MaterialIds.glass,      LegacyIngredientType.ofTag(Tags.Items.GLASS_BLOCKS),            4, 1, folder + "glass");
     materialRecipe(consumer, MaterialIds.glass,      LegacyIngredientType.ofTag(Tags.Items.GLASS_PANES),      1, 1, folder + "glass_pane");
 
@@ -268,8 +271,18 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     // slimesuit
     materialRecipe(consumer, MaterialIds.enderslime, Ingredient.of(TinkerWorld.enderGeode), 1, 1, folder + "enderslime");
     materialRecipe(consumer, MaterialIds.phantom,    Ingredient.of(Items.PHANTOM_MEMBRANE), 1, 1, folder + "phantom_membrane");
-    materialRecipe(consumer, MaterialIds.horn,       Ingredient.of(Items.GOAT_HORN),        4, 1, folder + "horn");
+    for (var instrument : List.of(Instruments.PONDER_GOAT_HORN, Instruments.SING_GOAT_HORN,
+        Instruments.SEEK_GOAT_HORN, Instruments.FEEL_GOAT_HORN, Instruments.ADMIRE_GOAT_HORN,
+        Instruments.CALL_GOAT_HORN, Instruments.YEARN_GOAT_HORN, Instruments.DREAM_GOAT_HORN)) {
+      materialRecipe(consumer, MaterialVariantId.create(MaterialIds.horn, instrument.identifier().toString().replace(':', '.')),
+        InstrumentIngredient.of(Items.GOAT_HORN, instrument).toVanilla(), 4, 1, folder + "horn/" + instrument.identifier().getPath());
+    }
+    materialRecipe(withCondition(consumer, TagCombinationCondition.difference(InstrumentTags.GOAT_HORNS, TinkerTags.Instruments.VARIANT_HORNS)),
+      MaterialIds.horn, InstrumentIngredient.of(Items.GOAT_HORN, TinkerTags.Instruments.VARIANT_HORNS).toVanilla(), 4, 1, folder + "horn/default");
+    materialRecipe(consumer, MaterialIds.venom, Ingredient.of(Items.SPIDER_EYE), 1, 1, folder + "venom_eye");
+    materialRecipe(consumer, MaterialIds.venom, Ingredient.of(Items.FERMENTED_SPIDER_EYE), 2, 1, folder + "venom_fermented");
     materialRecipe(consumer, MaterialIds.honey,      Ingredient.of(Items.HONEY_BOTTLE),     1, 1, folder + "honey");
+    materialRecipe(consumer, MaterialIds.honey,      Ingredient.of(Items.HONEY_BLOCK),      4, 1, folder + "honey_block");
     materialRecipe(consumer, MaterialIds.cheese,     Ingredient.of(TinkerCommons.cheeseIngot), 1, 1, folder + "cheese_ingot");
     materialRecipe(consumer, MaterialIds.cheese,     Ingredient.of(TinkerCommons.cheeseBlock), 4, 1, folder + "cheese_block");
   }
@@ -303,13 +316,15 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     // slimeskin
     String slimeskinFolder = folder + "slimeskin/";
     materialComposite(consumer, MaterialIds.leather,   MaterialIds.slimeskin,      TinkerFluids.earthSlime, FluidValues.SLIMEBALL, slimeskinFolder, "earth");
-    materialComposite(consumer, MaterialIds.leather,   MaterialIds.skySlimeskin,   TinkerFluids.skySlime,   FluidValues.SLIMEBALL, slimeskinFolder, "sky");
+    materialComposite(consumer, MaterialIds.leather,   MaterialIds.skyslimeskin,   TinkerFluids.skySlime,   FluidValues.SLIMEBALL, slimeskinFolder, "sky");
     materialComposite(consumer, MaterialIds.leather,   MaterialIds.ichorskin,      TinkerFluids.ichor,      FluidValues.SLIMEBALL, slimeskinFolder, "ichor");
-    materialComposite(consumer, MaterialIds.leather,   MaterialIds.enderSlimeskin, TinkerFluids.enderSlime, FluidValues.SLIMEBALL, slimeskinFolder, "ender");
+    materialComposite(consumer, MaterialIds.leather,   MaterialIds.enderslimeskin, TinkerFluids.enderSlime, FluidValues.SLIMEBALL, slimeskinFolder, "ender");
     venomCleaning(consumer, MaterialIds.slimeskin, slimeskinFolder, "earth_cleaning");
-    venomCleaning(consumer, MaterialIds.skySlimeskin, slimeskinFolder, "sky_cleaning");
+    venomCleaning(consumer, MaterialIds.skyslimeskin, slimeskinFolder, "sky_cleaning");
     venomCleaning(consumer, MaterialIds.ichorskin, slimeskinFolder, "ichor_cleaning");
-    venomCleaning(consumer, MaterialIds.enderSlimeskin, slimeskinFolder, "ender_cleaning");
+    venomCleaning(consumer, MaterialIds.enderslimeskin, slimeskinFolder, "ender_cleaning");
+    venomCleaning(consumer, MaterialIds.skySlimeskin, slimeskinFolder, "sky_legacy_cleaning");
+    venomCleaning(consumer, MaterialIds.enderSlimeskin, slimeskinFolder, "ender_legacy_cleaning");
 
     // tier 3
     materialMeltingCasting(consumer, MaterialIds.slimesteel,     TinkerFluids.moltenSlimesteel, folder);
@@ -402,8 +417,20 @@ public class MaterialRecipeProvider extends BaseRecipeProvider implements IMater
     materialMeltingCasting(consumer, MaterialIds.ichor,      TinkerFluids.ichor,      FluidValues.SLIMEBALL, folder);
     materialMeltingCasting(consumer, MaterialIds.enderslime, TinkerFluids.enderSlime, FluidValues.SLIMEBALL, folder);
     materialMeltingCasting(consumer, MaterialIds.magma,      TinkerFluids.magma,      FluidValues.SLIMEBALL, folder);
+    MaterialFluidRecipeBuilder.material(MaterialIds.magma)
+      .setInputId(MaterialIds.earthslime)
+      .setFluid(TagKey.create(net.minecraft.core.registries.Registries.FLUID, TinkerFluids.blazingBlood.getId()), 50)
+      .setTemperature(1500)
+      .save(consumer, location(folder + "composite/magma"));
     // slimesuit - pseudoslime
     materialMeltingCasting(consumer, MaterialIds.clay,       TinkerFluids.moltenClay,  FluidValues.BRICK,    folder);
+    // Keep the original local venom tag while accepting the registered source fluid directly.
+    MaterialFluidRecipeBuilder.material(MaterialIds.venom)
+      .setFluid(FluidIngredient.of(FluidIngredient.of(TinkerFluids.venom.get(), FluidValues.SLIMEBALL),
+        FluidIngredient.of(TagKey.create(net.minecraft.core.registries.Registries.FLUID, TinkerFluids.venom.getId()), FluidValues.SLIMEBALL)))
+      .setTemperature(slimeknights.tconstruct.library.recipe.melting.IMeltingRecipe.getTemperature(TinkerFluids.venom))
+      .save(consumer, location(folder + "casting/venom"));
+    materialMelting(consumer, MaterialIds.venom, TinkerFluids.venom, FluidValues.SLIMEBALL, folder);
     materialMeltingCasting(consumer, MaterialIds.honey,      TinkerFluids.honey,       FluidValues.BOTTLE,   folder);
     materialMeltingCasting(consumer, MaterialIds.enderPearl, TinkerFluids.moltenEnder, FluidValues.SLIMEBALL, folder);
     // slimesuit - repair kits
