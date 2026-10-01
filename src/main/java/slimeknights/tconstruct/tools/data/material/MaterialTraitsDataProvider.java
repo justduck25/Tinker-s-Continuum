@@ -44,6 +44,9 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addDefaultTraits(MaterialIds.cactus, ModifierIds.spiny);
     addTraits(MaterialIds.cactus, ARMOR, ModifierIds.thorns);
     addTraits(MaterialIds.wool, AMMO, ModifierIds.soft);
+    addTraits(MaterialIds.wool, ARMOR, ModifierIds.knockbackResistance);
+    addDefaultTraits(MaterialIds.skyslimeskin, ModifierIds.airborn, ModifierIds.overslimeFriend);
+    addDefaultTraits(MaterialIds.enderslimeskin, ModifierIds.enderclearance, ModifierIds.overslimeFriend);
     noTraits(MaterialIds.feather);
     addTraits(MaterialIds.paper, AMMO, ModifierIds.weak);
     addTraits(MaterialIds.leaves, AMMO, ModifierIds.cheap);
@@ -155,7 +158,7 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     addTraits(MaterialIds.knightslime, ARMOR, ModifierIds.overshield, TinkerModifiers.overslime.getId());
     addTraits(MaterialIds.knightly, AMMO, ModifierIds.valiant);
     addDefaultTraits(MaterialIds.enderslimeVine, TinkerModifiers.enderporting.getId(), ModifierIds.overslimeFriend);
-    addTraits(MaterialIds.enderslimeVine, ARMOR, ModifierIds.enderclearance, ModifierIds.overslimeFriend);
+    addTraits(MaterialIds.enderslimeVine, ARMOR, ModifierIds.enderdodging, ModifierIds.overslimeFriend);
     addTraits(MaterialIds.endRod, AMMO, ModifierIds.hover);
 
     // tier 2 - mod compat
@@ -223,7 +226,8 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     // pseudoslime
     addTraits(MaterialIds.clay, SlimeStats.ID, ModifierIds.forming);
     addTraits(MaterialIds.honey, SlimeStats.ID, ModifierIds.scrumptious);
-    addTraits(MaterialIds.enderPearl, SlimeStats.ID, ModifierIds.magicProtection);
+    addTraits(MaterialIds.enderPearl, SlimeStats.ID, ModifierIds.enderclearance);
+    addTraits(MaterialIds.venom, SlimeStats.ID, ModifierIds.magicProtection);
 
     // slimeskull
     material(MaterialIds.gunpowder).addTraits(SkullStats.ID, TinkerModifiers.selfDestructive.getId(), ModifierIds.creeperDisguise);
@@ -243,8 +247,15 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     material(MaterialIds.copper).addTraits(SkullStats.ID, ModifierIds.respirationSkull, ModifierIds.drownedDisguise);
     // nether
     material(MaterialIds.blaze).addTraits(SkullStats.ID, ModifierIds.fireborn, ModifierIds.blazeDisguise);
-    material(MaterialIds.gold).addTraits(SkullStats.ID, TinkerModifiers.chrysophilite.getId(), ModifierIds.piglinDisguise, TinkerModifiers.golden.getId());
-    material(MaterialIds.roseGold).addTraits(SkullStats.ID, TinkerModifiers.goldGuard.getId(), ModifierIds.piglinBruteDisguise, TinkerModifiers.golden.getId());
+    // official v3.12.1 gives the gold and rose gold skulls no golden trait. Continuum had appended
+    // TinkerModifiers.golden to both, which made a lone skull piglin neutral and made the Java chrysophilite and
+    // gold guard count the skull as a gold piece (1 + 1 + others instead of official flat 1 + 1 per golden piece).
+    // Without it the Java modifiers give the official numbers: chrysophilite 1 + other golden pieces, gold guard
+    // +4 max health + 4 per other golden piece. Previous lines, kept for reference:
+    // material(MaterialIds.gold).addTraits(SkullStats.ID, TinkerModifiers.chrysophilite.getId(), ModifierIds.piglinDisguise, TinkerModifiers.golden.getId());
+    // material(MaterialIds.roseGold).addTraits(SkullStats.ID, TinkerModifiers.goldGuard.getId(), ModifierIds.piglinBruteDisguise, TinkerModifiers.golden.getId());
+    material(MaterialIds.gold).addTraits(SkullStats.ID, TinkerModifiers.chrysophilite.getId(), ModifierIds.piglinDisguise);
+    material(MaterialIds.roseGold).addTraits(SkullStats.ID, TinkerModifiers.goldGuard.getId(), ModifierIds.piglinBruteDisguise);
     material(MaterialIds.pigIron).addTraits(SkullStats.ID, ModifierIds.vitalProtectionSkull, ModifierIds.zombifiedPiglinDisguise);
     // crafted
     material(MaterialIds.venombone).addTraits(SkullStats.ID, ModifierIds.magicBones, ModifierIds.skeletonDisguise);
@@ -277,11 +288,11 @@ public class MaterialTraitsDataProvider extends AbstractMaterialTraitDataProvide
     // slimeboots
     MaterialStatsId laces = RepairStats.LACES.getStatsId();
     addTraits(MaterialIds.string, laces, ModifierIds.stepUp);
-    addTraits(MaterialIds.leather, laces, ModifierIds.snowBoots);
+    addTraits(MaterialIds.leather, laces, ModifierIds.rugged);
     // vine uses default
     addTraits(MaterialIds.skyslimeVine, laces, ModifierIds.leaping);
     addTraits(MaterialIds.darkthread, laces, ModifierIds.looter);
-    addTraits(MaterialIds.twistingVine, laces, ModifierIds.entwined);
+    addTraits(MaterialIds.twistingVine, ARMOR, ModifierIds.entwined);
     addTraits(MaterialIds.weepingVine, laces, ModifierIds.soulspeed);
     addTraits(MaterialIds.jeweledHide, laces, ModifierIds.fortunate);
     // enderslime vine uses standard armor
