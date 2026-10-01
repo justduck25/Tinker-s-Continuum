@@ -32,7 +32,6 @@ import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyE
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RenderBlockScreenEffectEvent;
@@ -129,18 +128,6 @@ public class TinkerClient {
     };
     // Viewers may rebuild at normal priority in this same event.
     NeoForge.EVENT_BUS.addListener(EventPriority.HIGHEST, false, RecipesReceivedEvent.class, recipesUpdated);
-    if (ModList.get().isLoaded("jei")) {
-      Consumer<RecipesReceivedEvent> jeiRecipesUpdated = event -> {
-        try {
-          Class.forName("slimeknights.tconstruct.plugin.jei.TConstructJEIPlugin")
-            .getMethod("onRecipesReceived", RecipesReceivedEvent.class)
-            .invoke(null, event);
-        } catch (ReflectiveOperationException e) {
-          TConstruct.LOG.warn("Failed to update JEI recipe caches after receiving server recipes", e);
-        }
-      };
-      NeoForge.EVENT_BUS.addListener(jeiRecipesUpdated);
-    }
     NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut event) -> ClientRecipeCache.clear());
     NeoForge.EVENT_BUS.addListener((MaterialsLoadedEvent event) ->
       Minecraft.getInstance().execute(ClientRecipeCache::materialsUpdated));
