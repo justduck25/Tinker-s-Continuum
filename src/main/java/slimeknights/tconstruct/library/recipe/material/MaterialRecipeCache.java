@@ -7,6 +7,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.TagKey;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.util.context.ContextMap;
+import net.minecraft.world.item.crafting.display.SlotDisplayContext;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -22,6 +24,7 @@ import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.definition.IMaterial;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.tconstruct.library.recipe.ingredient.InstrumentIngredient;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -39,15 +42,22 @@ import java.util.stream.Stream;
 public class MaterialRecipeCache {
   /** Registry access used only to expand tag ingredients for client recipe displays. */
   private static volatile RegistryAccess DISPLAY_REGISTRY_ACCESS;
+  private static long displayRevision;
+
+  /** Changes whenever display data is rebuilt, including late material sync with the same recipe objects. */
+  public static long getDisplayRevision() {
+    return displayRevision;
+  }
 
   public static void setDisplayRegistryAccess(RegistryAccess access) {
     DISPLAY_REGISTRY_ACCESS = access;
+    displayRevision++;
     ITEMS_BY_MATERIAL.clear();
   }
   /** Full list of recipes in the cache */
   private static final List<MaterialRecipe> RECIPES = new ArrayList<>();
-  /** Lookup from item ID to recipe */
-  private static final Map<Item, MaterialRecipe> RECIPE_BY_ITEM = new ConcurrentHashMap<>();
+  /** Item-only candidate lists; the full component-sensitive predicate is still tested for every stack. */
+  private static final Map<Item, List<MaterialRecipe>> RECIPES_BY_ITEM = new ConcurrentHashMap<>();
   /** Lookup from material variant ID to recipe */
   private static final Multimap<MaterialVariantId, MaterialRecipe> RECIPES_BY_MATERIAL = HashMultimap.create();
   /** Map from material variant ID to item stack list for display */
@@ -65,7 +75,7 @@ public class MaterialRecipeCache {
   /** Listener for clearing the cache */
   private static final DuelSidedListener LISTENER = RecipeCacheInvalidator.addDuelSidedListener(() -> {
     RECIPES.clear();
-    RECIPE_BY_ITEM.clear();
+    RECIPES_BY_ITEM.clear();
     RECIPES_BY_MATERIAL.clear();
     ITEMS_BY_MATERIAL.clear();
     KNOWN_VARIANTS.clear();
@@ -80,6 +90,7 @@ public class MaterialRecipeCache {
       LISTENER.checkClear();
       // add recipe for item lookup; too early to resolve ingredient
       RECIPES.add(recipe);
+      RECIPES_BY_ITEM.clear();
       // mark the variant as known
       MaterialVariantId variant = recipe.getMaterial().getVariant();
       addKnownVariant(variant);
@@ -105,14 +116,15 @@ public class MaterialRecipeCache {
     if (stack.isEmpty()) {
       return MaterialRecipe.EMPTY;
     }
-    return RECIPE_BY_ITEM.computeIfAbsent(stack.getItem(), item -> {
-      for (MaterialRecipe recipe : RECIPES) {
-        if (recipe.getIngredient().test(stack)) {
-          return recipe;
-        }
-      }
-      return MaterialRecipe.EMPTY;
+    List<MaterialRecipe> candidates = RECIPES_BY_ITEM.computeIfAbsent(stack.getItem(), item -> {
+      ItemStack identity = new ItemStack(item);
+      // Custom ingredients may inspect arbitrary components and need not expose an exhaustive item list.
+      return RECIPES.stream().filter(recipe -> recipe.getIngredient().isCustom() || recipe.getIngredient().test(identity)).toList();
     });
+    for (MaterialRecipe recipe : candidates) {
+      if (recipe.getIngredient().test(stack)) return recipe;
+    }
+    return MaterialRecipe.EMPTY;
   }
 
   /** Gets a list of all material recipes */
@@ -140,6 +152,10 @@ public class MaterialRecipeCache {
   public static List<ItemStack> getDisplayItems(Ingredient ingredient) {
     if (ingredient.isCustom()) {
       var custom = ingredient.getCustomIngredient();
+      if (custom instanceof InstrumentIngredient instrument) {
+        RegistryAccess access = DISPLAY_REGISTRY_ACCESS;
+        return instrument.getDisplayStacks(access == null ? RegistryAccess.EMPTY : access);
+      }
       if (custom instanceof DifferenceIngredient difference) {
         return resolveDisplayItems(difference.base()).stream()
           .filter(stack -> !matchesDisplayIngredient(difference.subtracted(), stack))
@@ -159,7 +175,13 @@ public class MaterialRecipeCache {
         return items;
       }
       try {
-        return ingredient.items().map(ItemStack::new).toList();
+        // items() supplies candidate item identities, not component-bearing display stacks.
+        // In particular, material and data-component ingredients must retain their display's components.
+        RegistryAccess access = DISPLAY_REGISTRY_ACCESS;
+        var context = new ContextMap.Builder()
+          .withParameter(SlotDisplayContext.REGISTRIES, access == null ? RegistryAccess.EMPTY : access)
+          .create(SlotDisplayContext.CONTEXT);
+        return custom.display().resolveForStacks(context).stream().filter(stack -> !stack.isEmpty()).toList();
       } catch (UnsupportedOperationException | IllegalStateException ignored) {
         return List.of();
       }
@@ -197,7 +219,7 @@ public class MaterialRecipeCache {
     RegistryAccess access = DISPLAY_REGISTRY_ACCESS;
     Optional<TagKey<Item>> tag = ingredient.getValues().unwrapKey();
     if (access != null && tag.isPresent()) {
-      return access.lookupOrThrow(Registries.ITEM).get(tag.get())
+      return access.lookup(Registries.ITEM).flatMap(registry -> registry.get(tag.get()))
         .map(holders -> holders.stream().map(ItemStack::new).toList())
         .orElseGet(List::of);
     }

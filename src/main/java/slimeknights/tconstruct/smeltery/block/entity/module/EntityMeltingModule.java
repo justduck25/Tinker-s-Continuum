@@ -158,8 +158,10 @@ public class EntityMeltingModule {
 
       // only can melt living, ensure its not immune to our damage
       // if canMelt is already found as false, skip instance checks, we only care about items now
-      // if the type is hidden, skip as well, I suppose thats your blacklist if you must have one
-      else if (canMelt != Boolean.FALSE && !BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(type).is(EntityTypes.MELTING_HIDE) && entity instanceof LivingEntity && canMeltEntity((LivingEntity)entity)) {
+      // if its blacklisted, skip as well. Official 3.12.1 checks the blacklist tag here; hide_in_default
+      // includes the blacklist, so hidden-only entities (giants, #c:hidden_from_recipe_viewers) still melt.
+      // The previous port skipped every hidden entity: !...is(EntityTypes.MELTING_HIDE)
+      else if (canMelt != Boolean.FALSE && !BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(type).is(EntityTypes.MELTING_BLACKLIST) && entity instanceof LivingEntity && canMeltEntity((LivingEntity)entity)) {
         // only fetch boolean once, its not the fastest as it tries to consume fuel
         if (canMelt == null) canMelt = canMeltEntities.getAsBoolean();
 
@@ -178,10 +180,11 @@ public class EntityMeltingModule {
           }
 
           // if the entity is successfully damaged, fill the tank with fluid
-          entity.hurt(entity.fireImmune() ? smelteryMagic() : smelteryHeat(), damage);
-          // its fine if we don't fill it all, leftover fluid is just lost
-          tank.fill(fluid, EXECUTE);
-          melted = true;
+          if (getLevel() instanceof ServerLevel serverLevel && entity.hurtServer(serverLevel, entity.fireImmune() ? smelteryMagic() : smelteryHeat(), damage)) {
+            // its fine if we don't fill it all, leftover fluid is just lost
+            tank.fill(fluid, EXECUTE);
+            melted = true;
+          }
         }
       }
     }
