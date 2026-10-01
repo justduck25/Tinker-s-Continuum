@@ -52,6 +52,8 @@ public class TinkerTags {
     DamageTypes.init();
     MenuTypes.init();
     Potions.init();
+    // parity: official 3.12.1 registers the creative tab tags here as well
+    CreativeTabs.init();
     NeoForge.EVENT_BUS.addListener(EventPriority.NORMAL, false, TagsUpdatedEvent.class, event -> tagsLoaded = true);
   }
 
@@ -345,6 +347,8 @@ public class TinkerTags {
 
     /** Containers that can be used in the duct */
     public static final TagKey<Item> DUCT_CONTAINERS = local("duct_containers");
+    /** Example fuel items to show in recipe viewer fuel categories (official 3.12.1 tag) */
+    public static final TagKey<Item> FUEL_EXAMPLES = local("fuel_examples");
 
 
     /** Items that are seeds for kama harvest */
@@ -698,6 +702,26 @@ public class TinkerTags {
     public static final TagKey<EntityType<?>> MELTING_SHOW = local("melting/show_in_default");
     /** Entities in this tag are hidden from JEI and blacklisted from melting in the smeltery */
     public static final TagKey<EntityType<?>> MELTING_HIDE = local("melting/hide_in_default");
+    // Restored from official 3.12.1.231: the smeltery skips only this tag, and
+    // hide_in_default includes it; the meltable tags let packs extend the entity melting recipes.
+    /** Entities in this tag blacklisted from melting in the smeltery, notably in the default recipe */
+    public static final TagKey<EntityType<?>> MELTING_BLACKLIST = local("melting/blacklist");
+    // specialized melting tags
+    /** Farm animals that melt into meat soup. */
+    public static final TagKey<EntityType<?>> MELTABLE_FARM_ANIMALS = local("meltable/farm_animals");
+    // hostile
+    /** Zombie-like mobs expected to melt into iron. */
+    public static final TagKey<EntityType<?>> MELTABLE_ZOMBIE = local("meltable/zombie");
+    /** Drowned-like mobs expected to melt into copper. */
+    public static final TagKey<EntityType<?>> MELTABLE_DROWNED = local("meltable/drowned");
+    /** Skeleton-like mobs expected to melt into milk. */
+    public static final TagKey<EntityType<?>> MELTABLE_SKELETON = local("meltable/skeleton");
+    /** Ender-based mobs expected to melt into molten ender. */
+    public static final TagKey<EntityType<?>> MELTABLE_ENDER = local("meltable/ender");
+    /** Vanilla slime-like mobs expected to melt into earthslime. */
+    public static final TagKey<EntityType<?>> MELTABLE_SLIME = local("meltable/slime");
+    /** Magmacube like mobs expected to melt into magma (cream). */
+    public static final TagKey<EntityType<?>> MELTABLE_MAGMA = local("meltable/magma");
 
     // collecting
     /** Things that can be collected using {@link net.minecraft.world.entity.Entity#playerTouch(Player)} using a fishing rod. */
@@ -849,6 +873,15 @@ public class TinkerTags {
 
     // JEI
     public static final TagKey<Modifier> HIDDEN_FROM_RECIPE_VIEWERS = hiddenFromRecipeViewers(ModifierManager.REGISTRY_KEY);
+    // parity: recipe viewer workstation tags, same IDs as official 3.12.1
+    /** Modifiers in this tag allow crafting and should be listed as a crafting table catalyst */
+    public static final TagKey<Modifier> CRAFTING = local("jei/crafting");
+    /** Modifiers in this tag allow smelting and should be listed as a furnace catalyst */
+    public static final TagKey<Modifier> SMELTING = local("jei/smelting");
+    /** Modifiers in this tag melt blocks or entities and should be listed as a melting catalyst */
+    public static final TagKey<Modifier> MELTING = local("jei/melting");
+    /** Modifiers in this tag sever heads and should be listed as a severing catalyst */
+    public static final TagKey<Modifier> SEVERING = local("jei/severing");
 
 
     private static TagKey<Modifier> local(String name) {
@@ -915,6 +948,9 @@ public class TinkerTags {
   public static class DamageTypes {
     private static void init() {}
     /** Damage types reduced by the melee protection modifier */
+    public static final TagKey<DamageType> RUGGED_TERRAIN = local("rugged/terrain");
+    public static final TagKey<DamageType> RUGGED_ATTACKS = local("rugged/attacks");
+
     public static final TagKey<DamageType> MELEE_PROTECTION = local("protection/melee");
     /** Damage types reduced by the projectile protection modifier */
     public static final TagKey<DamageType> PROJECTILE_PROTECTION = local("protection/projectile");
@@ -951,5 +987,18 @@ public class TinkerTags {
 
     /** Any potion variants in this tag will be hidden from the variants of the potion fluid shown in JEI. */
     public static final TagKey<Potion> HIDDEN_FLUID = TagKey.create(Registries.POTION, getResource("hide_in_fluid"));
+  }
+
+  /** Creative tab tags from official 3.12.1. */
+  public static class CreativeTabs {
+    private static void init() {}
+
+    /** Any creative tabs in this tag will not include their items in recipe viewers. */
+    public static final TagKey<net.minecraft.world.item.CreativeModeTab> HIDDEN_IN_RECIPE_VIEWERS = hiddenFromRecipeViewers(Registries.CREATIVE_MODE_TAB);
+  }
+
+  public static class Instruments {
+    /** Horn instruments with separate material texture variants. */
+    public static final TagKey<net.minecraft.world.item.Instrument> VARIANT_HORNS = TagKey.create(Registries.INSTRUMENT, getResource("variant_horns"));
   }
 }

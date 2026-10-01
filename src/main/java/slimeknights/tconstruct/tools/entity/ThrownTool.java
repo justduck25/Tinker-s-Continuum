@@ -66,8 +66,6 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
   protected static final EntityDataAccessor<ItemStack> STACK = SynchedEntityData.defineId(ThrownTool.class, EntityDataSerializers.ITEM_STACK);
   /** Movement speed in water */
   protected static final EntityDataAccessor<Float> WATER_INERTIA = SynchedEntityData.defineId(ThrownTool.class, EntityDataSerializers.FLOAT);
-  /** Loyalty level, replacing the private vanilla trident data accessor. */
-  private static final EntityDataAccessor<Byte> LOYALTY_DATA = SynchedEntityData.defineId(ThrownTool.class, EntityDataSerializers.BYTE);
   /** Foil state, replacing the private vanilla trident data accessor. */
   private static final EntityDataAccessor<Boolean> FOIL_DATA = SynchedEntityData.defineId(ThrownTool.class, EntityDataSerializers.BOOLEAN);
   /** Volatile integer key for the loyalty level */
@@ -84,7 +82,6 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
   @Setter
   private int originalSlot = -1;
   private boolean hitBlock = false;
-  private boolean dealtDamage = false;
   private int customLife = 0;
   /** Tasks queued by modifiers */
   private Schedule tasks = Schedule.EMPTY;
@@ -119,7 +116,11 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
     // Snapshot. The held stack can be shrunk after throw, and entity data must keep its own copy.
     ItemStack thrown = getThrownStack();
     this.entityData.set(STACK, thrown.copy());
-    this.entityData.set(LOYALTY_DATA, (byte) loyaltyLevel(thrown));
+    // Vanilla's return movement reads this inherited accessor, not a separate tool-only value.
+    // Merge note (3.12.4): upstream kept a private LOYALTY_DATA plus its own return code with a squared speed curve.
+    // Official 3.12.1 sets ID_LOYALTY and lets ThrownTrident#tick pull the tool back (speed linear in the level, like
+    // a loyalty trident), so that is what this port keeps. Upstream's level lookup and byte clamp are kept.
+    this.entityData.set(ID_LOYALTY, (byte) loyaltyLevel(thrown));
     this.entityData.set(FOIL_DATA, ModifierUtil.checkVolatileFlag(getThrownStack(), ModifiableItem.SHINY));
     this.noDespawn = ModifierUtil.checkVolatileFlag(getThrownStack(), IndestructibleItemEntity.INDESTRUCTIBLE_ENTITY);
     if (!level().isClientSide()) {
@@ -175,7 +176,7 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
         this.discard();
       }
       // if its worldbound or loyalty, don't despawn
-    } else if (!noDespawn && this.entityData.get(LOYALTY_DATA) == 0) {
+    } else if (!noDespawn && this.entityData.get(ID_LOYALTY) == 0) {
       // otherwise despawn in 5 minutes like a normal item. Like seriously mojang, why does your rare enchanted trident despawn in 1 minute?
       this.customLife += 1;
       if (this.customLife >= 6000) {
@@ -187,7 +188,7 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
   @Override
   protected void onBelowWorld() {
     // don't discard tools below world if they have loyalty
-    if (pickup == Pickup.ALLOWED && this.entityData.get(LOYALTY_DATA) != 0) {
+    if (pickup == Pickup.ALLOWED && this.entityData.get(ID_LOYALTY) != 0) {
       // ensure it returns
       dealtDamage = true;
       // we don't damage the tool on throw, so instead damage it when it hits a block or an entity
@@ -223,9 +224,7 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
       }
       dealtDamage = true;
     }
-    // Vanilla return reads ThrownTrident's private loyalty accessor, which stays 0.
-    // Returning stores its level on this entity instead.
-    returnToOwner();
+    // ThrownTrident#tick runs the loyalty return from ID_LOYALTY and the inherited dealtDamage flag (see updateFromStack).
     super.tick();
 
     // magnet
@@ -370,51 +369,12 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
   }
 
 
-  /**
-   * Pulls the thrown tool back to its owner.
-   * Level 1 uses the same acceleration as a loyalty I trident. Extra levels scale by the square,
-   * so Returning IV is obviously faster even on a short throw.
+  /*
+   * Merge note (3.12.4): upstream added returnToOwner, isAcceptableReturnOwner and a findHitEntity override here
+   * because its ThrownTool shadowed vanilla's loyalty accessor and dealtDamage flag. This port uses the inherited
+   * ones (as official 3.12.1 does), so ThrownTrident already runs the same owner check, the return pull and the
+   * "no second entity hit after impact" rule. Keeping upstream's copies would pull the tool twice per tick.
    */
-  private void returnToOwner() {
-    Entity owner = this.getOwner();
-    int loyalty = this.entityData.get(LOYALTY_DATA) & 0xFF;
-    if (loyalty <= 0 || (!this.dealtDamage && !this.isNoPhysics()) || owner == null) {
-      return;
-    }
-    if (!isAcceptableReturnOwner()) {
-      if (this.level() instanceof ServerLevel level && this.pickup == AbstractArrow.Pickup.ALLOWED) {
-        this.spawnAtLocation(level, this.getPickupItem(), 0.1F);
-      }
-      this.discard();
-      return;
-    }
-    if (!(owner instanceof Player) && this.position().distanceTo(owner.getEyePosition()) < owner.getBbWidth() + 1.0) {
-      this.discard();
-      return;
-    }
-    this.setNoPhysics(true);
-    // Position is otherwise only synced every 20 ticks, which hides the level gap on a short throw.
-    this.needsSync = true;
-    double strength = (double) loyalty * loyalty;
-    Vec3 vec = owner.getEyePosition().subtract(this.position());
-    this.setPosRaw(this.getX(), this.getY() + vec.y * 0.015 * strength, this.getZ());
-    this.setDeltaMovement(this.getDeltaMovement().scale(0.95).add(vec.normalize().scale(0.05 * strength)));
-    if (this.clientSideReturnTridentTickCount == 0) {
-      this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
-    }
-    this.clientSideReturnTridentTickCount++;
-  }
-
-  /** Same owner check vanilla uses before a loyal trident flies back. */
-  private boolean isAcceptableReturnOwner() {
-    Entity owner = this.getOwner();
-    return owner != null && owner.isAlive() && (!(owner instanceof ServerPlayer) || !owner.isSpectator());
-  }
-
-  @Override
-  protected EntityHitResult findHitEntity(Vec3 from, Vec3 to) {
-    return this.dealtDamage ? null : super.findHitEntity(from, to);
-  }
 
   /* returning to slot */
 
@@ -455,7 +415,6 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
     super.defineSynchedData(builder);
     builder.define(STACK, ItemStack.EMPTY);
     builder.define(WATER_INERTIA, 0.6f);
-    builder.define(LOYALTY_DATA, (byte)0);
     builder.define(FOIL_DATA, false);
   }
 
@@ -505,7 +464,8 @@ public class ThrownTool extends ThrownTrident implements ToolProjectile {
     this.multiplier = input.getFloatOr(KEY_MULTIPLIER, 1);
     this.entityData.set(WATER_INERTIA, input.getFloatOr(KEY_WATER_INERTIA, 0.6f));
     this.hitBlock = input.getBooleanOr(KEY_HIT_BLOCK, false);
-    this.dealtDamage = input.getBooleanOr("TConDealtDamage", false);
+    // Older Continuum saves kept tool impacts separate from vanilla's DealtDamage field.
+    this.dealtDamage |= input.getBooleanOr("TConDealtDamage", false);
     this.customLife = input.getIntOr("TConLife", 0);
     this.originalSlot = input.getIntOr(KEY_ORIGINAL_SLOT, -1);
     input.read(KEY_TASKS, CompoundTag.CODEC).map(tag -> tag.getListOrEmpty(KEY_TASKS)).ifPresent(list -> this.tasks = Schedule.deserialize(list));

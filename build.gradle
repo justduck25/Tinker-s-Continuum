@@ -188,6 +188,13 @@ neoForge {
             sourceSet project.sourceSets.main
         }
     }
+
+    // Runs the JUnit tests inside a headless FML environment with the mod loaded, so they can use registries,
+    // codecs and the real data loaders.
+    unitTest {
+        enable()
+        testedMod = mods.tconstruct
+    }
 }
 
 configurations {
@@ -234,12 +241,31 @@ dependencies {
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    // The BOM lifts the JUnit artifacts above to one version that the ModDev FML test launcher works with.
+    testImplementation platform('org.junit:junit-bom:5.13.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.mockito:mockito-inline:4.2.0'
     testImplementation 'org.assertj:assertj-core:3.21.0'
 }
 
 test {
     useJUnitPlatform()
+}
+
+// The tests under src/test still target the pre-26.1 API (ResourceLocation and friends) and do not compile, so they
+// stay on disk untouched and the test source set compiles src/parityTest/java instead. Those tests compare this port
+// with official Tinkers' Construct 3.12.1 and read the generated data and src/parityTest/data from the project root.
+sourceSets {
+    test {
+        java.srcDirs = ['src/parityTest/java']
+        resources.srcDirs = []
+    }
+}
+tasks.named('test', Test) {
+    maxHeapSize = '512m'
+    testLogging { events 'passed', 'skipped', 'failed' }
+    systemProperty 'tconstruct.test.projectRoot', project.projectDir.absolutePath
 }
 
 tasks.named('processResources', ProcessResources).configure {

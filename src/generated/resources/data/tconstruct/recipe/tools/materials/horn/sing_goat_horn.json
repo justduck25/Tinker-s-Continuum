@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:material",
+  "id": "tconstruct:tools/materials/horn/sing_goat_horn",
+  "ingredient": {
+    "neoforge:ingredient_type": "tconstruct:instrument",
+    "instrument": "minecraft:sing_goat_horn",
+    "item": "minecraft:goat_horn"
+  },
+  "material": "tconstruct:horn#minecraft.sing_goat_horn",
+  "needed": 1,
+  "value": 4
+}

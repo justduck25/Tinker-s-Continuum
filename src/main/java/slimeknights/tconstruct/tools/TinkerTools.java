@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tools;
 
+import slimeknights.tconstruct.library.json.predicate.tool.ToolActionPredicate;
+
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.server.packs.PackType;
@@ -102,6 +104,7 @@ import slimeknights.tconstruct.library.tools.definition.module.interaction.DualO
 import slimeknights.tconstruct.library.tools.definition.module.interaction.PreferenceSetInteraction;
 import slimeknights.tconstruct.library.tools.definition.module.interaction.ToggleableSetInteraction;
 import slimeknights.tconstruct.library.tools.definition.module.material.DefaultMaterialsModule;
+import slimeknights.tconstruct.library.tools.definition.module.material.RemappingMaterialsModule;
 import slimeknights.tconstruct.library.tools.definition.module.material.MaterialRepairModule;
 import slimeknights.tconstruct.library.tools.definition.module.material.MaterialStatsModule;
 import slimeknights.tconstruct.library.tools.definition.module.material.MaterialTraitsModule;
@@ -159,6 +162,7 @@ import slimeknights.tconstruct.tools.item.SlimeskullItem;
 import slimeknights.tconstruct.tools.logic.EquipmentChangeWatcher;
 import slimeknights.tconstruct.tools.logic.ModifiableArrowDispenserBehavior;
 import slimeknights.tconstruct.tools.logic.ModifiableShurikenDispenserBehavior;
+import slimeknights.tconstruct.tools.logic.ToolLoadVerification;
 import slimeknights.tconstruct.tools.menu.ToolContainerMenu;
 import slimeknights.tconstruct.tools.modules.MeltingFluidEffectiveModule;
 
@@ -308,9 +312,25 @@ public final class TinkerTools extends TinkerModule {
    * Events
    */
 
+  /**
+   * parity: official registers the minotaur axe only with Twilight Forest. The port keeps the item registered so
+   * copies in existing worlds survive, and loads its tool tags from a built-in data pack only when Twilight Forest is
+   * present. Without it the axe is in no tool, harvest or modifier tag, has no recipes and is hidden from viewers.
+   */
+  @SubscribeEvent
+  void addMinotaurAxePack(net.neoforged.neoforge.event.AddPackFindersEvent event) {
+    if (ModList.get().isLoaded("twilightforest")) {
+      event.addPackFinders(getResource("compat/twilightforest_minotaur_axe"), net.minecraft.server.packs.PackType.SERVER_DATA,
+        net.minecraft.network.chat.Component.literal("Tinkers' Construct minotaur axe"), net.minecraft.server.packs.repository.PackSource.BUILT_IN,
+        true, net.minecraft.server.packs.repository.Pack.Position.TOP);
+    }
+  }
+
   @SubscribeEvent
   void commonSetup(FMLCommonSetupEvent event) {
     EquipmentChangeWatcher.register();
+    // 26.1 has no verifyTagAfterLoad; re-verify saved tools once per loaded stack instead
+    ToolLoadVerification.register();
     ToolCapabilityProvider.register(ToolFluidCapability.Provider::new);
     ToolCapabilityProvider.register(ToolInventoryCapability.Provider::new);
     ToolCapabilityProvider.register((stack, tool) -> new ToolEnergyCapability.Provider(tool));
@@ -363,6 +383,9 @@ public final class TinkerTools extends TinkerModule {
       ToolStats.register(ToolEnergyCapability.MAX_STAT);
       ToolStats.register(EdibleModule.HUNGER);
       ToolStats.register(EdibleModule.SATURATION);
+      // parity: official 3.12.1 edible stats
+      ToolStats.register(slimeknights.tconstruct.library.modifiers.modules.interaction.edible.EdibleModule.EAT_DURATION);
+      ToolStats.register(slimeknights.tconstruct.library.modifiers.modules.interaction.edible.EdibleModule.COUNTER_CHANCE);
 
       ToolModule.LOADER.register(getResource("empty"), ToolModule.EMPTY.getLoader());
       // tool definition components
@@ -385,6 +408,7 @@ public final class TinkerTools extends TinkerModule {
       ToolModule.LOADER.register(getResource("tool_parts"), PartsModule.LOADER);
       ToolModule.LOADER.register(getResource("material_repair"), MaterialRepairModule.LOADER);
       ToolModule.LOADER.register(getResource("default_materials"), DefaultMaterialsModule.LOADER);
+      ToolModule.LOADER.register(getResource("remapping_materials"), RemappingMaterialsModule.LOADER);
       ToolModule.LOADER.register(getResource("statless_part_repair"), StatlessPartRepairModule.LOADER);
       // aoe
       AreaOfEffectIterator.LOADER.register(getResource("empty"), AreaOfEffectIterator.EMPTY.getLoader());
@@ -419,6 +443,7 @@ public final class TinkerTools extends TinkerModule {
       ToolContextPredicate.LOADER.register(getResource("has_persistent_key"), PersistentDataPredicate.LOADER);
       ToolContextPredicate.LOADER.register(getResource("has_hook"), HasToolHookPredicate.LOADER);
       ToolStackPredicate.LOADER.register(getResource("not_broken"), ToolStackPredicate.NOT_BROKEN.getLoader());
+      ToolStackPredicate.LOADER.register(getResource("tool_action"), ToolActionPredicate.LOADER);
       ToolStackPredicate.LOADER.register(getResource("stat_in_range"), StatInRangePredicate.LOADER);
       ToolStackPredicate.LOADER.register(getResource("stat_in_set"), StatInSetPredicate.LOADER);
       ToolStackPredicate.LOADER.register(getResource("has_volatile_key"), VolatileDataPredicate.LOADER);
