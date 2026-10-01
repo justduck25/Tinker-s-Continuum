@@ -37,6 +37,7 @@ import slimeknights.tconstruct.library.tools.definition.module.interaction.Attac
 import slimeknights.tconstruct.library.tools.definition.module.interaction.DualOptionInteraction;
 import slimeknights.tconstruct.library.tools.definition.module.interaction.ToggleableSetInteraction;
 import slimeknights.tconstruct.library.tools.definition.module.material.DefaultMaterialsModule;
+import slimeknights.tconstruct.library.tools.definition.module.material.RemappingMaterialsModule;
 import slimeknights.tconstruct.library.tools.definition.module.material.MaterialRepairModule;
 import slimeknights.tconstruct.library.tools.definition.module.material.MaterialStatsModule;
 import slimeknights.tconstruct.library.tools.definition.module.material.MaterialTraitsModule;
@@ -666,7 +667,8 @@ public class ToolDefinitionDataProvider extends AbstractToolDefinitionDataProvid
         .stat(StatlessMaterialStats.CUIRASS, 1))
       .module(DefaultMaterialsModule.builder().material(MaterialIds.roseGold).material(MaterialIds.leather).build())
       .modules(slots -> MultiplyStatsModule.armor(slots)
-        .set(ArmorType.CHESTPLATE, ToolStats.ATTACK_DAMAGE, 0.55f)
+        // balance: official v3.12.1 chestplate attack multiplier 0.6 (Continuum 0.55)
+        .set(ArmorType.CHESTPLATE, ToolStats.ATTACK_DAMAGE, 0.6f)
         .setAll(ToolStats.DURABILITY, 0.75f))
       .module(ToolSlotsModule.builder()
         .slots(SlotType.UPGRADE, 2)
@@ -681,7 +683,6 @@ public class ToolDefinitionDataProvider extends AbstractToolDefinitionDataProvid
         .stat(StatlessMaterialStats.SHIELD_CORE)
         .stat(StatlessMaterialStats.CUIRASS)
         .build())
-      .module(new PartsModule(List.of(TinkerToolParts.shieldCore.get())))
       .module(DefaultMaterialsModule.builder().material(MaterialIds.wood).build())
       .module(new SetStatsModule(StatsNBT.builder()
         .set(ToolStats.DURABILITY, 200)
@@ -711,7 +712,8 @@ public class ToolDefinitionDataProvider extends AbstractToolDefinitionDataProvid
          .part(TinkerToolParts.plating, 1)
          .part(TinkerToolParts.maille, 1))
       .module(plateMaterials)
-      .module(ArmorType.CHESTPLATE, new MultiplyStatsModule(MultiplierNBT.builder().set(ToolStats.ATTACK_DAMAGE, 0.4f).build()))
+      // balance: official v3.12.1 plate chestplate attack multiplier 0.5 (Continuum 0.4)
+      .module(ArmorType.CHESTPLATE, new MultiplyStatsModule(MultiplierNBT.builder().set(ToolStats.ATTACK_DAMAGE, 0.5f).build()))
       .module(plateSlots)
       // faster tool name logic
       .module(FixedMaterialToolName.FIRST);
@@ -737,19 +739,27 @@ public class ToolDefinitionDataProvider extends AbstractToolDefinitionDataProvid
     defineArmor(ArmorDefinitions.SLIMESUIT)
       // materials
       // helmet - slime and skull
-      .module(ArmorType.HELMET, MaterialStatsModule.stats().stat(SkullStats.ID).stat(SlimeStats.ID, 1.1f).build())
-      .module(ArmorType.HELMET, DefaultMaterialsModule.builder().material(anyMaterial, blood).build())
+      .module(ArmorType.HELMET, MaterialStatsModule.stats().stat(SkullStats.ID).stat(SlimeStats.ID, 1.1f).primaryPart(1).build())
+      .module(ArmorType.HELMET, new MaterialTraitsModule(SkullStats.ID, 0), ToolHooks.TRIM_TRAIT)
+      .module(ArmorType.HELMET, RemappingMaterialsModule.builder().material(anyMaterial, blood).remap()
+        .add(MaterialIds.glass, MaterialIds.gunpowder)
+        .add(MaterialIds.venombone, MaterialIds.ice)
+        .add(MaterialIds.blazingBone, MaterialIds.blaze).end().build())
       // chestplate - slime
-      .module(ArmorType.CHESTPLATE, MaterialStatsModule.stats().stat(RepairStats.RIBCAGE.getStatsId()).stat(SlimeStats.ID, 1.6f).build())
+      .module(ArmorType.CHESTPLATE, MaterialStatsModule.stats().stat(RepairStats.RIBCAGE.getStatsId()).stat(SlimeStats.ID, 1.6f).primaryPart(1).build())
+      .module(ArmorType.CHESTPLATE, new MaterialTraitsModule(RepairStats.RIBCAGE.getStatsId(), 0), ToolHooks.TOOL_TRAITS, ToolHooks.TRIM_TRAIT)
       .module(ArmorType.CHESTPLATE, DefaultMaterialsModule.builder().material(ToolBuildHandler.RANDOM, blood).build())
-      .module(ArmorType.CHESTPLATE, new MultiplyStatsModule(MultiplierNBT.builder().set(ToolStats.ATTACK_DAMAGE, 0.6f).build()))
+      // balance: official v3.12.1 slime chestplate attack multiplier 0.75 (Continuum 0.6)
+      .module(ArmorType.CHESTPLATE, new MultiplyStatsModule(MultiplierNBT.builder().set(ToolStats.ATTACK_DAMAGE, 0.75f).build()))
       .module(ArmorType.CHESTPLATE, new PartsModule(List.of(TinkerToolParts.ribcage.get())))
       // leggings - shell and slime
-      .module(ArmorType.LEGGINGS, MaterialStatsModule.stats().stat(RepairStats.SHELL.getStatsId()).stat(SlimeStats.ID, 1.5f).build())
+      .module(ArmorType.LEGGINGS, MaterialStatsModule.stats().stat(RepairStats.SHELL.getStatsId()).stat(SlimeStats.ID, 1.5f).primaryPart(1).build())
+      .module(ArmorType.LEGGINGS, new MaterialTraitsModule(RepairStats.SHELL.getStatsId(), 0), ToolHooks.TRIM_TRAIT)
       .module(ArmorType.LEGGINGS, DefaultMaterialsModule.builder().material(RandomMaterial.fixed(MaterialIds.shulker), blood).build())
       .module(ArmorType.LEGGINGS, new PartsModule(List.of(TinkerToolParts.shell.get())))
       // boots - laces and slime
-      .module(ArmorType.BOOTS, MaterialStatsModule.stats().stat(RepairStats.LACES.getStatsId()).stat(SlimeStats.ID, 1.3f).build())
+      .module(ArmorType.BOOTS, MaterialStatsModule.stats().stat(RepairStats.LACES.getStatsId()).stat(SlimeStats.ID, 1.3f).primaryPart(1).build())
+      .module(ArmorType.BOOTS, new MaterialTraitsModule(RepairStats.LACES.getStatsId(), 0), ToolHooks.TRIM_TRAIT)
       .module(ArmorType.BOOTS, DefaultMaterialsModule.builder().material(RandomMaterial.fixed(MaterialIds.skyslimeVine), blood).build())
       .module(ArmorType.BOOTS, new PartsModule(List.of(TinkerToolParts.laces.get())))
       // slots
@@ -757,11 +767,9 @@ public class ToolDefinitionDataProvider extends AbstractToolDefinitionDataProvid
         .slots(SlotType.UPGRADE, 3)
         .slots(SlotType.ABILITY, 2).build())
       // traits
-      .module(ArmorType.CHESTPLATE, ToolTraitsModule.builder().trait(TinkerModifiers.ambidextrous).trait(ModifierIds.reach).build())
+      .module(ArmorType.CHESTPLATE, ToolTraitsModule.builder().trait(ModifierIds.reach).build())
       .module(ArmorType.LEGGINGS, ToolTraitsModule.builder().trait(ModifierIds.shellStorage, 1).build())
       .module(ArmorType.BOOTS, ToolTraitsModule.builder().trait(ModifierIds.bouncy).build())
-      // armor trim
-      .module(new MaterialTraitsModule(SlimeStats.ID, 1), ToolHooks.TRIM_TRAIT)
       // display name
       // start with a variant of the base based on the tool type - Slimeskull, Magmaskull, etc.
       .module(UniqueMaterialToolName.SECOND)
@@ -774,7 +782,9 @@ public class ToolDefinitionDataProvider extends AbstractToolDefinitionDataProvid
       .module(MaterialStatsModule.stats().stat(SlimeStats.ID, 1.6f).primaryPart(-1).build())
       .module(DefaultMaterialsModule.builder().material(blood).build())
       // stats
-      .module(new MultiplyStatsModule(MultiplierNBT.builder().set(ToolStats.ATTACK_DAMAGE, 0.4f).build()))
+      // balance: official v3.12.1 gives slime wings 222 base durability and a 0.5 attack multiplier (Continuum: no base durability, 0.4)
+      .module(new SetStatsModule(StatsNBT.builder().set(ToolStats.DURABILITY, 222).build()))
+      .module(new MultiplyStatsModule(MultiplierNBT.builder().set(ToolStats.ATTACK_DAMAGE, 0.5f).build()))
       // slots
       .module(ToolSlotsModule.builder()
           .slots(SlotType.UPGRADE, 4)
