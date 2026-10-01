@@ -3,12 +3,10 @@ package slimeknights.tconstruct.tools.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.MultiPlayerGameMode;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.block.dispatch.BlockStateModel;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.ShapeRenderer;
+import net.minecraft.client.renderer.state.level.BlockBreakingRenderState;
 import net.minecraft.client.renderer.state.level.BlockOutlineRenderState;
 import net.minecraft.client.renderer.state.level.LevelRenderState;
 import net.minecraft.core.BlockPos;
@@ -17,7 +15,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -26,17 +23,18 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.CustomBlockOutlineRenderer;
 import net.neoforged.neoforge.client.event.ExtractBlockOutlineRenderStateEvent;
-import net.neoforged.neoforge.client.event.SubmitCustomGeometryEvent;
+import net.neoforged.neoforge.client.event.ExtractLevelRenderStateEvent;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
-import slimeknights.tconstruct.library.tools.definition.module.aoe.AreaOfEffectIterator;
 import slimeknights.tconstruct.library.tools.definition.module.aoe.AreaOfEffectIterator.AOEMatchType;
 import slimeknights.tconstruct.library.tools.definition.module.mining.IsEffectiveToolHook;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.utils.BlockSideHitListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.List;
 
 public class ToolRenderEvents {
@@ -121,67 +119,67 @@ public class ToolRenderEvents {
       return false;
     }
   }
+
   /**
-   * Submits the crack overlay for AOE blocks. Vanilla only cracks the targeted block.
-   * This runs in the same submit pass as {@code LevelRenderer#submitBlockDestroyAnimation}.
+   * Adds extra mining cracks to the state consumed by Minecraft's normal breaking-model renderer.
+   * Upstream 3.12.4 fixed the same missing cracks with a SubmitCustomGeometryEvent renderer that reads the local
+   * player's destroy stage. The merge keeps only this extract-phase version (running both would draw every crack twice):
+   * like official 3.12.1 it takes the progress recorded for the targeted block, and vanilla's submit pass applies the
+   * same model render shape check official's renderBreakingTexture did.
    */
   @SubscribeEvent
-  static void renderBlockDamageProgress(SubmitCustomGeometryEvent event) {
-    MultiPlayerGameMode controller = Minecraft.getInstance().gameMode;
-    if (controller == null || !controller.isDestroying()) {
+  static void renderBlockDamageProgress(ExtractLevelRenderStateEvent event) {
+    Minecraft minecraft = Minecraft.getInstance();
+    if (minecraft.gameMode == null || !minecraft.gameMode.isDestroying() || minecraft.getCameraEntity() == null) {
       return;
     }
-    int progress = controller.getDestroyStage();
-    if (progress < 0) {
-      return;
-    }
-    Level world = Minecraft.getInstance().level;
-    Player player = Minecraft.getInstance().player;
-    if (world == null || player == null) {
+    Level world = event.getLevel();
+    Player player = minecraft.player;
+    if (player == null || player.level() != world) {
       return;
     }
     ItemStack stack = player.getMainHandItem();
-    if (stack.isEmpty() || !stack.is(TinkerTags.Items.HARVEST)) {
-      return;
-    }
-    HitResult result = Minecraft.getInstance().hitResult;
-    if (!(result instanceof BlockHitResult blockTrace) || result.getType() != HitResult.Type.BLOCK) {
+    if (stack.isEmpty() || !stack.is(TinkerTags.Items.HARVEST)
+        || !(minecraft.hitResult instanceof BlockHitResult hit) || hit.getType() != HitResult.Type.BLOCK) {
       return;
     }
     ToolStack tool = ToolStack.from(stack);
     if (tool.isBroken()) {
       return;
     }
-    BlockPos target = blockTrace.getBlockPos();
+    BlockPos target = hit.getBlockPos();
     BlockState state = world.getBlockState(target);
     if (!IsEffectiveToolHook.isEffective(tool, state)) {
       return;
     }
-    UseOnContext context = new UseOnContext(world, player, InteractionHand.MAIN_HAND, stack, blockTrace.withDirection(BlockSideHitListener.getClientSideHit()));
-    Iterator<BlockPos> extraBlocks = tool.getHook(ToolHooks.AOE_ITERATOR).getBlocks(tool, context, state, AreaOfEffectIterator.AOEMatchType.BREAKING).iterator();
-    if (!extraBlocks.hasNext()) {
+
+    // Vanilla has already extracted this frame's cracks when the event fires. Do not invent
+    // progress or replace another miner's state for a block that is already in the list.
+    List<BlockBreakingRenderState> breaking = event.getRenderState().blockBreakingRenderStates;
+    Set<BlockPos> existing = new HashSet<>();
+    int progress = -1;
+    for (BlockBreakingRenderState entry : breaking) {
+      existing.add(entry.blockPos());
+      if (entry.blockPos().equals(target)) {
+        progress = Math.max(progress, entry.progress());
+      }
+    }
+    if (progress < 0 || progress > 9) {
       return;
     }
-
-    Vec3 camera = event.getLevelRenderState().cameraRenderState.pos;
-    PoseStack poseStack = event.getPoseStack();
-    SubmitNodeCollector collector = event.getSubmitNodeCollector();
-    int rendered = 0;
-    do {
-      BlockPos pos = extraBlocks.next();
-      if (pos.equals(target) || !world.getWorldBorder().isWithinBounds(pos)) {
+    UseOnContext context = new UseOnContext(world, player, InteractionHand.MAIN_HAND, stack,
+      hit.withDirection(BlockSideHitListener.getClientSideHit()));
+    Iterator<BlockPos> extraBlocks = tool.getHook(ToolHooks.AOE_ITERATOR).getBlocks(tool, context, state, AOEMatchType.BREAKING).iterator();
+    for (int count = 0; count < MAX_BLOCKS && extraBlocks.hasNext(); count++) {
+      BlockPos pos = extraBlocks.next().immutable();
+      if (pos.equals(target) || existing.contains(pos) || !world.hasChunkAt(pos) || !world.getWorldBorder().isWithinBounds(pos)) {
         continue;
       }
       BlockState extraState = world.getBlockState(pos);
-      if (extraState.getRenderShape() != RenderShape.MODEL) {
-        continue;
+      if (!extraState.isAir()) {
+        breaking.add(new BlockBreakingRenderState(pos, extraState, progress));
+        existing.add(pos);
       }
-      BlockStateModel model = Minecraft.getInstance().getModelManager().getBlockStateModelSet().get(extraState);
-      poseStack.pushPose();
-      poseStack.translate(pos.getX() - camera.x, pos.getY() - camera.y, pos.getZ() - camera.z);
-      collector.submitBreakingBlockModel(poseStack, model, extraState.getSeed(pos), progress);
-      poseStack.popPose();
-      rendered++;
-    } while (rendered < MAX_BLOCKS && extraBlocks.hasNext());
+    }
   }
 }

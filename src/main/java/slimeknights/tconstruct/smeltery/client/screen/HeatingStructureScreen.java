@@ -59,7 +59,9 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
 
   @SuppressWarnings("deprecation")  // no you're deprecated Forge
   public HeatingStructureScreen(HeatingStructureContainerMenu container, Inventory playerInventory, Component title) {
-    super(container, playerInventory, title);
+    // Official set imageHeight = 220 in the constructor, so the screen is centered on its real height. The port set the
+    // height only after super.init() had centered the default 166, which drew the whole GUI 27 GUI px too low.
+    super(container, playerInventory, title, 176, 220);
     HeatingStructureBlockEntity te = container.getTile();
     if (te != null) {
       this.te = te;
@@ -98,7 +100,8 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
 
   @Override
   protected void drawPlayerInventoryName(GuiGraphicsExtractor graphics) {
-    graphics.text(this.font, this.playerInventoryTitle, 8, this.realHeight - 96 + 2, 0x404040, false);
+    // 26.1 skips text whose color has no alpha byte; official 0x404040 drew opaque
+    graphics.text(this.font, this.playerInventoryTitle, 8, this.realHeight - 96 + 2, 0xFF404040, false);
   }
 
   @Override
