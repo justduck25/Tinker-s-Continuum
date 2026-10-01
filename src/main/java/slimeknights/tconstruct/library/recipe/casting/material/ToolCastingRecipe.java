@@ -9,6 +9,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import slimeknights.mantle.data.loadable.field.ContextKey;
+import slimeknights.mantle.data.loadable.primitive.BooleanLoadable;
 import slimeknights.mantle.data.loadable.primitive.EnumLoadable;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.data.predicate.IJsonPredicate;
@@ -28,6 +29,7 @@ import slimeknights.tconstruct.library.recipe.casting.DisplayCastingRecipe;
 import slimeknights.tconstruct.library.recipe.casting.ICastingContainer;
 import slimeknights.tconstruct.library.recipe.casting.ICastingRecipe;
 import slimeknights.tconstruct.library.recipe.casting.IDisplayableCastingRecipe;
+import slimeknights.tconstruct.library.recipe.material.MaterialRecipeCache;
 import slimeknights.tconstruct.library.tools.definition.module.material.ToolMaterialHook;
 import slimeknights.tconstruct.library.tools.helper.ToolBuildHandler;
 import slimeknights.tconstruct.library.tools.helper.TooltipUtil;
@@ -50,14 +52,22 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
     TinkerLoadables.MODIFIABLE_ITEM.requiredField("result", r -> r.result),
     MATERIALS_FIELD,
     MaterialVariantId.LOADABLE.list(0).defaultField("extra_materials", List.of(), false, r -> r.extraMaterials),
+    // parity: official 3.12.1 field; slime skulls set it false so each skull recipe is not also a helmet slime swap
+    BooleanLoadable.INSTANCE.defaultField("fluid_swapping", true, false, r -> r.fluidSwapping),
     ToolCastingRecipe::new);
 
   private final IModifiable result;
   private final CastPurpose castPurpose;
   /** List of materials to add after the cast and fluid */
   private final List<MaterialVariantId> extraMaterials;
+  /** If true, this recipe's information will be used to also add a fluid part swapping recipe. Disabled for recipes with many copies, like slimeskulls */
+  private final boolean fluidSwapping;
 
   protected ToolCastingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, String group, Ingredient cast, int itemCost, CastPurpose castPurpose, IModifiable result, IJsonPredicate<MaterialVariantId> allowedMaterials, List<MaterialVariantId> extraMaterials) {
+    this(serializer, id, group, cast, itemCost, castPurpose, result, allowedMaterials, extraMaterials, true);
+  }
+
+  protected ToolCastingRecipe(TypeAwareRecipeSerializer<?> serializer, Identifier id, String group, Ingredient cast, int itemCost, CastPurpose castPurpose, IModifiable result, IJsonPredicate<MaterialVariantId> allowedMaterials, List<MaterialVariantId> extraMaterials, boolean fluidSwapping) {
     super(serializer, id, group, cast, itemCost, castPurpose.swapIndex, allowedMaterials);
     this.result = result;
     this.extraMaterials = extraMaterials;
@@ -68,6 +78,7 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
     } else {
       this.castPurpose = castPurpose;
     }
+    this.fluidSwapping = fluidSwapping;
   }
 
   /** Rebuilds side caches after client recipe sync clears them. */
@@ -94,7 +105,7 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
   public boolean matches(ICastingContainer inv, Level level) {
     ItemStack cast = inv.getStack();
     // if the tool matches, perform part swapping
-    if (cast.getItem() == result.asItem()) {
+    if (fluidSwapping && cast.getItem() == result.asItem()) {
       return canPartSwap(inv);
     }
     // no tool match? need to check cast and fluid
@@ -117,7 +128,7 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
   public ItemStack assemble(ICastingContainer inv) {
     // if the cast is the result, we are part swapping, replace the last material
     ItemStack cast = inv.getStack();
-    if (cast.getItem() == result) {
+    if (fluidSwapping && cast.getItem() == result) {
       return super.assemble(inv);
     } else {
       // figure out how to apply our materials
@@ -240,11 +251,12 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
         ItemStack partSwapDisplay = ToolBuildHandler.buildItemFromMaterials(result, partSwapMaterials.build());
         TooltipUtil.setDisplay(partSwapDisplay);
 
-        List<ItemStack> casts = getCast().items().map(ItemStack::new).toList();
+        List<ItemStack> casts = MaterialRecipeCache.getDisplayItems(getCast());
         // if the cast is consumed, add the tool to the list of cast items to show that part swapping is an option
         boolean consumed = castPurpose != CastPurpose.CATALYST;
-        List<ItemStack> castsWithTool = consumed ? Streams.concat(casts.stream(), Stream.of(partSwapDisplay)).toList() : casts;
-        List<ItemStack> partSwapList = consumed ? List.of() : List.of(partSwapDisplay);
+        // without fluid swapping the tool is not a valid cast, so leave it out of every display (official 3.12.1)
+        List<ItemStack> castsWithTool = consumed && fluidSwapping ? Streams.concat(casts.stream(), Stream.of(partSwapDisplay)).toList() : casts;
+        List<ItemStack> partSwapList = consumed || !fluidSwapping ? List.of() : List.of(partSwapDisplay);
 
         // start building recipes
         List<IDisplayableCastingRecipe> recipes = new ArrayList<>();
@@ -258,24 +270,26 @@ public class ToolCastingRecipe extends PartSwapCastingRecipe implements IMultiRe
         List<MaterialFluidRecipe> validCasting = MaterialCastingLookup.getAllCastingFluids().stream().filter(validRecipe).toList();
         for (MaterialFluidRecipe recipe : validCasting) {
           List<FluidStack> fluids = resizeFluids(recipe.getFluids());
-          int amount = itemCost * getFluidAmount(fluids);
-          recipes.add(new DisplayCastingRecipe(getId(), getType(), castsWithTool, fluids, materials.apply(recipe.getOutput(), castsWithTool),
-            ICastingRecipe.calcCoolingTime(recipe.getTemperature(), amount), consumed));
+          int amount = getFluidAmount(fluids);
+          if (!castsWithTool.isEmpty() || matchesCast(ItemStack.EMPTY)) {
+            recipes.add(new DisplayCastingRecipe(getId(), getType(), castsWithTool, fluids, materials.apply(recipe.getOutput(), castsWithTool),
+              ICastingRecipe.calcCoolingTime(recipe.getTemperature(), amount), consumed));
+          }
 
           // if the cast is not consumed, then part swapping will have to be done separately for the proper consumed flag
-          if (!consumed) {
+          if (!consumed && fluidSwapping) {
             recipes.add(new DisplayCastingRecipe(getId(), getType(), partSwapList, fluids, materials.apply(recipe.getOutput(), partSwapList),
               ICastingRecipe.calcCoolingTime(recipe.getTemperature(), amount), true));
           }
         }
 
-        // all composite fluids become special composite swapping recipes
-        MaterialCastingLookup.getAllCompositeFluids().stream()
+        // all composite fluids become special composite swapping recipes, only when this recipe swaps fluids
+        (fluidSwapping ? MaterialCastingLookup.getAllCompositeFluids().stream() : Stream.<MaterialFluidRecipe>empty())
           .filter(validRecipe)
           .map(recipe -> {
             List<FluidStack> fluids = resizeFluids(recipe.getFluids());
             return new DisplayCastingRecipe(getId(), getType(), materials.apply(recipe.getInput(), casts), fluids, materials.apply(recipe.getOutput(), casts),
-              ICastingRecipe.calcCoolingTime(recipe.getTemperature(), itemCost * getFluidAmount(fluids)), true);
+              ICastingRecipe.calcCoolingTime(recipe.getTemperature(), getFluidAmount(fluids)), true);
           }).forEach(recipes::add);
         multiRecipes = List.copyOf(recipes);
       }

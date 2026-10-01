@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.library.modifiers;
 
+import slimeknights.tconstruct.library.modifiers.hook.behavior.ToolDurabilityChangedHook;
+
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.InteractionHand;
@@ -124,6 +126,12 @@ public class ModifierHooks {
 
   /** Hook for modifying the damage amount for tools */
   public static final ModuleHook<ToolDamageModifierHook> TOOL_DAMAGE = register("tool_damage", ToolDamageModifierHook.class, ToolDamageModifierHook.Merger::new, (tool, modifier, amount, holder) -> amount);
+
+  /** Notification after an accepted durability change, without changing its amount. */
+  public static final ModuleHook<ToolDurabilityChangedHook> DURABILITY_CHANGED = register(
+    "durability_changed", ToolDurabilityChangedHook.class,
+    ToolDurabilityChangedHook.Merger::new,
+    new ToolDurabilityChangedHook() {});
 
   /** Hook running while the tool is in the inventory */
   public static final ModuleHook<InventoryTickModifierHook> INVENTORY_TICK = register("inventory_tick", InventoryTickModifierHook.class, InventoryTickModifierHook.AllMerger::new, (tool, modifier, world, holder, itemSlot, isSelected, isCorrectSlot, stack) -> {});
@@ -394,6 +402,8 @@ public class ModifierHooks {
   public static final ModuleHook<GeneralInteractionModifierHook> GENERAL_INTERACT = register("general_interact", GeneralInteractionModifierHook.class, GeneralInteractionModifierHook.FirstMerger::new, ((tool, modifier, player, hand, source) -> InteractionResult.PASS));
   /** Called when the player is actively using this tool, regardless of active modifier. */
   public static final ModuleHook<UsingToolModifierHook> TOOL_USING = register("tool_using", UsingToolModifierHook.class, UsingToolModifierHook.AllMerger::new, new UsingToolModifierHook() {});
+  /** Hook called when an edible tool is eaten to perform effects other than restoring hunger and saturation, official 3.12.1 */
+  public static final ModuleHook<slimeknights.tconstruct.library.modifiers.hook.interaction.EdibleEffectHook> EDIBLE_EFFECT = register("edible_effect", slimeknights.tconstruct.library.modifiers.hook.interaction.EdibleEffectHook.class, slimeknights.tconstruct.library.modifiers.hook.interaction.EdibleEffectHook.AllMerger::new, (tool, modifier, player, eatenSlot, hunger, saturation, representativeItems) -> {});
   /** Hook for interacting with blocks */
   public static final ModuleHook<BlockInteractionModifierHook> BLOCK_INTERACT = register("block_interact", BlockInteractionModifierHook.class, BlockInteractionModifierHook.FirstMerger::new, new BlockInteractionModifierHook() {});
   /** Hook for interacting with entities */

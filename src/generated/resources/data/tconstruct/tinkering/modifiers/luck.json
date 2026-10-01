@@ -43,11 +43,7 @@
           },
           {
             "type": "mantle:tag",
-            "tag": "tconstruct:modifiable/melee/weapon"
-          },
-          {
-            "type": "mantle:tag",
-            "tag": "tconstruct:modifiable/ranged/launcher"
+            "tag": "tconstruct:modifiable/melee"
           }
         ]
       }
@@ -93,28 +89,6 @@
       }
     },
     {
-      "type": "tconstruct:requirements",
-      "display_modifiers": [
-        {
-          "level": 1,
-          "name": "tconstruct:apotheosis"
-        }
-      ],
-      "modifier_level": {
-        "max": 15,
-        "min": 4
-      },
-      "requirement": {
-        "type": "tconstruct:has_modifier",
-        "check": "all",
-        "modifier": {
-          "type": "tconstruct:single",
-          "modifier": "tconstruct:apotheosis"
-        }
-      },
-      "translation_key": "modifier.tconstruct.apotheosis.requirements"
-    },
-    {
       "type": "tconstruct:luck_apothic_enchantment_cap",
       "fallback_max": 5,
       "fortune": "minecraft:fortune",
@@ -122,6 +96,5 @@
       "luck_of_the_sea": "minecraft:luck_of_the_sea",
       "min_level": 4
     }
-  ],
-  "tooltip_display": "always"
+  ]
 }

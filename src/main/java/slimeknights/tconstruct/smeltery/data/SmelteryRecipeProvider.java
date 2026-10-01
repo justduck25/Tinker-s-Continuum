@@ -219,6 +219,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     Consumer<RecipeOutput> fastGrout = c ->
       SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerSmeltery.grout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.searedBrick, 0.3f, 100)
                           .unlockedBy("has_item", has(TinkerSmeltery.grout)).save(c);
+    // Official 3.12.1 seared_brick_kiln is a conditional recipe: ceramics:kiln when Ceramics is loaded,
+    // otherwise this 100 tick blasting recipe. The port dropped both, so grout could only be smelted.
+    // Ceramics has no build in this pack and its kiln format is unverified, so only the blasting branch
+    // is restored, under the official ID (unconditional, so a later Ceramics install keeps blasting).
+    SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerSmeltery.grout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.searedBrick, 0.3f, 100)
+                              .unlockedBy("has_item", has(TinkerSmeltery.grout))
+                              .save(consumer, recipeKey(wrap(TinkerSmeltery.searedBrick, folder, "_kiln")));
 
 
     // block from bricks
@@ -541,7 +548,10 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     searedCasting(consumer, TinkerSmeltery.searedCobble.getStairs(), Ingredient.of(Blocks.COBBLESTONE_STAIRS), castingFolder + "cobble/stairs");
     searedCasting(consumer, TinkerSmeltery.searedCobble.getWall(), Ingredient.of(Blocks.COBBLESTONE_WALL), castingFolder + "cobble/wall");
     // stone
-    searedCasting(consumer, TinkerSmeltery.searedStone, LegacyIngredientType.ofTag(Tags.Items.STONES), castingFolder + "stone/block_from_clay");
+    // parity: official forge:stone also held polished andesite, diorite, granite, deepslate and infested stone and deepslate
+    searedCasting(consumer, TinkerSmeltery.searedStone, CompoundIngredient.of(LegacyIngredientType.ofTag(Tags.Items.STONES), Ingredient.of(
+      Blocks.POLISHED_ANDESITE, Blocks.POLISHED_DIORITE, Blocks.POLISHED_GRANITE, Blocks.POLISHED_DEEPSLATE, Blocks.INFESTED_STONE, Blocks.INFESTED_DEEPSLATE)),
+      castingFolder + "stone/block_from_clay");
     searedSlabCasting(consumer, TinkerSmeltery.searedStone.getSlab(), Ingredient.of(Blocks.STONE_SLAB), castingFolder + "stone/slab");
     searedCasting(consumer, TinkerSmeltery.searedStone.getStairs(), Ingredient.of(Blocks.STONE_STAIRS), castingFolder + "stone/stairs");
     // stone bricks
@@ -663,6 +673,10 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     Consumer<RecipeOutput> fastGrout = c ->
       SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerSmeltery.netherGrout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.scorchedBrick, 0.3f, 100)
                                 .unlockedBy("has_item", has(TinkerSmeltery.netherGrout)).save(c);
+    // Official 3.12.1 scorched_brick_kiln: blasting branch restored under the official ID, see seared_brick_kiln.
+    SimpleCookingRecipeBuilder.blasting(Ingredient.of(TinkerSmeltery.netherGrout), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.MISC, TinkerSmeltery.scorchedBrick, 0.3f, 100)
+                              .unlockedBy("has_item", has(TinkerSmeltery.netherGrout))
+                              .save(consumer, recipeKey(wrap(TinkerSmeltery.scorchedBrick, folder, "_kiln")));
 
     // block from bricks
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.BUILDING_BLOCKS, TinkerSmeltery.scorchedBricks)
@@ -1278,7 +1292,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                             .save(consumer, recipeKey(location(folder + "blaze/cream")));
     ItemCastingRecipeBuilder.basinRecipe(Blocks.MAGMA_BLOCK)
                             .setFluidAndTime(TinkerFluids.blazingBlood, FluidType.BUCKET_VOLUME / 5)
-                            .setCast(TinkerTags.Items.CONGEALED_SLIME, true)
+                            .setCast(TinkerWorld.congealedSlime.get(SlimeType.EARTH), true) // parity: official casts on earth congealed slime only (was #tconstruct:congealed_slime)
                             .save(consumer, recipeKey(location(folder + "blaze/congealed")));
     ItemCastingRecipeBuilder.tableRecipe(TinkerMaterials.blazingBone)
                             .setFluidAndTime(TinkerFluids.blazingBlood, FluidType.BUCKET_VOLUME / 5)
@@ -1329,8 +1343,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                             .setFluidAndTime(TinkerFluids.venom, FluidValues.SLIMEBALL)
                             .setCast(Tags.Items.BONES, true)
                             .save(consumer, recipeKey(location(slimeFolder + "venom/bone")));
+    // parity (skull venom amount): a skeleton skull in a basin with venom costs 1250 mB in official 3.12.1
+    // (the slime skull tool casting, item cost 5 at 250 mB of venom per material). This Continuum-only legacy venombone head
+    // cast used the same inputs for 1000 mB (cooling 96), so it now takes the official amount and cooling time (107).
+    // ItemCastingRecipeBuilder.basinRecipe(TinkerWorld.headItems.get(TinkerHeadType.VENOMBONE))
+    //   .setFluidAndTime(TinkerFluids.venom, FluidValues.SLIMEBALL * 4)
     ItemCastingRecipeBuilder.basinRecipe(TinkerWorld.headItems.get(TinkerHeadType.VENOMBONE))
-      .setFluidAndTime(TinkerFluids.venom, FluidValues.SLIMEBALL * 4)
+      .setFluidAndTime(TinkerFluids.venom, FluidValues.SLIMEBALL * 5)
       .setCast(Items.SKELETON_SKULL, true)
       .save(consumer, recipeKey(location(slimeFolder + "venom/skull")));
 
@@ -1361,7 +1380,9 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
       // fake ingots are in the ingot tag, but you get the default "missing" ingot from that
       // so subtract it out and replace with the material version for nicer display
       DifferenceIngredient.of(LegacyIngredientType.ofTag(Tags.Items.INGOTS), Ingredient.of(TinkerToolParts.fakeIngot)),
-      MaterialIngredient.of(TinkerToolParts.fakeIngot).toVanilla()
+      MaterialIngredient.of(TinkerToolParts.fakeIngot).toVanilla(),
+      // parity: official forge:ingots also held brick and nether brick; NeoForge c:ingots does not
+      Ingredient.of(Items.BRICK, Items.NETHER_BRICK)
     ), TinkerSmeltery.ingotCast, castFolder, "ingots");
     this.castCreation(consumer, Tags.Items.NUGGETS, TinkerSmeltery.nuggetCast, castFolder);
     this.castCreation(consumer, Tags.Items.GEMS, TinkerSmeltery.gemCast, castFolder);
@@ -1482,7 +1503,13 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     // glass
     MeltingRecipeBuilder.melting(LegacyIngredientType.ofTag(ItemTags.SMELTS_TO_GLASS), TinkerFluids.moltenGlass, FluidValues.GLASS_BLOCK, 1.5f)
                         .save(consumer, recipeKey(location(folder + "glass/sand")));
-    MeltingRecipeBuilder.melting(LegacyIngredientType.ofTag(TinkerTags.Items.GLASS_SILICA), TinkerFluids.moltenGlass, FluidValues.GLASS_BLOCK, 1.0f)
+    // parity: official forge:glass/silica also held vanilla glass and all stained glass; NeoForge has no such tag,
+    // so those blocks are listed as direct inputs next to the Tinkers silica tag instead of editing a c: tag
+    MeltingRecipeBuilder.melting(CompoundIngredient.of(LegacyIngredientType.ofTag(TinkerTags.Items.GLASS_SILICA), Ingredient.of(
+        Blocks.GLASS, Blocks.WHITE_STAINED_GLASS, Blocks.ORANGE_STAINED_GLASS, Blocks.MAGENTA_STAINED_GLASS, Blocks.LIGHT_BLUE_STAINED_GLASS,
+        Blocks.YELLOW_STAINED_GLASS, Blocks.LIME_STAINED_GLASS, Blocks.PINK_STAINED_GLASS, Blocks.GRAY_STAINED_GLASS, Blocks.LIGHT_GRAY_STAINED_GLASS,
+        Blocks.CYAN_STAINED_GLASS, Blocks.PURPLE_STAINED_GLASS, Blocks.BLUE_STAINED_GLASS, Blocks.BROWN_STAINED_GLASS, Blocks.GREEN_STAINED_GLASS,
+        Blocks.RED_STAINED_GLASS, Blocks.BLACK_STAINED_GLASS)), TinkerFluids.moltenGlass, FluidValues.GLASS_BLOCK, 1.0f)
                         .save(consumer, recipeKey(location(folder + "glass/block")));
     MeltingRecipeBuilder.melting(LegacyIngredientType.ofTag(TinkerTags.Items.GLASS_PANES_SILICA), TinkerFluids.moltenGlass, FluidValues.GLASS_PANE, 0.5f)
                         .save(consumer, recipeKey(location(folder + "glass/pane")));
@@ -2158,16 +2185,20 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     String headFolder = "smeltery/entity_melting/heads/";
 
     // meat soup just comes from edible creatures
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.CHICKEN, EntityType.COW, EntityType.MOOSHROOM, EntityType.PIG, EntityType.RABBIT, EntityType.SHEEP, EntityType.GOAT, EntityType.COD, EntityType.HOGLIN, EntityType.SALMON, EntityType.TROPICAL_FISH),
+    // official 3.12.1 melts the meltable tags so packs can extend them; the port inlined these same entities:
+    // EntityIngredient.of(EntityType.CHICKEN, EntityType.COW, EntityType.MOOSHROOM, EntityType.PIG, EntityType.RABBIT, EntityType.SHEEP, EntityType.GOAT, EntityType.COD, EntityType.HOGLIN, EntityType.SALMON, EntityType.TROPICAL_FISH)
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.MELTABLE_FARM_ANIMALS),
                                        TinkerFluids.meatSoup.result(FluidValues.BOWL / 5)).save(consumer, recipeKey(location(folder + "meat_soup")));
 
     // zombies give iron, they drop it sometimes
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.ZOMBIE, EntityType.HUSK, EntityType.ZOMBIE_HORSE), TinkerFluids.moltenIron.result(FluidValues.NUGGET), 4)
+    // was EntityIngredient.of(EntityType.ZOMBIE, EntityType.HUSK, EntityType.ZOMBIE_HORSE), now the official tag with the same members
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.MELTABLE_ZOMBIE), TinkerFluids.moltenIron.result(FluidValues.NUGGET), 4)
                               .save(consumer, recipeKey(location(folder + "zombie")));
     MeltingRecipeBuilder.melting(Ingredient.of(Items.ZOMBIE_HEAD, TinkerWorld.heads.get(TinkerHeadType.HUSK)), TinkerFluids.moltenIron, FluidValues.INGOT)
                         .save(consumer, recipeKey(location(headFolder + "zombie")));
     // drowned drop copper instead
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.DROWNED), TinkerFluids.moltenCopper.result(FluidValues.NUGGET), 4)
+    // was EntityIngredient.of(EntityType.DROWNED)
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.MELTABLE_DROWNED), TinkerFluids.moltenCopper.result(FluidValues.NUGGET), 4)
                               .save(consumer, recipeKey(location(folder + "drowned")));
     MeltingRecipeBuilder.melting(Ingredient.of(TinkerWorld.heads.get(TinkerHeadType.DROWNED)), TinkerFluids.moltenCopper, FluidValues.INGOT)
                         .save(consumer, recipeKey(location(headFolder + "drowned")));
@@ -2219,14 +2250,16 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
 
     // melt skeletons to get the milk out if NeoForge provides a milk fluid in the active runtime
     ICondition milkFluidRegistered = new RegisteredCondition<>(net.minecraft.resources.ResourceKey.create(Registries.FLUID, Identifier.fromNamespaceAndPath("minecraft", "milk")));
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityIngredient.of(EntityTypeTags.SKELETONS), EntityIngredient.of(EntityType.SKELETON_HORSE)),
+    // was EntityIngredient.of(EntityIngredient.of(EntityTypeTags.SKELETONS), EntityIngredient.of(EntityType.SKELETON_HORSE)); the official tag holds the same entries
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.MELTABLE_SKELETON),
                                        NeoForgeMod.MILK.get(), FluidType.BUCKET_VOLUME / 10)
                               .save(withCondition(consumer, milkFluidRegistered), recipeKey(location(folder + "skeletons")));
     MeltingRecipeBuilder.melting(Ingredient.of(Items.SKELETON_SKULL, Items.WITHER_SKELETON_SKULL, TinkerWorld.heads.get(TinkerHeadType.STRAY)), NeoForgeMod.MILK.get(), FluidType.BUCKET_VOLUME / 4)
                         .save(withCondition(consumer, milkFluidRegistered), recipeKey(location(headFolder + "skeleton")));
 
     // slimes melt into slime, shocker
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.SLIME), TinkerFluids.earthSlime.result(FluidValues.SLIMEBALL / 10))
+    // was EntityIngredient.of(EntityType.SLIME)
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.MELTABLE_SLIME), TinkerFluids.earthSlime.result(FluidValues.SLIMEBALL / 10))
                               .save(consumer, recipeKey(location(folder + "slime")));
     EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerWorld.skySlimeEntity.get()), TinkerFluids.skySlime.result(FluidValues.SLIMEBALL / 10))
                               .save(consumer, recipeKey(prefix(TinkerWorld.skySlimeEntity, folder)));
@@ -2234,7 +2267,8 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                               .save(consumer, recipeKey(prefix(TinkerWorld.enderSlimeEntity, folder)));
     EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerWorld.terracubeEntity.get()), TinkerFluids.moltenClay.result(FluidValues.SLIMEBALL / 10))
                               .save(consumer, recipeKey(prefix(TinkerWorld.terracubeEntity, folder)));
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.MAGMA_CUBE), TinkerFluids.magma.result(FluidValues.SLIMEBALL / 10))
+    // was EntityIngredient.of(EntityType.MAGMA_CUBE)
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.MELTABLE_MAGMA), TinkerFluids.magma.result(FluidValues.SLIMEBALL / 10))
                               .save(consumer, recipeKey(location(folder + "magma_cube")));
     EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.BEE), TinkerFluids.honey.result(FluidValues.BOTTLE / 10))
                               .save(consumer, recipeKey(location(folder + "bee")));
@@ -2267,7 +2301,8 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
                               .save(consumer, recipeKey(location(folder + "illager")));
 
     // melt ender for the molten ender
-    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(EntityType.ENDERMAN, EntityType.ENDERMITE, EntityType.ENDER_DRAGON),
+    // was EntityIngredient.of(EntityType.ENDERMAN, EntityType.ENDERMITE, EntityType.ENDER_DRAGON)
+    EntityMeltingRecipeBuilder.melting(EntityIngredient.of(TinkerTags.EntityTypes.MELTABLE_ENDER),
                                        TinkerFluids.moltenEnder.result(FluidValues.SLIMEBALL / 10), 2)
                               .save(consumer, recipeKey(location(folder + "ender")));
     MeltingRecipeBuilder.melting(Ingredient.of(TinkerWorld.heads.get(TinkerHeadType.ENDERMAN)), TinkerFluids.moltenEnder, FluidValues.SLIMEBALL * 2)
@@ -2323,7 +2358,7 @@ public class SmelteryRecipeProvider extends BaseRecipeProvider implements ISmelt
     molten(consumer, TinkerFluids.moltenDiamond).ore(Byproduct.DEBRIS ).largeGem().dust().gear().geore().minecraftTools("diamond", true).toolCostMelting(11, "tools_costing_11").common(HAMMER);
     molten(consumer, TinkerFluids.moltenEmerald).ore(Byproduct.DIAMOND).largeGem().dust().gear().geore();
     molten(consumer, TinkerFluids.moltenQuartz ).ore(Byproduct.IRON   ).smallGem().dust().gear().geore();
-    molten(consumer, TinkerFluids.moltenAmethyst).smallGem();
+    molten(consumer, TinkerFluids.moltenAmethyst).storageBlock(Items.AMETHYST_BLOCK).smallGem(); // parity: NeoForge lacks c:storage_blocks/amethyst
 
     // standard alloys
     metal(consumer, TinkerFluids.moltenNetherite).metal().dust().plate().gear().coin(); // handles tools elsewhere due to byproducts

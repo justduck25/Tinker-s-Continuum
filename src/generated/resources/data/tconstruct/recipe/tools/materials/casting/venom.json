@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": [
+    {
+      "amount": 250,
+      "fluid": "tconstruct:venom"
+    },
+    {
+      "amount": 250,
+      "tag": "tconstruct:venom"
+    }
+  ],
+  "id": "tconstruct:tools/materials/casting/venom",
+  "output": "tconstruct:venom",
+  "temperature": 10
+}
