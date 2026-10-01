@@ -43,6 +43,15 @@ repositories {
         name = 'Shadowsoffire Maven'
         url = uri('https://maven.shadowsoffire.dev/releases')
     }
+    maven { // REI, Architectury and Cloth Config, compile only for the optional REI plugin
+        name = 'shedaniel'
+        url = uri('https://maven.shedaniel.me/')
+        content {
+            includeGroup 'me.shedaniel'
+            includeGroup 'me.shedaniel.cloth'
+            includeGroup 'dev.architectury'
+        }
+    }
     maven {
         url = uri('https://www.cursemaven.com')
         content {
@@ -216,6 +225,11 @@ dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     // at runtime, use the full JEI jar
     runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+
+    // Optional REI plugin (slimeknights.tconstruct.plugin.rei): compile against REI without bundling it or adding it to runs.
+    compileOnly "me.shedaniel:RoughlyEnoughItems-neoforge:26.1.819"
+    compileOnly "dev.architectury:architectury-neoforge:20.1.15"
+    compileOnly "me.shedaniel.cloth:cloth-config-neoforge:26.1.154"
 
     // implementation "mcjty.theoneprobe:TheOneProbe-${minecraft_base_version}:${minecraft_base_version}-${probe_version}"
 
