@@ -1,3 +1,32 @@
+Continuum Construct 26.1.2-3.12.5
+
+This release achieves full gameplay parity with Tinkers' Construct 3.12.1, adds client-side visual fixes (GUI text, tooltips, models, book content), and implements complete REI/JEI recipe viewer hiding parity.
+
+Gameplay Parity (TC 3.12.1)
+- All material stats, traits, modifiers, and tool definitions match official 3.12.1.
+- Entity melting tags, armor stand loot, kiln grout recipes, byproduct/fallback melting, edible 3.12, chrysophilite, venom, sky/ender slimeskin.
+- Crafting station side inventory fixes (SideInventoryContainer) with regression tests — fixes item loss/duplication when output full.
+- Travelers armor writes damage to real stack (26.1 fix), ToolLoadVerification replaces verifyTagAfterLoad.
+- Damage blocking uses setCanceled(true) (no hurt flash/i-frame/knockback) for rugged/frost walker/long fall.
+- FML parity tests: MaterialReload, ArmorTrait, BonusFormula, BalanceValues, ModifierData, ModifierTooltip, PotionCasting, ToolApi, SideInventory, FluidParticle, InstrumentIngredient, FixesData, ClientRecipeCache, OptionalMeltingRecipe.
+
+Client Fixes
+- GUI text 0x404040 now visible (alpha byte added), HUD modifier tooltips, crack harvest overlay, smeltery/station panels, tooltip attack, cube queens slime model.
+- Book content transformers, material book content, ToolItemModel/ToolRenderEvents fixes.
+
+Viewer Parity (REI/JEI)
+- Full REI support: all smeltery categories (alloy, casting, entity, fuel, material, melting, molding, part builder, tinker station, tool building, worktable).
+- Recipe display system: RecipeDisplayMapper, RecipeLayout, RecipeFocus, RecipeWorkstations, transfer handlers.
+- JEI/REI hiding parity: hides fluid compat, porcelain, potion, crystal, creative slots per official.
+- compile-only REI dep, no bundling.
+
+Compatibility
+- Requires Continuum Core 1.12.1.
+- Built against Minecraft 26.1.2 / NeoForge 26.1.2.112.
+
+Credits
+- Gameplay/client/viewer parity implementation by Arthur (therealarthur) with co-authoring by Claude.
+
 Continuum Construct 26.1.2-3.12.4
 
 This release keeps other mods' tank colors, brings thrown tools back, heats a smeltery from a second fuel tank, stops the part builder from freezing when a chest is beside it, and no longer crashes when tool damage math goes below zero.
