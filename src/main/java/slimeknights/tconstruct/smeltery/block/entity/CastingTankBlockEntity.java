@@ -227,7 +227,8 @@ public class CastingTankBlockEntity extends TableBlockEntity implements ITankBlo
 
   @Override
   public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-    return index == OUTPUT;
+    // Prevent hopper extraction from output when redstone signal is active (swaps slots)
+    return index == OUTPUT && !lastRedstone;
   }
 
   /*

@@ -54,7 +54,7 @@ public class OlympicModifier extends Modifier implements ProjectileLaunchModifie
     }
     // 20 meters - copper
     if (distanceSq > 400) {
-      return TinkerMaterials.copperNugget.get();
+      return Items.COPPER_NUGGET;
     }
     return Items.AIR;
   }

@@ -45,14 +45,17 @@ public class CastingBlockEntityRenderer implements BlockEntityRenderer<CastingBl
     state.timer = casting.getTimer();
     state.totalTime = casting.getCoolingTime();
     List<RenderItem> renderItems = RenderItem.STATE_REGISTRY.get(state.blockState, List.of());
-    if (!renderItems.isEmpty()) {
+if (!renderItems.isEmpty()) {
       if (state.input.isEmpty()) {
         state.inputItemState.clear();
       } else {
         this.itemModelResolver.updateForTopItem(state.inputItemState, state.input, renderItems.get(0).getTransform(), casting.getLevel(), null, (int)casting.getBlockPos().asLong());
       }
       if (renderItems.size() >= 2) {
-        ItemStack output = state.output.isEmpty() && !state.fluidStack.isEmpty() ? state.recipeOutput : state.output;
+        // Only show recipeOutput when cooling is active AND complete
+        // totalTime > 0 means cooling has started; timer >= totalTime means it's done
+        boolean coolingComplete = state.totalTime > 0 && state.timer >= state.totalTime;
+        ItemStack output = state.output.isEmpty() && !state.fluidStack.isEmpty() && coolingComplete ? state.recipeOutput : state.output;
         if (output.isEmpty()) {
           state.outputItemState.clear();
         } else {
@@ -103,12 +106,14 @@ public class CastingBlockEntityRenderer implements BlockEntityRenderer<CastingBl
         });
       }
 
-      if (!renderItems.isEmpty()) {
+if (!renderItems.isEmpty()) {
         if (!state.input.isEmpty()) {
           RenderingHelper.renderItem(poseStack, submitNodeCollector, state.inputItemState, renderItems.get(0), state.lightCoords);
         }
         if (renderItems.size() >= 2) {
-          ItemStack output = state.output.isEmpty() && !state.fluidStack.isEmpty() ? state.recipeOutput : state.output;
+          // Only show recipeOutput during cooling if cooling is complete
+          boolean coolingComplete = state.totalTime <= 0 || state.timer >= state.totalTime;
+          ItemStack output = state.output.isEmpty() && !state.fluidStack.isEmpty() && coolingComplete ? state.recipeOutput : state.output;
           if (!output.isEmpty()) {
             RenderingHelper.renderItem(poseStack, submitNodeCollector, state.outputItemState, renderItems.get(1), state.lightCoords);
           }

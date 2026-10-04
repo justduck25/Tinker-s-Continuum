@@ -18,6 +18,7 @@ import net.minecraft.client.resources.model.geometry.BakedQuad;
 import net.minecraft.client.resources.model.geometry.QuadCollection;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.client.resources.model.sprite.TextureSlots;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.ItemOwner;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -65,7 +66,10 @@ public class MaterialItemModel implements ItemModel {
     QuadCollection.Builder builder = new QuadCollection.Builder();
     List<BakedQuad> quads = MaterialModel.getQuadsForMaterial(spriteGetter, texture, material, unbaked.index, offsetTransform(unbaked.offsetX, unbaked.offsetY), null);
     for (BakedQuad quad : quads) {
-      builder.addUnculledFace(quad);
+      Direction direction = quad.direction();
+      if (direction == Direction.NORTH || direction == Direction.SOUTH) {
+        builder.addUnculledFace(quad);
+      }
     }
     QuadCollection quadCollection = builder.build();
 

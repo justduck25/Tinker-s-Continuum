@@ -58,7 +58,6 @@ public final class TinkerMaterials extends TinkerModule {
   public static final MetalItemObject soulsteel   = BLOCKS.registerMetal("soulsteel", metalBuilder(MapColor.COLOR_BROWN).noOcclusion(), BLOCK_ITEM, ITEM_PROPS);
 
   // nuggets
-  public static final ItemObject<Item> copperNugget = ITEMS.register("copper_nugget", ITEM_PROPS);
   public static final ItemObject<Item> netheriteNugget = ITEMS.register("netherite_nugget", ITEM_PROPS);
   public static final ItemObject<Item> debrisNugget = ITEMS.register("debris_nugget", TOOLTIP_ITEM);
 
@@ -138,7 +137,6 @@ public final class TinkerMaterials extends TinkerModule {
     accept(output, blazewood);
 
     // natural ores
-    output.accept(copperNugget);
     accept(output, cobalt);
     accept(output, steel);
     output.accept(debrisNugget);

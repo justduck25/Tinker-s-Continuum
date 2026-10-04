@@ -143,6 +143,7 @@ FluidUpdatePacket.IFluidPacketReceiver {
     private final MoldingContainerWrapper moldingInventory;
     private MoldingRecipe lastMoldingRecipe;
     private boolean lastRedstone = false;
+    private boolean redstoneSwapPending = false;
     private int lastAnalogSignal;
 
     protected CastingBlockEntity(BlockEntityType<?> beType, BlockPos pos, BlockState state, RecipeType<ICastingRecipe> castingType, RecipeType<MoldingRecipe> moldingType, TagKey<Item> emptyCastTag) {
@@ -253,6 +254,9 @@ FluidUpdatePacket.IFluidPacketReceiver {
         if (this.lastRedstone != hasSignal) {
             if (hasSignal && this.level != null) {
                 this.level.scheduleTick(this.worldPosition, this.getBlockState().getBlock(), 2);
+            } else if (!hasSignal) {
+                // Redstone turned OFF: swap-back is scheduled but not yet executed
+                this.redstoneSwapPending = true;
             }
             this.lastRedstone = hasSignal;
         }
@@ -263,6 +267,8 @@ FluidUpdatePacket.IFluidPacketReceiver {
             ItemStack output = this.getItem(1);
             this.setItem(1, this.getItem(0));
             this.setItem(0, output);
+            // Swap executed: clear pending flag
+            this.redstoneSwapPending = false;
             if (this.level != null) {
                 this.level.playSound(null, this.getBlockPos(), Sounds.CASTING_CLICKS.getSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
             }
@@ -279,7 +285,24 @@ FluidUpdatePacket.IFluidPacketReceiver {
     }
 
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        return this.tank.isEmpty() && index == 1;
+        // Prevent hopper extraction from output when:
+        // - redstone signal active (slots swapped, cast in output)
+        // - cooling active (product not ready)
+        // - tank not empty (casting in progress)
+        // - redstone swap-back pending (cast in output, waiting for swap-back tick)
+        if (this.tank.isEmpty() && index == 1 && this.coolingTime <= 0 && !this.lastRedstone) {
+            // Safety: if output is NOT a cast (i.e., finished product), always allow extraction
+            ItemStack output = this.getItem(1);
+            if (!output.isEmpty() && !output.is(this.emptyCastTag)) {
+                return true;
+            }
+            // Otherwise block if swap-back is pending (cast in output)
+            if (this.redstoneSwapPending) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     private void serverTick(Level level, BlockPos pos) {
@@ -452,6 +475,7 @@ FluidUpdatePacket.IFluidPacketReceiver {
         this.currentRecipe = null;
         this.recipeName = null;
         this.lastOutput = null;
+        this.redstoneSwapPending = false;
         this.castingInventory.setFluid(FluidStack.EMPTY);
         this.tank.reset();
         this.onContentsChanged();
@@ -547,6 +571,11 @@ FluidUpdatePacket.IFluidPacketReceiver {
     public ItemStack getRecipeOutput() {
         if (this.lastOutput == null) {
             if (this.currentRecipe == null || this.level == null) {
+                return ItemStack.EMPTY;
+            }
+            // On client, only show output when cooling is complete (timer >= coolingTime)
+            // During cooling, the renderer fades in the output over the fluid
+            if (this.level.isClientSide() && this.coolingTime > 0 && this.timer < this.coolingTime) {
                 return ItemStack.EMPTY;
             }
             this.castingInventory.setFluid(this.tank.getFluid());
