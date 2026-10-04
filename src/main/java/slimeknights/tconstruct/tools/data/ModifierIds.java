@@ -240,6 +240,8 @@ public class ModifierIds {
   public static final ModifierId scorchProtection = id("scorch_protection");
   public static final ModifierId antitoxin = id("antitoxin");
   public static final ModifierId airborne = id("airborne");
+  public static final ModifierId airborn = id("airborn");
+  public static final ModifierId rugged = id("rugged");
   public static final ModifierId skyfall = id("skyfall");
   public static final ModifierId flamestance = id("flamestance");
   public static final ModifierId entangled = id("entangled");
@@ -332,6 +334,10 @@ public class ModifierIds {
   public static final ModifierId balmOfSssss = id("balm_of_sssss");
   public static final ModifierId slowBones = id("slow_bones");
   public static final ModifierId witheredBones = id("withered");
+  /** Official 3.12.1 JSON modifier (was the static Java {@code TinkerModifiers.goldGuard}) */
+  public static final ModifierId goldGuard = id("gold_guard");
+  /** Official 3.12.1 JSON modifier (was the static Java {@code TinkerModifiers.chrysophilite}) */
+  public static final ModifierId chrysophilite = id("chrysophilite");
   public static final ModifierId magicBones = id("magic_bones");
   public static final ModifierId flamingBones = id("flaming_bones");
   public static final ModifierId decayedBones = id("decayed_bones");

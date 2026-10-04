@@ -6,7 +6,9 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.crafting.IngredientType;
 import slimeknights.tconstruct.library.recipe.ingredient.LegacyIngredientType;
@@ -37,6 +39,7 @@ public class MaterialIngredient extends NestedIngredient {
   private final IJsonPredicate<MaterialVariantId> material;
   @Nullable
   private ItemStack[] materialStacks;
+  private long displayRevision = -1;
   protected MaterialIngredient(Ingredient nested, IJsonPredicate<MaterialVariantId> material) {
     super(nested);
     this.material = material;
@@ -150,20 +153,34 @@ public class MaterialIngredient extends NestedIngredient {
   }
 
   public ItemStack[] getItems() {
+    long revision = MaterialRecipeCache.getDisplayRevision();
+    if (displayRevision != revision) {
+      materialStacks = null;
+      displayRevision = revision;
+    }
     if (materialStacks == null) {
       if (!MaterialRegistry.isFullyLoaded()) {
-        return nested.items().map(ItemStack::new).toArray(ItemStack[]::new);
+        return MaterialRecipeCache.getDisplayItems(nested).toArray(ItemStack[]::new);
       }
       // no material? apply all materials for variants
-      Stream<ItemStack> items = nested.items().map(ItemStack::new);
+      Stream<ItemStack> items = MaterialRecipeCache.getDisplayItems(nested).stream();
       // find all materials matching the filter; note this only shows craftable material variants
       items = items.flatMap(stack -> MaterialRecipeCache.getAllVariants().stream()
         .filter(material::matches)
+        .filter(mat -> !(stack.getItem() instanceof IMaterialItem part) || part.canUseMaterial(mat.getMaterialId()))
         .map(mat -> IMaterialItem.withMaterial(stack, mat))
         .filter(candidate -> !candidate.isEmpty()));
       materialStacks = items.distinct().toArray(ItemStack[]::new);
     }
     return materialStacks;
+  }
+
+  @Override
+  public SlotDisplay display() {
+    return new SlotDisplay.Composite(Arrays.stream(getItems())
+      .filter(stack -> !stack.isEmpty() && test(stack))
+      .map(stack -> (SlotDisplay)new SlotDisplay.ItemStackSlotDisplay(ItemStackTemplate.fromNonEmptyStack(stack)))
+      .toList());
   }
 
   public JsonElement toJson() {

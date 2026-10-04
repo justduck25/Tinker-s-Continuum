@@ -73,13 +73,16 @@ public class CompositeCastingRecipe extends MaterialCastingRecipe {
   /* JEI display */
   @Override
   public List<IDisplayableCastingRecipe> getRecipes(RegistryAccess access) {
+    checkDisplayCache();
     if (multiRecipes == null) {
       RecipeType<?> type = getType();
       ImmutableList.Builder<IDisplayableCastingRecipe> recipes = ImmutableList.builder();
       for (MaterialFluidRecipe recipe : MaterialCastingLookup.getAllCompositeFluids()) {
         MaterialVariant output = recipe.getOutput();
         MaterialVariant input = recipe.getInput();
-        if (recipe.isVisible() && input != null
+        // parity: official lists hidden composite recipes too (hide_in_book only hides them from the book), so the
+        // loot-only ancient hide parts show their venom cleaning; Continuum filtered on recipe.isVisible()
+        if (input != null
             && result.canUseMaterial(output.getId()) && result.canUseMaterial(input.getId())
             && this.materials.matches(output.getVariant())) {
           List<FluidStack> fluids = recipe.getFluids();
@@ -94,7 +97,7 @@ public class CompositeCastingRecipe extends MaterialCastingRecipe {
                            .toList();
           }
           if (!fluids.isEmpty()) {
-            fluids = resizeFluids(recipe.getFluids());
+            fluids = resizeFluids(fluids);
             MaterialVariantId inputId = input.getVariant();
             List<ItemStack> inputs;
             if (inputId.getVariant().isEmpty()) {
@@ -105,7 +108,7 @@ public class CompositeCastingRecipe extends MaterialCastingRecipe {
             }
             if (!inputs.isEmpty()) {
               recipes.add(new DisplayCastingRecipe(getId(), type, inputs, fluids, result.withMaterial(output.getVariant()),
-                ICastingRecipe.calcCoolingTime(recipe.getTemperature(), itemCost * fluids.stream().mapToInt(FluidStack::getAmount).max().orElse(0)),
+                ICastingRecipe.calcCoolingTime(recipe.getTemperature(), fluids.stream().mapToInt(FluidStack::getAmount).max().orElse(0)),
                 isConsumed()));
             }
           }

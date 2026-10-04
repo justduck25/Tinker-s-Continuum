@@ -208,7 +208,7 @@ public class ItemTagProvider extends TagsProvider<Item> {
     this.tag(TinkerTags.Items.WITHER_BONES).add(TinkerMaterials.necroticBone.get()).addTag(TinkerTags.Items.WEIRD_WITHER_BONES_TAG);
     this.tag(TinkerTags.Items.WEIRD_WITHER_BONES_TAG).add(TinkerMaterials.necroticBone.get());
 
-    this.tag(TinkerTags.Items.NUGGETS_COPPER).add(TinkerMaterials.copperNugget.get());
+    this.tag(TinkerTags.Items.NUGGETS_COPPER).add(Items.COPPER_NUGGET);
     this.tag(TinkerTags.Items.INGOTS_NETHERITE_SCRAP).add(Items.NETHERITE_SCRAP);
     this.tag(TinkerTags.Items.NUGGETS_NETHERITE).add(TinkerMaterials.netheriteNugget.get());
     this.tag(TinkerTags.Items.NUGGETS_NETHERITE_SCRAP).add(TinkerMaterials.debrisNugget.get());
@@ -255,6 +255,11 @@ public class ItemTagProvider extends TagsProvider<Item> {
     copy(TagKey.create(Registries.BLOCK, Identifier.parse("c:glass_panes/colorless")), ItemTags.create(Identifier.parse("c:glass_panes/colorless")));
     copy(TagKey.create(Registries.BLOCK, Identifier.parse("c:glass/stained")), ItemTags.create(Identifier.parse("c:glass/stained")));
     copy(TagKey.create(Registries.BLOCK, Identifier.parse("c:glass_panes/stained")), ItemTags.create(Identifier.parse("c:glass_panes/stained")));
+    // parity: NeoForge 26.1 names for the official forge:glass family (see BlockTagProvider)
+    copy(Tags.Blocks.GLASS_BLOCKS, Tags.Items.GLASS_BLOCKS);
+    copy(Tags.Blocks.GLASS_BLOCKS_COLORLESS, Tags.Items.GLASS_BLOCKS_COLORLESS);
+    copy(Tags.Blocks.GLASS_BLOCKS_TINTED, Tags.Items.GLASS_BLOCKS_TINTED);
+    copy(Tags.Blocks.GLASS_PANES, Tags.Items.GLASS_PANES);
     for (DyeColor color : DyeColor.values()) {
       Identifier name = commonResource("glass/" + color.getSerializedName());
       copy(TagKey.create(Registries.BLOCK, name), TagKey.create(Registries.ITEM, name));
@@ -306,7 +311,7 @@ public class ItemTagProvider extends TagsProvider<Item> {
       // internal item for modifiers
       TinkerTools.crystalshotItem.asItem(),
       // unused future fluids
-      TinkerFluids.moltenSoulsteel.asItem(), TinkerFluids.moltenKnightslime.asItem()
+      TinkerFluids.moltenSoulsteel.asItem() // parity: official does not hide the knightslime bucket (was also moltenKnightslime)
     );
     // unused future material items
     TinkerMaterials.soulsteel.forEach(item -> hidden.add(item.asItem()));
@@ -406,27 +411,44 @@ public class ItemTagProvider extends TagsProvider<Item> {
     addToolTags(TinkerTools.throwingAxe, MULTIPART_TOOL, THROWN_AMMO, UNSALVAGABLE, UNSWAPPABLE, SINGLE_USE);
     // specialized
     addToolTags(TinkerTools.flintAndBrick, DURABILITY, MELEE_WEAPON, INTERACTABLE_RIGHT, AOE, SMALL_TOOLS, BONUS_SLOTS);
-    addToolTags(TinkerTools.skyStaff,      DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
-    addToolTags(TinkerTools.earthStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
-    addToolTags(TinkerTools.ichorStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
-    addToolTags(TinkerTools.enderStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, EMBELLISHMENT_SLIME, BONUS_SLOTS);
+    addToolTags(TinkerTools.skyStaff,      DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS); // parity: no EMBELLISHMENT_SLIME, official has none
+    addToolTags(TinkerTools.earthStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS); // parity: no EMBELLISHMENT_SLIME, official has none
+    addToolTags(TinkerTools.ichorStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS); // parity: no EMBELLISHMENT_SLIME, official has none
+    addToolTags(TinkerTools.enderStaff,    DURABILITY, STAFFS, SPECIAL_TOOLS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, DYEABLE, EMBELLISHMENT_WOOD, BONUS_SLOTS); // parity: no EMBELLISHMENT_SLIME, official has none
     // ancient
     addToolTags(TinkerTools.meltingPan, MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, TRADER_TOOLS, HARVEST_PRIMARY, STAFFS, HELD_ARMOR, INTERACTABLE_DUAL, AOE, BONUS_SLOTS);
     addToolTags(TinkerTools.warPick,    MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, TRADER_TOOLS, HARVEST_PRIMARY, STONE_HARVEST, MELEE_WEAPON, HELD, AOE, CLUSTER_MAX_HARVESTABLES, CROSSBOWS, BONUS_SLOTS, ItemTags.PICKAXES, ItemTags.create(Identifier.parse("c:tools/crossbow")));
     addToolTags(TinkerTools.battlesign, MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, TRADER_TOOLS, MELEE_PRIMARY, SHIELDS, BONUS_SLOTS, ItemTags.create(Identifier.parse("c:tools/shield")));
     addToolTags(TinkerTools.swasher,    MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, TRADER_TOOLS, HARVEST, MELEE_PRIMARY, LAUNCHERS, HELD, BONUS_SLOTS, ItemTags.SWORDS, RANGED_POWER, RANGED_QUICK_CHARGE, RANGED_BOUNCE, INTERACTABLE_CHARGE_MODIFIER);
-    optionalToolTags(TinkerTools.minotaurAxe, MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, HARVEST_PRIMARY, MELEE_PRIMARY, INTERACTABLE_RIGHT, AOE, BONUS_SLOTS, ItemTags.AXES);
+    // parity: official registers the minotaur axe only with Twilight Forest. The port keeps the item registered so
+    // saved copies survive, and adds these same tags from resources/compat/twilightforest_minotaur_axe, a built-in data pack
+    // TinkerTools enables only when Twilight Forest is loaded. Without it the axe is in no tool tag, as if absent.
+    // optionalToolTags(TinkerTools.minotaurAxe, MULTIPART_TOOL, DURABILITY, ANCIENT_TOOLS, HARVEST_PRIMARY, MELEE_PRIMARY, INTERACTABLE_RIGHT, AOE, BONUS_SLOTS, ItemTags.AXES);
 
     // armor
-    addArmorTags(TinkerTools.travelersGear, SINGLEPART_TOOL, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, ItemTags.FREEZE_IMMUNE_WEARABLES);
+    // parity: official 3.12.1 armor and shield tags. Continuum put the single part armor in
+    // modifiable/multipart/single (official leaves that tag unused), marked the slime chest, legs and boots unrecyclable
+    // instead of the travelers armor, and left the travelers shield out of modifiable/banner. Former lines:
+    //   addArmorTags(travelersGear, SINGLEPART_TOOL, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, FREEZE_IMMUNE_WEARABLES)
+    //   addArmorTags(slimesuit, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, SINGLEPART_TOOL, UNRECYCLABLE)
+    //   addToolTags(slimeWings, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, SINGLEPART_TOOL, CHESTPLATES, c:armors/chestplates)
+    //   addToolTags(slime helmet, SWAPPABLE_SKULLS)
+    //   addToolTags(travelersShield, ..., SINGLEPART_TOOL, UNRECYCLABLE, DYEABLE); addToolTags(plateShield, ..., SINGLEPART_TOOL, UNRECYCLABLE, BANNER)
+    addArmorTags(TinkerTools.travelersGear, MULTIPART_TOOL, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, UNRECYCLABLE, ItemTags.FREEZE_IMMUNE_WEARABLES);
     addArmorTags(TinkerTools.plateArmor,    MULTIPART_TOOL, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM);
-    addArmorTags(TinkerTools.slimesuit,     DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, SINGLEPART_TOOL, UNRECYCLABLE);
-    addToolTags(TinkerTools.slimeWings, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, SINGLEPART_TOOL, CHESTPLATES, ItemTags.create(Identifier.parse("c:armors/chestplates")));
-    addToolTags(TinkerTools.slimesuit.get(ArmorType.HELMET), SWAPPABLE_SKULLS);
+    addArmorTags(TinkerTools.slimesuit,     DURABILITY, BONUS_SLOTS, DYEABLE, TRIM);
+    var slimeMultipart = tag(MULTIPART_TOOL);
+    for (ArmorType type : ModifiableArmorMaterial.ARMOR_TYPES) {
+      if (type != ArmorType.HELMET) {
+        slimeMultipart.add(TinkerTools.slimesuit.get(type));
+      }
+    }
+    addToolTags(TinkerTools.slimeWings, DURABILITY, BONUS_SLOTS, DYEABLE, TRIM, MULTIPART_TOOL, CHESTPLATES, ItemTags.create(Identifier.parse("c:armors/chestplates")), Tags.Items.ARMORS_HUMANOID);
+    addToolTags(TinkerTools.slimesuit.get(ArmorType.HELMET), MULTIPART_TOOL, SWAPPABLE_SKULLS, UNRECYCLABLE);
 
     // shields
-    addToolTags(TinkerTools.travelersShield, DURABILITY, BONUS_SLOTS, SHIELDS, INTERACTABLE_LEFT, ItemTags.create(Identifier.parse("c:tools/shield")), SINGLEPART_TOOL, UNRECYCLABLE, DYEABLE);
-    addToolTags(TinkerTools.plateShield,     DURABILITY, BONUS_SLOTS, SHIELDS, INTERACTABLE_LEFT, ItemTags.create(Identifier.parse("c:tools/shield")), SINGLEPART_TOOL, UNRECYCLABLE, BANNER);
+    addToolTags(TinkerTools.travelersShield, DURABILITY, BONUS_SLOTS, SHIELDS, INTERACTABLE_LEFT, ItemTags.create(Identifier.parse("c:tools/shield")), MULTIPART_TOOL, UNRECYCLABLE, BANNER, DYEABLE);
+    addToolTags(TinkerTools.plateShield,     DURABILITY, BONUS_SLOTS, SHIELDS, INTERACTABLE_LEFT, ItemTags.create(Identifier.parse("c:tools/shield")), MULTIPART_TOOL, UNRECYCLABLE, BANNER);
 
     // care about order for armor in the book
     tag(BASIC_ARMOR);
@@ -491,7 +513,8 @@ public class ItemTagProvider extends TagsProvider<Item> {
     this.tag(ItemTags.create(Identifier.fromNamespaceAndPath("headlight", "headlight_helmets"))).addTag(HELMETS);
 
     // general
-    this.tag(MULTIPART_TOOL).addTag(SINGLEPART_TOOL);
+    // parity: official only references the single part tag optionally, so it never exists unless a pack fills it
+    this.tag(MULTIPART_TOOL).addOptionalTag(SINGLEPART_TOOL);
     this.tag(MODIFIABLE).addTags(MULTIPART_TOOL, DURABILITY, MELEE, HARVEST, RANGED, AMMO, AOE, HELD, BONUS_SLOTS);
     // disable parry mod on our items, we have our own modifier for that
     this.tag(TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("parry", "excluded_shields"))).addTag(HELD);
@@ -705,6 +728,8 @@ public class ItemTagProvider extends TagsProvider<Item> {
     this.tag(TinkerTags.Items.BASIN_EMPTY_CASTS).add(TinkerCommons.goldPlatform.asItem());
 
     this.tag(TinkerTags.Items.DUCT_CONTAINERS).add(Items.BUCKET, TinkerSmeltery.copperCan.get(), TinkerSmeltery.searedLantern.asItem(), TinkerSmeltery.scorchedLantern.asItem());
+    // parity: example solid fuels for the recipe viewer fuel category, same as official 3.12.1
+    this.tag(TinkerTags.Items.FUEL_EXAMPLES).add(Items.COAL, Items.CHARCOAL, Items.COAL_BLOCK, Items.OAK_LOG, Items.OAK_PLANKS, Items.BLAZE_ROD);
 
     // tank tag
     copy(TinkerTags.Blocks.SEARED_TANKS, TinkerTags.Items.SEARED_TANKS);
@@ -843,6 +868,8 @@ public class ItemTagProvider extends TagsProvider<Item> {
       }
       this.tag(getArmorTag(type)).add(item);
       this.tag(getCommonArmorTag(type)).add(item);
+      // parity: NeoForge 26.1 builds c:armors from c:armors/humanoid, which only reads the vanilla slot tags
+      this.tag(Tags.Items.ARMORS_HUMANOID).add(item);
     });
   }
 

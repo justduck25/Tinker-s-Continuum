@@ -1,4 +1,4 @@
-// 26.1.2	2026-09-17T14:45:41.9900388	Continuum Construct Material Render Info Provider
+// 26.1.2	2026-10-01T14:59:17.3933825	Continuum Construct Material Render Info Provider
 d14e6ffefa5577bb480b64f6ffc04a18927cde95 assets/tconstruct/tinkering/materials/allthemodium.json
 f6dd937daebeff98cd1570b6e1fb83bf3c8753e3 assets/tconstruct/tinkering/materials/aluminum.json
 17a715d28cebb3e7fb69fa2b859cb57ebfc5ad55 assets/tconstruct/tinkering/materials/amethyst.json
@@ -30,6 +30,7 @@ d809853dd385d98a8caaf518d23ed72c44bb7ff3 assets/tconstruct/tinkering/materials/d
 1ca9b7109c73cc0e46fc46f46189802357be24bc assets/tconstruct/tinkering/materials/earthslime.json
 38da6034f0a02386791f26934324bbaaeb773685 assets/tconstruct/tinkering/materials/electrum.json
 31f3eb16eaa2ca5e4d4442dba75de4b7b8bddf3e assets/tconstruct/tinkering/materials/enderslime.json
+4fda1ce01e74e26e0a785592206a046539fbe8f9 assets/tconstruct/tinkering/materials/enderslimeskin.json
 783b431407adbdfd16cdba1a42c861593de679ff assets/tconstruct/tinkering/materials/enderslime_vine.json
 0b81c9b68b5e66fba1241574240e26724508c166 assets/tconstruct/tinkering/materials/ender_pearl.json
 19194aa177d94ba6a91bad6bbcd1303d6ce92244 assets/tconstruct/tinkering/materials/end_rod.json
@@ -103,6 +104,7 @@ ee3eaedc2586ca36013f4746c4045c9114b872b1 assets/tconstruct/tinkering/materials/s
 5704231589bdf3dc0dd2bdff1928cb85053de8bc assets/tconstruct/tinkering/materials/shulker.json
 cda5d9bf7cc1051057689b87930957c671a57397 assets/tconstruct/tinkering/materials/silver.json
 146cded28ba2aab3117bcc329d1d3f4f6638c425 assets/tconstruct/tinkering/materials/skyslime.json
+78f08f06f2766c67a36eeb07ede14362eafc2135 assets/tconstruct/tinkering/materials/skyslimeskin.json
 b2881ab0260432ff8d54b47a05e16e42e7e2fa56 assets/tconstruct/tinkering/materials/skyslime_vine.json
 acfd15582d70601633b18750d1e2123a10510555 assets/tconstruct/tinkering/materials/slimeball.json
 c855bec8b821f72b2174b1ed4d53a5659a197665 assets/tconstruct/tinkering/materials/slimeball/ender.json
@@ -131,6 +133,7 @@ b62cd0fe9bb5d1df807243c48d8c7166d5e34968 assets/tconstruct/tinkering/materials/u
 df890f7fb79e0db2f95274ae8383817d0679922e assets/tconstruct/tinkering/materials/unknown.json
 37b1a1ba337e32211d1ad78b434ea73c8317a28c assets/tconstruct/tinkering/materials/unobtainium.json
 814c5bc5fad8c90b114340a890708fe735067574 assets/tconstruct/tinkering/materials/uraninite.json
+1b965caacb1671dcc470995b5bc88f97633bddbc assets/tconstruct/tinkering/materials/venom.json
 17109b2ab72c8c23873573f80c1b81a0abcb80a6 assets/tconstruct/tinkering/materials/venombone.json
 0d7bb414745c9c069840fdce013578828b340421 assets/tconstruct/tinkering/materials/vibranium.json
 b8c15a85a425856f867dcef92a716834e2b12406 assets/tconstruct/tinkering/materials/vibrant_alloy.json

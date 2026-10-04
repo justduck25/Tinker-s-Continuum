@@ -80,12 +80,26 @@ public class MaterialCastingRecipe extends AbstractMaterialCastingRecipe impleme
 
   /* JEI display */
   protected List<IDisplayableCastingRecipe> multiRecipes;
+  private long displayRevision = -1;
+
+  protected void checkDisplayCache() {
+    long revision = MaterialRecipeCache.getDisplayRevision();
+    if (displayRevision != revision) {
+      multiRecipes = null;
+      displayRevision = revision;
+    }
+  }
 
   @Override
   public List<IDisplayableCastingRecipe> getRecipes(RegistryAccess access) {
+    checkDisplayCache();
     if (multiRecipes == null) {
       RecipeType<?> type = getType();
       List<ItemStack> castItems = MaterialRecipeCache.getDisplayItems(getCast());
+      if (castItems.isEmpty() && !matchesCast(ItemStack.EMPTY)) {
+        multiRecipes = List.of();
+        return multiRecipes;
+      }
       multiRecipes = MaterialCastingLookup
         .getAllCastingFluids().stream()
         .filter(recipe -> {
@@ -96,7 +110,7 @@ public class MaterialCastingRecipe extends AbstractMaterialCastingRecipe impleme
           List<FluidStack> fluids = resizeFluids(recipe.getFluids());
           int fluidAmount = fluids.stream().mapToInt(FluidStack::getAmount).max().orElse(0);
           return new DisplayCastingRecipe(getId(), type, castItems, fluids, result.withMaterial(recipe.getOutput().getVariant()),
-                                          ICastingRecipe.calcCoolingTime(recipe.getTemperature(), itemCost * fluidAmount), isConsumed());
+                                          ICastingRecipe.calcCoolingTime(recipe.getTemperature(), fluidAmount), isConsumed());
         })
         .collect(Collectors.toList());
     }

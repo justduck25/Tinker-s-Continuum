@@ -32,11 +32,12 @@ import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyE
 import net.neoforged.neoforge.client.event.RegisterRangeSelectItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterSelectItemModelPropertyEvent;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
 import net.neoforged.neoforge.client.event.RenderBlockScreenEffectEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.EventPriority;
 
 import org.joml.Matrix4f;
 import slimeknights.tconstruct.TConstruct;
@@ -47,7 +48,8 @@ import slimeknights.tconstruct.tools.client.MossyModifierModel;
 import slimeknights.tconstruct.tools.client.ShieldBannerModifierSpriteSource;
 import slimeknights.tconstruct.tools.modifiers.effect.HelmetChargingEffect;
 import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.common.recipe.RecipeCacheInvalidator;
+import slimeknights.tconstruct.library.client.recipe.ClientRecipeCache;
+import slimeknights.tconstruct.library.events.MaterialsLoadedEvent;
 import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.armor.texture.DyedArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.armor.texture.FirstArmorTextureSupplier;
@@ -117,21 +119,18 @@ public class TinkerClient {
     // needs to register listeners early enough for minecraft to load
     ModifierIconManager.init();
 
-    // add the recipe cache invalidator to the client
-    Consumer<RecipesReceivedEvent> recipesUpdated = event -> RecipeCacheInvalidator.reload(true);
-    NeoForge.EVENT_BUS.addListener(recipesUpdated);
-    if (ModList.get().isLoaded("jei")) {
-      Consumer<RecipesReceivedEvent> jeiRecipesUpdated = event -> {
-        try {
-          Class.forName("slimeknights.tconstruct.plugin.jei.TConstructJEIPlugin")
-            .getMethod("onRecipesReceived", RecipesReceivedEvent.class)
-            .invoke(null, event);
-        } catch (ReflectiveOperationException e) {
-          TConstruct.LOG.warn("Failed to update JEI recipe caches after receiving server recipes", e);
-        }
-      };
-      NeoForge.EVENT_BUS.addListener(jeiRecipesUpdated);
-    }
+    // Recipe data is needed even when neither optional viewer is installed.
+    Consumer<RecipesReceivedEvent> recipesUpdated = event -> {
+      var connection = Minecraft.getInstance().getConnection();
+      if (connection != null) {
+        ClientRecipeCache.receive(connection.registryAccess(), event.getRecipeMap());
+      }
+    };
+    // Viewers may rebuild at normal priority in this same event.
+    NeoForge.EVENT_BUS.addListener(EventPriority.HIGHEST, false, RecipesReceivedEvent.class, recipesUpdated);
+    NeoForge.EVENT_BUS.addListener((ClientPlayerNetworkEvent.LoggingOut event) -> ClientRecipeCache.clear());
+    NeoForge.EVENT_BUS.addListener((MaterialsLoadedEvent event) ->
+      Minecraft.getInstance().execute(ClientRecipeCache::materialsUpdated));
 
     // register datagen serializers
     ISpriteTransformer.SERIALIZER.registerDeserializer(RecolorSpriteTransformer.NAME, RecolorSpriteTransformer.DESERIALIZER);

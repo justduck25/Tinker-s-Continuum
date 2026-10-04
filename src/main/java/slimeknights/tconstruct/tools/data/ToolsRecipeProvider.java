@@ -1,5 +1,7 @@
 package slimeknights.tconstruct.tools.data;
 
+import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
+import slimeknights.mantle.data.predicate.IJsonPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -191,71 +193,96 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
 
     // travelers gear
     String travelersFolder = armorFolder + "travelers/";
-    RecipeOutput shapedMaterial = MaterialsConsumerBuilder.shaped("c").material(MaterialIds.leather).build(consumer);
+    RecipeOutput shapedMaterial = MaterialsConsumerBuilder.shaped("cl").build(consumer);
     // fake ingot allows things like bronze and pewter to craft it even if their ingot form is not registered
     Function<MaterialStatsId,Ingredient> travelersMaterial = type -> CompoundIngredient.of(
       MaterialValueIngredient.of(MaterialPredicate.and(MaterialPredicate.or(MaterialPredicate.CASTABLE, MaterialPredicate.COMPOSITE), new MaterialStatTypePredicate(type)), 1),
       MaterialIngredient.of(TinkerToolParts.fakeIngot, new MaterialStatTypePredicate(type)).toVanilla()
     );
+    IJsonPredicate<MaterialVariantId> travelersCuirass = new MaterialStatTypePredicate(StatlessMaterialStats.CUIRASS.getIdentifier());
+    Ingredient cuirass = MaterialValueIngredient.of(travelersCuirass, 1);
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.COMBAT, TinkerTools.travelersGear.get(ArmorType.HELMET))
       .pattern("l l")
       .pattern("glg")
       .pattern("c c")
       .define('c', travelersMaterial.apply(PlatingMaterialStats.HELMET.getStatsId()))
-      .define('l', Tags.Items.LEATHERS)
+      .define('l', cuirass)
       .define('g', Tags.Items.GLASS_PANES_COLORLESS)
-      .unlockedBy("has_item", has(Tags.Items.LEATHERS))
+      .unlockedBy("has_item", has(Tags.Items.INGOTS_COPPER))
       .save(shapedMaterial, recipeKey(location(travelersFolder + "goggles")));
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.COMBAT, TinkerTools.travelersGear.get(ArmorType.CHESTPLATE))
-      .pattern("l l")
+      .pattern("lsl")
       .pattern("lcl")
       .pattern("lcl")
       .define('c', travelersMaterial.apply(PlatingMaterialStats.CHESTPLATE.getStatsId()))
-      .define('l', Tags.Items.LEATHERS)
-      .unlockedBy("has_item", has(Tags.Items.LEATHERS))
+      .define('l', cuirass)
+      .define('s', Tags.Items.STRINGS)
+      .unlockedBy("has_item", has(Tags.Items.INGOTS_COPPER))
       .save(shapedMaterial, recipeKey(location(travelersFolder + "chestplate")));
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.COMBAT, TinkerTools.travelersGear.get(ArmorType.LEGGINGS))
-      .pattern("lll")
+      .pattern("lfl")
       .pattern("c c")
       .pattern("l l")
       .define('c', travelersMaterial.apply(PlatingMaterialStats.LEGGINGS.getStatsId()))
-      .define('l', Tags.Items.LEATHERS)
-      .unlockedBy("has_item", has(Tags.Items.LEATHERS))
+      .define('l', cuirass)
+      .define('f', Items.FLINT)
+      .unlockedBy("has_item", has(Tags.Items.INGOTS_COPPER))
       .save(shapedMaterial, recipeKey(location(travelersFolder + "pants")));
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.COMBAT, TinkerTools.travelersGear.get(ArmorType.BOOTS))
+      .pattern("s s")
       .pattern("c c")
       .pattern("l l")
       .define('c', travelersMaterial.apply(PlatingMaterialStats.BOOTS.getStatsId()))
-      .define('l', Tags.Items.LEATHERS)
-      .unlockedBy("has_item", has(Tags.Items.LEATHERS))
+      .define('l', cuirass)
+      .define('s', Tags.Items.STRINGS)
+      .unlockedBy("has_item", has(Tags.Items.INGOTS_COPPER))
       .save(shapedMaterial, recipeKey(location(travelersFolder + "boots")));
-    // shield needs no special variants, no compat shield cores exist
+    // shield needs no special ingots, no compat shield cores exist
     ShapedRecipeBuilder.shaped(this.items, RecipeCategory.COMBAT, TinkerTools.travelersShield)
-                       .pattern("cl")
-                       .pattern("lc")
-                       .define('l', Tags.Items.LEATHERS)
-                       .define('c', MaterialValueIngredient.of(new MaterialStatTypePredicate(StatlessMaterialStats.SHIELD_CORE.getIdentifier()), 1))
-                       .unlockedBy("has_item", has(Tags.Items.LEATHERS))
-                       .save(shapedMaterial, recipeKey(location(travelersFolder + "shield")));
+      .pattern("scs")
+      .pattern("lcl")
+      .define('l', cuirass)
+      .define('c', MaterialValueIngredient.of(new MaterialStatTypePredicate(StatlessMaterialStats.SHIELD_CORE.getIdentifier()), 1))
+      .define('s', Tags.Items.RODS_WOODEN)
+      .unlockedBy("has_item", has(Tags.Items.LEATHERS))
+      .save(shapedMaterial, recipeKey(location(travelersFolder + "shield")));
 
-    // travelers part swapping
+    // travelers part swapping - cuirass casting
     PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.HELMET)), 3)
       .index(1)
       .save(consumer, location(travelersFolder + "goggles_leather"));
     PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.CHESTPLATE)), 6)
       .index(1)
       .save(consumer, location(travelersFolder + "chestplate_leather"));
-    PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.LEGGINGS)), 5)
+    PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.LEGGINGS)), 4)
       .index(1)
       .save(consumer, location(travelersFolder + "pants_leather"));
-    PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.BOOTS)), 2)
+    PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.BOOTS), TinkerTools.travelersShield), 2)
       .index(1)
       .save(consumer, location(travelersFolder + "boots_leather"));
+    // Keep the old recipe ID available for saved recipe references.
     PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersShield), 2)
-      .index(1)
-      .save(consumer, location(travelersFolder + "shield_leather"));
+      .index(1).save(consumer, location(travelersFolder + "shield_leather"));
+    // travelers part swapping - metal casting
     PartSwapCastingRecipeBuilder.tableRecipe(Ingredient.of(TinkerTools.travelersGear.values().toArray(new Item[0])), 2)
       .save(consumer, location(travelersFolder + "swapping_metal"));
+
+    // travelers part swapping - cuirass tinker station
+    MaterialSwappingRecipeBuilder.tool(TinkerTools.travelersGear.get(ArmorType.HELMET))
+      .index(1).material(travelersCuirass, 3)
+      .save(consumer, location(travelersFolder + "goggles_cuirass"));
+    MaterialSwappingRecipeBuilder.tool(TinkerTools.travelersGear.get(ArmorType.CHESTPLATE))
+      .index(1).material(travelersCuirass, 6)
+      .save(consumer, location(travelersFolder + "vest_cuirass"));
+    MaterialSwappingRecipeBuilder.tool(TinkerTools.travelersGear.get(ArmorType.LEGGINGS))
+      .index(1).material(travelersCuirass, 4)
+      .save(consumer, location(travelersFolder + "pants_cuirass"));
+    MaterialSwappingRecipeBuilder.tools(Ingredient.of(TinkerTools.travelersGear.get(ArmorType.BOOTS), TinkerTools.travelersShield))
+      .index(1).material(travelersCuirass, 2)
+      .save(consumer, location(travelersFolder + "boots_cuirass"));
+    MaterialSwappingRecipeBuilder.tool(TinkerTools.travelersShield)
+      .index(0).material(new MaterialStatTypePredicate(StatlessMaterialStats.SHIELD_CORE.getIdentifier()), 2)
+      .save(consumer, location(travelersFolder + "shield_wood"));
 
     // plate armor
     String plateFolder = armorFolder + "plate/";
@@ -298,44 +325,54 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
     slimeskull(consumer, MaterialIds.blazingBone, TinkerWorld.heads.get(TinkerHeadType.BLAZING_BONE),     armorFolder);
     slimeskull(consumer, MaterialIds.necronium,   TinkerWorld.heads.get(TinkerHeadType.NECRONIUM),        armorFolder);
     slimeskull(consumer, MaterialIds.knightmetal, TinkerSmeltery.endFluidCannon.get(),                    armorFolder);
+    // parity: official 3.12.1 single swapping recipe for all skulls (slime material at index 1, cost 5).
+    // Continuum's per-skull tool casting recipes can also swap the slime because it has no fluid_swapping flag;
+    // both paths use index 1 and cost 5, so restoring this ID adds the official entry point without changing results.
+    PartSwapCastingRecipeBuilder.basinRecipe(Ingredient.of(TinkerTools.slimesuit.get(ArmorType.HELMET)), 5)
+      .index(1)
+      .save(consumer, location(armorFolder + "slime_skull/swapping/slime"));
 
     // slimelytra
     MaterialCastingRecipeBuilder.basinRecipe(TinkerTools.slimeWings.get())
       .setCast(Items.ELYTRA, CastPurpose.CONSUMED)
       .setItemCost(8)
       .save(consumer, location(armorFolder + "slimelytra"));
-    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimeWings.get())
-      .setCast(Items.ELYTRA, CastPurpose.CONSUMED)
-      .setItemCost(8)
-      .save(consumer, location(armorFolder + "table/slimelytra"));
+    // parity: Continuum-only casting table copy; official builds this only in the casting basin.
+    // MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimeWings.get())
+    // .setCast(Items.ELYTRA, CastPurpose.CONSUMED)
+    // .setItemCost(8)
+    // .save(consumer, location(armorFolder + "table/slimelytra"));
 
     // slimecage
     MaterialCastingRecipeBuilder.basinRecipe(TinkerTools.slimesuit.get(ArmorType.CHESTPLATE))
       .setPart(TinkerToolParts.ribcage, true)
       .setItemCost(8)
       .save(consumer, location(folder + "slimecage"));
-    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.CHESTPLATE))
-      .setPart(TinkerToolParts.ribcage, true)
-      .setItemCost(8)
-      .save(consumer, location(folder + "table/slimecage"));
+    // parity: Continuum-only casting table copy; official builds this only in the casting basin.
+    // MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.CHESTPLATE))
+    // .setPart(TinkerToolParts.ribcage, true)
+    // .setItemCost(8)
+    // .save(consumer, location(folder + "table/slimecage"));
     // slimeshell
     MaterialCastingRecipeBuilder.basinRecipe(TinkerTools.slimesuit.get(ArmorType.LEGGINGS))
       .setPart(TinkerToolParts.shell, true)
       .setItemCost(7)
       .save(consumer, location(folder + "slimeshell"));
-    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.LEGGINGS))
-      .setPart(TinkerToolParts.shell, true)
-      .setItemCost(7)
-      .save(consumer, location(folder + "table/slimeshell"));
+    // parity: Continuum-only casting table copy; official builds this only in the casting basin.
+    // MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.LEGGINGS))
+    // .setPart(TinkerToolParts.shell, true)
+    // .setItemCost(7)
+    // .save(consumer, location(folder + "table/slimeshell"));
     // slime boots
     MaterialCastingRecipeBuilder.basinRecipe(TinkerTools.slimesuit.get(ArmorType.BOOTS))
       .setPart(TinkerToolParts.laces, true)
       .setItemCost(4)
       .save(consumer, location(folder + "slime_boots"));
-    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.BOOTS))
-      .setPart(TinkerToolParts.laces, true)
-      .setItemCost(4)
-      .save(consumer, location(folder + "table/slime_boots"));
+    // parity: Continuum-only casting table copy; official builds this only in the casting basin.
+    // MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.BOOTS))
+    // .setPart(TinkerToolParts.laces, true)
+    // .setItemCost(4)
+    // .save(consumer, location(folder + "table/slime_boots"));
   }
 
   private void addRecycleRecipes(RecipeOutput consumer) {
@@ -490,9 +527,11 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
     uncastablePart(consumer, TinkerToolParts.bowstring.get(), 1, null, partFolder);
     uncastablePart(consumer, TinkerToolParts.shieldCore.get(), 4, PlatingMaterialStats.SHIELD.getStatsId(), partFolder);
     // slimesuit - not castable
-    uncastablePart(consumer, TinkerToolParts.ribcage.get(), 2, PlatingMaterialStats.SHIELD.getStatsId(), partFolder);
-    uncastablePart(consumer, TinkerToolParts.shell.get(), 2, PlatingMaterialStats.SHIELD.getStatsId(), partFolder);
-    uncastablePart(consumer, TinkerToolParts.laces.get(), 2, PlatingMaterialStats.SHIELD.getStatsId(), partFolder);
+    // parity: official ribcage and shell cost 4 and none of the slimesuit parts has a casting stat conflict.
+    // Continuum used cost 2 with a plating_shield conflict: ribcage 2, shell 2, laces 2, each PlatingMaterialStats.SHIELD.
+    uncastablePart(consumer, TinkerToolParts.ribcage.get(), 4, null, partFolder);
+    uncastablePart(consumer, TinkerToolParts.shell.get(), 4, null, partFolder);
+    uncastablePart(consumer, TinkerToolParts.laces.get(), 2, null, partFolder);
     // arrow parts are just part builder, no composite currently
     Ingredient arrowPattern = CompoundIngredient.of(LegacyIngredientType.ofTag(TinkerTags.Items.DEFAULT_PATTERNS), Ingredient.of(TinkerSmeltery.arrowCast));
     PartRecipeBuilder.partRecipe(TinkerToolParts.arrowHead.get())
@@ -529,12 +568,14 @@ public class ToolsRecipeProvider extends BaseRecipeProvider implements IMaterial
       .setCast(skull, CastPurpose.CONSUMED_OFFSET)
       .addExtraMaterial(material)
       .setItemCost(5)
+      .setFluidSwapping(false) // parity: official handles the slime swap in the single slime_skull/swapping/slime recipe
       .save(consumer, location(folder + "slime_skull/" + material.getPath()));
-    MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.HELMET))
-      .setCast(skull, CastPurpose.CONSUMED_OFFSET)
-      .addExtraMaterial(material)
-      .setItemCost(5)
-      .save(consumer, location(folder + "slime_skull/table/" + material.getPath()));
+    // parity: Continuum-only casting table copy; official builds this only in the casting basin.
+    // MaterialCastingRecipeBuilder.tableRecipe(TinkerTools.slimesuit.get(ArmorType.HELMET))
+    // .setCast(skull, CastPurpose.CONSUMED_OFFSET)
+    // .addExtraMaterial(material)
+    // .setItemCost(5)
+    // .save(consumer, location(folder + "slime_skull/table/" + material.getPath()));
     MaterialSwappingRecipeBuilder.tools(TinkerTags.Items.SWAPPABLE_SKULLS)
       .index(0).material(material, skull).repairValue((int) (MaterialRecipe.INGOTS_PER_REPAIR * 2))
       .save(consumer, location(folder + "slime_skull/swapping/" + material.getPath()));
