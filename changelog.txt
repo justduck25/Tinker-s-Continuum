@@ -1,3 +1,20 @@
+Continuum Construct 26.1.2-3.12.6
+
+Fixes
+- Casting table/basin: Hopper extraction fixed when redstone pulse applied (fix #33). Cast plate no longer extracted during redstone timing window; finished products always extractable.
+- Traveler gear: Material type now correctly used from ingot (fix #39).
+- Queen Slime block: Texture rendering fixed (fix #40).
+- Tinker Anvil: Recipe corrected (metal blocks top, stone sides) (fix #41).
+- Copper Nugget: Removed duplicate item (vanilla has it since 1.20+) (fix #42). Uses vanilla copper nugget.
+- Molten metal visual: Finished product now only renders after cooling completes (no premature product flash).
+
+Compatibility
+- Requires Continuum Core 1.12.2.
+- Built against Minecraft 26.1.2 / NeoForge 26.1.2.112.
+
+Credits
+- Fixes by Arthur (therealarthur) with co-authoring by Claude.
+
 Continuum Construct 26.1.2-3.12.5
 
 This release achieves full gameplay parity with Tinkers' Construct 3.12.1, adds client-side visual fixes (GUI text, tooltips, models, book content), and implements complete REI/JEI recipe viewer hiding parity.
