@@ -92,17 +92,18 @@ import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.entity.CustomFireball;
 import slimeknights.tconstruct.tools.network.SyncProjectileModifiersPacket;
 
+import com.google.common.collect.MapMaker;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.WeakHashMap;
 
 /**
  * Event subscriber for tool events
  */
 public class ToolEvents {
 
-  private static final Map<LivingEntity,BlockPos> LAST_BOOT_WALK_POSITIONS = new WeakHashMap<>();
+  private static final Map<LivingEntity,BlockPos> LAST_BOOT_WALK_POSITIONS = new MapMaker().weakKeys().makeMap();
 
   /**
    * NeoForge breaks the center block through vanilla after this event, and vanilla copies the tool before mineBlock().
@@ -528,13 +529,13 @@ public class ToolEvents {
   /** Called the modifier hook when an entity's position changes */
   @SubscribeEvent
   static void livingWalk(EntityTickEvent.Post event) {
-    if (!(event.getEntity() instanceof LivingEntity living)) {
+    if (!(event.getEntity() instanceof LivingEntity living) || living.level().isClientSide() || living.isSpectator() || !living.isAlive()) {
       return;
     }
     // this event runs before vanilla updates prevBlockPos
     BlockPos pos = living.blockPosition();
     BlockPos lastPos = LAST_BOOT_WALK_POSITIONS.put(living, pos);
-    if (!living.isSpectator() && !living.level().isClientSide() && living.isAlive() && lastPos != null && !Objects.equals(lastPos, pos)) {
+    if (lastPos != null && !Objects.equals(lastPos, pos)) {
       ItemStack boots = living.getItemBySlot(EquipmentSlot.FEET);
       if (!boots.isEmpty() && boots.is(TinkerTags.Items.BOOTS)) {
         ToolStack tool = ToolStack.from(boots);
