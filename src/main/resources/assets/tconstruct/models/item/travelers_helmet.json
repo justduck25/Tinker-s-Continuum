@@ -9,7 +9,8 @@
     "particle": "tconstruct:item/tool/armor/travelers/goggles/base"
   },
   "modifier_maps": [
-    "tconstruct:travelers/goggles"
+    "tconstruct:travelers/goggles",
+    "tconstruct:armor/helmet"
   ],
   "first_modifiers": [
     "tconstruct:dyed"

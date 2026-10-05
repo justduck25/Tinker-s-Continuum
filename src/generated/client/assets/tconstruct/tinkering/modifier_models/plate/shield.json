@@ -4,6 +4,12 @@
       "type": "tconstruct:banner",
       "prefix": "tconstruct:item/tool/armor/plate/shield/banner_small/",
       "prefix_large": "tconstruct:item/tool/armor/plate/shield/banner_large/"
+    },
+    "tconstruct:mossy": {
+      "type": "tconstruct:mossy",
+      "texture_1": "tconstruct:item/tool/armor/plate/shield/modifiers/tconstruct_mossy_1",
+      "texture_2": "tconstruct:item/tool/armor/plate/shield/modifiers/tconstruct_mossy_2",
+      "texture_3": "tconstruct:item/tool/armor/plate/shield/modifiers/tconstruct_mossy_3"
     }
   }
 }

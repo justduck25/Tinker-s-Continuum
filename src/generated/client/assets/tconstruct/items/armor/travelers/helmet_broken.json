@@ -7,7 +7,8 @@
     "model": "tconstruct:item/armor/travelers/helmet_broken",
     "modifier_maps": [
       "tconstruct:travelers/goggles_broken",
-      "tconstruct:travelers/goggles"
+      "tconstruct:travelers/goggles",
+      "tconstruct:armor/helmet"
     ],
     "parts": [
       {

@@ -4,9 +4,11 @@
       "type": "tconstruct:dyed",
       "texture": "tconstruct:item/tool/armor/travelers/vest/modifiers/dyed"
     },
-    "tconstruct:trim": {
-      "type": "tconstruct:armor_trim",
-      "slot": "chestplate"
+    "tconstruct:mossy": {
+      "type": "tconstruct:mossy",
+      "texture_1": "tconstruct:item/tool/armor/travelers/vest/modifiers/tconstruct_mossy_1",
+      "texture_2": "tconstruct:item/tool/armor/travelers/vest/modifiers/tconstruct_mossy_2",
+      "texture_3": "tconstruct:item/tool/armor/travelers/vest/modifiers/tconstruct_mossy_3"
     }
   }
 }

@@ -5,6 +5,10 @@
       "index": 1,
       "prefix": "tconstruct:slime/"
     },
-    "tconstruct:trim"
+    "tconstruct:trim",
+    {
+      "type": "tconstruct:mossy",
+      "prefix": "tconstruct:slime"
+    }
   ]
 }

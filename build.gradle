@@ -216,7 +216,8 @@ lombok {
 
 dependencies {
     // would ideally use API for this, but that does not work well with fg.deobf in my understanding
-    implementation files("../Mantle/build/libs/ContinuumCore-${minecraft_version}-${mantle_version}.jar")
+    // Use flatDir repository to find the Mantle JAR regardless of version suffix
+    implementation "slimeknights.mantle:ContinuumCore:${minecraft_version}-${mantle_version}"
 
     
 

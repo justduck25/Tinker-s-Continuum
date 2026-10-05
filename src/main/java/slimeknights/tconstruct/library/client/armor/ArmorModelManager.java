@@ -17,7 +17,9 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.equipment.trim.ArmorTrim;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimPattern;
@@ -28,9 +30,14 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier.ArmorTexture;
 import slimeknights.tconstruct.library.client.armor.texture.ArmorTextureSupplier.TextureType;
+import slimeknights.tconstruct.library.client.armor.texture.MossyArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.armor.texture.TintedArmorTexture;
 import slimeknights.tconstruct.library.client.armor.texture.TrimArmorTextureSupplier;
+import slimeknights.tconstruct.library.modifiers.ModifierEntry;
+import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerModifiers;
+import slimeknights.tconstruct.tools.data.ModifierIds;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.tools.client.material.CombatFishingHookRenderer;
 import slimeknights.tconstruct.tools.modules.cosmetic.TrimModule;
@@ -153,6 +160,14 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
     @Override
     public Identifier getArmorTexture(ItemStack stack, EquipmentClientInfo.LayerType layerType, EquipmentClientInfo.Layer layer, Identifier original) {
       syncVanillaTrim(stack);
+      int modIndex = getModifierLayerIndex(layer.textureId());
+      if (modIndex >= 0) {
+        List<Identifier> list = getWornModifierTextures(stack, toTextureType(layerType));
+        if (modIndex < list.size()) {
+          return list.get(modIndex);
+        }
+        return EMPTY_ARMOR_TEXTURE;
+      }
       ArmorTexture texture = getTinkerTexture(stack, toTextureType(layerType), layer);
       if (texture instanceof TintedArmorTexture tinted) {
         return tinted.texture();
@@ -163,12 +178,28 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
     @Override
     public int getArmorLayerTintColor(ItemStack stack, EquipmentClientInfo.Layer layer, int layerIndex, int currentTint) {
       syncVanillaTrim(stack);
-      int index = getLayerIndex(layer.textureId());
-      ArmorModel model = getModel(stack);
-      if (index < 0 || index >= model.layers().size() || model.layers().get(index) instanceof TrimArmorTextureSupplier) {
+      TextureType type = toTextureType(stack);
+      int modIndex = getModifierLayerIndex(layer.textureId());
+      if (modIndex >= 0) {
+        List<Identifier> list = getWornModifierTextures(stack, type);
+        if (modIndex < list.size()) {
+          return -1;
+        }
         return 0;
       }
-      ArmorTexture texture = getTinkerTexture(stack, TextureType.ARMOR, layer);
+      if (isMossyLayer(layer.textureId())) {
+        if (ModifierUtil.getModifierLevel(stack, ModifierIds.mossy) <= 0) {
+          return 0;
+        }
+        ArmorTexture texture = getTinkerTexture(stack, type, layer);
+        return texture == ArmorTexture.EMPTY ? 0 : -1;
+      }
+      int index = getLayerIndex(layer.textureId());
+      ArmorModel model = getModel(stack);
+      if (index < 0 || index >= model.layers().size() || model.layers().get(index) instanceof TrimArmorTextureSupplier || model.layers().get(index) instanceof MossyArmorTextureSupplier) {
+        return 0;
+      }
+      ArmorTexture texture = getTinkerTexture(stack, type, layer);
       if (texture == ArmorTexture.EMPTY) {
         return 0;
       }
@@ -202,17 +233,39 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
     }
 
     private ArmorTexture getTinkerTexture(ItemStack stack, TextureType type, EquipmentClientInfo.Layer layer) {
+      if (isMossyLayer(layer.textureId())) {
+        ArmorModel model = getModel(stack);
+        for (ArmorTextureSupplier supplier : model.layers()) {
+          if (supplier instanceof MossyArmorTextureSupplier mossy) {
+            RegistryAccess access = Minecraft.getInstance().level != null ? Minecraft.getInstance().level.registryAccess() : RegistryAccess.EMPTY;
+            return mossy.getArmorTexture(stack, type, access);
+          }
+        }
+        return ArmorTexture.EMPTY;
+      }
       int index = getLayerIndex(layer.textureId());
       ArmorModel model = getModel(stack);
       if (index < 0 || index >= model.layers().size()) {
         return ArmorTexture.EMPTY;
       }
       ArmorTextureSupplier supplier = model.layers().get(index);
-      if (supplier instanceof TrimArmorTextureSupplier) {
+      if (supplier instanceof TrimArmorTextureSupplier || supplier instanceof MossyArmorTextureSupplier) {
         return ArmorTexture.EMPTY;
       }
       RegistryAccess access = Minecraft.getInstance().level != null ? Minecraft.getInstance().level.registryAccess() : RegistryAccess.EMPTY;
       return supplier.getArmorTexture(stack, type, access);
+    }
+
+    private static boolean isMossyLayer(Identifier texture) {
+      return texture.getNamespace().equals(TConstruct.MOD_ID) && "armor/mossy".equals(texture.getPath());
+    }
+
+    private static TextureType toTextureType(ItemStack stack) {
+      Equippable equippable = stack.get(DataComponents.EQUIPPABLE);
+      if (equippable != null && equippable.slot() == EquipmentSlot.LEGS) {
+        return TextureType.LEGGINGS;
+      }
+      return TextureType.ARMOR;
     }
 
     private static TextureType toTextureType(EquipmentClientInfo.LayerType layerType) {
@@ -233,6 +286,51 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
       } catch (NumberFormatException ignored) {
         return -1;
       }
+    }
+
+    private static int getModifierLayerIndex(Identifier texture) {
+      String path = texture.getPath();
+      if (!texture.getNamespace().equals(TConstruct.MOD_ID) || !path.startsWith("armor/mod_")) {
+        return -1;
+      }
+      try {
+        return Integer.parseInt(path.substring("armor/mod_".length()));
+      } catch (NumberFormatException ignored) {
+        return -1;
+      }
+    }
+
+    private static String getBaseFolder(Identifier modelName) {
+      String path = modelName.getPath();
+      if ("slimeskull".equals(path) || "slime_wings".equals(path)) {
+        return "slime";
+      }
+      return path;
+    }
+
+    private List<Identifier> getWornModifierTextures(ItemStack stack, TextureType type) {
+      if (!stack.is(TinkerTags.Items.MODIFIABLE)) {
+        return Collections.emptyList();
+      }
+      ToolStack tool = ToolStack.from(stack);
+      String folder = getBaseFolder(getName());
+      String suffix = switch (type) {
+        case LEGGINGS -> "_leggings";
+        case WINGS -> "_wings";
+        default -> "_armor";
+      };
+      List<Identifier> list = new ArrayList<>();
+      for (ModifierEntry entry : tool.getModifierList()) {
+        String modName = entry.getId().getPath();
+        if ("mossy".equals(modName)) {
+          continue;
+        }
+        Identifier textureLoc = Identifier.fromNamespaceAndPath(TConstruct.MOD_ID, folder + "/" + modName + suffix);
+        if (ArmorTextureSupplier.TEXTURE_VALIDATOR.test(textureLoc)) {
+          list.add(ArmorTextureSupplier.getTexturePath(textureLoc));
+        }
+      }
+      return list;
     }
   }
 }

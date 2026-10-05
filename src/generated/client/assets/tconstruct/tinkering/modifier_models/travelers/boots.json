@@ -4,9 +4,11 @@
       "type": "tconstruct:dyed",
       "texture": "tconstruct:item/tool/armor/travelers/boots/modifiers/dyed"
     },
-    "tconstruct:trim": {
-      "type": "tconstruct:armor_trim",
-      "slot": "boots"
+    "tconstruct:mossy": {
+      "type": "tconstruct:mossy",
+      "texture_1": "tconstruct:item/tool/armor/travelers/boots/modifiers/tconstruct_mossy_1",
+      "texture_2": "tconstruct:item/tool/armor/travelers/boots/modifiers/tconstruct_mossy_2",
+      "texture_3": "tconstruct:item/tool/armor/travelers/boots/modifiers/tconstruct_mossy_3"
     }
   }
 }
