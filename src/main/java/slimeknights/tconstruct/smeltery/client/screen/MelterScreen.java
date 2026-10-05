@@ -72,7 +72,7 @@ public class MelterScreen extends AbstractContainerScreen<MelterContainerMenu> i
     if (fuel != null) fuel.renderHighlight(graphics, checkX, checkY);
 
     // scala
-    SCALA.draw(graphics, 90, 16, 100);
+    SCALA.draw(graphics, 90, 16);
 
     // heat bars
     if (melting != null) {

@@ -7,6 +7,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -57,7 +58,7 @@ public class TinkerStationBlock extends RetexturedTableBlock {
   }
 
   @Override
-  public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+  public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
     ItemStack stack = new ItemStack(state.getBlock());
     if (level.getBlockEntity(pos) instanceof TinkerStationBlockEntity be) {
       Block block = be.getTexture();
@@ -68,5 +69,10 @@ public class TinkerStationBlock extends RetexturedTableBlock {
       }
     }
     return stack;
+  }
+
+  @Override
+  public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData, Player player) {
+    return getCloneItemStack(level, pos, state, includeData);
   }
 }

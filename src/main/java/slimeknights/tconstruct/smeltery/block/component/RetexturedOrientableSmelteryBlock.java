@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntityType.BlockEntitySupplier;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
@@ -35,7 +36,13 @@ public class RetexturedOrientableSmelteryBlock extends OrientableSmelteryBlock {
     RetexturedBlock.updateTextureBlock(world, pos, stack);
   }
 
-  public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+  @Override
+  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
     return RetexturedBlock.getPickBlock(world, pos, state);
+  }
+
+  @Override
+  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData, Player player) {
+    return getCloneItemStack(world, pos, state, includeData);
   }
 }

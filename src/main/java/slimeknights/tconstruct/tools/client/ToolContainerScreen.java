@@ -121,6 +121,7 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
 
   @Override
   public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
     int imageHeight = this.imageHeight;
     int xStart = (this.width - this.imageWidth) / 2;
     int yStart = (this.height - imageHeight) / 2;
@@ -235,8 +236,6 @@ public class ToolContainerScreen extends AbstractContainerScreen<ToolContainerMe
     if (tank != null) {
       tank.draw(graphics);
     }
-
-    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override

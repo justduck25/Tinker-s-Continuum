@@ -17,6 +17,7 @@ import slimeknights.tconstruct.smeltery.block.entity.module.FuelModule.FuelInfo;
 import slimeknights.tconstruct.smeltery.client.screen.IScreenWithFluidTank;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -69,6 +70,10 @@ public class GuiFuelModule implements IScreenWithFluidTank, ClickableTankModule 
   @Override
   public boolean isHovered(int checkX, int checkY) {
     return GuiUtil.isHovered(checkX, checkY, x - 1, y - 1, width + 2, height + 2);
+  }
+
+  public boolean isFireHovered(int checkX, int checkY) {
+    return GuiUtil.isHovered(checkX, checkY, fireX, fireY, 14, 14);
   }
 
   /** Gets the current height of the fluid */
@@ -140,6 +145,38 @@ public class GuiFuelModule implements IScreenWithFluidTank, ClickableTankModule 
     int checkX = mouseX - screen.getLeftPos();
     int checkY = mouseY - screen.getTopPos();
 
+    if (isFireHovered(checkX, checkY)) {
+      List<Component> tooltip = new ArrayList<>();
+      tooltip.add(Component.translatableWithFallback("gui.tconstruct.fuel", "Fuel"));
+      if (hasFuelSlot) {
+        tooltip.add(Component.translatable("gui.tconstruct.heater"));
+        int fuel = fuelModule.getFuel();
+        if (fuel > 0) {
+          tooltip.add(Component.literal(fuel + " units"));
+          int temperature = fuelModule.getTemperature();
+          if (temperature > 0) {
+            tooltip.add(Component.translatable(TOOLTIP_TEMPERATURE, temperature));
+          }
+        } else {
+          tooltip.add(Component.translatable(TConstruct.makeTranslationKey("gui", "melting.fuel.empty")));
+        }
+      } else if (!fuelInfo.isEmpty()) {
+        tooltip.add(fuelInfo.getFluid().getHoverName());
+        int fuel = fuelModule.getFuel();
+        if (fuel > 0) {
+          tooltip.add(Component.literal(fuel + " units"));
+        }
+        int temperature = fuelModule.getTemperature();
+        if (temperature > 0) {
+          tooltip.add(Component.translatable(TOOLTIP_TEMPERATURE, temperature));
+        }
+      } else {
+        tooltip.add(hasTank ? TOOLTIP_NO_FUEL.get(0) : TOOLTIP_NO_TANK.get(0));
+      }
+      graphics.setComponentTooltipForNextFrame(screen.getFont(), tooltip, mouseX, mouseY);
+      return;
+    }
+
     if (isHovered(checkX, checkY)) {
       List<Component> tooltip;
       // if an item or we have a fuel slot, do item tooltip
@@ -171,6 +208,10 @@ public class GuiFuelModule implements IScreenWithFluidTank, ClickableTankModule 
         }
       } else {
         tooltip = hasTank ? TOOLTIP_NO_FUEL : TOOLTIP_NO_TANK;
+      }
+
+      if (!tooltip.isEmpty()) {
+        graphics.setComponentTooltipForNextFrame(screen.getFont(), tooltip, mouseX, mouseY);
       }
     }
   }
