@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:feather_fall",
+  "text": [
+    {
+      "text": "Tăng +25% kháng sát thương rơi từ trên cao mỗi cấp, tối đa đạt +50% ở cấp 2."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 4 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi hai cấp"
+  ]
+}

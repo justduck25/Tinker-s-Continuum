@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:soulspeed",
+  "text": [
+    {
+      "text": "Tăng +40.5% tốc độ khi đi trên cát linh hồn, cộng thêm 10.5% cho mỗi cấp tiếp theo. Giảm thiểu hiệu ứng bị làm chậm khi bước trên cát linh hồn."
+    },
+    {
+      "text": "Ủng sẽ dần bị tiêu hao độ bền theo thời gian khi cải tiến này hoạt động.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

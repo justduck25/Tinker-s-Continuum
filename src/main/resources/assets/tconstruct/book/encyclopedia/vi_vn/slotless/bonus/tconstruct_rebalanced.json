@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:rebalanced",
+  "text": [
+    {
+      "text": "Cung cấp +1 ô cải tiến; loại ô nhận được tùy thuộc vào công thức chế tạo. Nếu chọn +1 ô năng lực sẽ làm mất đi 1 ô nâng cấp của công cụ."
+    },
+    {
+      "text": "Nhớt Ender làm tăng cấp độ của một trong các đặc tính công cụ, thông thường là đặc tính của phần đầu công cụ.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Không tốn ô"
+  ]
+}

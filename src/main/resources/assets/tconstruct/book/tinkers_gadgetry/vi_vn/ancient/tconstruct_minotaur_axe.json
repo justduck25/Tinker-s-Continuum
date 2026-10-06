@@ -1,0 +1,15 @@
+{
+  "tool": "tconstruct:minotaur_axe",
+  "text": [
+    {
+      "text": "Rìu Minotaur là chiếc rìu chiến khổng lồ sở hữu sức mạnh húc bay đối thủ."
+    }
+  ],
+  "properties": [
+    "High Damage",
+    "Low Attack Speed",
+    "Bonus charging damage",
+    "3 Upgrade Slots",
+    "1 Ability Slot"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tool": "tconstruct:pickaxe",
+  "text": [
+    {
+      "text": "Cuốc chim là công cụ đào mỏ chuẩn xác, hiệu quả trên đá, kim loại và các loại quặng."
+    },
+    {
+      "text": "Cải tiến Mở rộng luân phiên gia tăng chiều sâu và chiều cao của vùng đào.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+0.5 Sát thương tấn công",
+    "1.2 Tốc độ tấn công",
+    "Xuyên giáp I"
+  ]
+}

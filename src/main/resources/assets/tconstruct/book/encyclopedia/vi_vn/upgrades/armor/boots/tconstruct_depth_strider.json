@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:depth_strider",
+  "text": [
+    {
+      "text": "Giảm hình phạt tốc độ di chuyển dưới nước đi 33% mỗi cấp. Ở cấp 3, không còn hình phạt di chuyển dưới nước."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Bộ điều khiển Lò luyện kim",
+  "image": {
+    "file": "tconstruct:book/images/scontroller.png",
+    "width": 128,
+    "height": 64
+  },
+  "text": [
+    {
+      "text": "Bộ điều khiển quản lý toàn bộ hoạt động của lò luyện kim. Nó phải được đặt trên thành lò và không được đặt ở góc."
+    }
+  ]
+}

@@ -33,6 +33,10 @@
         }
       ]
     },
-    "tconstruct:trim"
+    "tconstruct:trim",
+    {
+      "type": "tconstruct:mossy",
+      "prefix": "tconstruct:plate"
+    }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:springing",
+  "text": [
+    {
+      "text": "Tích lực rồi thả ra để phóng bản thân bay về hướng mục tiêu, tiêu tốn 1 độ bền."
+    },
+    {
+      "text": "Cường độ hiệu ứng dựa trên một nửa uy lực nhân với vận tốc. Được gia tăng bởi độ đẩy lùi nhân với hệ số đẩy lùi của giáp như độ nảy và kháng đẩy lùi. Hiệu ứng tổng thể giảm một nửa với Đệm êm. Nạp nhanh rút ngắn thời gian tích lực.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

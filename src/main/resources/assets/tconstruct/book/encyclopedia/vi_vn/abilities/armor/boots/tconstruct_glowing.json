@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:glowing",
+  "text": [
+    {
+      "text": "Khi bạn bước đi, tự động đặt các đốm sáng phát quang vào các khu vực tối tăm lân cận. Đặt mỗi đốm sáng tốn 5 độ bền. Phạm vi có thể mở rộng nhờ cải tiến Mở rộng."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/armor/boots",
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:melting",
+  "text": [
+    {
+      "text": "Khiến vật phẩm rơi rớt và thực thể bị tấn công bị nấu chảy thành chất lỏng nạp vào bình chứa của công cụ. Lượng chất lỏng tạo ra tối đa đạt được ở mức khoảng 4 sát thương đối với phần lớn quái vật. Đồng thời tăng dung tích bình chứa của công cụ thêm 1000 mB. "
+    },
+    {
+      "text": "Chất lỏng đã nung chảy có thể được trút ra bằng cách tương tác với bồn chứa hoặc phễu xả khi đang cầm công cụ hoặc mảnh giáp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

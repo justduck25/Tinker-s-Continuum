@@ -1,0 +1,18 @@
+{
+  "tool": "tconstruct:sword",
+  "text": [
+    {
+      "text": "Kiếm là vũ khí toàn diện, đem lại tốc độ và lực đánh ở mức cân bằng vừa phải."
+    },
+    {
+      "text": "Cải tiến Mở rộng trên kiếm làm gia tăng phạm vi đòn quét, trong khi Mềm mại bổ sung khả năng cắt tỉa lông và cây cối.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+3 Sát thương tấn công",
+    "1.6 Tốc độ tấn công",
+    "110% Bội số độ bền",
+    "Tấn công quét"
+  ]
+}

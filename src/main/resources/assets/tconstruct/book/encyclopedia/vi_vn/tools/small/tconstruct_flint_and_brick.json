@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:flint_and_brick",
+  "text": [
+    {
+      "text": "Đá lửa và gạch là dụng cụ cầm tay khởi đầu với khả năng phóng hỏa tạo lửa."
+    },
+    {
+      "text": "Cải tiến Mở rộng làm tăng bán kính phát lửa, và có thể gia tăng hơn nữa nhờ Mồi lửa (Fireprimer).",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+0 Sát thương tấn công",
+    "1.0 Tốc độ tấn công",
+    "100 Độ bền",
+    "Hỏa thiêu I",
+    "Tạo lửa"
+  ]
+}

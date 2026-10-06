@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:silky",
+  "text": [
+    {
+      "text": "A nice comfortable modifier."
+    }
+  ],
+  "effects": [
+    "Mined blocks drop themselves",
+    "Cấp đơn",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

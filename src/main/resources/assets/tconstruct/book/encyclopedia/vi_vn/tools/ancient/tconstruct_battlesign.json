@@ -1,0 +1,17 @@
+{
+  "tool": "tconstruct:battlesign",
+  "text": [
+    {
+      "text": "Biển hiệu chiến trận là sự kết hợp lai giữa khiên và kiếm, tìm thấy trong pháo đài Bastion, qua trao đổi với Piglin, hoặc trên tay các chủng loại Piglin."
+    }
+  ],
+  "properties": [
+    "+2 Sát thương tấn công",
+    "1.4 Tốc độ tấn công",
+    "Chặn 50 sát thương",
+    "120° Góc đỡ đòn",
+    "20% Tốc độ khi đỡ",
+    "3 Ô phòng thủ",
+    "1 Ô năng lực"
+  ]
+}

@@ -25,6 +25,7 @@ import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.network.TinkerNetwork;
 import slimeknights.tconstruct.library.client.GuiUtil;
 import slimeknights.tconstruct.library.recipe.partbuilder.Pattern;
+import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 import slimeknights.tconstruct.library.tools.layout.LayoutIcon;
 import slimeknights.tconstruct.library.tools.layout.LayoutSlot;
 import slimeknights.tconstruct.library.tools.layout.StationSlotLayout;
@@ -312,12 +313,16 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
 
     ItemStack stack = icon.getValue(ItemStack.class);
     if (stack != null) {
+      if (stack.getItem() instanceof IModifiableDisplay display && ToolStack.from(stack).getMaterials().isEmpty()) {
+        stack = display.getRenderTool();
+      }
       graphics.item(stack, x, y);
     }
   }
 
   @Override
   public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
     this.drawBackground(graphics, TINKER_TEXTURE);
 
     int x = 0;
@@ -336,16 +341,16 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
     renderIcon(graphics, currentLayout.getIcon(), (int) (this.cornerX / scale), (int) (this.cornerY / scale));
     renderPose.popMatrix();
 
-    ITEM_COVER.draw(graphics, this.cornerX + 7, this.cornerY + 18);
+    ITEM_COVER.draw(graphics, this.cornerX + 7, this.cornerY + 18, 0.82f);
 
     // slot backgrounds, are transparent
     if (!this.currentLayout.getToolSlot().isHidden()) {
       Slot slot = this.getMenu().getSlot(TINKER_SLOT);
-      SLOT_BACKGROUND.draw(graphics, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1);
+      SLOT_BACKGROUND.draw(graphics, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1, 0.28f);
     }
     for (int i = 0; i < this.activeInputs; i++) {
       Slot slot = this.getMenu().getSlot(i + INPUT_SLOT);
-      SLOT_BACKGROUND.draw(graphics, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1);
+      SLOT_BACKGROUND.draw(graphics, x + this.cornerX + slot.x - 1, y + this.cornerY + slot.y - 1, 0.28f);
     }
 
     // slot borders, are opaque
@@ -396,8 +401,6 @@ public class TinkerStationScreen extends ToolTableScreen<TinkerStationBlockEntit
         }
       }
     }
-
-    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
 
     this.buttonsScreen.extractRenderState(graphics, mouseX, mouseY, partialTicks);
 

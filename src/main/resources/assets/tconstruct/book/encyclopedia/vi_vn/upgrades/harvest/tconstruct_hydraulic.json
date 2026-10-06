@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:hydraulic",
+  "text": [
+    {
+      "text": "Tăng +4 tốc độ đào mỗi cấp dưới trời mưa. Khi ở dưới nước, thay vào đó tăng +8 tốc độ đào mỗi cấp và loại bỏ hoàn toàn hiệu ứng làm chậm khi đào dưới nước."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

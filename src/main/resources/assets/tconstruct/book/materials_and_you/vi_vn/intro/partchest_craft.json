@@ -1,0 +1,9 @@
+{
+  "title": "Chế tạo Rương Bộ phận",
+  "recipe": "tconstruct:tables/part_chest",
+  "description": [
+    {
+      "text": "Không bao giờ biết trước khi nào bạn sẽ cần lại những bộ phận công cụ chưa dùng tới này đâu."
+    }
+  ]
+}

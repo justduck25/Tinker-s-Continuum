@@ -1,0 +1,26 @@
+{
+  "type": "tconstruct:showcase",
+  "title": "Bộ điều chỉnh Không tốn ô",
+  "item": {
+    "type": "forge:nbt",
+    "item": "tconstruct:creative_slot",
+    "nbt": {
+      "slot": "slotless"
+    }
+  },
+  "tooltip": [
+    "Biểu tượng Không tốn ô"
+  ],
+  "text": [
+    {
+      "text": "Bộ điều chỉnh không tốn ô không yêu cầu bất kỳ ô nào, khác với tất cả các loại bộ điều chỉnh khác. Điều này thường đồng nghĩa với việc bộ điều chỉnh hoặc là có sự đánh đổi, hoặc là hiệu ứng mang lại chỉ ở mức nhỏ."
+    },
+    {
+      "text": "Một loại bộ điều chỉnh không tốn ô đáng chú ý là bộ điều chỉnh thưởng thêm, giúp cấp thêm ô điều chỉnh. Có nhiều loại giúp cấp thêm ô nâng cấp, và tôi nghe nói còn có loại cấp thêm cả ô năng lực nữa."
+    },
+    {
+      "text": "Cuốn Nấu chảy Nhỏ bé của Thruul M'Gon có danh sách đầy đủ các bộ điều chỉnh không tốn ô cho công cụ, cùng với cuốn Bách khoa Toàn thư Chế tác.",
+      "paragraph": true
+    }
+  ]
+}

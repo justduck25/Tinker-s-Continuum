@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:thorns",
+  "text": [
+    {
+      "text": "Có 15% cơ hội mỗi cấp phản lại từ 1 đến 4 sát thương lên kẻ tấn công. Nhiều mảnh giáp sẽ cộng dồn hiệu ứng này."
+    },
+    {
+      "text": "Khiên có hiệu lực mạnh gấp đôi nhưng chỉ phát huy tác dụng khi đang giương khiên đỡ đòn.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

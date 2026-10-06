@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:blindshot",
+  "text": [
+    {
+      "text": "Giảm độ chính xác 0.1 mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp tối đa, dù độ chính xác tối thiểu là 0.1",
+    "Không tốn ô"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "tool": "tconstruct:pickadze",
+  "text": [
+    {
+      "text": "Cuốc xẻng hỗn hợp (Pickadze) là công cụ đa năng để đào đá và đất, tác dụng trên nhiều loại khối nhưng không áp dụng được cấp độ khai thác khoáng sản."
+    },
+    {
+      "text": "Cải tiến Mở rộng tăng chiều cao vùng đào, rất tiện lợi để tạo các bậc thang đi xuống.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+0.5 Sát thương tấn công",
+    "115% Hệ số tấn công",
+    "1.3 Tốc độ tấn công",
+    "75% Bội số đào",
+    "130% Bội số độ bền",
+    "Tạo đường mòn",
+    "Cấp độ khai thác giới hạn ở Vàng"
+  ]
+}

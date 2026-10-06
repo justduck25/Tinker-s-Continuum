@@ -1,0 +1,14 @@
+{
+  "title": "Ống lọc Nung",
+  "item": "tconstruct:seared_duct",
+  "text": [
+    {
+      "text": "Ống lọc nung chỉ cho phép một loại chất lỏng chỉ định chảy qua.",
+      "paragraph": true
+    },
+    {
+      "text": "The fluid that you have selected to be filtered will show on the middle of the duct.",
+      "paragraph": true
+    }
+  ]
+}

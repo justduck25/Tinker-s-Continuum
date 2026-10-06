@@ -222,4 +222,12 @@ public class TinkerBook extends BookData {
       case ENCYCLOPEDIA      -> ENCYCLOPEDIA;
     };
   }
+
+  /**
+   * Preloads a specific book on the render thread.
+   */
+  public static void preloadAsync(BookType bookType) {
+    BookData book = getBook(bookType);
+    net.minecraft.client.Minecraft.getInstance().execute(book::load);
+  }
 }

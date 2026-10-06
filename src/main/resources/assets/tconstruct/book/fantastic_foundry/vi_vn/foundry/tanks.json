@@ -1,0 +1,16 @@
+{
+  "title": "Bình chứa Thiêu kết",
+  "item": {
+    "tag": "tconstruct:scorched_tanks"
+  },
+  "text": [
+    {
+      "text": "Bình chứa thiêu kết được sử dụng để chứa nhiên liệu cung cấp cho lò đúc. Chúng có thể chứa dung nham, máu rực lửa, hoặc các nhiên liệu lỏng khác.",
+      "paragraph": true
+    },
+    {
+      "text": "Cần ít nhất một bình nhiên liệu để lò đúc hoạt động.",
+      "paragraph": true
+    }
+  ]
+}

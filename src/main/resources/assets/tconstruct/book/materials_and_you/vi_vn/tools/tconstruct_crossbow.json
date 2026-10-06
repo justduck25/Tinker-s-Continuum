@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:crossbow",
+  "text": [
+    {
+      "text": "Nỏ rất hữu ích cho những ai muốn luôn sẵn sàng và nhanh chóng trong giao tranh."
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Đừng bao giờ chọc giận một cây nỏ nhé.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Loại cung nhanh và linh hoạt",
+    "Có thể nạp sẵn tên để bắn ngay lập tức",
+    "Thích tiệc tùng cùng pháo hoa"
+  ]
+}

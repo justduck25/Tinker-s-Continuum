@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:sledge_hammer",
+  "text": [
+    {
+      "text": "Búa tạ là công cụ khai thác bản rộng, phá đá hiệu quả trong phạm vi 3x3."
+    },
+    {
+      "text": "Cải tiến Mở rộng sẽ luân phiên gia tăng chiều rộng và chiều cao của vùng đào.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+3 Sát thương tấn công",
+    "135% Bội số tấn công",
+    "0.75 Tốc độ tấn công",
+    "40% Bội số đào",
+    "400% Bội số độ bền",
+    "Hại thây ma II"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:leaping",
+  "text": [
+    {
+      "text": "Tăng +0.5 khối độ cao khi nhảy ở cấp đầu tiên, và +1 khối ở cấp hai. Tăng khoảng cách rơi an toàn thêm 1 khối mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 2 cấp",
+    "Cấp đầu tiên yêu cầu 1 ô nâng cấp",
+    "Cấp thứ hai yêu cầu 1 ô năng lực"
+  ]
+}

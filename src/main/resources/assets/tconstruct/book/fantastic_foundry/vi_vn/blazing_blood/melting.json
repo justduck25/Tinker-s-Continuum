@@ -1,0 +1,15 @@
+{
+  "modifier_id": "tconstruct:melting",
+  "text": [
+    {
+      "text": "Bằng cách dẫn quỷ lửa Blaze vào bên trong lò đúc hoặc lò nung chảy, nhiệt lượng sẽ làm tan chảy chúng thành máu rực lửa nguyên chất."
+    }
+  ],
+  "effects": [
+    "Melts attacked mobs into the tool's tank",
+    "Dropped items also are melted if possible",
+    "Tool can be emptied into a tank or a smeltery",
+    "Requires 1 ability slot, single level"
+  ],
+  "title": "Nung Quỷ lửa"
+}

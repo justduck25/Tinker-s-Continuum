@@ -1,0 +1,14 @@
+{
+  "title": "Ống dẫn thoát Nung",
+  "item": "tconstruct:seared_drain",
+  "text": [
+    {
+      "text": "Ống dẫn thoát nung cho phép chất lỏng nóng chảy chảy ra các bàn đúc hoặc chậu đúc thông qua vòi rót.",
+      "paragraph": true
+    },
+    {
+      "text": "The fluid shown in the middle of the drain will be the next one to pour out.",
+      "paragraph": true
+    }
+  ]
+}

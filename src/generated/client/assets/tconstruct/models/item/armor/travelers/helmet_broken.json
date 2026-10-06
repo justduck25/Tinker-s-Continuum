@@ -10,7 +10,8 @@
   },
   "modifier_maps": [
     "tconstruct:travelers/goggles_broken",
-    "tconstruct:travelers/goggles"
+    "tconstruct:travelers/goggles",
+    "tconstruct:armor/helmet"
   ],
   "first_modifiers": [
     "tconstruct:dyed"

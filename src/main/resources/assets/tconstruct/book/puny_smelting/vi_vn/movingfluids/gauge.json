@@ -1,0 +1,14 @@
+{
+  "title": "Đồng hồ Đo",
+  "item": "tconstruct:copper_gauge",
+  "text": [
+    {
+      "text": "Từng ước mình biết được có bao nhiêu chất lỏng trong bình chưa? Hãy thử đồng hồ đo! Chúng sẽ cho bạn biết lượng chất lỏng chính xác bên trong.",
+      "paragraph": true
+    },
+    {
+      "text": "Đồng hồ đo hắc diện thạch còn hiển thị loại chất lỏng chứa bên trong qua khung kính của chúng.",
+      "paragraph": true
+    }
+  ]
+}

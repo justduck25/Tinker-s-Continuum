@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:flint_and_brick",
+  "text": [
+    {
+      "text": "Đá lửa và Gạch là công cụ vừa túi tiền, hiệu quả để tạo lửa."
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Khác với hầu hết công cụ khác, nó được chế tạo trong bàn gia công hoặc bàn chế tạo thông thường."
+    }
+  ],
+  "properties": [
+    "Tạo lửa",
+    "Khởi đầu với Rực lửa 1",
+    "Sửa chữa bằng gạch nung hoặc gạch thiêu kết"
+  ]
+}

@@ -25,7 +25,7 @@ public class MobEffectLiquidBlock extends LiquidBlock {
 
   @Override
   protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier, boolean useShape) {
-    if (level.getFluidState(pos).is(fluid) && entity instanceof LivingEntity living) {
+    if (!level.isClientSide() && entity.getFluidTypeHeight(fluid.getFluidType()) > 0 && entity instanceof LivingEntity living) {
       living.addEffect(this.effect.get());
     }
   }

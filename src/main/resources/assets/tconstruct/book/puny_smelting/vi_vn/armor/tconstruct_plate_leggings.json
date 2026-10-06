@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:plate_leggings",
+  "text": [
+    {
+      "text": "My leg, my leg."
+    },
+    {
+      "text": "These pants offer high protection for all your fighting needs!",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Độ bền cao hơn",
+    "Chỉ số giáp cao hơn",
+    "2 Ô nâng cấp",
+    "3 Ô phòng thủ",
+    "2 Đặc tính vật liệu"
+  ]
+}

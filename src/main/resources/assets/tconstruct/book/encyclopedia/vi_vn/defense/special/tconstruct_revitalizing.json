@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:revitalizing",
+  "text": [
+    {
+      "text": "Tăng lượng máu tối đa thêm 1 tim (2 HP) mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Yêu cầu 1 ô phòng thủ mỗi cấp"
+  ]
+}

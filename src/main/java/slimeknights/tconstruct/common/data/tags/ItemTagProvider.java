@@ -258,12 +258,20 @@ public class ItemTagProvider extends TagsProvider<Item> {
     // parity: NeoForge 26.1 names for the official forge:glass family (see BlockTagProvider)
     copy(Tags.Blocks.GLASS_BLOCKS, Tags.Items.GLASS_BLOCKS);
     copy(Tags.Blocks.GLASS_BLOCKS_COLORLESS, Tags.Items.GLASS_BLOCKS_COLORLESS);
+    copy(Tags.Blocks.GLASS_BLOCKS_CHEAP, Tags.Items.GLASS_BLOCKS_CHEAP);
     copy(Tags.Blocks.GLASS_BLOCKS_TINTED, Tags.Items.GLASS_BLOCKS_TINTED);
     copy(Tags.Blocks.GLASS_PANES, Tags.Items.GLASS_PANES);
+    copy(Tags.Blocks.GLASS_PANES_COLORLESS, Tags.Items.GLASS_PANES_COLORLESS);
+    copy(Tags.Blocks.DYED, Tags.Items.DYED);
     for (DyeColor color : DyeColor.values()) {
-      Identifier name = commonResource("glass/" + color.getSerializedName());
+      String colorName = color.getSerializedName();
+      Identifier dyedName = commonResource("dyed/" + colorName);
+      copy(TagKey.create(Registries.BLOCK, dyedName), TagKey.create(Registries.ITEM, dyedName));
+      Identifier glassBlocksName = commonResource("glass_blocks/" + colorName);
+      copy(TagKey.create(Registries.BLOCK, glassBlocksName), TagKey.create(Registries.ITEM, glassBlocksName));
+      Identifier name = commonResource("glass/" + colorName);
       copy(TagKey.create(Registries.BLOCK, name), TagKey.create(Registries.ITEM, name));
-      name = commonResource("glass_panes/" + color.getSerializedName());
+      name = commonResource("glass_panes/" + colorName);
       copy(TagKey.create(Registries.BLOCK, name), TagKey.create(Registries.ITEM, name));
     }
 

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:stripping",
+  "text": [
+    {
+      "text": "Cho phép công cụ gọt vỏ cây, tương tự như rìu cầm tay hoặc rìu bản rộng. Công cụ sẽ dùng diện tích đào thông thường để gọt vỏ gỗ."
+    },
+    {
+      "text": "Kích hoạt trước khả năng cày ruộng hoặc tạo đường vốn có của công cụ nếu có.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

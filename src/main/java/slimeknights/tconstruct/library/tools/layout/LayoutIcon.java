@@ -21,6 +21,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import slimeknights.mantle.util.JsonHelper;
 import slimeknights.tconstruct.library.recipe.partbuilder.Pattern;
+import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import javax.annotation.Nullable;
 
@@ -99,6 +101,9 @@ public abstract class LayoutIcon {
     @Override
     public <T> T getValue(Class<T> clazz) {
       if (clazz == ItemStack.class) {
+        if (item instanceof IModifiableDisplay display) {
+          return (T) display.getRenderTool();
+        }
         return (T)new ItemStack(item);
       }
       return null;
@@ -126,6 +131,9 @@ public abstract class LayoutIcon {
     @Override
     public <T> T getValue(Class<T> clazz) {
       if (clazz == ItemStack.class) {
+        if (stack.getItem() instanceof IModifiableDisplay display && ToolStack.from(stack).getMaterials().isEmpty()) {
+          return (T) display.getRenderTool();
+        }
         return (T) stack;
       }
       return null;

@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:aqua_affinity",
+  "text": [
+    {
+      "text": "Cho phép đào với tốc độ tối đa dưới nước thay vì bị giảm còn 20% tốc độ."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

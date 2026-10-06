@@ -1,0 +1,16 @@
+{
+  "tool": "tconstruct:slime_wings",
+  "text": [
+    {
+      "text": "Cánh nhớt cho phép bạn lượn nhẹ nhàng trên không trung như cánh cứng Elytra!"
+    },
+    {
+      "text": "To create these futuristic wings, you simply need to pour slime on an elytra in a basin. The slimelytra can later be repaired using phantom membranes in addition to it's slime type.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Khả năng lượn trên không",
+    "Dễ dàng sửa chữa"
+  ]
+}

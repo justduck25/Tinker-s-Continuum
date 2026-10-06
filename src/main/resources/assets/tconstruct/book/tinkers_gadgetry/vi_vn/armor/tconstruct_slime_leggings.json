@@ -1,0 +1,16 @@
+{
+  "tool": "tconstruct:slime_leggings",
+  "text": [
+    {
+      "text": "Quần nhớt tăng độ linh hoạt và tầm với của bạn."
+    },
+    {
+      "text": "To create these wondrous pants, pour slime on a shell in a basin.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Tăng tốc độ di chuyển",
+    "Kháng làm chậm"
+  ]
+}

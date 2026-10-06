@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:flinging",
+  "text": [
+    {
+      "text": "Tích lực rồi thả ra để phóng bản thân văng ra xa khỏi khối mục tiêu, tiêu hao 1 độ bền."
+    },
+    {
+      "text": "Cường độ hiệu ứng dựa trên một nửa uy lực nhân với vận tốc. Gia tăng 25% mỗi cấp đẩy lùi, nhân với hệ số đẩy lùi của giáp như độ nảy và kháng đẩy lùi. Hiệu ứng tổng thể bị giảm một nửa nếu có Đệm êm. Nạp nhanh giúp rút ngắn thời gian tích lực.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

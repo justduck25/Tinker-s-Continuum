@@ -1,0 +1,13 @@
+{
+  "title": "Nấu chảy Hùng vĩ",
+  "image": {
+    "file": "tconstruct:book/images/book_mighty_smelting.png",
+    "width": 128,
+    "height": 64
+  },
+  "text": [
+    {
+      "text": "Có quá nhiều điều tuyệt vời đến mức một cuốn sách không thể chứa hết, nên ta phải viết cuốn thứ hai. Sau khi nâng cấp lò, hãy đón đọc cuốn sách tiếp theo của ta!"
+    }
+  ]
+}

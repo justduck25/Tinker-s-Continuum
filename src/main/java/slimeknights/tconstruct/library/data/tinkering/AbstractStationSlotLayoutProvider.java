@@ -79,7 +79,7 @@ public abstract class AbstractStationSlotLayoutProvider extends GenericDataProvi
   protected StationSlotLayout.Builder defineModifiable(IModifiableDisplay item) {
     return define(BuiltInRegistries.ITEM.getKey(item.asItem()))
       .translationKey(item.asItem().getDescriptionId())
-      .icon(item.asItem());
+      .icon(item.getRenderTool());
   }
 
   /** Defines the given ID as a tool layout, sets icon and name */

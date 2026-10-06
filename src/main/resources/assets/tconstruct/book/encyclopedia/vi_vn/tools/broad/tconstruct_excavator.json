@@ -1,0 +1,21 @@
+{
+  "tool": "tconstruct:excavator",
+  "text": [
+    {
+      "text": "Xẻng bản rộng là công cụ đào đất lớn, cực kỳ hiệu quả trên đất, sỏi và cát trong phạm vi 3x3."
+    },
+    {
+      "text": "Cải tiến Mở rộng sẽ luân phiên gia tăng chiều rộng và chiều cao của vùng đào.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+1.5 Sát thương tấn công",
+    "120% Bội số tấn công",
+    "1.0 Tốc độ tấn công",
+    "30% Bội số đào",
+    "375% Bội số độ bền",
+    "Đẩy lùi II",
+    "Tạo đường mòn"
+  ]
+}

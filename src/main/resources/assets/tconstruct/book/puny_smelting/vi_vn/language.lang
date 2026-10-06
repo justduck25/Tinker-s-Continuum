@@ -1,0 +1,35 @@
+intro=Giới thiệu
+melter=Lò nung chảy
+moving_fluids=Dẫn truyền Chất lỏng
+casting=Đúc
+worktable=Bàn thao tác Bộ điều chỉnh
+melee_harvest_materials=Vật liệu Đa dụng Cấp 2
+melee_harvest_materials.subtext=Các vật liệu này có thể đúc thành bộ phận cho vũ khí cận chiến hoặc công cụ khai thác.
+ranged_materials=Vật liệu Tầm xa Cấp 2
+ranged_materials.subtext=Các vật liệu này có thể đúc thành bộ phận cho vũ khí tầm xa như cung.
+armor_materials=Vật liệu Giáp Cấp 2
+armor_materials.subtext=Các vật liệu này có thể đúc thành giáp và khiên.
+
+further_reading=Đọc thêm
+
+armor=Giáp Nhỏ bé
+armor.subtext=Chọn hướng đi cho bộ giáp của bạn; bộ lữ hành đem lại khả năng tùy biến cao với nhiều ô năng lực, trong khi bộ giáp tấm mang lại nhiều cơ hội phòng thủ hơn. Nếu không bận tâm đến thời trang, bạn hoàn toàn có thể kết hợp cả hai.
+
+upgrades=Nâng cấp
+upgrades.subtext=Công cụ có thể được gia cường bằng các nâng cấp, tuy nhiên số lượng áp dụng cho mỗi công cụ là có giới hạn.
+upgrades.group_general=Chung
+upgrades.group_harvest=Khai thác
+upgrades.group_melee=Cận chiến
+upgrades.group_ranged=Tầm xa
+upgrades.group_damage=Sát thương Bổ sung
+upgrades.group_armor=Giáp
+upgrades.group_armor.helmet=Mũ giáp
+upgrades.group_armor.chestplate=Áo giáp
+upgrades.group_armor.leggings=Quần giáp
+upgrades.group_armor.boots=Ủng giáp
+
+slotless=Bộ điều chỉnh Không tốn ô
+slotless.subtext=Các bộ điều chỉnh này không yêu cầu ô trống nào, bạn có thể áp dụng tất cả nếu muốn.
+slotless.group_slotless=Chung
+slotless.group_bonus_upgrades=Thêm ô
+slotless.group_cosmetic=Thẩm mỹ

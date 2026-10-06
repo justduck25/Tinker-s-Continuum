@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:antiaquatic",
+  "text": [
+    {
+      "text": "Tăng +2 sát thương mỗi cấp khi đánh sinh vật dưới nước."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

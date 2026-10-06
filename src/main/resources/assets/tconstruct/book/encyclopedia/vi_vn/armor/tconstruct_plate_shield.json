@@ -1,0 +1,17 @@
+{
+  "tool": "tconstruct:plate_shield",
+  "text": [
+    {
+      "text": "Khiên giáp tấm là chiếc khiên cực kỳ kiên cố, mang lại khả năng chặn đòn rất mạnh nhưng bù lại sẽ làm giảm tốc độ di chuyển khi giương khiên."
+    }
+  ],
+  "properties": [
+    "Chỉ số do vật liệu quyết định",
+    "Chặn 100 sát thương",
+    "180° Góc đỡ đòn",
+    "20% Tốc độ khi đỡ",
+    "2 Ô nâng cấp",
+    "3 Ô phòng thủ",
+    "2 Đặc tính vật liệu"
+  ]
+}

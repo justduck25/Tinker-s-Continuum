@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:smelting",
+  "text": [
+    {
+      "text": "Tự động nấu chín các vật phẩm chứa bên trong công cụ khi công cụ gây sát thương cận chiến, đào khối, bắn tên hoặc đỡ đòn. Nấu 1 vật phẩm mỗi cấp trong một lần tác động."
+    },
+    {
+      "text": "Có thể mở kho chứa đồ bằng cách ngồi xổm kết hợp tương tác.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 4 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:bulk_quiver",
+  "text": [
+    {
+      "text": "Cung cấp cho cây cung các ô chứa bên trong để trữ mũi tên. Tên trong các ô này sẽ được dùng nếu trong túi đồ chính không còn mũi tên."
+    },
+    {
+      "text": "Có thể truy cập kho bao tên bằng cách vừa ngồi rón rén vừa bấm tấn công. Mỗi cấp có thể chứa hai xấp 64 mũi tên.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Yêu cầu 1 ô năng lực mỗi cấp"
+  ]
+}

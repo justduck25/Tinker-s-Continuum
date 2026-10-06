@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:parrying",
+  "text": [
+    {
+      "text": "Cho phép sử dụng công cụ như một chiếc khiên trong thoáng chốc ngay sau khi tung đòn tấn công. "
+    },
+    {
+      "text": "Hầu hết dao găm có thể đỡ chặn tối đa 10 sát thương, và không làm chậm người chơi trong khi sử dụng."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

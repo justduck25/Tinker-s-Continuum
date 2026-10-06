@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:cooling",
+  "text": [
+    {
+      "text": "Tăng +1.6 sát thương mỗi cấp lên các quái vật miễn nhiễm với lửa."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

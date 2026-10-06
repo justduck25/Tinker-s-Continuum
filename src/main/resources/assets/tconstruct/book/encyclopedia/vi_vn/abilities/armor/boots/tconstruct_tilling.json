@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:tilling",
+  "text": [
+    {
+      "text": "Cày xới mặt đất dưới chân bạn thành ruộng. Diện tích tác động được nới rộng bằng cải tiến Mở rộng."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/armor/boots",
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

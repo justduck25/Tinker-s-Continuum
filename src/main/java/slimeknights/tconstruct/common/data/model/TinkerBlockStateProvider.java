@@ -82,14 +82,14 @@ public class TinkerBlockStateProvider implements DataProvider {
   private void glass(List<CompletableFuture<?>> tasks, CachedOutput cache, String blockName, String paneName, String baseName, String paneTexture, String edgeTexture, int tint, boolean solidEdge, String renderType) {
     String edge = edgeTexture == null ? paneTexture + "_top" : edgeTexture;
     String model = "block/" + baseName + "/block";
-    tasks.add(save(cache, blockstates.json(id(blockName)), variant("tconstruct:" + model)));
+    tasks.add(save(cache, blockstates.json(id(blockName)), connectedVariant("tconstruct:" + model)));
     tasks.add(save(cache, blockModels.json(id(baseName + "/block")), connectedCube(paneTexture, tint, renderType)));
     itemModel(tasks, cache, id(blockName), parent("tconstruct:" + model));
     pane(tasks, cache, paneName, baseName + "/pane", ns(paneTexture), ns(edge), true, tint, solidEdge, renderType);
   }
 
   private void pane(List<CompletableFuture<?>> tasks, CachedOutput cache, String blockName, String baseName, String paneTexture, String edgeTexture, boolean connected, int tint, boolean solidEdge, String renderType) {
-    tasks.add(save(cache, blockstates.json(id(blockName)), paneState(baseName, solidEdge && !paneTexture.equals(edgeTexture))));
+    tasks.add(save(cache, blockstates.json(id(blockName)), paneState(baseName, solidEdge && !paneTexture.equals(edgeTexture), connected)));
     for (String variant : new String[] {"post", "side", "side_alt", "noside", "noside_alt"}) {
       tasks.add(save(cache, blockModels.json(id(baseName + "_" + variant)), paneModel(variant, paneTexture, variant.startsWith("noside") ? null : edgeTexture, connected, tint, renderType)));
     }
@@ -116,6 +116,17 @@ public class TinkerBlockStateProvider implements DataProvider {
     JsonObject state = new JsonObject();
     JsonObject variants = new JsonObject();
     JsonObject normal = new JsonObject();
+    normal.addProperty("model", model);
+    variants.add("", normal);
+    state.add("variants", variants);
+    return state;
+  }
+
+  private static JsonObject connectedVariant(String model) {
+    JsonObject state = new JsonObject();
+    JsonObject variants = new JsonObject();
+    JsonObject normal = new JsonObject();
+    normal.addProperty("type", "mantle:connected_block");
     normal.addProperty("model", model);
     variants.add("", normal);
     state.add("variants", variants);
@@ -296,21 +307,21 @@ public class TinkerBlockStateProvider implements DataProvider {
     json.add(key, array);
   }
 
-  private static JsonObject paneState(String baseName, boolean hasEdge) {
+  private static JsonObject paneState(String baseName, boolean hasEdge, boolean connected) {
     JsonObject state = new JsonObject();
     JsonArray multipart = new JsonArray();
-    part(multipart, baseName + "_post", null, 0);
-    part(multipart, baseName + "_side", when("north", false), 0);
-    part(multipart, baseName + "_noside", when("north", true), 0);
+    part(multipart, baseName + "_post", null, 0, connected);
+    part(multipart, baseName + "_side", when("north", false), 0, connected);
+    part(multipart, baseName + "_noside", when("north", true), 0, connected);
     if (hasEdge) edgePart(multipart, baseName, 0, "east", "north", "west");
-    part(multipart, baseName + "_side_alt", when("south", false), 0);
-    part(multipart, baseName + "_noside_alt", when("south", true), 90);
+    part(multipart, baseName + "_side_alt", when("south", false), 0, connected);
+    part(multipart, baseName + "_noside_alt", when("south", true), 90, connected);
     if (hasEdge) edgePart(multipart, baseName, 180, "east", "south", "west");
-    part(multipart, baseName + "_side_alt", when("west", false), 90);
-    part(multipart, baseName + "_noside", when("west", true), 270);
+    part(multipart, baseName + "_side_alt", when("west", false), 90, connected);
+    part(multipart, baseName + "_noside", when("west", true), 270, connected);
     if (hasEdge) edgePart(multipart, baseName, 270, "north", "south", "west");
-    part(multipart, baseName + "_side", when("east", false), 90);
-    part(multipart, baseName + "_noside_alt", when("east", true), 0);
+    part(multipart, baseName + "_side", when("east", false), 90, connected);
+    part(multipart, baseName + "_noside_alt", when("east", true), 0, connected);
     if (hasEdge) edgePart(multipart, baseName, 90, "east", "north", "south");
     state.add("multipart", multipart);
     return state;
@@ -327,12 +338,19 @@ public class TinkerBlockStateProvider implements DataProvider {
     for (String key : keys) {
       when.addProperty(key, "false");
     }
-    part(multipart, baseName + "_noside_edge", when, y);
+    part(multipart, baseName + "_noside_edge", when, y, false);
   }
 
   private static void part(JsonArray multipart, String model, JsonObject when, int y) {
+    part(multipart, model, when, y, false);
+  }
+
+  private static void part(JsonArray multipart, String model, JsonObject when, int y, boolean connected) {
     JsonObject part = new JsonObject();
     JsonObject apply = new JsonObject();
+    if (connected) {
+      apply.addProperty("type", "mantle:connected_block");
+    }
     apply.addProperty("model", "tconstruct:block/" + model);
     if (y != 0) {
       apply.addProperty("y", y);

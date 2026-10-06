@@ -1,0 +1,14 @@
+{
+  "tool": "tconstruct:fishing_rod",
+  "text": [
+    {
+      "text": "Cần câu rất hữu ích để chiến đấu với mục tiêu cự ly gần mà không tốn đạn. Nó còn có điểm cộng là câu được cá khi thả xuống nước."
+    }
+  ],
+  "properties": [
+    "Vũ khí tầm ngắn",
+    "Gây sát thương lên quái khi giật dây câu về",
+    "Không tốn đạn",
+    "Có thể câu cá"
+  ]
+}

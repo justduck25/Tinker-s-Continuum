@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:bouncy",
+  "text": [
+    {
+      "text": "Khiến bạn nảy bật lên khi tiếp đất, triệt tiêu sát thương rơi đồng thời chuyển 90% vận tốc rơi thành lực nảy hướng lên trên."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:ballista",
+  "text": [
+    {
+      "text": "Cho phép cung bắn ra vũ khí cận chiến từ tay còn lại hoặc từ bao tên. Bắn một vũ khí cận chiến làm tiêu hao 3 độ bền."
+    },
+    {
+      "text": "Vũ khí cận chiến khi bắn ra sẽ bỏ qua uy lực đạn mà sử dụng sát thương cận chiến của chính nó. Vận tốc của cung gia tăng sát thương, còn tốc độ tấn công của công cụ làm giảm tốc độ bay.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

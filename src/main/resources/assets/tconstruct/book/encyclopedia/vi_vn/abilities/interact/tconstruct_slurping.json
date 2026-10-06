@@ -1,0 +1,19 @@
+{
+  "modifier_id": "tconstruct:slurping",
+  "text": [
+    {
+      "text": "Cho phép uống chất lỏng chứa bên trong công cụ để nhận các hiệu ứng tương ứng, chẳng hạn như tự thiêu đốt, xóa bỏ hiệu ứng trạng thái, hoặc hồi phục thanh đói."
+    },
+    {
+      "text": "Cấp độ cao hơn sẽ tiêu hao nhiều chất lỏng hơn để mang lại hiệu ứng mạnh mẽ hơn.",
+      "paragraph": true
+    }
+  ],
+  "tool_filter": "tconstruct:modifiable/interactable/charge",
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Yêu cầu 1 ô năng lực mỗi cấp",
+    "Đổ đầy bằng cách dùng công cụ nhấp vào bình chứa chất lỏng"
+  ]
+}

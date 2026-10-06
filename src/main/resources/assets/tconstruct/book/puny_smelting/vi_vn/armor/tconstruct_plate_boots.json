@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:plate_boots",
+  "text": [
+    {
+      "text": "Đôi ủng này là thứ gì thế?"
+    },
+    {
+      "text": "Đi vào Địa ngục cần ủng cứng cáp để bảo vệ đôi chân! Chẳng ai từng nghĩ mặt đất ở đó nóng đến mức nào đâu.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Độ bền cao hơn",
+    "Chỉ số giáp cao hơn",
+    "2 Ô nâng cấp",
+    "3 Ô phòng thủ",
+    "2 Đặc tính vật liệu"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Bồn nước nóng",
+  "image": {
+    "file": "tconstruct:book/images/hottub.png",
+    "width": 120,
+    "height": 120
+  },
+  "text": [
+    {
+      "text": "Bạn có thể nhảy vào bên trong lò luyện kim chứa đầy chất lỏng ấm áp... nhưng hãy cẩn thận kẻo bị nung chảy đấy!"
+    }
+  ]
+}

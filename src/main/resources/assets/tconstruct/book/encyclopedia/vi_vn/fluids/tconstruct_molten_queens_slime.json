@@ -1,0 +1,11 @@
+{
+  "text": "Đôi khi bạn chỉ muốn thổi bay kẻ thù mà không làm nát vụn thế giới xung quanh.",
+  "entity": [
+    "Power 2 explosion",
+    "Up to 3 Explosion Damage"
+  ],
+  "block": [
+    "Explosion ignores blocks",
+    "Explosion causes fires"
+  ]
+}

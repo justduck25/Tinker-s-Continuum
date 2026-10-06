@@ -1,0 +1,26 @@
+{
+  "type": "tconstruct:showcase",
+  "title": "Nâng cấp",
+  "item": {
+    "type": "forge:nbt",
+    "item": "tconstruct:creative_slot",
+    "nbt": {
+      "slot": "upgrades"
+    }
+  },
+  "tooltip": [
+    "Biểu tượng Ô Nâng cấp"
+  ],
+  "text": [
+    {
+      "text": "Nâng cấp là những cải tiến tiêu chuẩn cho công cụ. Chúng thường được thực hiện bằng cách áp dụng một vật phẩm và 'chắt lọc' một số phẩm chất ma thuật của nó, chẳng hạn như đá đỏ giúp công cụ đào nhanh hơn."
+    },
+    {
+      "text": "Hầu hết công cụ khởi đầu với khoảng 3 ô nâng cấp, mặc dù có thể nhận thêm nhiều ô hơn thông qua các loại bộ điều chỉnh khác."
+    },
+    {
+      "text": "Cuốn Nấu chảy Nhỏ bé của Thruul M'Gon có danh sách đầy đủ các nâng cấp cho công cụ, cùng với cuốn Bách khoa Toàn thư Chế tác.",
+      "paragraph": true
+    }
+  ]
+}

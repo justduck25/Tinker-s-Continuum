@@ -1,0 +1,16 @@
+{
+  "title": "Thưởng ô trống",
+  "text": [
+    {
+      "text": "Cải tiến thưởng ô là nhóm các cải tiến không tốn ô giúp bổ sung thêm các ô cải tiến cho công cụ."
+    },
+    {
+      "text": "Mặc định, hầu hết công cụ nhỏ khởi đầu với 3 ô nâng cấp, và hầu hết công cụ bản rộng khởi đầu với 2 ô. Các cải tiến có thể bổ sung thêm tối đa 4 ô nâng cấp cho công cụ.",
+      "paragraph": true
+    },
+    {
+      "text": "Ngoài ra, đa phần công cụ đều có sẵn 1 ô năng lực. Các cải tiến có thể thêm 1 ô năng lực nữa, hoặc thậm chí là 2 ô.",
+      "paragraph": true
+    }
+  ]
+}

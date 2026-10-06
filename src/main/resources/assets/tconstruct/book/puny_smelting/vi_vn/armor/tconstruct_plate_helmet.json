@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:plate_helmet",
+  "text": [
+    {
+      "text": "Hard hats for hard heads."
+    },
+    {
+      "text": "A good solid helmet to protect your brain. Nothing can hurt that head of yours!",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Độ bền cao hơn",
+    "Chỉ số giáp cao hơn",
+    "2 Ô nâng cấp",
+    "3 Ô phòng thủ",
+    "2 Đặc tính vật liệu"
+  ]
+}

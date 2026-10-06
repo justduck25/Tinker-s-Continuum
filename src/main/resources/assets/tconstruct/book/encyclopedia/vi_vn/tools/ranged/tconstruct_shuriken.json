@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:shuriken",
+  "text": [
+    {
+      "text": "Phi tiêu (Shuriken) là vũ khí ném nhanh dùng một lần có thể phóng thẳng mà không cần bất kỳ công cụ phóng trợ lực nào."
+    },
+    {
+      "text": "Điều này giúp chúng rất tiện dụng, nhưng cũng giới hạn phần nào tiềm năng phát triển.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "1.5 Vận tốc",
+    "1.5 Sát thương đạn",
+    "200% Bội số sát thương",
+    "0.75 Độ chính xác",
+    "2 Đặc tính đầu"
+  ]
+}

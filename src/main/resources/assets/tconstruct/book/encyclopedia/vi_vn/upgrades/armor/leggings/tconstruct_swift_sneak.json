@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:swift_sneak",
+  "text": [
+    {
+      "text": "Giảm hình phạt tốc độ khi đi rón rén 15% mỗi cấp. Ở cấp 5, bạn thậm chí có thể chạy nước rút khi đang đi rón rén."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

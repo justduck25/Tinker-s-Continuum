@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:magic_protection",
+  "text": [
+    {
+      "text": "Tăng +10% kháng sát thương phép (như độc tố hoặc phản đòn từ gai). Tối đa đạt 80% trên toàn bộ bộ giáp, tương đương 8 cấp."
+    },
+    {
+      "text": "Giảm thời gian hiệu lực của hiệu ứng thuốc bất lợi 5% mỗi cấp của mảnh giáp có cấp cao nhất.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Yêu cầu 1 ô phòng thủ mỗi cấp"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:emerald",
+  "text": [
+    {
+      "text": "Tăng +50% độ bền, +0.1 độ chính xác, và +1 độ cứng của giáp. Nâng cấp độ khai thác của công cụ lên Sắt, đồng thời tăng sát thương tấn công có điều kiện và tốc độ đào thêm 25%."
+    },
+    {
+      "text": "Công cụ và giáp sẽ chỉ nhận các chỉ số cộng thêm tương thích; ví dụ, công cụ cầm tay sẽ không nhận kháng đẩy lùi.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

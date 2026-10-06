@@ -1,0 +1,13 @@
+{
+  "title": "Giao diện Lò nung chảy",
+  "image": {
+    "file": "tconstruct:book/images/meltergui.png",
+    "width": 172,
+    "height": 81
+  },
+  "text": [
+    {
+      "text": "Giao diện lò nung chảy cơ bản của bạn. Đầy đủ và không thừa thãi."
+    }
+  ]
+}

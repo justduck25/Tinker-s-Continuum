@@ -1,0 +1,16 @@
+{
+  "title": "Giao diện Lò đúc (2)",
+  "text": [
+    {
+      "text": "Bên phải giao diện hiển thị các chất lỏng đang chứa bên trong lò và mức nhiên liệu hiện tại."
+    },
+    {
+      "text": "In both 2 and 3, left clicking with a fluid item will attempt to fill the item from the tank, while right clicking will attempt to dump the item into the tank.",
+      "paragraph": true
+    },
+    {
+      "text": "4: This slot allows quickly filling or dumping an item into the main tank, following the same behavior as clicking a drain with the item. 5 allows restricting this to just fill or just drain. After interacting, the result will be moved to 6.",
+      "paragraph": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:splashing",
+  "text": [
+    {
+      "text": "Tiêu hao một lượng nhỏ chất lỏng (thường từ 10 mB đến 50 mB) khi tương tác để áp dụng các hiệu ứng đặc biệt như lửa, sát thương bổ sung hoặc hiệu ứng thuốc lên khối hoặc thực thể mục tiêu. "
+    },
+    {
+      "text": "Công cụ có thể được nạp đầy chất lỏng bằng cách tương tác với bồn chứa hoặc phễu xả khi đang cầm công cụ trên tay."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Yêu cầu 1 ô năng lực",
+    "Đổ đầy bằng cách dùng công cụ nhấp vào bình chứa chất lỏng"
+  ]
+}

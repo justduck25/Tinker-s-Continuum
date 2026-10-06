@@ -1,0 +1,16 @@
+{
+  "title": "Vận hành",
+  "text": [
+    {
+      "text": "1: 3 ô này là nơi bạn đặt những gì muốn nấu chảy. Đó có thể là quặng, thỏi, hoặc bất cứ thứ gì khác."
+    },
+    {
+      "text": "2: Đây là nơi hiển thị vật liệu nóng chảy của bạn. Hãy nhớ rằng bạn chỉ có thể chứa một loại vật liệu nóng chảy tại một thời điểm!",
+      "paragraph": true
+    },
+    {
+      "text": "3: Đây là nơi hiển thị nhiên liệu. Nếu có bộ đốt, nó sẽ hiển thị như hình và bạn có thể đốt than hoặc gỗ.",
+      "paragraph": true
+    }
+  ]
+}

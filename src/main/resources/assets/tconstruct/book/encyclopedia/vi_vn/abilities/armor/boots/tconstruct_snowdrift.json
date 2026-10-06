@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:snowdrift",
+  "text": [
+    {
+      "text": "Để lại vệt tuyết phủ tại các quần xã băng giá tương tự như người tuyết. Bán kính của vệt tuyết có thể mở rộng nhờ cải tiến Mở rộng."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

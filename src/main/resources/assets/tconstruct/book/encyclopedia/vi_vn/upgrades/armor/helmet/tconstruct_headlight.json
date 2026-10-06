@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:headlight",
+  "text": [
+    {
+      "text": "Thắp sáng các khối xung quanh bạn về mặt thị giác."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

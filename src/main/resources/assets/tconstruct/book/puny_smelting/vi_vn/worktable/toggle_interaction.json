@@ -1,0 +1,17 @@
+{
+  "title": "Bật/Tắt Tương tác",
+  "image": {
+    "file": "tconstruct:book/images/worktable/toggle_interaction.png",
+    "width": 147,
+    "height": 64
+  },
+  "text": [
+    {
+      "text": "Cần gạt cho phép bạn bật hoặc tắt các bộ điều chỉnh tương tác trên gậy nhớt và công cụ."
+    },
+    {
+      "text": "Chưa từng nghe về gậy nhớt ư? Bạn sẽ phải đọc cuốn sách của tên mọt sách Melvin rồi.",
+      "paragraph": true
+    }
+  ]
+}

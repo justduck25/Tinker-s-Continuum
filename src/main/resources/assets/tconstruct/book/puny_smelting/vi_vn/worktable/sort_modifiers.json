@@ -1,0 +1,13 @@
+{
+  "title": "Sắp xếp Bộ điều chỉnh",
+  "image": {
+    "file": "tconstruct:book/images/worktable/sort_modifiers.png",
+    "width": 147,
+    "height": 64
+  },
+  "text": [
+    {
+      "text": "Bạn có thể dùng nam châm trong bàn thao tác để sắp xếp lại thứ tự hiển thị của các bộ điều chỉnh trên công cụ theo ý thích."
+    }
+  ]
+}

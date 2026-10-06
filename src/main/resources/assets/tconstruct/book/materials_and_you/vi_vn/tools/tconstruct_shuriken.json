@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:shuriken",
+  "text": [
+    {
+      "text": "Phi tiêu shuriken là loại đạn ném nhanh, dùng một lần nhằm giữ khoảng cách với quái vật."
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Chúng không nhận được nhiều bộ điều chỉnh, nhưng vẫn mang lại lượng sát thương khá ổn.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Lựa chọn tầm xa nhanh, dùng một lần",
+    "Không cần công cụ khác để phóng"
+  ]
+}

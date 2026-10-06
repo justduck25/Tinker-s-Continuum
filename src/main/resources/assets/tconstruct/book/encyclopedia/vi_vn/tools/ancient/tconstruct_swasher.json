@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:swasher",
+  "text": [
+    {
+      "text": "Thanh kiếm Swasher là sự kết hợp giữa vũ khí cận chiến và một khẩu súng bắn chất lỏng cầm tay."
+    },
+    {
+      "text": "Nó thường được tìm thấy trong kho báu chôn giấu và xác tàu đắm, trên tay Thây ma đuối nước hoặc Bộ xương Khô héo, và đôi khi câu được khi câu cá.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+0 Sát thương tấn công",
+    "1.5 Tốc độ tấn công",
+    "Phun chất lỏng I",
+    "Tràn chất lỏng I",
+    "3 Ô nâng cấp",
+    "1 Ô năng lực"
+  ]
+}

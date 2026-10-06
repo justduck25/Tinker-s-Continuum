@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:flamewake",
+  "text": [
+    {
+      "text": "Thắp lên ngọn lửa xung quanh mỗi bước chân bạn đi qua. Vùng tác động có thể mở rộng nhờ cải tiến Mở rộng (Expanded)."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

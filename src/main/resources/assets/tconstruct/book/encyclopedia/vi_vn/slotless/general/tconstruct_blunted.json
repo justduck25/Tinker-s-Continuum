@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:blunted",
+  "text": [
+    {
+      "text": "Ngăn công cụ thực hiện các đòn tấn công cận chiến, thay vào đó sẽ thực hiện các thao tác tương tác thông thường."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Không tốn ô"
+  ]
+}

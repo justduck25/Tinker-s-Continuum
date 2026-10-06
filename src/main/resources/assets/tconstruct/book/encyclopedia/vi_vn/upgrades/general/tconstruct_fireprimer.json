@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:fireprimer",
+  "text": [
+    {
+      "text": "Tăng vùng tác động của đá lửa và gạch thêm 1. Tương đương với 1 cấp Mở rộng, nhưng chỉ yêu cầu 1 ô nâng cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

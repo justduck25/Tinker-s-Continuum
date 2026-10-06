@@ -1,0 +1,20 @@
+{
+  "title": "Yêu cầu Cấu trúc",
+  "text": [
+    {
+      "text": "Cấu trúc lò đúc yêu cầu sàn đáy bằng phẳng và các bức tường bao quanh làm từ các khối thiêu kết hợp lệ."
+    },
+    {
+      "text": "Kích thước bên trong có thể thay đổi từ 1x1 đến 14x14 khối, với chiều cao tối đa lên đến 64 khối.",
+      "paragraph": true
+    },
+    {
+      "text": "Không được có bất kỳ khối nào bên trong không gian chứa của lò.",
+      "paragraph": true
+    },
+    {
+      "text": "The foundry must have corners and edges in order to function correctly.",
+      "paragraph": true
+    }
+  ]
+}

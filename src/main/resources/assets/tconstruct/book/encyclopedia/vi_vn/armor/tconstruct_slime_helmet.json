@@ -1,0 +1,16 @@
+{
+  "tool": "tconstruct:slime_helmet",
+  "text": [
+    {
+      "text": "Mũ sọ nhớt (Slimeskull) là chiếc mũ có khả năng sao chép năng lực của quái vật. Nó được tạo ra bằng cách rót nhớt lên đầu quái vật, loại đầu sẽ quyết định hiệu ứng nhận được."
+    }
+  ],
+  "properties": [
+    "Phòng thủ thấp",
+    "3 Ô nâng cấp",
+    "0 Ô phòng thủ",
+    "2 Ô năng lực",
+    "Đặc tính Nhớt & Sọ",
+    "Ngụy trang quái vật"
+  ]
+}

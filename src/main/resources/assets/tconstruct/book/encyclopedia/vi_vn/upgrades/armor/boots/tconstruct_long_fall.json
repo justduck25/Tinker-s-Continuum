@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:long_fall",
+  "text": [
+    {
+      "text": "Triệt tiêu hoàn toàn mọi sát thương do rơi từ trên cao."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu Rơi nhẹ (Feather Falling) II",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

@@ -26,7 +26,6 @@ import slimeknights.mantle.client.screen.TabsWidget;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.network.TinkerNetwork;
 import slimeknights.tconstruct.tables.block.ITabbedBlock;
-import slimeknights.tconstruct.tables.block.TinkersChestBlock;
 import slimeknights.tconstruct.tables.client.inventory.BaseTabbedScreen;
 import slimeknights.tconstruct.tables.menu.TabbedContainerMenu;
 import slimeknights.tconstruct.tables.network.StationTabPacket;
@@ -85,9 +84,10 @@ public class TinkerTabsWidget implements Renderable, GuiEventListener, Narratabl
       for (Pair<BlockPos, BlockState> pair : menu.stationBlocks) {
         BlockState state = pair.getRight();
         BlockPos blockPos = pair.getLeft();
-        ItemStack stack = state.getBlock() instanceof TinkersChestBlock chest
-                          ? chest.getCloneItemStack(state, null, level, blockPos, minecraft.player)
-                          : new ItemStack(state.getBlock().asItem());
+        ItemStack stack = state.getBlock().getCloneItemStack(level, blockPos, state, true, minecraft.player);
+        if (stack.isEmpty()) {
+          stack = new ItemStack(state.getBlock().asItem());
+        }
         tabs.add(Pair.of(stack, blockPos));
       }
     }

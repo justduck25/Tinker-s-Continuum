@@ -1,6 +1,7 @@
 package slimeknights.tconstruct.shared.block;
 
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BeaconBeamBlock;
+import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.util.StringRepresentable;
@@ -12,12 +13,17 @@ import java.util.Locale;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
-public class ClearStainedGlassBlock extends Block {
+public class ClearStainedGlassBlock extends TransparentBlock implements BeaconBeamBlock {
 
   private final GlassColor glassColor;
   public ClearStainedGlassBlock(Properties properties, GlassColor glassColor) {
     super(properties);
     this.glassColor = glassColor;
+  }
+
+  @Override
+  public DyeColor getColor() {
+    return this.glassColor.getDye();
   }
 
   @Nullable

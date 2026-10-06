@@ -1,0 +1,10 @@
+{
+  "title": "Máng nạp Nung",
+  "item": "tconstruct:seared_chute",
+  "text": [
+    {
+      "text": "Máng nạp nung tự động đưa các vật phẩm cần nung vào lò luyện kim.",
+      "paragraph": true
+    }
+  ]
+}

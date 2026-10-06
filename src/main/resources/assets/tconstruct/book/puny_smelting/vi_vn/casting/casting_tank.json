@@ -1,0 +1,14 @@
+{
+  "title": "Bình Đúc",
+  "item": "tconstruct:seared_casting_tank",
+  "text": [
+    {
+      "text": "Bình đúc rất lý tưởng để tự động làm đầy hoặc làm rỗng các vật chứa chất lỏng đơn giản như xô hoặc bình đồng.",
+      "paragraph": true
+    },
+    {
+      "text": "Tương tác với đỉnh bình cho phép đặt vật phẩm vào trong, và tương tác với đáy bình cho phép lấy vật phẩm ra.",
+      "paragraph": true
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import slimeknights.tconstruct.library.client.armor.texture.FirstArmorTextureSup
 import slimeknights.tconstruct.library.client.armor.texture.FixedArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.armor.texture.MaterialArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.armor.texture.MaterialHasFallbackTextureSupplier;
+import slimeknights.tconstruct.library.client.armor.texture.MossyArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.armor.texture.TrimArmorTextureSupplier;
 import slimeknights.tconstruct.library.client.data.AbstractArmorModelProvider;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
@@ -31,7 +32,8 @@ public class ArmorModelProvider extends AbstractArmorModelProvider {
         new MaterialArmorTextureSupplier.Material(name, "/cuirass_", 1)
       ),
       new MaterialArmorTextureSupplier.Material(name, "/metal_", 0),
-      TrimArmorTextureSupplier.INSTANCE
+      TrimArmorTextureSupplier.INSTANCE,
+      new MossyArmorTextureSupplier(name)
     });
     addModel(ArmorDefinitions.PLATE, name -> new ArmorTextureSupplier[] {
       new MaterialArmorTextureSupplier.Material(name, "/plating_", 0),
@@ -40,7 +42,8 @@ public class ArmorModelProvider extends AbstractArmorModelProvider {
         new DyedArmorTextureSupplier(name.withSuffix("/maille_"), "_cloth", dyed, null, 0),
         new MaterialArmorTextureSupplier.Material(name, "/maille_", 1)
       ),
-      TrimArmorTextureSupplier.INSTANCE
+      TrimArmorTextureSupplier.INSTANCE,
+      new MossyArmorTextureSupplier(name)
     });
     Identifier slime = ArmorDefinitions.SLIMESUIT.getId();
     addModel(slime,
@@ -50,18 +53,21 @@ public class ArmorModelProvider extends AbstractArmorModelProvider {
         new DyedArmorTextureSupplier(slime.withSuffix("/overlay_"), "", dyed, null, 0),
         new MaterialArmorTextureSupplier.Material(slime, "/overlay_", 0)
       ),
-      TrimArmorTextureSupplier.INSTANCE
+      TrimArmorTextureSupplier.INSTANCE,
+      new MossyArmorTextureSupplier(slime)
     );
     addModel(SlimeskullItem.MODEL_LOCATION,
       new MaterialArmorTextureSupplier.Material(slime, "/", 1),
-      TrimArmorTextureSupplier.INSTANCE
+      TrimArmorTextureSupplier.INSTANCE,
+      new MossyArmorTextureSupplier(slime)
     );
     addModel(TinkerTools.slimeWings,
       new FirstArmorTextureSupplier(
         new DyedArmorTextureSupplier(slime.withSuffix("/dyed_"), "", dyed, null, 0),
         new MaterialArmorTextureSupplier.Material(slime, "/", 0)
       ),
-      TrimArmorTextureSupplier.INSTANCE
+      TrimArmorTextureSupplier.INSTANCE,
+      new MossyArmorTextureSupplier(slime)
     );
   }
 

@@ -1,0 +1,55 @@
+{
+  "title": "Sửa chữa",
+  "grid_size": "small",
+  "grid": [
+    [
+      {
+        "type": "forge:nbt",
+        "item": "tconstruct:pickaxe",
+        "nbt": {
+          "tic_broken": false,
+          "tic_display": true,
+          "Damage": 70,
+          "tic_materials": [
+            "tconstruct:ui_render#head",
+            "tconstruct:ui_render#handle",
+            "tconstruct:ui_render#extra"
+          ],
+          "tic_stats": {
+            "tconstruct:durability": 100
+          }
+        }
+      },
+      {
+        "type": "forge:nbt",
+        "item": "tconstruct:repair_kit",
+        "nbt": {
+          "tic_display": true,
+          "Material": "tconstruct:ui_render#head"
+        }
+      }
+    ]
+  ],
+  "result": {
+    "type": "forge:nbt",
+    "item": "tconstruct:pickaxe",
+    "nbt": {
+      "tic_broken": false,
+      "tic_display": true,
+      "Damage": 10,
+      "tic_materials": [
+        "tconstruct:ui_render#head",
+        "tconstruct:ui_render#handle",
+        "tconstruct:ui_render#extra"
+      ],
+      "tic_stats": {
+        "tconstruct:durability": 100
+      }
+    }
+  },
+  "description": [
+    {
+      "text": "Để sửa chữa công cụ, chỉ cần đặt công cụ vào Bàn Chế tác hoặc Đe Chế tác cùng với vật liệu tạo nên phần đầu công cụ. Ngoài ra, bạn có thể dùng bộ dụng cụ sửa chữa, vừa dùng được trong bàn chế tạo vừa có thể nhấp chuột phải trực tiếp vào công cụ!"
+    }
+  ]
+}

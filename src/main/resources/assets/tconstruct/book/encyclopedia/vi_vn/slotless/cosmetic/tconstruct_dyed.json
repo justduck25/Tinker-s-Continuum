@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:dyed",
+  "text": [
+    {
+      "text": "Thay đổi màu sắc các bộ phận da hoặc gỗ trên trang bị lữ hành, khiên và quyền trượng."
+    },
+    {
+      "text": "Có thể pha trộn nhiều loại thuốc nhuộm cùng lúc, cũng như phối màu với màu sắc vốn có từ trang bị trước đó.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng nhiều lần",
+    "Không tốn ô"
+  ]
+}

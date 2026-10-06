@@ -1,0 +1,13 @@
+{
+  "title": "Đảo Nhớt Ender",
+  "image": {
+    "file": "tconstruct:book/images/islands/enderslime.png",
+    "width": 180,
+    "height": 87
+  },
+  "text": [
+    {
+      "text": "Các đảo nhớt tím kỳ ảo lơ lửng tại vùng không gian The End."
+    }
+  ]
+}

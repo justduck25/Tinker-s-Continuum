@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:slime_boots",
+  "text": [
+    {
+      "text": "Ủng nhớt là đôi ủng mang tính cơ động cao nhưng chỉ số bảo vệ ở mức tối thiểu."
+    },
+    {
+      "text": " Chúng có thể được tạo ra bằng cách rót nhớt lên dây buộc giày."
+    }
+  ],
+  "properties": [
+    "Phòng thủ thấp",
+    "3 Ô nâng cấp",
+    "0 Ô phòng thủ",
+    "2 Ô năng lực",
+    "Đặc tính Nhớt & Dây buộc",
+    "Nảy bật"
+  ]
+}

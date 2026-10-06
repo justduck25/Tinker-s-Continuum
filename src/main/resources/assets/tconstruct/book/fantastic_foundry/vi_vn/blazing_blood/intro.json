@@ -1,0 +1,14 @@
+{
+  "title": "Máu rực lửa",
+  "image": {
+    "file": "tconstruct:book/images/manyullyn_alloy.png",
+    "width": 179,
+    "height": 69
+  },
+  "text": [
+    {
+      "text": "Máu rực lửa là chất lỏng siêu nhiệt khai thác từ quỷ lửa Blaze. Nó cháy nóng hơn rất nhiều so với dung nham thông thường.",
+      "paragraph": true
+    }
+  ]
+}

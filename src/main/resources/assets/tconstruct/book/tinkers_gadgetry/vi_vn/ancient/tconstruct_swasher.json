@@ -1,0 +1,15 @@
+{
+  "tool": "tconstruct:swasher",
+  "text": [
+    {
+      "text": "Swasher là vũ khí cận chiến có khả năng vẩy nước hoặc chất lỏng khi vung đòn."
+    }
+  ],
+  "properties": [
+    "Medium Damage",
+    "High Attack Speed",
+    "Fluid Pistol",
+    "3 Upgrade Slots",
+    "1 Ability Slot"
+  ]
+}

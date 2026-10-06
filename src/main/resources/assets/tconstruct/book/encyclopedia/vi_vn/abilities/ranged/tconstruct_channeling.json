@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:channeling",
+  "text": [
+    {
+      "text": "Thêm cơ hội triệu hồi sấm sét giáng xuống nơi vũ khí ném hoặc lưỡi câu rơi trúng dựa trên thời tiết. Trời quang có 15% cơ hội; trời mưa là 65%; và 100% trong bão sấm sét."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Yêu cầu 1 ô năng lực mỗi cấp",
+    "Yêu cầu Ném, Cần câu hoặc Nỏ ném máy"
+  ]
+}

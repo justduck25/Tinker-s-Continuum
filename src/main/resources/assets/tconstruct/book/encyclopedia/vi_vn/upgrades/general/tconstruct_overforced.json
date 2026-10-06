@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:overforced",
+  "text": [
+    {
+      "text": "Tăng thêm +75 nhớt phủ tối đa mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

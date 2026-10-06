@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:pathing",
+  "text": [
+    {
+      "text": "Ủi phẳng cỏ thành đường mòn đất theo từng bước chân của bạn. Cải tiến Mở rộng gia tăng phạm vi tác động."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/armor/boots",
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

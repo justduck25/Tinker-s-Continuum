@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:luck",
+  "text": [
+    {
+      "text": "Tăng tỉ lệ rơi vật phẩm từ các khối (trên công cụ khai thác), quái vật (trên vũ khí cận chiến), và khi câu cá (trên cần câu). May mắn yêu cầu một công thức riêng biệt cho mỗi cấp, áp dụng theo đúng thứ tự."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Cấp đầu tiên yêu cầu 1 ô năng lực",
+    "Cấp thứ hai và thứ ba không tốn ô"
+  ]
+}

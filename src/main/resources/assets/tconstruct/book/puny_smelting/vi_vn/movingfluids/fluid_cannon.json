@@ -1,0 +1,14 @@
+{
+  "title": "Pháo Chất lỏng",
+  "item": "tconstruct:seared_fluid_cannon",
+  "text": [
+    {
+      "text": "Có bao giờ bạn thừa quá nhiều kim loại nóng chảy mà không biết làm gì không? Hãy thử pháo chất lỏng! Khi nhận tín hiệu đá đỏ, nó sẽ bắn ra một tia chất lỏng gây sát thương hoặc hiệu ứng!",
+      "paragraph": true
+    },
+    {
+      "text": "Tương tác với phần đáy cho phép nạp một xấp vật phẩm để dùng cùng với chất lỏng.",
+      "paragraph": true
+    }
+  ]
+}

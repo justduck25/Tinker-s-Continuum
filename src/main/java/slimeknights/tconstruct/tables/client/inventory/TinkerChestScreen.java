@@ -28,13 +28,12 @@ public class TinkerChestScreen extends BaseTabbedScreen<AbstractChestBlockEntity
 
   @Override
   public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
     this.drawBackground(graphics, BLANK_BACK_PLUS_1);
 
     if (this.scalingChestScreen != null) {
       this.scalingChestScreen.update(mouseX, mouseY);
     }
-
-    super.extractBackground(graphics, mouseX, mouseY, partialTicks);
   }
 
   @Override

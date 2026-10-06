@@ -1,0 +1,13 @@
+{
+  "title": "Đảo Nhớt trời",
+  "image": {
+    "file": "tconstruct:book/images/islands/skyslime.png",
+    "width": 180,
+    "height": 91
+  },
+  "text": [
+    {
+      "text": "Các đảo nhớt xanh lam lơ lửng trên các tầng mây cao."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:shiny",
+  "text": [
+    {
+      "text": "Làm cho công cụ phát sáng lấp lánh như được phù phép. Chỉ có vậy thôi, hoàn toàn mang tính trang trí."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Không tốn ô"
+  ]
+}

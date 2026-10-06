@@ -1,0 +1,21 @@
+{
+  "tool": "tconstruct:slime_wings",
+  "text": [
+    {
+      "text": "Cánh nhớt (Slimelytra) là công nghệ bay lượn tân tiến hàng đầu."
+    },
+    {
+      "text": " Được chế tạo bằng cách rót nhớt lên cánh Cánh cứng (Elytra), đôi cánh này có thể được sửa chữa bằng màng Da ma bên cạnh việc dùng loại nhớt tương ứng."
+    }
+  ],
+  "properties": [
+    "Phòng thủ thấp",
+    "50% Đòn đánh tay không",
+    "+222 Độ bền",
+    "4 Ô nâng cấp",
+    "0 Ô phòng thủ",
+    "1 Ô năng lực",
+    "Đặc tính Nhớt",
+    "Đôi cánh"
+  ]
+}

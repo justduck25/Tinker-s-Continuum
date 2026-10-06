@@ -105,12 +105,14 @@ public abstract class ToolTableScreen<T extends BlockEntity, C extends TabbedCon
    */
   protected void renderArmorStand(GuiGraphicsExtractor graphics) {
     if (this.armorStandPreview != null) {
+      int padX = (int) (armorStandScale * 0.75f);
+      int padY = (int) (armorStandScale * 0.35f);
       InventoryScreen.renderEntityInInventoryFollowsAngle(graphics,
-        armorStandX - armorStandScale / 2, armorStandY - armorStandScale * 2,
-        armorStandX + armorStandScale / 2, armorStandY,
+        armorStandX - armorStandScale / 2 - padX, armorStandY - armorStandScale * 2 - padY,
+        armorStandX + armorStandScale / 2 + padX, armorStandY + padY,
         armorStandScale, 0,
-        armorStandAngle,
-        0.43633232F,
+        1.5F + armorStandAngle,
+        -1.25F,
         this.armorStandPreview);
 
       graphics.blit(RenderPipelines.GUI_TEXTURED, ICON_TEXTURE, armorStandX - 16, armorStandY - 16, 0, 184, 32, 32, 256, 256);

@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:blocking",
+  "text": [
+    {
+      "text": "Cho phép sử dụng công cụ như một chiếc khiên, đỡ chặn được nhiều đòn tấn công. Thường có thể vừa đỡ đòn vừa tích lực công cụ. "
+    },
+    {
+      "text": "Đa số công cụ có thể chặn tối đa 5 sát thương, nhưng một số loại (như quyền trượng) có thể đỡ được từ 15 đến 20 sát thương."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

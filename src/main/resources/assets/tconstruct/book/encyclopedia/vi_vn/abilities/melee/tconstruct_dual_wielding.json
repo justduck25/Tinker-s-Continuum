@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:dual_wielding",
+  "text": [
+    {
+      "text": "Cho phép sử dụng công cụ ở cả tay chính lẫn tay phụ. Công cụ khi cầm song thủ có 80% tốc độ tấn công và sát thương, hoặc 90% tốc độ tấn công và 70% sát thương đối với vũ khí hai tay."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

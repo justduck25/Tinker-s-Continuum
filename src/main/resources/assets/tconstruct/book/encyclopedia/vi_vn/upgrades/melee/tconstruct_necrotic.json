@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:necrotic",
+  "text": [
+    {
+      "text": "Các đòn đánh chí mạng sẽ hồi máu bằng 5% lượng sát thương gây ra mỗi cấp. Công cụ hao tổn thêm 1 độ bền mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/melee",
+  "effects": [
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

@@ -4,19 +4,53 @@
       { "texture": "tconstruct:armor/layer_0" },
       { "texture": "tconstruct:armor/layer_1" },
       { "texture": "tconstruct:armor/layer_2" },
-      { "texture": "tconstruct:armor/layer_3" }
+      { "texture": "tconstruct:armor/layer_3" },
+      { "texture": "tconstruct:armor/mossy" },
+      { "texture": "tconstruct:armor/mod_0" },
+      { "texture": "tconstruct:armor/mod_1" },
+      { "texture": "tconstruct:armor/mod_2" },
+      { "texture": "tconstruct:armor/mod_3" },
+      { "texture": "tconstruct:armor/mod_4" },
+      { "texture": "tconstruct:armor/mod_5" }
     ],
     "humanoid_baby": [
       { "texture": "tconstruct:armor/layer_0" },
       { "texture": "tconstruct:armor/layer_1" },
       { "texture": "tconstruct:armor/layer_2" },
-      { "texture": "tconstruct:armor/layer_3" }
+      { "texture": "tconstruct:armor/layer_3" },
+      { "texture": "tconstruct:armor/mossy" },
+      { "texture": "tconstruct:armor/mod_0" },
+      { "texture": "tconstruct:armor/mod_1" },
+      { "texture": "tconstruct:armor/mod_2" },
+      { "texture": "tconstruct:armor/mod_3" },
+      { "texture": "tconstruct:armor/mod_4" },
+      { "texture": "tconstruct:armor/mod_5" }
     ],
     "humanoid_leggings": [
       { "texture": "tconstruct:armor/layer_0" },
       { "texture": "tconstruct:armor/layer_1" },
       { "texture": "tconstruct:armor/layer_2" },
-      { "texture": "tconstruct:armor/layer_3" }
+      { "texture": "tconstruct:armor/layer_3" },
+      { "texture": "tconstruct:armor/mossy" },
+      { "texture": "tconstruct:armor/mod_0" },
+      { "texture": "tconstruct:armor/mod_1" },
+      { "texture": "tconstruct:armor/mod_2" },
+      { "texture": "tconstruct:armor/mod_3" },
+      { "texture": "tconstruct:armor/mod_4" },
+      { "texture": "tconstruct:armor/mod_5" }
+    ],
+    "wings": [
+      { "texture": "tconstruct:armor/layer_0" },
+      { "texture": "tconstruct:armor/layer_1" },
+      { "texture": "tconstruct:armor/layer_2" },
+      { "texture": "tconstruct:armor/layer_3" },
+      { "texture": "tconstruct:armor/mossy" },
+      { "texture": "tconstruct:armor/mod_0" },
+      { "texture": "tconstruct:armor/mod_1" },
+      { "texture": "tconstruct:armor/mod_2" },
+      { "texture": "tconstruct:armor/mod_3" },
+      { "texture": "tconstruct:armor/mod_4" },
+      { "texture": "tconstruct:armor/mod_5" }
     ]
   }
 }

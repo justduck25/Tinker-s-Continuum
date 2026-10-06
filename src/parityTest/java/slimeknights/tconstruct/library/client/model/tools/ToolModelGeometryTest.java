@@ -31,13 +31,13 @@ import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import static org.junit.jupiter.api.Assertions.*;
 
 /** Requires client classes, but never constructs a window, texture, renderer, or Minecraft instance. */
-@EnabledIf(value = "clientDistribution", disabledReason = "Item model APIs require a client-distribution test launch.")
 final class ToolModelGeometryTest {
   static boolean clientDistribution() {
     return FMLEnvironment.getDist() == Dist.CLIENT;
   }
 
   @Test
+  @EnabledIf(value = "clientDistribution", disabledReason = "Item model APIs require a client-distribution test launch.")
   void actualDyeAndConstantFluidModelKeysChangeWithPersistentData() {
     var data = new ModDataNBT();
     var tool = (IToolStackView)Proxy.newProxyInstance(IToolStackView.class.getClassLoader(), new Class<?>[] {IToolStackView.class}, (proxy, method, args) -> {

@@ -1,0 +1,15 @@
+{
+  "tool": "tconstruct:ender_staff",
+  "text": [
+    {
+      "text": "Gậy phép nhớt Ender dịch chuyển tức thời người dùng đến vị trí nhắm tới."
+    }
+  ],
+  "properties": [
+    "High Durability",
+    "3 Upgrade Slots",
+    "1 Defense Slots",
+    "2 Ability Slots",
+    "Reach II"
+  ]
+}

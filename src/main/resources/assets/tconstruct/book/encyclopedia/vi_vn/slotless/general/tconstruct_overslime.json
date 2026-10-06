@@ -1,0 +1,18 @@
+{
+  "modifier_id": "tconstruct:overslime",
+  "text": [
+    {
+      "text": "Lớp nhớt phủ (Overslime) cung cấp cho công cụ một thanh độ bền thứ hai, được tiêu hao trước thanh độ bền chính. Mặc định, công cụ khởi đầu với tối đa 50 nhớt phủ nhân với hệ số độ bền."
+    },
+    {
+      "text": "Công cụ không có cường hóa hoặc không dùng vật liệu từ nhớt sẽ bị giảm chỉ số. Có thể kết hợp lọ nhớt trong bàn chế tạo để phục hồi lớp nhớt phủ.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Công cụ không làm từ nhớt: -10% tốc độ đào và sát thương tấn công, -0.5 giáp",
+    "Không giới hạn cấp độ tối đa",
+    "Không tốn ô"
+  ]
+}

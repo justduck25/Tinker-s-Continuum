@@ -1,0 +1,16 @@
+{
+  "title": "Máng dẫn",
+  "text": [
+    {
+      "text": "Máng dẫn có thể được cấp chất lỏng từ trên đỉnh hoặc từ các mặt bên được đặt ở chế độ nhận. Chúng đẩy chất lỏng ra ở đáy hoặc các mặt được đặt làm đầu ra."
+    },
+    {
+      "text": "Máng dẫn có các mũi tên bên trong hiển thị hướng chất lỏng di chuyển. Nhấp chuột phải vào mặt bên sẽ đổi hướng của nó.",
+      "paragraph": true
+    },
+    {
+      "text": "Máng dẫn cũng phản hồi với đá đỏ. Cấp năng lượng cho nó sẽ bật/tắt khả năng chảy xuống dưới.",
+      "paragraph": true
+    }
+  ]
+}

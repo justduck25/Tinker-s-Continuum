@@ -1,0 +1,18 @@
+{
+  "modifier_id": "tconstruct:sliver",
+  "text": [
+    {
+      "text": "Cung cấp cho quyền trượng 3 ô chứa bên trong mỗi cấp, mỗi ô chứa tối đa 32 quả bóng nhớt."
+    },
+    {
+      "text": "Có thể chuyển đổi loại bóng nhớt được chọn khi tương tác giữa ba lựa chọn hoặc bỏ qua. Có thể cần cấu hình trên Bàn điều chỉnh cải tiến để tránh xung đột với việc phóng bóng nhớt.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Yêu cầu 1 ô năng lực mỗi cấp",
+    "Yêu cầu Bóng nhớt (Slimeball)"
+  ]
+}

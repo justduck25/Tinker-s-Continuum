@@ -1,0 +1,12 @@
+{
+  "title": "Lò luyện Hợp kim",
+  "image": {
+    "file": "tconstruct:book/images/alloyer.png"
+  },
+  "text": [
+    {
+      "text": "Lò luyện hợp kim thiêu kết là thiết bị chuyên biệt dùng để kết hợp nhiều kim loại nóng chảy thành hợp kim mới.",
+      "paragraph": true
+    }
+  ]
+}

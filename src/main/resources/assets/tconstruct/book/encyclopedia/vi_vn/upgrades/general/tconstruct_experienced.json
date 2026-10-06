@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:experienced",
+  "text": [
+    {
+      "text": "Tăng lượng điểm kinh nghiệm nhận được khi tiêu diệt quái vật và phá khối thêm 50% mỗi cấp."
+    },
+    {
+      "text": "Trên giáp trụ, tăng lượng điểm kinh nghiệm thêm 25% mỗi cấp khi sử dụng bất kỳ công cụ nào.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

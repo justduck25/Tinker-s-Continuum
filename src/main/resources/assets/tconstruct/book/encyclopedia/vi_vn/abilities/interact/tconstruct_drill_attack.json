@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:drill_attack",
+  "text": [
+    {
+      "text": "Va chạm trúng quái vật trong vòng 1 giây đầu tiên khi thi triển năng lực di chuyển (như Bật nhảy, Hất văng, hoặc Móc neo) sẽ khiến chúng phải chịu một đòn tấn công từ vũ khí tay chính."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực",
+    "Yêu cầu có Bật nhảy, Hất văng hoặc Móc neo"
+  ]
+}

@@ -17,6 +17,12 @@ public class TinkerBookItem extends AbstractBookItem {
     return TinkerBook.getBook(bookType);
   }
 
+  @Override
+  public void appendHoverText(ItemStack stack, net.minecraft.world.item.Item.TooltipContext context, net.minecraft.world.item.component.TooltipDisplay display, java.util.function.Consumer<net.minecraft.network.chat.Component> tooltip, net.minecraft.world.item.TooltipFlag flag) {
+    TinkerBook.preloadAsync(bookType);
+    super.appendHoverText(stack, context, display, tooltip, flag);
+  }
+
   /** Simple enum to allow selecting the book on the client */
   public enum BookType {
     MATERIALS_AND_YOU,

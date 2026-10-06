@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:warping",
+  "text": [
+    {
+      "text": "Tích lực rồi thả ra để dịch chuyển tức thời bản thân về hướng chỉ định, tiêu tốn 1 độ bền."
+    },
+    {
+      "text": " Hiệu ứng được gia tăng thêm 25% mỗi cấp Uy lực. Thời gian tích lực được rút ngắn nhờ Nạp nhanh.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

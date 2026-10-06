@@ -4,9 +4,12 @@
       "type": "tconstruct:dyed",
       "texture": "tconstruct:item/tool/armor/travelers/pants/modifiers/dyed"
     },
-    "tconstruct:trim": {
-      "type": "tconstruct:armor_trim",
-      "slot": "leggings"
-    }
+    "tconstruct:mossy": {
+      "type": "tconstruct:mossy",
+      "texture_1": "tconstruct:item/tool/armor/travelers/pants/modifiers/tconstruct_mossy_1",
+      "texture_2": "tconstruct:item/tool/armor/travelers/pants/modifiers/tconstruct_mossy_2",
+      "texture_3": "tconstruct:item/tool/armor/travelers/pants/modifiers/tconstruct_mossy_3"
+    },
+    "tconstruct:swift_sneak": "tconstruct:item/tool/armor/travelers/pants/modifiers/tconstruct_swift_sneak"
   }
 }

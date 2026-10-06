@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:padded",
+  "text": [
+    {
+      "text": "Giảm độ đẩy lùi trên công cụ từ mọi nguồn đi 50% mỗi cấp."
+    },
+    {
+      "text": "Làm cho các năng lực Hất văng, Bật nhảy và Đập choáng giảm một nửa hiệu quả mỗi cấp.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

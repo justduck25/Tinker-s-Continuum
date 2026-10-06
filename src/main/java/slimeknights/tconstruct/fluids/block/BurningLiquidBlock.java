@@ -14,6 +14,8 @@ import slimeknights.mantle.registration.deferred.FluidDeferredRegister;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import net.minecraft.server.level.ServerLevel;
+
 /** Liquid block setting the entity on fire */
 public class BurningLiquidBlock extends LiquidBlock {
   /** Burn time in seconds. Lava uses 15 */
@@ -29,10 +31,13 @@ public class BurningLiquidBlock extends LiquidBlock {
   @SuppressWarnings("deprecation")  // useless annotation on block methods
   @Override
   protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier, boolean useShape) {
-    if (!entity.fireImmune() && level.getFluidState(pos).is(fluid)) {
-      entity.setRemainingFireTicks(burnTime * 20);
-      entity.hurt(entity.damageSources().lava(), damage);
-      entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + level.getRandom().nextFloat() * 0.4F);
+    if (!entity.fireImmune() && entity.getFluidTypeHeight(fluid.getFluidType()) > 0) {
+      if (level instanceof ServerLevel serverLevel) {
+        entity.igniteForSeconds(burnTime);
+        if (entity.hurtServer(serverLevel, entity.damageSources().lava(), damage)) {
+          entity.playSound(SoundEvents.GENERIC_BURN, 0.4F, 2.0F + level.getRandom().nextFloat() * 0.4F);
+        }
+      }
     }
   }
 

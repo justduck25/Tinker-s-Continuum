@@ -1,0 +1,15 @@
+{
+  "tool": "tconstruct:ichor_staff",
+  "text": [
+    {
+      "text": "Quyền trượng Huyết nhớt là biến thể quyền trượng có nhiều ô năng lực và vận tốc bắn vượt trội."
+    }
+  ],
+  "properties": [
+    "1225 Độ bền",
+    "1.2 Vận tốc",
+    "0.75 Tốc độ giương cung",
+    "2 Ô nâng cấp",
+    "3 Ô năng lực"
+  ]
+}

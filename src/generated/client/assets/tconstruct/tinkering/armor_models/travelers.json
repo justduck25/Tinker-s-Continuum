@@ -23,6 +23,10 @@
       "index": 0,
       "prefix": "tconstruct:travelers/metal_"
     },
-    "tconstruct:trim"
+    "tconstruct:trim",
+    {
+      "type": "tconstruct:mossy",
+      "prefix": "tconstruct:travelers"
+    }
   ]
 }

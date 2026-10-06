@@ -1,0 +1,11 @@
+{
+  "text": "Hưởng trọn uy lực bộc phá mà chẳng để lại hậu quả phá hoại nào cho địa hình.",
+  "entity": [
+    "Power 2 explosion",
+    "Up to 4 Explosion Damage",
+    "No explosion knockback"
+  ],
+  "block": [
+    "Explosion ignores blocks"
+  ]
+}

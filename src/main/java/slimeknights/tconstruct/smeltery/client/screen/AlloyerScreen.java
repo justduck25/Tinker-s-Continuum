@@ -111,7 +111,7 @@ public class AlloyerScreen extends AbstractContainerScreen<AlloyerContainerMenu>
     if (fuel != null) fuel.renderHighlight(graphics, checkX, checkY);
 
     // scala
-    SCALA.draw(graphics, 114, 16, 100);
+    SCALA.draw(graphics, 114, 16);
   }
 
   @Override

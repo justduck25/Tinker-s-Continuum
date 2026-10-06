@@ -1,0 +1,10 @@
+{
+  "title": "Máng nạp Thiêu kết",
+  "item": "tconstruct:scorched_chute",
+  "text": [
+    {
+      "text": "Máng nạp cho phép bạn đưa các vật phẩm rắn vào lò đúc một cách tự động thông qua phễu hoặc ống dẫn vật phẩm.",
+      "paragraph": true
+    }
+  ]
+}

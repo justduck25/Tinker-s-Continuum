@@ -1,0 +1,17 @@
+{
+  "title": "Giao diện Lò luyện kim (1)",
+  "image": {
+    "file": "tconstruct:book/images/smeltergui.png",
+    "width": 179,
+    "height": 82
+  },
+  "text": [
+    {
+      "text": "Danh sách vật phẩm đang nung hiển thị bên trái cùng với nhiệt độ và tiến trình nung."
+    },
+    {
+      "text": "2: Molten metals are shown here. You can click a fluid to select it for pouring. Hovering over the empty area will show smeltery capacity.",
+      "paragraph": true
+    }
+  ]
+}

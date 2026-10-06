@@ -1,0 +1,12 @@
+{
+  "modifier_id": "tconstruct:shield_strap",
+  "text": [
+    {
+      "text": "Thêm +1 ô tay phụ mỗi cấp, cho phép hoán đổi nhanh vật phẩm tay phụ bằng cách kích hoạt xà cạp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

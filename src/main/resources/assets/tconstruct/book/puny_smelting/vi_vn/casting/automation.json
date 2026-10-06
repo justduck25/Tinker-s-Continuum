@@ -1,0 +1,17 @@
+{
+  "title": "Tự động hóa",
+  "image": {
+    "file": "tconstruct:book/images/cast_automation.png",
+    "width": 88,
+    "height": 75
+  },
+  "text": [
+    {
+      "text": "Chậu đúc và bàn đúc tương tác được với phễu (hopper), cho phép tự động nạp vật phẩm vào và rút các vật phẩm đã nguội ra ngoài."
+    },
+    {
+      "text": "Bộ so sánh đá đỏ (comparator) cũng phát tín hiệu đá đỏ dựa trên tiến trình đúc.",
+      "paragraph": true
+    }
+  ]
+}

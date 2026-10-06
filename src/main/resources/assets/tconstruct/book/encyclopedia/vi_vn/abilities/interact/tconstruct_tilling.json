@@ -1,0 +1,18 @@
+{
+  "modifier_id": "tconstruct:tilling",
+  "text": [
+    {
+      "text": "Cho phép công cụ cuốc xới đất thành ruộng, tương tự như cuốc chim đa năng hoặc lưỡi hái. Công cụ sẽ sử dụng phạm vi đào thông thường để cày ruộng."
+    },
+    {
+      "text": "Kích hoạt trước khả năng tạo đường mòn hoặc gọt vỏ gỗ vốn có của công cụ nếu có.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/interactable",
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

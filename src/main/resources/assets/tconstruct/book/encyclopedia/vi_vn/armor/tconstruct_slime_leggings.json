@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:slime_leggings",
+  "text": [
+    {
+      "text": "Vỏ nhớt (Slimeshell) mở rộng khả năng chứa đồ và mang lại những phần thưởng độc đáo đầy hữu ích."
+    },
+    {
+      "text": " Chúng được tạo ra bằng cách rót nhớt lên vỏ Shulker."
+    }
+  ],
+  "properties": [
+    "Phòng thủ thấp",
+    "3 Ô nâng cấp",
+    "0 Ô phòng thủ",
+    "2 Ô năng lực",
+    "Đặc tính Nhớt & Vỏ",
+    "Kho chứa vỏ"
+  ]
+}

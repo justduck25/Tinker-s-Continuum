@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:bouncy",
+  "text": [
+    {
+      "text": "The world is your trampoline."
+    }
+  ],
+  "effects": [
+    "Bounce on landing",
+    "Single level",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

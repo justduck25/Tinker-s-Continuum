@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:unbreakable",
+  "text": [
+    {
+      "text": "Ngăn công cụ bị hao tổn độ bền, ngoại trừ từ các nguồn tiêu hao đặc thù như đặc tính Ngon miệng (Tasty)."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu Cường hóa V và Netherite",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

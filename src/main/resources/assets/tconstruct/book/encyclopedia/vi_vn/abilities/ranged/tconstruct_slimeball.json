@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:slimeball",
+  "text": [
+    {
+      "text": "Biến cây quyền trượng thành một pháp trượng thực thụ, cho phép bạn bắn ra các quả bóng nhớt như đạn phép. Bóng nhớt sử dụng các chỉ số tầm xa để tính sát thương và thời gian hồi chiêu."
+    },
+    {
+      "text": "Nhớt đất gây ít sát thương vật lý hơn nhưng có độ bật nảy. Nhớt trời gây sát thương băng giá. Huyết nhớt gây sát thương thiêu đốt. Nhớt Ender gây sát thương phép và dịch chuyển mục tiêu. Nhớt dung nham sẽ phát nổ.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

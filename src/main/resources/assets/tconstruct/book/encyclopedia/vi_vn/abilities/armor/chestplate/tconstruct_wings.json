@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:wings",
+  "text": [
+    {
+      "text": "Cho phép bạn lượn trên không bằng cách nhảy khi đang ở giữa không trung. Áo giáp sẽ dần hao mòn độ bền trong lúc lượn."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 2 ô năng lực"
+  ]
+}

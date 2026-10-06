@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:knockback_resistance",
+  "text": [
+    {
+      "text": "Giảm 10% lực đẩy lùi phải nhận."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp trên mỗi mảnh giáp",
+    "Yêu cầu 1 ô phòng thủ"
+  ]
+}

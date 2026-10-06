@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:bursting",
+  "text": [
+    {
+      "text": "Có 25% cơ hội mỗi cấp tiêu hao một lượng nhỏ chất lỏng (thường từ 10 mB đến 50 mB) để cường hóa đòn phản công với hiệu ứng đặc biệt. Giương khiên đỡ đòn sẽ nhân đôi tỉ lệ này. "
+    },
+    {
+      "text": "Công cụ có thể được nạp đầy chất lỏng bằng cách tương tác với bồn chứa hoặc phễu xả khi đang cầm công cụ trên tay."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Yêu cầu 1 ô năng lực mỗi cấp",
+    "Đổ đầy bằng cách dùng công cụ nhấp vào bình chứa chất lỏng"
+  ]
+}

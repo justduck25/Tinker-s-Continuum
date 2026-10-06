@@ -1,0 +1,15 @@
+{
+  "modifier_id": "tconstruct:pierce",
+  "text": [
+    {
+      "text": "Mũi tên triệt tiêu 1 điểm giáp của mục tiêu mỗi cấp trong vòng 4 giây sau khi trúng đòn."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/ranged",
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

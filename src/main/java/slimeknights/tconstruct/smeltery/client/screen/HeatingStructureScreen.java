@@ -138,7 +138,7 @@ public class HeatingStructureScreen extends MultiModuleScreen<HeatingStructureCo
   protected void extractLabels(GuiGraphicsExtractor graphics, int mouseX, int mouseY) {
     super.extractLabels(graphics, mouseX, mouseY);
 
-    SCALA.draw(graphics, 8, 16, 110);
+    SCALA.draw(graphics, 8, 16);
 
     // draw the bucket icon if nothing is in the bucket slot
     if (menu.getBucketContainer().getItem(0).isEmpty()) {

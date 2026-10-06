@@ -1,0 +1,14 @@
+{
+  "title": "Trao đổi với Piglin",
+  "image": {
+    "file": "tconstruct:book/images/bartering.png",
+    "width": 128,
+    "height": 82
+  },
+  "text": [
+    {
+      "text": "Piglin tại Địa ngục đôi khi trao đổi những bình máu rực lửa để lấy thỏi vàng.",
+      "paragraph": true
+    }
+  ]
+}

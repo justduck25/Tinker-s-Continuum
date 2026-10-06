@@ -1,0 +1,14 @@
+{
+  "title": "Pháo Chất lỏng",
+  "item": "tconstruct:scorched_fluid_cannon",
+  "text": [
+    {
+      "text": "Lò luyện hợp kim và lò đúc cũng có thể cấp chất lỏng cho pháo chất lỏng để phục vụ phòng thủ hoặc tấn công.",
+      "paragraph": true
+    },
+    {
+      "text": "The idea to place items in front of the fluid nozzle is still a good one though, not much I can do to improve that design.",
+      "paragraph": true
+    }
+  ]
+}

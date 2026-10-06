@@ -1,0 +1,38 @@
+intro=Giới thiệu
+
+gadgets=Đồ nghề
+
+exploration=Thám hiểm
+exploration.necrotic_bones=Xương hoại tử
+
+exploration.skyslime_island=Nhớt trời
+exploration.earthslime_island=Nhớt đất
+exploration.clay_island=Đất sét
+exploration.blood_island=Huyết
+exploration.enderslime_island=Nhớt Ender
+
+exploration.skyslime_geode=Nhớt trời
+exploration.earthslime_geode=Nhớt đất
+exploration.ichor_geode=Huyết nhớt
+exploration.enderslime_geode=Nhớt Ender
+
+armor=Giáp Nhớt
+armor.subtext=Kết hợp nhớt với các bộ phận quái vật tạo ra một bộ giáp thú vị. Tuy không có chỉ số phòng thủ cao nhất, nhưng nó có thể tăng cường đáng kể các năng lực của bạn.
+
+staffs=Gậy phép
+staffs.subtext=Kết hợp tinh thể nhớt và gỗ nhớt giúp tạo nên những công cụ rất linh hoạt. Chỉ cần một chút kim loại để gắn kết toàn bộ lại với nhau.
+
+ancient_tools=Công cụ Cổ đại
+ancient_tools.subtext=Công cụ cổ đại là những công cụ hiếm khi tìm thấy trong rương chiến lợi phẩm trên khắp thế giới. Cấu trúc vật liệu của chúng dường như ngẫu nhiên và không thể thay đổi, nhưng chúng vẫn có thể được gắn bộ điều chỉnh như mọi công cụ khác. Đôi khi, chúng được cấu tạo từ vật liệu độc nhất vô nhị chỉ có ở giáp hoặc bộ phận công cụ từ piglin.
+
+materials=Vật liệu Đồ nhớt
+materials.subtext=Vật liệu dùng để đúc hoặc làm nền tảng cho các mảnh của bộ đồ nhớt.
+
+melee_harvest_materials=Vật liệu Chung
+melee_harvest_materials.subtext=Các vật liệu này tìm thấy khi thám hiểm những vùng đất xa xôi, có thể dùng để tạo bộ phận cho vũ khí cận chiến hoặc công cụ khai thác.
+ranged_materials=Vật liệu Tầm xa
+ranged_materials.subtext=Các vật liệu này tìm thấy khi thám hiểm những vùng đất xa xôi, có thể dùng để tạo bộ phận cho vũ khí tầm xa như cung.
+armor_materials=Vật liệu Giáp
+armor_materials.subtext=Các vật liệu này tìm thấy khi thám hiểm những vùng đất xa xôi, có thể chế tác thành giáp và khiên.
+ammo_materials=Vật liệu Đạn dược Nâng cao
+ammo_materials.subtext=Các vật liệu này dùng để chế tác đạn dược tốt hơn bằng nguyên liệu quý hiếm hơn.

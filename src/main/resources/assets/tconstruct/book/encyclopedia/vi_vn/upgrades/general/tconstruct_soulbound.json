@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:soulbound",
+  "text": [
+    {
+      "text": "Giúp công cụ luôn được giữ lại trong túi đồ của bạn khi tử nạn và hồi sinh."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

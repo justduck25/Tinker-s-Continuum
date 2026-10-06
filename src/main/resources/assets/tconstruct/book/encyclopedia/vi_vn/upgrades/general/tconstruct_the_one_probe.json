@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:the_one_probe",
+  "text": [
+    {
+      "text": "Hiển thị thông tin chi tiết về khối đang nhắm tới, tương tự như vật phẩm The One Probe."
+    },
+    {
+      "text": "Phải đội mũ giáp hoặc cầm công cụ ở một trong hai tay để xem thông tin.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:vein_hammer",
+  "text": [
+    {
+      "text": "Búa đập mạch khoáng khai thác các khối đá và các khối cùng loại liền kề trong cự ly cách tới 2 khối."
+    },
+    {
+      "text": "Mỗi cải tiến Mở rộng gia tăng khoảng cách tối đa của khối thêm 1.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+3 Sát thương tấn công",
+    "125% Bội số tấn công",
+    "0.85 Tốc độ tấn công",
+    "30% Bội số đào",
+    "500% Bội số độ bền",
+    "Xuyên giáp II"
+  ]
+}

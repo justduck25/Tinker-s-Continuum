@@ -1,0 +1,21 @@
+{
+  "tool": "tconstruct:scythe",
+  "text": [
+    {
+      "text": "Lưỡi hái là công cụ gặt hái bản rộng, hiệu quả trên cây cối mùa màng hoặc càn quét quái vật trong phạm vi 3x3x3."
+    },
+    {
+      "text": "Cải tiến Mở rộng luân phiên tăng chiều rộng/chiều cao và chiều sâu, trong khi Mềm mại mang lại khả năng cắt tỉa diện rộng.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+1 Sát thương tấn công",
+    "0.7 Tốc độ tấn công",
+    "45% Bội số đào",
+    "250% Bội số độ bền",
+    "Tấn công lan (AOE)",
+    "Cuốc đất",
+    "Thu hoạch cây trồng"
+  ]
+}

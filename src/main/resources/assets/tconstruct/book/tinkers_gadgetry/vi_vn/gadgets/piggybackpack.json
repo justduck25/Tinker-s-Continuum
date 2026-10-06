@@ -1,0 +1,13 @@
+{
+  "title": "Balo Cõng Heo",
+  "image": {
+    "file": "tconstruct:book/images/piggybackpack.png",
+    "width": 140,
+    "height": 80
+  },
+  "text": [
+    {
+      "text": "Balo cõng heo cho phép bạn cõng các sinh vật và người chơi khác trên lưng và di chuyển khắp nơi!"
+    }
+  ]
+}

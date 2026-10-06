@@ -1,0 +1,11 @@
+{
+  "text": "Nhớt tàn tro (Cinderslime) chảy ngược hướng thông thường, và vụ nổ của nó cũng phát tán ngược chiều.",
+  "entity": [
+    "Power 2 explosion",
+    "Up to 3 Explosion Damage",
+    "Inverted explosion knockback"
+  ],
+  "block": [
+    "Explosion breaks blocks"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Gỡ bỏ Bộ điều chỉnh",
+  "image": {
+    "file": "tconstruct:book/images/worktable/remove_modifier.png",
+    "width": 147,
+    "height": 64
+  },
+  "text": [
+    {
+      "text": "Khi tìm thấy vật liệu mới, bạn có thể thấy một bộ điều chỉnh nào đó không còn hữu dụng nữa. Chỉ cần đặt công cụ vào bàn cùng với một miếng bọt biển ẩm để gỡ nó ra!"
+    }
+  ]
+}

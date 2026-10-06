@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:trim",
+  "text": [
+    {
+      "text": "Kết hợp mẫu rèn hoa văn giáp (Armor Trim) với vật liệu viền để nhận thêm +1 ô phòng thủ và phủ một lớp họa tiết màu sắc độc đáo lên giáp."
+    },
+    {
+      "text": "Đối với bộ đồ nhớt, cải tiến này sẽ tăng thêm một cấp đặc tính nhớt thay vì cộng ô phòng thủ.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể tráo đổi",
+    "Không tốn ô"
+  ]
+}

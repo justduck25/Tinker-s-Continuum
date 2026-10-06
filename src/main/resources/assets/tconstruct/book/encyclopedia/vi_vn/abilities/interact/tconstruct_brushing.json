@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:brushing",
+  "text": [
+    {
+      "text": "Nhấn giữ tương tác trên khối đáng ngờ để từ từ quét sạch nó. Tiêu hao độ bền khi hoàn thành và hỗ trợ quét diện rộng (AOE)."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

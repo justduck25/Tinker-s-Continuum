@@ -1,0 +1,14 @@
+{
+  "title": "Tráo đổi Vật liệu Công cụ",
+  "image": {
+    "file": "tconstruct:book/images/material_swapping.png",
+    "width": 136,
+    "height": 72
+  },
+  "text": [
+    {
+      "text": "Bạn cũng có thể tráo đổi các bộ phận bằng cách hy sinh một công cụ khác cùng loại, miễn là công cụ đó không có bộ điều chỉnh nào. Ô đặt công cụ sẽ quyết định vật liệu nào được tráo đổi. Cách này rất hữu ích để đổi vật liệu trên các công cụ không thể chế tác theo cách thông thường.",
+      "paragraph": false
+    }
+  ]
+}

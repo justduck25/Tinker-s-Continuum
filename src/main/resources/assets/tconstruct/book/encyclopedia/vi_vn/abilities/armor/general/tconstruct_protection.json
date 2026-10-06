@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:protection",
+  "text": [
+    {
+      "text": "Tăng +5% kháng mọi loại sát thương cho mỗi mảnh giáp có cải tiến này. Giới hạn tối đa 80% trên toàn bộ bộ giáp, bao gồm cả các loại bảo vệ khác."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

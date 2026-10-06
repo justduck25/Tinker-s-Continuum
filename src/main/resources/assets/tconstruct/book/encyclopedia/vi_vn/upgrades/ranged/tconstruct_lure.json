@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:lure",
+  "text": [
+    {
+      "text": "Rút ngắn thời gian chờ cá cắn câu thêm 5 giây mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

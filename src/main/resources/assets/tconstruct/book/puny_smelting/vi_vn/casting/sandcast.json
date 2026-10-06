@@ -1,0 +1,12 @@
+{
+  "title": "Khuôn cát",
+  "text": [
+    {
+      "text": "Để đúc bộ phận công cụ: trước tiên hãy tạo một khuôn cát trống và đặt nó vào bàn đúc."
+    },
+    {
+      "text": "Khuôn cát không trống sẽ trở lại thành khuôn cát trống khi nhặt lên.",
+      "paragraph": true
+    }
+  ]
+}

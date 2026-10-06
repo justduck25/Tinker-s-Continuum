@@ -1,0 +1,12 @@
+{
+  "title": "Khối Thiêu kết",
+  "item": {
+    "tag": "tconstruct:scorched_blocks"
+  },
+  "text": [
+    {
+      "text": "Các khối thiêu kết là vật liệu xây dựng chính cho lò đúc. Được chế tạo từ đá thiêu kết của Địa ngục, chúng chịu được nhiệt độ cực cao mà đá nung thông thường không thể chịu nổi.",
+      "paragraph": true
+    }
+  ]
+}

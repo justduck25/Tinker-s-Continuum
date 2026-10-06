@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:grapple",
+  "text": [
+    {
+      "text": "Biến cần câu thành một chiếc móc neo, cho phép bạn kéo bản thân về phía khối nơi lưỡi câu mắc vào. Cho phép lưỡi câu găm vào cả các mặt bên hông của khối."
+    },
+    {
+      "text": "Tốc độ kéo móc neo sẽ càng nhanh hơn nếu khoảng cách từ bạn tới lưỡi câu càng xa khi bắt đầu thu dây.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

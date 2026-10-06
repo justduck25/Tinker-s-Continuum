@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:ricochet",
+  "text": [
+    {
+      "text": "Tăng độ đẩy lùi nhận phải thêm 20% mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 2 cấp trên mỗi mảnh giáp",
+    "Cộng dồn trên các mảnh giáp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

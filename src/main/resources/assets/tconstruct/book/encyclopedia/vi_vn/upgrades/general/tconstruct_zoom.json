@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:zoom",
+  "text": [
+    {
+      "text": "Cho phép phóng to nhanh tầm nhìn bằng cách ngồi xổm và bấm phím tắt mũ giáp, hoặc tương tác với công cụ đang cầm."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

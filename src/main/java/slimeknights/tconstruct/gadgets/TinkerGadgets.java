@@ -89,6 +89,20 @@ public final class TinkerGadgets extends TinkerModule {
 
   }
 
+  private static java.util.List<FoodCakeBlock.FoodEffect> getCakeEffects(FoliageType type) {
+    return switch (type) {
+      case EARTH -> java.util.List.of(new FoodCakeBlock.FoodEffect(() -> new net.minecraft.world.effect.MobEffectInstance(slimeknights.tconstruct.shared.TinkerEffects.holder(slimeknights.tconstruct.shared.TinkerEffects.bouncy), 30 * 20, 0), 1.0f));
+      case SKY   -> java.util.List.of(new FoodCakeBlock.FoodEffect(() -> new net.minecraft.world.effect.MobEffectInstance(slimeknights.tconstruct.shared.TinkerEffects.holder(slimeknights.tconstruct.shared.TinkerEffects.doubleJump), 30 * 20, 0), 1.0f));
+      case ICHOR -> java.util.List.of(new FoodCakeBlock.FoodEffect(() -> new net.minecraft.world.effect.MobEffectInstance(slimeknights.tconstruct.shared.TinkerEffects.holder(slimeknights.tconstruct.shared.TinkerEffects.antigravity), 30 * 20, 0), 1.0f));
+      case ENDER -> java.util.List.of(new FoodCakeBlock.FoodEffect(() -> new net.minecraft.world.effect.MobEffectInstance(slimeknights.tconstruct.shared.TinkerEffects.holder(slimeknights.tconstruct.shared.TinkerEffects.returning), 30 * 20, 0), 1.0f));
+      case BLOOD -> java.util.List.of(new FoodCakeBlock.FoodEffect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.REGENERATION, 3 * 50, 0), 1.0f));
+    };
+  }
+
+  private static java.util.List<FoodCakeBlock.FoodEffect> getMagmaCakeEffects() {
+    return java.util.List.of(new FoodCakeBlock.FoodEffect(() -> new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE, 30 * 20, 0), 1.0f));
+  }
+
   // foods
   public static final EnumObject<FoliageType,FoodCakeBlock> cake;
   public static final ItemObject<FoodCakeBlock> magmaCake;
@@ -96,11 +110,11 @@ public final class TinkerGadgets extends TinkerModule {
 
     cake = BLOCKS.registerEnum(FoliageType.values(), "cake", type -> {
       if (type == FoliageType.ICHOR) {
-        return new InvertedCakeBlock(cakeProps(), TinkerFood.ICHOR_CAKE, EffectCombination.BLOCK, java.util.List.of());
+        return new InvertedCakeBlock(cakeProps(), TinkerFood.ICHOR_CAKE, EffectCombination.BLOCK, getCakeEffects(type));
       }
-      return new FoodCakeBlock(cakeProps(), TinkerFood.getCake(type), type == FoliageType.ENDER ? EffectCombination.ADD : EffectCombination.BLOCK, java.util.List.of());
+      return new FoodCakeBlock(cakeProps(), TinkerFood.getCake(type), type == FoliageType.ENDER ? EffectCombination.ADD : EffectCombination.BLOCK, getCakeEffects(type));
     }, UNSTACKABLE_BLOCK_ITEM);
-    magmaCake = BLOCKS.register("magma_cake", () -> new FoodCakeBlock(cakeProps(), TinkerFood.MAGMA_CAKE, EffectCombination.BLOCK, java.util.List.of()), UNSTACKABLE_BLOCK_ITEM);
+    magmaCake = BLOCKS.register("magma_cake", () -> new FoodCakeBlock(cakeProps(), TinkerFood.MAGMA_CAKE, EffectCombination.BLOCK, getMagmaCakeEffects()), UNSTACKABLE_BLOCK_ITEM);
   }
 
   private static BlockBehaviour.Properties cakeProps() {

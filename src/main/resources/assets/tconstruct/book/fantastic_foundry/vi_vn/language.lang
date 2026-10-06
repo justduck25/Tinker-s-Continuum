@@ -1,0 +1,17 @@
+intro=Giới thiệu
+
+alloyer=Lò luyện hợp kim
+
+foundry=Lò đúc
+
+blazing_blood=Máu rực lửa
+
+armor=Giáp Kỳ diệu
+armor.subtext=Tận dụng tài nguyên Địa ngục mở khóa khả năng chế tác các cấp giáp cao hơn. Chẳng hạn, bộ giáp tấm kiên cố sở hữu khả năng phòng thủ cực cao dù ít khả năng tùy biến hơn. Ai cần thêm tính năng phụ khi bạn đã được bảo vệ tuyệt đối?
+
+melee_harvest_materials=Vật liệu Đa dụng Cấp 4
+melee_harvest_materials.subtext=Các vật liệu này cần máu rực lửa để chế tạo, và có thể dùng để tạo bộ phận cho vũ khí cận chiến hoặc công cụ khai thác.
+ranged_materials=Vật liệu Tầm xa Cấp 4
+ranged_materials.subtext=Các vật liệu này cần máu rực lửa để chế tạo, và có thể dùng để tạo bộ phận cho vũ khí tầm xa như cung.
+armor_materials=Vật liệu Giáp Cấp 4
+armor_materials.subtext=Các vật liệu này cần máu rực lửa để chế tạo, và có thể đúc thành giáp cùng khiên.

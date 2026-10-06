@@ -1,0 +1,14 @@
+{
+  "title": "Nhiệt độ Lò đúc",
+  "image": {
+    "file": "tconstruct:book/images/blaze_smeltery.png",
+    "width": 128,
+    "height": 73
+  },
+  "text": [
+    {
+      "text": "Nhiều công thức nấu chảy cấp 4 yêu cầu lò phải đạt nhiệt độ của máu rực lửa mới có thể bắt đầu quá trình luyện kim.",
+      "paragraph": true
+    }
+  ]
+}

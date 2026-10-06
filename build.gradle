@@ -215,8 +215,26 @@ lombok {
 }
 
 dependencies {
-    // would ideally use API for this, but that does not work well with fg.deobf in my understanding
-    implementation files("../Mantle/build/libs/ContinuumCore-${minecraft_version}-${mantle_version}.jar")
+    def findMantleJar = {
+        def libsDir = file('../Mantle/build/libs')
+        if (libsDir.exists()) {
+            def prefix = "ContinuumCore-${minecraft_version}-${mantle_version}"
+            def jars = libsDir.listFiles().findAll {
+                it.name.startsWith(prefix) && !it.name.contains("sources") && it.name.endsWith(".jar")
+            }
+            def devJar = jars.findAll { it.name.contains("DEV") }.max { it.lastModified() }
+            if (devJar != null) return devJar
+            return jars.max { it.lastModified() }
+        }
+        return null
+    }
+    def mantleJar = findMantleJar()
+    if (mantleJar != null) {
+        println "Using Mantle JAR: ${mantleJar.name}"
+        implementation files(mantleJar)
+    } else {
+        implementation "slimeknights.mantle:ContinuumCore:${minecraft_version}-${mantle_version}"
+    }
 
     
 

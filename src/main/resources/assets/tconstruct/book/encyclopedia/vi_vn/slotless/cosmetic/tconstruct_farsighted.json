@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:farsighted",
+  "text": [
+    {
+      "text": "Giảm góc nhìn (FOV) 5% mỗi cấp khi mặc giáp này hoặc khi cầm công cụ trên tay."
+    },
+    {
+      "text": "Cải tiến này rất lý tưởng để triệt tiêu sự thay đổi góc nhìn do hiệu ứng Tốc độ gây ra, nhưng bạn cũng có thể tận dụng nó cho các mục đích khác.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Không tốn ô"
+  ]
+}

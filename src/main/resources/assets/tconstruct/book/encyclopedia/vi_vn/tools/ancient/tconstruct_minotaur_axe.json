@@ -1,0 +1,16 @@
+{
+  "tool": "tconstruct:minotaur_axe",
+  "text": [
+    {
+      "text": "Rìu Minotaur là chiếc rìu đặc biệt rơi ra từ quái vật Nhân Ngưu (Minotaur) ở Rừng Hoàng Hôn (Twilight Forest). Rìu tăng thêm sát thương khi chém trúng mục tiêu lúc đang chạy nhanh, thường gây nhiều sát thương hơn đòn chí mạng. Nó cũng chặt gỗ theo hàng dọc."
+    }
+  ],
+  "properties": [
+    "+3 Sát thương tấn công",
+    "+7 Sát thương khi lao tới",
+    "0.9 Tốc độ tấn công",
+    "Nhận trọn chỉ số từ cả hai đầu",
+    "3 Ô nâng cấp",
+    "1 Ô năng lực"
+  ]
+}

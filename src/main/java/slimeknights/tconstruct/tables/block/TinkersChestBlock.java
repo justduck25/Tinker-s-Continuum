@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType.BlockEntitySupplier;
@@ -48,7 +49,8 @@ public class TinkersChestBlock extends ChestBlock {
     return super.useItemOn(heldItem, state, world, pos, player, hand, hit);
   }
 
-  public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+  @Override
+  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
     ItemStack stack = new ItemStack(this);
     BlockEntityHelper.get(TinkersChestBlockEntity.class, world, pos).ifPresent(te -> {
       if (te.hasColor()) {
@@ -56,5 +58,10 @@ public class TinkersChestBlock extends ChestBlock {
       }
     });
     return stack;
+  }
+
+  @Override
+  public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData, Player player) {
+    return getCloneItemStack(world, pos, state, includeData);
   }
 }

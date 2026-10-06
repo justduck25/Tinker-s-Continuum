@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:crossbow",
+  "text": [
+    {
+      "text": "Nỏ là vũ khí tầm xa tốc độ cao, có khả năng bắn cả tên lẫn pháo hoa. Mũi tên có thể nạp sẵn vào nỏ và bắn ra bất cứ lúc nào sau đó."
+    },
+    {
+      "text": "Khi gắn các cải tiến tương tác, nỏ sẽ kích hoạt chúng thông qua nhấp chuột trái.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "1.0 Tốc độ tấn công",
+    "1.0 Tốc độ giương cung",
+    "1.00 Vận tốc mũi tên",
+    "0.75 Độ chính xác",
+    "200% Bội số độ bền"
+  ]
+}

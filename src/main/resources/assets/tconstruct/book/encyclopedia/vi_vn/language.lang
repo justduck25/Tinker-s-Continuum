@@ -1,0 +1,66 @@
+intro=Giới thiệu
+
+tools=Công cụ
+tools.group_small=Nhỏ
+tools.group_large=Lớn
+tools.group_ranged=Tầm xa
+tools.group_ancient=Cổ đại
+tools.group_staff=Gậy phép
+tools.tconstruct.earth_staff=Nhớt đất
+tools.tconstruct.sky_staff=Nhớt trời
+tools.tconstruct.ichor_staff=Huyết nhớt
+tools.tconstruct.ender_staff=Nhớt Ender
+armor=Giáp
+
+materials_harvest=Vật liệu Đa dụng
+materials_harvest.subtext=Vật liệu dùng để tạo vũ khí cận chiến hoặc công cụ khai thác.
+materials_ranged=Vật liệu Tầm xa
+materials_ranged.subtext=Vật liệu dùng để tạo vũ khí tầm xa.
+materials_ammo=Vật liệu Đạn dược
+materials_ammo.subtext=Vật liệu dùng để tạo tên và phi tiêu shuriken.
+materials_armor=Vật liệu Giáp
+materials_armor.subtext=Vật liệu dùng để tạo giáp và khiên.
+materials_skull=Vật liệu Đồ nhớt
+materials_skull.subtext=Mục này mô tả hiệu ứng của tất cả vật liệu dùng để chế tạo bộ đồ nhớt.
+
+upgrades=Nâng cấp
+upgrades.subtext=Mỗi công cụ có tổng số ô nâng cấp giới hạn.
+upgrades.group_general=Chung
+upgrades.group_harvest=Khai thác
+upgrades.group_weapon=Cận chiến
+upgrades.group_ranged=Tầm xa
+upgrades.group_damage=Tăng Sát thương
+upgrades.group_armor=Giáp
+upgrades.group_armor.helmet=Mũ giáp
+upgrades.group_armor.chestplate=Áo giáp
+upgrades.group_armor.leggings=Quần giáp
+upgrades.group_armor.boots=Ủng giáp
+upgrades.boots.tconstruct.feather_falling=Rơi nhẹ
+
+defense=Phòng thủ
+defense.subtext=Thay vì đặc tính vật liệu, giáp sẽ có các ô phòng thủ để cải thiện khả năng bảo hộ.
+defense.group_protection=Bảo vệ
+defense.group_special=Đặc biệt
+
+slotless=Không tốn ô
+slotless.subtext=Bộ điều chỉnh không tốn ô không yêu cầu bất kỳ ô nào để áp dụng.
+slotless.group_general=Chung
+slotless.group_bonus=Thưởng thêm
+slotless.group_cosmetic=Thẩm mỹ
+
+abilities=Năng lực
+abilities.subtext=Bộ điều chỉnh năng lực có ít ô hơn nâng cấp, nhưng mỗi ô mang lại hiệu quả mạnh mẽ hơn.
+abilities.group_general=Chung
+abilities.group_harvest=Khai thác
+abilities.group_melee=Cận chiến
+abilities.group_ranged=Tầm xa
+abilities.group_interact=Tương tác
+abilities.group_armor=Giáp
+abilities.group_armor.helmet=Mũ giáp
+abilities.group_armor.chestplate=Áo giáp
+abilities.group_armor.leggings=Quần giáp
+abilities.group_armor.boots=Ủng giáp
+abilities.group_armor.shield=Khiên
+
+fluid_effects=Hiệu ứng Chất lỏng
+fluid_effects.subtext=Hiệu ứng chất lỏng xác định hành vi khi chất lỏng bắn trúng khối hoặc thực thể qua các bộ điều chỉnh như phun, tràn và tóe nước.

@@ -272,9 +272,7 @@ public class ToolItemModel implements ItemModel {
     for (int i = layers.size() - 1; i >= 0; i--) {
       for (BakedQuad quad : layers.get(i)) {
         Direction direction = quad.direction();
-        if (direction == Direction.NORTH || direction == Direction.SOUTH) {
-          fullBuilder.addUnculledFace(quad);
-        }
+        fullBuilder.addUnculledFace(quad);
         if (direction == Direction.SOUTH) {
           guiBuilder.addUnculledFace(quad);
         }

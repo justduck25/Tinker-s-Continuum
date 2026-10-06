@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:spitting",
+  "text": [
+    {
+      "text": "Tích lực rồi thả ra để phun tia chất lỏng gây hiệu ứng lên mục tiêu và tiêu hao 1 độ bền. Cấp độ cao hơn sẽ bắn ra nhiều tia cùng lúc và tiêu tốn nhiều độ bền cùng chất lỏng hơn."
+    },
+    {
+      "text": "Uy lực gia tăng hiệu ứng và lượng chất lỏng tiêu thụ thêm 25% mỗi cấp. Thời gian tích lực được rút ngắn nhờ Nạp nhanh.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô năng lực mỗi cấp"
+  ]
+}

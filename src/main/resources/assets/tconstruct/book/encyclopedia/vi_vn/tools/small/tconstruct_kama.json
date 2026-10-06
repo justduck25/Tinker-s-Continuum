@@ -1,0 +1,21 @@
+{
+  "tool": "tconstruct:kama",
+  "text": [
+    {
+      "text": "Liềm gặt (Kama) là công cụ thu hoạch chuẩn xác, hiệu quả trên cây trồng, tơ nhện và lông cừu."
+    },
+    {
+      "text": "Cải tiến Mở rộng làm tăng bán kính thu hoạch tròn xung quanh của liềm.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+1 Sát thương tấn công",
+    "50% Hệ số tấn công",
+    "1.6 Tốc độ tấn công",
+    "Cắt tỉa cây cối và lông động vật",
+    "Tấn công lan nhỏ",
+    "Thu hoạch cây trồng",
+    "Cuốc đất"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:double_jump",
+  "text": [
+    {
+      "text": "Cho phép bạn nhảy thêm một lần nữa khi đang ở trên không. Cấp độ cao hơn bổ sung thêm số lần nhảy, cho phép nhảy 3 lần hoặc thậm chí 4 lần liên tiếp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 2 cấp",
+    "Yêu cầu 1 ô năng lực mỗi cấp"
+  ]
+}
