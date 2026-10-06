@@ -106,8 +106,8 @@ public class BlockTagProvider extends TagsProvider<Block> {
       key(Blocks.PURPLE_STAINED_GLASS_PANE), key(Blocks.RED_STAINED_GLASS_PANE), key(Blocks.WHITE_STAINED_GLASS_PANE), key(Blocks.YELLOW_STAINED_GLASS_PANE));
     this.tag(BlockTags.create(Identifier.parse("c:glass/colorless"))).add(key(TinkerCommons.clearGlass.get()));
     this.tag(BlockTags.create(Identifier.parse("c:glass_panes/colorless"))).add(key(TinkerCommons.clearGlassPane.get()));
-    addGlass(TinkerCommons.clearStainedGlass, "glass/", tag(BlockTags.create(Identifier.parse("c:glass/stained"))));
-    addGlass(TinkerCommons.clearStainedGlassPane, "glass_panes/", tag(BlockTags.create(Identifier.parse("c:glass_panes/stained"))));
+    addGlass(TinkerCommons.clearStainedGlass, "glass_blocks/", "glass/", tag(Tags.Blocks.GLASS_BLOCKS_CHEAP), tag(BlockTags.create(Identifier.parse("c:glass/stained"))));
+    addGlass(TinkerCommons.clearStainedGlassPane, "glass_panes/", "glass_panes/", tag(Tags.Blocks.GLASS_PANES), tag(BlockTags.create(Identifier.parse("c:glass_panes/stained"))));
     TinkerCommons.clearStainedGlassPane.forEach(pane -> silicaPanes.add(key(pane)));
 
     // impermeable for all glass
@@ -122,12 +122,30 @@ public class BlockTagProvider extends TagsProvider<Block> {
     tag(BlockTags.create(Identifier.parse("c:glass/tinted"))).add(key(TinkerCommons.clearTintedGlass.get()));
     // parity: official 3.12.1 put soul glass in forge:glass, clear stained glass in forge:stained_glass
     // and clear/tinted glass in forge:glass/colorless and forge:glass/tinted, all of which rolled up into forge:glass.
-    // NeoForge 26.1 renamed that family to c:glass_blocks and c:glass_panes, so the port's c:glass/* tags above are
-    // no longer part of it. Add the same blocks to the NeoForge names so daggers and other mods treat them as glass.
-    tag(Tags.Blocks.GLASS_BLOCKS).add(key(TinkerCommons.soulGlass.get())).addTag(BlockTags.create(Identifier.parse("c:glass/stained")));
+    // NeoForge 26.1 renamed that family to c:glass_blocks and c:glass_panes.
+    tag(Tags.Blocks.GLASS_BLOCKS)
+      .add(key(TinkerCommons.clearGlass.get()), key(TinkerCommons.soulGlass.get()))
+      .addTag(Tags.Blocks.GLASS_BLOCKS_CHEAP)
+      .addTag(Tags.Blocks.GLASS_BLOCKS_COLORLESS)
+      .addTag(Tags.Blocks.GLASS_BLOCKS_TINTED)
+      .addTag(BlockTags.create(Identifier.parse("c:glass/stained")));
     tag(Tags.Blocks.GLASS_BLOCKS_COLORLESS).add(key(TinkerCommons.clearGlass.get()));
+    tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(key(TinkerCommons.clearGlass.get()));
     tag(Tags.Blocks.GLASS_BLOCKS_TINTED).add(key(TinkerCommons.clearTintedGlass.get()));
-    tag(Tags.Blocks.GLASS_PANES).add(key(TinkerCommons.soulGlassPane.get())).addTag(BlockTags.create(Identifier.parse("c:glass_panes/stained")));
+    tag(Tags.Blocks.GLASS_PANES)
+      .add(key(TinkerCommons.clearGlassPane.get()), key(TinkerCommons.soulGlassPane.get()))
+      .addTag(Tags.Blocks.GLASS_PANES_COLORLESS)
+      .addTag(BlockTags.create(Identifier.parse("c:glass_panes/stained")));
+    tag(Tags.Blocks.GLASS_PANES_COLORLESS).add(key(TinkerCommons.clearGlassPane.get()));
+
+    // mineable with pickaxe for all glass
+    var pickaxe = tag(MINEABLE_WITH_PICKAXE);
+    pickaxe.add(
+      key(TinkerCommons.clearGlass.get()), key(TinkerCommons.clearGlassPane.get()),
+      key(TinkerCommons.clearTintedGlass.get()),
+      key(TinkerCommons.soulGlass.get()), key(TinkerCommons.soulGlassPane.get()));
+    TinkerCommons.clearStainedGlass.values().forEach(b -> pickaxe.add(key(b)));
+    TinkerCommons.clearStainedGlassPane.values().forEach(b -> pickaxe.add(key(b)));
 
     // soul speed on glass
     this.tag(BlockTags.SOUL_SPEED_BLOCKS).add(key(TinkerCommons.soulGlass.get()), key(TinkerCommons.soulGlassPane.get()),
@@ -678,10 +696,17 @@ public class BlockTagProvider extends TagsProvider<Block> {
   }
 
   /** Adds tags for a glass item object */
-  private void addGlass(EnumObject<GlassColor,? extends Block> blockObj, String tagPrefix, BlockTagAppender blockTag) {
+  private void addGlass(EnumObject<GlassColor,? extends Block> blockObj, String modernPrefix, String legacyPrefix, BlockTagAppender parentTag, BlockTagAppender legacyTag) {
     blockObj.forEach((color, block) -> {
-      blockTag.add(block);
-      this.tag(BlockTags.create(commonResource(tagPrefix + color.getSerializedName()))).add(block);
+      parentTag.add(block);
+      legacyTag.add(block);
+      String colorName = color.getSerializedName();
+      this.tag(Tags.Blocks.DYED).add(block);
+      this.tag(BlockTags.create(commonResource("dyed/" + colorName))).add(block);
+      this.tag(BlockTags.create(commonResource(modernPrefix + colorName))).add(block);
+      if (!modernPrefix.equals(legacyPrefix)) {
+        this.tag(BlockTags.create(commonResource(legacyPrefix + colorName))).add(block);
+      }
     });
   }
 

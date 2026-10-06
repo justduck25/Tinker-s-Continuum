@@ -1,6 +1,10 @@
 {
   "values": [
+    "tconstruct:clear_glass",
     "tconstruct:soul_glass",
+    "#c:glass_blocks/cheap",
+    "#c:glass_blocks/colorless",
+    "#c:glass_blocks/tinted",
     "#c:glass/stained"
   ]
 }
