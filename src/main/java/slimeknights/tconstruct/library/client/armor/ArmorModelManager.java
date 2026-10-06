@@ -36,7 +36,9 @@ import slimeknights.tconstruct.library.client.armor.texture.TrimArmorTextureSupp
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.tools.helper.ModifierUtil;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.library.tools.item.armor.ModifiableArmorItem;
 import slimeknights.tconstruct.tools.TinkerModifiers;
+import slimeknights.tconstruct.tools.TinkerTools;
 import slimeknights.tconstruct.tools.data.ModifierIds;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.tools.client.material.CombatFishingHookRenderer;
@@ -65,8 +67,13 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
 
   /* Instance data */
   public static final ArmorModelManager INSTANCE = new ArmorModelManager();
+  private static final ThreadLocal<EquipmentClientInfo.LayerType> CURRENT_LAYER_TYPE = new ThreadLocal<>();
   /** Map of location to texture suppliers */
   private Map<Identifier,ArmorModel> models = Collections.emptyMap();
+
+  public static void clearCurrentLayerType() {
+    CURRENT_LAYER_TYPE.remove();
+  }
 
   private static final List<ArmorModelDispatcher> DISPATCHERS = new ArrayList<>();
 
@@ -124,6 +131,10 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
     return models.getOrDefault(name, ArmorModel.EMPTY);
   }
 
+  public static void syncVanillaTrim(ItemStack stack) {
+    ArmorModelDispatcher.syncVanillaTrim(stack);
+  }
+
   /** Helper to cache armor models in the item */
   public abstract static class ArmorModelDispatcher implements IClientItemExtensions {
     private static final Identifier EMPTY_ARMOR_TEXTURE = TConstruct.getResource("textures/tinker_armor/empty.png");
@@ -153,13 +164,26 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
     @Nonnull
     @Override
     public Model getGenericArmorModel(ItemStack stack, EquipmentClientInfo.LayerType layerType, Model original) {
-      syncVanillaTrim(stack);
+      CURRENT_LAYER_TYPE.set(layerType);
+      if (layerType == EquipmentClientInfo.LayerType.WINGS) {
+        stack.remove(DataComponents.TRIM);
+      } else {
+        syncVanillaTrim(stack);
+      }
       return original;
     }
 
     @Override
     public Identifier getArmorTexture(ItemStack stack, EquipmentClientInfo.LayerType layerType, EquipmentClientInfo.Layer layer, Identifier original) {
-      syncVanillaTrim(stack);
+      CURRENT_LAYER_TYPE.set(layerType);
+      if (layerType == EquipmentClientInfo.LayerType.WINGS) {
+        stack.remove(DataComponents.TRIM);
+        if (!ModifierUtil.checkVolatileFlag(stack, ModifiableArmorItem.ELYTRA)) {
+          return EMPTY_ARMOR_TEXTURE;
+        }
+      } else {
+        syncVanillaTrim(stack);
+      }
       int modIndex = getModifierLayerIndex(layer.textureId());
       if (modIndex >= 0) {
         List<Identifier> list = getWornModifierTextures(stack, toTextureType(layerType));
@@ -177,8 +201,16 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
 
     @Override
     public int getArmorLayerTintColor(ItemStack stack, EquipmentClientInfo.Layer layer, int layerIndex, int currentTint) {
-      syncVanillaTrim(stack);
-      TextureType type = toTextureType(stack);
+      EquipmentClientInfo.LayerType layerType = CURRENT_LAYER_TYPE.get();
+      if (layerType == EquipmentClientInfo.LayerType.WINGS) {
+        stack.remove(DataComponents.TRIM);
+      } else {
+        syncVanillaTrim(stack);
+      }
+      TextureType type = layerType != null ? toTextureType(layerType) : toTextureType(stack);
+      if (type == TextureType.WINGS && !ModifierUtil.checkVolatileFlag(stack, ModifiableArmorItem.ELYTRA)) {
+        return 0;
+      }
       int modIndex = getModifierLayerIndex(layer.textureId());
       if (modIndex >= 0) {
         List<Identifier> list = getWornModifierTextures(stack, type);
@@ -209,7 +241,7 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
       return -1;
     }
 
-    private static void syncVanillaTrim(ItemStack stack) {
+    public static void syncVanillaTrim(ItemStack stack) {
       if (stack.has(DataComponents.TRIM)) {
         return;
       }
@@ -261,6 +293,9 @@ public class ArmorModelManager extends SimpleJsonResourceReloadListener<JsonElem
     }
 
     private static TextureType toTextureType(ItemStack stack) {
+      if (ModifierUtil.checkVolatileFlag(stack, ModifiableArmorItem.ELYTRA) && stack.getItem() == TinkerTools.slimeWings.get()) {
+        return TextureType.WINGS;
+      }
       Equippable equippable = stack.get(DataComponents.EQUIPPABLE);
       if (equippable != null && equippable.slot() == EquipmentSlot.LEGS) {
         return TextureType.LEGGINGS;

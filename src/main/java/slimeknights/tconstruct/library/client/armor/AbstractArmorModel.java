@@ -12,6 +12,7 @@ import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.util.Unit;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.client.event.RenderLivingEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -75,8 +76,20 @@ public abstract class AbstractArmorModel extends Model<Unit> {
   /** Initializes the wrapper */
   public static void init() {
     // register listeners to set and clear the buffer
-    NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, (RenderLivingEvent.Pre event) -> buffer = Minecraft.getInstance().renderBuffers().bufferSource());
-    NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, (RenderLivingEvent.Post event) -> buffer = null);
+    NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, (RenderLivingEvent.Pre event) -> {
+      buffer = Minecraft.getInstance().renderBuffers().bufferSource();
+      ArmorModelManager.clearCurrentLayerType();
+    });
+    NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, (RenderLivingEvent.Post event) -> {
+      buffer = null;
+      ArmorModelManager.clearCurrentLayerType();
+      if (event.getRenderState() instanceof net.minecraft.client.renderer.entity.state.HumanoidRenderState humanoidState) {
+        ItemStack chest = humanoidState.chestEquipment;
+        if (chest != null && !chest.isEmpty()) {
+          ArmorModelManager.syncVanillaTrim(chest);
+        }
+      }
+    });
   }
 
   /** Wings model to render */
