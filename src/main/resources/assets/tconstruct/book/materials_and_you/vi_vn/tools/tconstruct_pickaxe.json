@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:pickaxe",
+  "text": [
+    {
+      "text": "Cuốc chim là công cụ đào bới chính xác. Nó rất hiệu quả với đá và các loại quặng."
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Nó dùng để đập khối, hiểu chưa?"
+    }
+  ],
+  "properties": [
+    "Công cụ khai thác cơ bản",
+    "Đơn giản là một chiếc cuốc chim",
+    "Đào các khối đá và vật liệu tương tự",
+    "Sát thương xuyên giáp bổ sung"
+  ]
+}

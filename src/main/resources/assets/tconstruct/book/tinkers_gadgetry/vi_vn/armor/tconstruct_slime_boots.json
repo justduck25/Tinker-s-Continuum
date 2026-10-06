@@ -1,0 +1,16 @@
+{
+  "tool": "tconstruct:slime_boots",
+  "text": [
+    {
+      "text": "Ủng nhớt giúp bạn nảy tưng tưng khi tiếp đất và loại bỏ hoàn toàn sát thương rơi!"
+    },
+    {
+      "text": "To create these fantastic boots, pour slime on laces in a basin.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Loại bỏ sát thương rơi",
+    "Nảy trên các bề mặt"
+  ]
+}

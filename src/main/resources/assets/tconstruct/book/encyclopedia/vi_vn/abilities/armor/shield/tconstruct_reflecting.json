@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:reflecting",
+  "text": [
+    {
+      "text": "Đạn bắn sẽ bị phản dội ngược lại theo hướng mắt bạn nhìn nếu được đỡ trong vòng 2 giây kể từ khi giương khiên. Mỗi cấp bổ sung thêm 2 giây hiệu lực phản xạ đạn."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đầu tiên yêu cầu 1 ô năng lực",
+    "Các cấp tiếp theo cần 1 ô năng lực",
+    "Tối đa 3 cấp"
+  ]
+}

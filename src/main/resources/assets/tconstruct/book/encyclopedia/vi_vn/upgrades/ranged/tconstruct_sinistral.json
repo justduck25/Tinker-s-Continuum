@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:sinistral",
+  "text": [
+    {
+      "text": "Làm cho nỏ bắn ra khi bấm tấn công thay vì tương tác, và chỉ nạp tên khi không ngồi rón rén. Cho phép sử dụng vật phẩm ở tay phụ trong khi đang dùng nỏ."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

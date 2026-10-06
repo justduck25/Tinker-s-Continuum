@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:worldbound",
+  "text": [
+    {
+      "text": "Giải pháp thay thế Netherite giúp công cụ không bị tiêu hủy khi rơi rớt mà không tốn ô nâng cấp. Không gia tăng thêm chỉ số nào khác."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Không tốn ô"
+  ]
+}

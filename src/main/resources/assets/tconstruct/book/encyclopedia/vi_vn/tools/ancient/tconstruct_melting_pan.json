@@ -1,0 +1,21 @@
+{
+  "tool": "tconstruct:melting_pan",
+  "text": [
+    {
+      "text": "Chảo nấu chảy là cây quyền trượng khai thác các khối có thể nung chảy, tạo thêm 6 hạt kim loại mỗi quặng (so với 3 hạt từ lò luyện kim). Cải tiến Mở rộng hoạt động tương tự như búa đập mạch khoáng."
+    },
+    {
+      "text": "Tìm thấy từ thây ma, ngục tối, lều tuyết tuyết, và là quà tặng từ thợ rèn giáp sau khi đẩy lùi cuộc đột kích.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "6 Tốc độ đào",
+    "Cấp khai thác: Đá",
+    "10% Kháng đẩy lùi",
+    "Nấu chảy+",
+    "1 Ô phòng thủ",
+    "1 Ô nâng cấp",
+    "2 Ô năng lực"
+  ]
+}

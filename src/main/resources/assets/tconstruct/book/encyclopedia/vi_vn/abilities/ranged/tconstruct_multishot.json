@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:multishot",
+  "text": [
+    {
+      "text": "Cho phép bắn thêm 2 mũi tên phụ mỗi cấp. Hướng bắn của các mũi tên phụ có thể khác nhau tùy thuộc vào từng cây cung."
+    },
+    {
+      "text": "Phải có sẵn các mũi tên phụ trong túi đồ để bắn chúng, nếu quá ít tên thì cung sẽ bắn ra ít mũi tên hơn tương ứng.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Không giới hạn cấp độ tối đa",
+    "Yêu cầu 1 ô năng lực mỗi cấp"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tool": "tconstruct:dagger",
+  "text": [
+    {
+      "text": "Dao găm là vũ khí linh hoạt dành cho chiến binh nhanh nhẹn. Nó có sát thương thấp nhưng tốc độ cao, cho phép tung ra các đòn tấn công chớp nhoáng. Dao găm cũng có thể cầm ở tay phụ để nhân đôi sức mạnh."
+    },
+    {
+      "text": "\n"
+    }
+  ],
+  "properties": [
+    "Sát thương thấp",
+    "Tốc độ cao",
+    "Có thể dùng ở tay phụ",
+    "Xếp chồng 2 chiếc khi chế tác và gắn điều chỉnh"
+  ]
+}

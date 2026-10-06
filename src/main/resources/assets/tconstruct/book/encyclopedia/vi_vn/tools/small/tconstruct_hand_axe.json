@@ -1,0 +1,17 @@
+{
+  "tool": "tconstruct:hand_axe",
+  "text": [
+    {
+      "text": "Rìu cầm tay là công cụ chặt chém chuẩn xác, hiệu quả trên gỗ, cây cối và lá cây."
+    },
+    {
+      "text": "Cải tiến Mở rộng làm tăng bán kính chặt tròn xung quanh của rìu.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+6 Sát thương tấn công",
+    "0.9 Tốc độ tấn công",
+    "Gọt vỏ gỗ"
+  ]
+}

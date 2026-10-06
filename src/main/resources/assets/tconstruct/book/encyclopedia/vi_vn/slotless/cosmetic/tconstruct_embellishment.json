@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:embellishment",
+  "text": [
+    {
+      "text": "Cho phép thay đổi ngoại hình của bộ đồ nhớt, quyền trượng và khiên."
+    },
+    {
+      "text": "Phần nhớt sử dụng các khối nhớt đông đặc, trong khi quyền trượng và khiên sử dụng các họa tiết trang trí từ gỗ.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể tráo đổi",
+    "Không tốn ô"
+  ]
+}

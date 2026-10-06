@@ -1,0 +1,16 @@
+{
+  "title": "Yêu cầu Cấu trúc",
+  "text": [
+    {
+      "text": "Đáy lò phải là hình chữ nhật đặc bằng khối nung. Thành lò bao quanh không được có kẽ hở và bên trong phải hoàn toàn rỗng."
+    },
+    {
+      "text": "Your smeltery must have a floor made of acceptable smeltery blocks excluding glass. Acceptable blocks will be showcased in a few pages! Your smeltery also must be rectangular, it can not be L shaped, circle shaped, or dodecahedron shaped.",
+      "paragraph": true
+    },
+    {
+      "text": "The max size of your smeltery is 16x16x65 external, or 14x14x64 internal.",
+      "paragraph": true
+    }
+  ]
+}

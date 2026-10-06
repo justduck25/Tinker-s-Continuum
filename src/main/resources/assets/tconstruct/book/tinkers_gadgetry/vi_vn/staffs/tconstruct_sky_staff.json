@@ -1,0 +1,13 @@
+{
+  "tool": "tconstruct:sky_staff",
+  "text": [
+    {
+      "text": "Gậy phép nhớt trời phóng ra các luồng gió nâng người chơi lên cao."
+    }
+  ],
+  "properties": [
+    "Low Durability",
+    "5 Upgrade Slots",
+    "2 Ability Slots"
+  ]
+}

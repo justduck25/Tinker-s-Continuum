@@ -1,0 +1,13 @@
+{
+  "title": "Hốc Nhớt Ender",
+  "image": {
+    "file": "tconstruct:book/images/geodes/enderslime.png",
+    "width": 180,
+    "height": 99
+  },
+  "text": [
+    {
+      "text": "Hốc tinh thể nhớt tím phát quang tại The End."
+    }
+  ]
+}

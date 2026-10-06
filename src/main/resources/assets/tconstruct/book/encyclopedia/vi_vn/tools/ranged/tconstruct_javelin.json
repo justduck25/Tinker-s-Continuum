@@ -1,0 +1,14 @@
+{
+  "tool": "tconstruct:javelin",
+  "text": [
+    {
+      "text": "Lao ném là vũ khí lai giữa cận chiến và tầm xa, vừa có thể đâm cận chiến vừa có thể phóng đi tấn công từ xa."
+    }
+  ],
+  "properties": [
+    "+3 Sát thương tấn công",
+    "1.1 Tốc độ tấn công",
+    "Cộng dồn chỉ số từ tất cả bộ phận",
+    "Ném vũ khí"
+  ]
+}

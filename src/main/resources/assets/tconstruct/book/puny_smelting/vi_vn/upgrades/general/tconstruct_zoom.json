@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:zoom",
+  "text": [
+    {
+      "text": "I spy with my little eyes, something off in the vast distance."
+    }
+  ],
+  "effects": [
+    "Quickly zooms in when using the tool",
+    "Cấp đơn",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

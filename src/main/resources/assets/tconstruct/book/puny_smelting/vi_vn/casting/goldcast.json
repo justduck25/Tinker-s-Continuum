@@ -1,0 +1,13 @@
+{
+  "title": "Khuôn vàng",
+  "image": {
+    "file": "tconstruct:book/images/gold_pick.png",
+    "width": 170,
+    "height": 90
+  },
+  "text": [
+    {
+      "text": "Khuôn vàng có thể tái sử dụng vô tận. Để tạo một khuôn, chỉ cần rót lượng vàng nóng chảy tương đương 1 thỏi lên trên bộ phận công cụ đặt trong bàn đúc."
+    }
+  ]
+}

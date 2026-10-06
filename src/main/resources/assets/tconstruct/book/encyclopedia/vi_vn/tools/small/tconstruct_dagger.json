@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:dagger",
+  "text": [
+    {
+      "text": "Dao găm là vũ khí chuẩn xác, ra đòn nhanh gọn và có thể dùng được ở cả hai tay. Hai con dao găm giống hệt nhau khi còn nguyên độ bền có thể xếp chồng lên nhau thành 2 khi cải tiến, giúp tiết kiệm nguyên liệu cải tiến."
+    },
+    {
+      "text": "Mềm mại (Silky) bổ sung khả năng cắt tỉa lông động vật và cây cỏ.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+3 Sát thương tấn công",
+    "65% Hệ số tấn công",
+    "2.0 Tốc độ tấn công",
+    "75% Bội số độ bền",
+    "Đệm êm I",
+    "Tấn công tay phụ"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Rương Lưu trữ",
+  "text": [
+    {
+      "text": "Vậy là bạn muốn cất các bộ phận thừa vào một chiếc rương đặc biệt đúng không? Dù không muốn thì bạn vẫn có tùy chọn này thôi."
+    },
+    {
+      "text": "Rương bộ phận cho phép bạn lưu trữ vô số bộ phận dư thừa. Mỗi ô có thể chứa tối đa một xấp 8 bộ phận. Nếu cần nhiều hơn thế thì hoặc là bạn đang làm sai cách, hoặc là công thức của bạn quá rối rắm rồi đấy.",
+      "paragraph": true
+    },
+    {
+      "text": "Ồ, chiếc rương đó quá gò bó ư? Hãy thử rương chế tác! Nó có thể chứa bất kỳ vật phẩm nào trong tổng số 64 ô, mặc dù mỗi ô chỉ chứa được 16 món.",
+      "paragraph": true
+    }
+  ]
+}

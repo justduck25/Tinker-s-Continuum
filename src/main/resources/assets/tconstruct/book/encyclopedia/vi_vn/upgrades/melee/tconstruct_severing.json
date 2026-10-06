@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:severing",
+  "text": [
+    {
+      "text": "Cung cấp 5% cơ hội mỗi cấp để quái vật rơi đầu hoặc các bộ phận cơ thể. May mắn cộng thêm 1% cơ hội cho mỗi cấp may mắn nhân với cấp Trảm thủ. Tỉ lệ này được nhân đôi khi đối đầu các sinh vật hiếm như Trùm (Boss)."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

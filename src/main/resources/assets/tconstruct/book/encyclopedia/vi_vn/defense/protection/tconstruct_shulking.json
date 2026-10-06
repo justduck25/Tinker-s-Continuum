@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:shulking",
+  "text": [
+    {
+      "text": "Tăng +10% kháng sát thương khi đang ngồi xổm/rón rén. Tối đa đạt 80% trên toàn bộ bộ giáp, tương đương 8 cấp."
+    },
+    {
+      "text": "Giảm 10% sát thương tấn công khi đang ngồi xổm mỗi cấp của mảnh giáp có cấp cao nhất.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Yêu cầu 1 ô phòng thủ mỗi cấp"
+  ]
+}

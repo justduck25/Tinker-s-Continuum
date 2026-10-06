@@ -1,0 +1,15 @@
+{
+  "tool": "tconstruct:plate_chestplate",
+  "text": [
+    {
+      "text": "Áo giáp tấm là áo giáp thiên về phòng ngự với khả năng bảo vệ vượt trội, ít ô năng lực nhưng nhiều ô phòng thủ."
+    }
+  ],
+  "properties": [
+    "Chỉ số do vật liệu quyết định",
+    "40% Đòn đánh tay không",
+    "2 Ô nâng cấp",
+    "3 Ô phòng thủ",
+    "2 Đặc tính vật liệu"
+  ]
+}

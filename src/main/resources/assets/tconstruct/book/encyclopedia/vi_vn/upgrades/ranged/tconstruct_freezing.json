@@ -1,0 +1,15 @@
+{
+  "modifier_id": "tconstruct:freezing",
+  "text": [
+    {
+      "text": "Đóng băng bất kỳ thực thể nào trúng mũi tên trong 4 giây (cộng thêm 4 giây mỗi cấp), gây sát thương theo thời gian và làm chậm."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/ranged",
+  "effects": [
+    "Tối đa 3 cấp",
+    "Không tương thích tốt với Hỏa thiêu",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

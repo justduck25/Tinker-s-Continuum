@@ -1,0 +1,39 @@
+intro=Giới thiệu
+entity_melting=Nung chảy Thực thể
+melee_harvest_materials=Vật liệu Đa dụng Cấp 3
+melee_harvest_materials.subtext=Các vật liệu này có thể được tạo bằng cách hợp kim hóa rồi đúc thành bộ phận cho vũ khí cận chiến hoặc công cụ khai thác.
+ranged_materials=Vật liệu Tầm xa Cấp 3
+ranged_materials.subtext=Các vật liệu này có thể được tạo bằng cách hợp kim hóa rồi đúc thành bộ phận cho vũ khí tầm xa như cung.
+armor_materials=Vật liệu Giáp Cấp 3
+armor_materials.subtext=Các vật liệu này có thể đúc thành giáp và khiên.
+
+tools=Công cụ Lớn
+tools.subtext=Tất cả công cụ lớn đều yêu cầu đe chế tác để rèn tạo
+tools.group_general=Chung
+tools.group_ranged=Tầm xa
+tools.group_info=Thông tin
+
+armor=Giáp Hùng vĩ
+armor.subtext=Hợp kim mở ra nhiều loại vật liệu phong phú hơn để tạo giáp. Chúng có thể cung cấp thêm các năng lực vượt trội so với các bộ cơ bản như đồ lữ hành.
+
+smeltery=Lò luyện kim
+
+abilities=Năng lực
+abilities.subtext=Các năng lực mạnh hơn nhiều so với nâng cấp, nhưng số lượng ô chứa cũng hạn chế hơn.
+abilities.group_general=Chung
+abilities.group_harvest=Khai thác
+abilities.group_melee=Cận chiến
+abilities.group_ranged=Tầm xa
+abilities.group_interact=Tương tác
+abilities.group_armor=Giáp
+abilities.group_armor.helmet=Mũ giáp
+abilities.group_armor.chestplate=Áo giáp
+abilities.group_armor.leggings=Quần giáp
+abilities.group_armor.boots=Ủng giáp
+abilities.group_armor.shield=Khiên
+upgrades.subtext=Công cụ có thể được gia cường bằng các nâng cấp, tuy nhiên số lượng áp dụng cho mỗi công cụ là có giới hạn.
+
+defense=Phòng thủ
+defense.subtext=Bộ điều chỉnh phòng thủ chỉ áp dụng được cho giáp, sử dụng ô phòng thủ.
+defense.group_protection=Bảo vệ
+defense.group_special=Đặc biệt

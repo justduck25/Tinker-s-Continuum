@@ -1,0 +1,14 @@
+{
+  "title": "Pháo Chất lỏng",
+  "item": "tconstruct:end_fluid_cannon",
+  "text": [
+    {
+      "text": "Pháo chất lỏng bắn các luồng dung dịch nén vào kẻ thù hoặc khối, kích hoạt các hiệu ứng chất lỏng tương ứng.",
+      "paragraph": true
+    },
+    {
+      "text": "The original design is still probably better for placing blocks since it uses less fluid, but my design can still use tools pretty well.",
+      "paragraph": true
+    }
+  ]
+}

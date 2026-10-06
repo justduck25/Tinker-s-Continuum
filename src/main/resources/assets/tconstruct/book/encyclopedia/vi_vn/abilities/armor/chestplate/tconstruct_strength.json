@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:strength",
+  "text": [
+    {
+      "text": "Tăng +10% sát thương cận chiến mỗi cấp cho toàn bộ vũ khí cận chiến."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 2 cấp",
+    "Yêu cầu 1 ô năng lực mỗi cấp"
+  ]
+}

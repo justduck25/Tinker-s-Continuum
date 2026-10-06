@@ -1,0 +1,13 @@
+{
+  "title": "Hốc Nhớt đất",
+  "image": {
+    "file": "tconstruct:book/images/geodes/earthslime.png",
+    "width": 180,
+    "height": 90
+  },
+  "text": [
+    {
+      "text": "Các khối tinh thể nhớt đất ẩn sâu dưới lòng đất."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:tool_belt",
+  "text": [
+    {
+      "text": "Cho phép hoán đổi nhanh 4 ô hotbar đầu tiên bằng phím tương tác xà cạp. Mỗi cấp liên tiếp tăng thêm 1 ô cho đến khi đạt tối đa 9 ô ở cấp 6."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đầu tiên yêu cầu 1 ô năng lực",
+    "Tối đa 6 cấp",
+    "Mỗi cấp có một công thức riêng biệt"
+  ]
+}

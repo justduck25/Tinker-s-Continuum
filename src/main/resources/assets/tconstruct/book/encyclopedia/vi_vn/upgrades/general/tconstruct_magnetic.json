@@ -1,0 +1,18 @@
+{
+  "modifier_id": "tconstruct:magnetic",
+  "text": [
+    {
+      "text": "Sau khi đào khối hoặc tấn công quái vật (với công cụ) hoặc liên tục một cách bị động (với giáp), hút các vật phẩm trong phạm vi 3 khối về phía người chơi, bất chấp trọng lực."
+    },
+    {
+      "text": "Mỗi cấp tăng thêm 1 khối cự ly và gia tăng tốc độ hút. Công cụ từ tính khi ném ra sẽ hút vật phẩm ngay trên đường bay của nó.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp trên mỗi mảnh giáp",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

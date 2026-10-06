@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:diamond",
+  "text": [
+    {
+      "text": "Cung cấp +500 độ bền (+250 cho giáp), +0.5 sát thương tấn công, +2 tốc độ đào, +0.5 uy lực đạn, và +1 giáp. Ngoài ra còn nâng cấp độ khai thác của công cụ lên cấp Kim cương."
+    },
+    {
+      "text": "Công cụ và giáp sẽ chỉ nhận các chỉ số cộng thêm tương thích; ví dụ, công cụ cầm tay sẽ không nhận thêm +1 giáp.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

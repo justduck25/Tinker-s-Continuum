@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:sweeping_edge",
+  "text": [
+    {
+      "text": "Gia tăng lượng sát thương gây ra bởi đòn quét của kiếm. Khiến đòn quét gây ra 25% sát thương chính ở cấp 1, 50% ở cấp 2 và 75% ở cấp 3."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

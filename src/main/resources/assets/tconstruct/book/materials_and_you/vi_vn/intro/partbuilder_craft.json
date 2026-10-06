@@ -1,0 +1,10 @@
+{
+  "title": "Chế tạo Bàn tạo Bộ phận",
+  "recipe": "tconstruct:tables/part_builder",
+  "grid_size": "small",
+  "description": [
+    {
+      "text": "Khi đã có vài bản mẫu, hãy tạo bàn tạo bộ phận để bắt đầu hành trình chế tạo công cụ."
+    }
+  ]
+}

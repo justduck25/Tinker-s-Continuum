@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:bucketing",
+  "text": [
+    {
+      "text": "Cho phép công cụ múc chất lỏng khi sử dụng và đặt chất lỏng ra khi đang ngồi rón rén. Đồng thời tăng dung tích bình chứa của công cụ thêm 1000 mB."
+    },
+    {
+      "text": "Công cụ có khả năng múc có thể được nạp đầy hoặc xả cạn bằng cách tương tác với các khối bồn chứa chất lỏng.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

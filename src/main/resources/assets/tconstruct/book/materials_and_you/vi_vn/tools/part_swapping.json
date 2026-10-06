@@ -1,0 +1,14 @@
+{
+  "title": "Thay thế Bộ phận",
+  "image": {
+    "file": "tconstruct:book/images/part_swapping.png",
+    "width": 136,
+    "height": 72
+  },
+  "text": [
+    {
+      "text": "Từng ước mình có thể sửa chữa sai lầm trong quá khứ chưa? May mắn thay với công cụ thì bạn làm được điều đó. Nếu muốn đổi vật liệu của một bộ phận, hãy đặt công cụ cùng bộ phận mới mong muốn vào bàn chế tác. Đối với các công cụ có nhiều bộ phận cùng loại, hãy thử vài ô khác nhau để thay thế đúng bộ phận cần đổi. Đối với giáp, bạn thường có thể tráo bộ phận bằng bàn đúc.",
+      "paragraph": false
+    }
+  ]
+}

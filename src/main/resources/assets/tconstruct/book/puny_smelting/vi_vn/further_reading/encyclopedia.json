@@ -1,0 +1,13 @@
+{
+  "title": "Bách khoa Toàn thư Chế tác",
+  "image": {
+    "file": "tconstruct:book/images/book_encyclopedia.png",
+    "width": 128,
+    "height": 64
+  },
+  "text": [
+    {
+      "text": "Có vẻ như vài thợ chế tác tập sự không có đủ tay để vừa làm công cụ vừa cầm cả hai cuốn sách của ta. Nếu ngươi là một trong số họ, cuốn bách khoa toàn thư sẽ tổng hợp tất cả lại cho ngươi."
+    }
+  ]
+}

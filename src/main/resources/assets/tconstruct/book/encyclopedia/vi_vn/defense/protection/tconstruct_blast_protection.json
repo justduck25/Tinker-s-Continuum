@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:blast_protection",
+  "text": [
+    {
+      "text": "Tăng +10% khả năng kháng sát thương nổ (như từ Creeper hoặc TNT). Tối đa đạt 80% trên toàn bộ bộ giáp, tương đương 8 cấp."
+    },
+    {
+      "text": "Giảm độ đẩy lùi do vụ nổ gây ra 15% mỗi cấp của mảnh giáp có cấp cao nhất.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Yêu cầu 1 ô phòng thủ mỗi cấp"
+  ]
+}

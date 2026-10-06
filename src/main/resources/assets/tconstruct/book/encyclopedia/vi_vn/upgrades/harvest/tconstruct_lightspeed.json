@@ -1,0 +1,15 @@
+{
+  "modifier_id": "tconstruct:lightspeed",
+  "text": [
+    {
+      "text": "Tăng +1 tốc độ đào mỗi cấp ở mức ánh sáng 5, +3 tốc độ đào ở mức ánh sáng 10, và +9 tốc độ đào ở mức ánh sáng 15."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/harvest",
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

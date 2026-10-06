@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:mattock",
+  "text": [
+    {
+      "text": "Cuốc chim đa năng (Mattock) là công cụ canh tác hiệu quả trên thân gỗ, đất, sỏi và cát. Nó cũng chặt gỗ nhanh hơn."
+    },
+    {
+      "text": "Cải tiến Mở rộng khiến các khối cùng loại liền kề cũng bị đào theo, phạm vi dựa trên số cấp mở rộng.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+1.5 Sát thương tấn công",
+    "110% Hệ số tấn công",
+    "0.9 Tốc độ tấn công",
+    "110% Bội số đào",
+    "125% Bội số độ bền",
+    "Cuốc đất"
+  ]
+}

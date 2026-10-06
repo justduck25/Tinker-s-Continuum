@@ -1,0 +1,17 @@
+{
+  "title": "Đúc Hỗn hợp",
+  "image": {
+    "file": "tconstruct:book/images/compositecast.png",
+    "width": 177,
+    "height": 50
+  },
+  "text": [
+    {
+      "text": "Đúc hỗn hợp cho phép bạn tạo ra các vật liệu mới bằng cách rót chất lỏng lên một vật phẩm/khối trong bàn đúc hoặc chậu đúc."
+    },
+    {
+      "text": "Các vật liệu đáng chú ý là Gỗ nhớt (Slimewood) và Nahuatl, lần lượt được tạo bằng cách rót nhớt hoặc hắc diện thạch nóng chảy.",
+      "paragraph": true
+    }
+  ]
+}

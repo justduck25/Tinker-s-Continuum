@@ -1,0 +1,13 @@
+{
+  "title": "Khuôn cát",
+  "image": {
+    "file": "tconstruct:book/images/sand_pick.png",
+    "width": 119,
+    "height": 100
+  },
+  "text": [
+    {
+      "text": "Khuôn cát có thể được tạo bằng cách ấn một bộ phận công cụ vào bàn đúc đã đổ đầy cát."
+    }
+  ]
+}

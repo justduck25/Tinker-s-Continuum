@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:item_frame",
+  "text": [
+    {
+      "text": "Thêm 3 ô trưng bày mỗi cấp vào mũ giáp, các ô này sẽ hiển thị trên giao diện người dùng khi đội mũ."
+    },
+    {
+      "text": "Có thể mở túi đồ của mũ giáp bằng cách tương tác với nó khi đang cầm trên tay.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

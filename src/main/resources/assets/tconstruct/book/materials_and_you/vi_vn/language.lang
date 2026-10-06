@@ -1,0 +1,19 @@
+intro=Giới thiệu
+
+melee_harvest_materials=Vật liệu Đa dụng Cấp 1
+melee_harvest_materials.subtext=Các vật liệu này có thể đặt vào bàn tạo bộ phận để tạo các bộ phận cho vũ khí cận chiến hoặc công cụ khai thác.
+ranged_materials=Vật liệu Tầm xa Cấp 1
+ranged_materials.subtext=Các vật liệu này có thể đặt vào bàn tạo bộ phận để tạo các bộ phận cho vũ khí tầm xa như cung.
+ammo_materials=Vật liệu Đạn dược Cơ bản
+ammo_materials.subtext=Các vật liệu này rất lý tưởng để chế tạo những mũi tên và phi tiêu shuriken đầu tiên của bạn.
+
+tools=Công cụ
+tools.group_general=Chung
+tools.group_ranged=Tầm xa
+tools.group_info=Thông tin
+
+armor=Giáp Cơ bản
+armor.subtext=Bộ giáp cơ bản mang lại sự bảo vệ thiết yếu mà không cần phải săn lùng tài nguyên hiếm hay chế tạo máy móc phức tạp. Dù chỉ cấp khả năng phòng thủ giới hạn, nhưng bạn vẫn có rất nhiều cơ hội nâng cấp bộ giáp của mình! Bạn sẽ sáng tạo ra điều tuyệt vời nào đây?
+
+modifiers=Bộ điều chỉnh
+further_reading=Đọc thêm

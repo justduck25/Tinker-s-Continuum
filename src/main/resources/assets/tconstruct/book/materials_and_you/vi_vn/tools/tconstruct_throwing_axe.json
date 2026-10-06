@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:throwing_axe",
+  "text": [
+    {
+      "text": "Rìu ném là loại vũ khí phóng đánh mạnh hơn nhưng tầm bay ngắn hơn."
+    },
+    {
+      "text": "\n"
+    },
+    {
+      "text": "Rìu ném cũng không nhận được bộ điều chỉnh, nhưng ai cần chứ?",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Lựa chọn tầm xa nhanh, dùng một lần",
+    "Không cần công cụ khác để phóng"
+  ]
+}

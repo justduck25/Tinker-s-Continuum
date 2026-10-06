@@ -1,0 +1,14 @@
+{
+  "title": "Vận chuyển",
+  "image": {
+    "file": "tconstruct:book/images/carry_blaze.png",
+    "width": 128,
+    "height": 73
+  },
+  "text": [
+    {
+      "text": "Máu rực lửa có thể được múc bằng xô hoặc chứa trong các bình chịu nhiệt của Continuum Construct.",
+      "paragraph": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:collecting",
+  "text": [
+    {
+      "text": "Cho phép kéo nhiều loại vật thể hơn bằng cần câu. Vật phẩm rơi rớt, quả cầu kinh nghiệm, mũi tên và vũ khí ném đều có thể móc trúng và kéo lại gần."
+    },
+    {
+      "text": "Các vật thể được kéo thành công sẽ bay thẳng về phía người chơi.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Cấp đơn",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:crystalshot",
+  "text": [
+    {
+      "text": "Nếu không có đạn trong túi đồ, cây cung sẽ tự tạo ra các mũi tên pha lê để bắn."
+    },
+    {
+      "text": "Công cụ chịu thêm 4 điểm hao mòn độ bền cho mỗi mũi tên pha lê được tạo ra."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

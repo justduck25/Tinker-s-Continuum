@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:bounce",
+  "text": [
+    {
+      "text": "Khiến mũi tên nảy bật lại sau khi va vào khối thay vì cắm dừng lại. Cấp đầu tiên cho phép nảy 1 lần, mỗi cấp sau đó tăng thêm tối đa 2 lần nảy."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "modifier_id": "tconstruct:pierce",
+  "text": [
+    {
+      "text": "Thêm +0.5 sát thương cận chiến mỗi cấp. Đòn đánh cận chiến triệt tiêu 1 điểm giáp mỗi cấp của mục tiêu trong 4 giây sau khi trúng đòn."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/melee",
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

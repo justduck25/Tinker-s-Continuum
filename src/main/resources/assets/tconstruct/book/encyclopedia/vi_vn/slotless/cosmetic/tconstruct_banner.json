@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:banner",
+  "text": [
+    {
+      "text": "Gắn cờ hiệu lên mặt trước của chiếc khiên."
+    },
+    {
+      "text": "Hình ảnh hiển thị có thể hơi khác biệt đôi chút so với cờ hiệu gốc.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Áp dụng lại để thay đổi cờ hiệu",
+    "Không tốn ô"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "tconstruct:showcase",
+  "title": "Năng lực",
+  "item": {
+    "type": "forge:nbt",
+    "item": "tconstruct:creative_slot",
+    "nbt": {
+      "slot": "abilities"
+    }
+  },
+  "tooltip": [
+    "Biểu tượng Ô Năng lực"
+  ],
+  "text": [
+    {
+      "text": "Năng lực là những bộ điều chỉnh mạnh mẽ làm thay đổi hoàn toàn công cụ. Các bộ điều chỉnh như Tơ mềm (silky) và Tự nung (autosmelt) rất đáng chú ý vì cả hai đều thay đổi hiệu ứng khai thác khối, trong khi Song thủ (dual wielding) giúp công cụ dễ điều khiển hơn nhiều."
+    },
+    {
+      "text": "Hầu như mọi công cụ đều khởi đầu chỉ với một ô năng lực duy nhất, và chỉ có thể nhận thêm tối đa 2 ô nữa, vì vậy hãy lựa chọn năng lực một cách khôn ngoan."
+    },
+    {
+      "text": "Cuốn Nấu chảy Hùng vĩ của Thruul M'Gon có danh sách đầy đủ các năng lực cho công cụ, cùng với cuốn Bách khoa Toàn thư Chế tác.",
+      "paragraph": true
+    }
+  ]
+}

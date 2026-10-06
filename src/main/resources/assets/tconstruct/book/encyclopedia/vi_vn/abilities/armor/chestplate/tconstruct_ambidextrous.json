@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:ambidextrous",
+  "text": [
+    {
+      "text": "Cho phép tung đòn đấm bằng tay phụ. Tay phụ sẽ nhận toàn bộ các chỉ số gia tăng cận chiến tay không áp dụng cho tay chính."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

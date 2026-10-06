@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:boundless",
+  "text": [
+    {
+      "text": "Nâng trần giới hạn kháng sát thương từ các cải tiến như Bảo vệ, Long tộc (Dragonborn), hoặc Shulking từ 80% lên 90% ở cấp 1, và từ 90% lên 95% ở cấp 2 khi dùng nhiều khiên."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực mỗi cấp"
+  ]
+}

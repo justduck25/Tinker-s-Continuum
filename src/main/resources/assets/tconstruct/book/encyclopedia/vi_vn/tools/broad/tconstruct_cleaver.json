@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:cleaver",
+  "text": [
+    {
+      "text": "Dao phay lớn (Cleaver) là vũ khí sát thương cực mạnh nhưng tốc độ ra đòn chậm."
+    },
+    {
+      "text": "Cải tiến Mở rộng làm tăng phạm vi của đòn quét, và Mềm mại (Silky) mang lại khả năng cắt tỉa diện rộng.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+3 Sát thương tấn công",
+    "150% Bội số tấn công",
+    "1.0 Tốc độ tấn công",
+    "350% Bội số độ bền",
+    "Trảm thủ II"
+  ]
+}

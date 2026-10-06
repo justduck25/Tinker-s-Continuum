@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:bonking",
+  "text": [
+    {
+      "text": "Tích lực rồi thả ra để hất văng quái vật mục tiêu, tiêu tốn 1 độ bền. Nếu dùng trên vũ khí cận chiến, sẽ thực hiện một đòn đánh cận chiến với 150% sát thương."
+    },
+    {
+      "text": "Uy lực dựa trên một nửa sức mạnh nhân với vận tốc, cộng thêm 0.25 mỗi cấp đẩy lùi. Hiệu ứng tổng thể bị giảm một nửa bởi Đệm êm. Nạp nhanh rút ngắn thời gian tích lực, và chỉ số kháng đẩy lùi cũng như độ nảy của giáp mục tiêu sẽ được áp dụng.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô năng lực"
+  ]
+}

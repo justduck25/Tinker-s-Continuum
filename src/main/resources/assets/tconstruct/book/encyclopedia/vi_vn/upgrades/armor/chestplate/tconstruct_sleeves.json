@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:sleeves",
+  "text": [
+    {
+      "text": "Cung cấp cho áo giáp 3 ô chứa đồ mỗi cấp để chứa các vật phẩm có thể ném. Vật phẩm trong ống tay có thể ném ra khi tương tác bằng tay không. Có thể ngồi xổm rón rén khi tương tác để đổi vật phẩm được chọn."
+    },
+    {
+      "text": "Có thể mở kho chứa đồ bằng cách nhấp chuột phải vào áo giáp từ trong túi đồ."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

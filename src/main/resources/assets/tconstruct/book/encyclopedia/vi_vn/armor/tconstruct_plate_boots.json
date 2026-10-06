@@ -1,0 +1,14 @@
+{
+  "tool": "tconstruct:plate_boots",
+  "text": [
+    {
+      "text": "Ủng giáp tấm là đôi ủng thuần phòng ngự với độ bảo hộ cao, ít ô năng lực nhưng nhiều ô phòng thủ."
+    }
+  ],
+  "properties": [
+    "Chỉ số do vật liệu quyết định",
+    "2 Ô nâng cấp",
+    "3 Ô phòng thủ",
+    "2 Đặc tính vật liệu"
+  ]
+}

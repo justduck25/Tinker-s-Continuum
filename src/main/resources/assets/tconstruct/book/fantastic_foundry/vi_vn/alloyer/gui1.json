@@ -1,0 +1,14 @@
+{
+  "title": "Giao diện Lò luyện Hợp kim (1)",
+  "image": {
+    "file": "tconstruct:book/images/alloyergui.png",
+    "width": 166,
+    "height": 78
+  },
+  "text": [
+    {
+      "text": "Giao diện hiển thị các chất lỏng đầu vào và đầu ra cùng với thanh nhiệt độ cần thiết cho phản ứng hợp kim.",
+      "paragraph": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:knockback",
+  "text": [
+    {
+      "text": "Tăng thêm 1 độ đẩy lùi mỗi cấp cho mọi vũ khí, hất văng quái vật ra xa khoảng 2 khối. Phần lớn công cụ bắt đầu với 0.4 độ đẩy lùi."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/armor",
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

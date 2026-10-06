@@ -1,0 +1,13 @@
+{
+  "title": "Khuôn cát",
+  "image": {
+    "file": "tconstruct:book/images/sandcast_partbuilder.png",
+    "width": 172,
+    "height": 74
+  },
+  "text": [
+    {
+      "text": "Khuôn cát cũng có thể tạo trong bàn tạo bộ phận bằng cách đặt cát hoặc khuôn cát trống vào ô bản mẫu."
+    }
+  ]
+}

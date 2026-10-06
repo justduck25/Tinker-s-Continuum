@@ -1,0 +1,14 @@
+{
+  "title": "Ống dẫn thoát Thiêu kết",
+  "item": "tconstruct:scorched_drain",
+  "text": [
+    {
+      "text": "Ống dẫn thoát thiêu kết cho phép chất lỏng chảy ra hoặc vào lò đúc. Đặt vòi rót thiêu kết lên trên khối này để rót kim loại lỏng vào bàn đúc hoặc chậu đúc.",
+      "paragraph": true
+    },
+    {
+      "text": "The fluid shown in the middle of the drain will be the next one to pour out.",
+      "paragraph": true
+    }
+  ]
+}

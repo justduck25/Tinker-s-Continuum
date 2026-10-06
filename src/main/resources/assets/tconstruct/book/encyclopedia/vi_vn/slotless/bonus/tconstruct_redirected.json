@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:redirected",
+  "text": [
+    {
+      "text": "Gia tăng cấp độ một trong những đặc tính của đạn bắn, thường là đặc tính mũi tên đầu tiên."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Không tốn ô"
+  ]
+}

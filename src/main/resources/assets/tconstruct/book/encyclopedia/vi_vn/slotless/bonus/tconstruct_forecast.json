@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:forecast",
+  "text": [
+    {
+      "text": "Cung cấp thêm +1 ô nâng cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Không tốn ô"
+  ]
+}

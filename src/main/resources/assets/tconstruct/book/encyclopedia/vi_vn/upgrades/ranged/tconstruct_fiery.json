@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:fiery",
+  "text": [
+    {
+      "text": "Làm cho các mũi tên bắn ra bốc cháy, thiêu đốt các mục tiêu trúng đạn trong 5 giây mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/ranged",
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Không tương thích tốt với Đóng băng",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

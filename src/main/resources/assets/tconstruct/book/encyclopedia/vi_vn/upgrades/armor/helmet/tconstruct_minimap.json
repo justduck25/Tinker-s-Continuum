@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:minimap",
+  "text": [
+    {
+      "text": "Thêm 3 ô mỗi cấp để chứa bản đồ tiện xem khi phiêu lưu. Nhấn giữ phím Control cùng với phím tương tác mũ giáp để đổi bản đồ hiển thị."
+    },
+    {
+      "text": "Có thể mở túi đồ của mũ giáp bằng cách tương tác với nó khi đang cầm trên tay.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

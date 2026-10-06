@@ -1,0 +1,13 @@
+{
+  "title": "Bình chứa Công cụ",
+  "image": {
+    "file": "tconstruct:book/images/smeltergui.png",
+    "width": 179,
+    "height": 82
+  },
+  "text": [
+    {
+      "text": "Một số công cụ lớn có thể tích hợp bình chứa chất lỏng bên trong để kích hoạt các bộ điều chỉnh chất lỏng đặc biệt."
+    }
+  ]
+}

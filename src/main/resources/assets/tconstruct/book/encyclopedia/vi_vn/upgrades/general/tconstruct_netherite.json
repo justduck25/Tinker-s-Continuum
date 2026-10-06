@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:netherite",
+  "text": [
+    {
+      "text": "Cung cấp +20% độ bền, +20% sát thương tấn công, +25% tốc độ đào, +10% vận tốc bắn, +5% kháng đẩy lùi, và +1 độ cứng giáp. Nâng cấp khai thác lên cấp Netherite và làm cho công cụ không thể bị phá hủy khi rơi rớt."
+    },
+    {
+      "text": "Công cụ và giáp trụ sẽ chỉ nhận những chỉ số cộng thêm phù hợp.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 1 cấp",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

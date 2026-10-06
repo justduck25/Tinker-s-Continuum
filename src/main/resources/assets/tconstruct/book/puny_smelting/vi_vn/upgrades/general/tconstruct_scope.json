@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:scope",
+  "text": [
+    {
+      "text": "360 no scope."
+    }
+  ],
+  "effects": [
+    "Allows tools to zoom in gradually when charging",
+    "Single level",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

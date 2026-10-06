@@ -1,0 +1,16 @@
+{
+  "tool": "tconstruct:slimy_chestplate",
+  "text": [
+    {
+      "text": "Áo giáp nhớt hấp thụ xung lực và đẩy lùi kẻ tấn công."
+    },
+    {
+      "text": "Provides many useful melee traits to buff your unarmed attacks.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Đẩy lùi kẻ tấn công",
+    "Hấp thụ sát thương va đập"
+  ]
+}

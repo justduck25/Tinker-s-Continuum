@@ -1,0 +1,26 @@
+{
+  "type": "tconstruct:showcase",
+  "title": "Bộ điều chỉnh Phòng thủ",
+  "item": {
+    "type": "forge:nbt",
+    "item": "tconstruct:creative_slot",
+    "nbt": {
+      "slot": "defense"
+    }
+  },
+  "tooltip": [
+    "Biểu tượng Ô Phòng thủ"
+  ],
+  "text": [
+    {
+      "text": "Phòng thủ là loại bộ điều chỉnh dành riêng cho giáp, giúp tăng cường khả năng chống chịu trước các hiểm họa cụ thể như lửa hoặc đẩy lùi. Chúng mang lại một cách khác để tùy biến giáp vì hầu hết các loại giáp đều thiếu đặc tính vật liệu."
+    },
+    {
+      "text": "Thông thường, giáp có số lượng ô phòng thủ lớn sẽ khởi đầu với ít ô nâng cấp hơn, đồng nghĩa với việc đánh đổi tính năng để lấy sự bảo hộ."
+    },
+    {
+      "text": "Cuốn Nấu chảy Hùng vĩ cũng có danh sách đầy đủ các bộ điều chỉnh phòng thủ cho công cụ, cùng với cuốn Bách khoa Toàn thư Chế tác.",
+      "paragraph": true
+    }
+  ]
+}

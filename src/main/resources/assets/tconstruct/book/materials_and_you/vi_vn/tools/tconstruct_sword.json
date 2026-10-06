@@ -1,0 +1,15 @@
+{
+  "tool": "tconstruct:sword",
+  "text": [
+    {
+      "text": "Kiếm là vũ khí đa năng. Nó sở hữu lượng sát thương cân bằng và cho phép bạn đẩy lùi nhiều kẻ địch cùng lúc bằng đòn quét, trong khi vẫn rảnh tay còn lại."
+    },
+    {
+      "text": "\n"
+    }
+  ],
+  "properties": [
+    "Sát thương tầm trung",
+    "Đòn đánh quét"
+  ]
+}

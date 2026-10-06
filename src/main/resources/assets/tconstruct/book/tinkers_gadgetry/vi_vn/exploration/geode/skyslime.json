@@ -1,0 +1,13 @@
+{
+  "title": "Hốc Nhớt trời",
+  "image": {
+    "file": "tconstruct:book/images/geodes/skyslime.png",
+    "width": 180,
+    "height": 96
+  },
+  "text": [
+    {
+      "text": "Hốc tinh thể nhớt trời chứa các tinh thể lam óng ánh."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Chế tạo Rương Chế tác",
+  "recipe": "tconstruct:tables/tinkers_chest",
+  "description": [
+    {
+      "text": "Sau khi chế tạo, bạn có thể nhuộm rương thành bất kỳ màu sắc nào mình thích."
+    }
+  ]
+}

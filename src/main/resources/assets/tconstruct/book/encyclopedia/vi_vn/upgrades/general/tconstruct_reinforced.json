@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:reinforced",
+  "text": [
+    {
+      "text": "Giảm xác suất công cụ bị tổn hại độ bền. Tỉ lệ chịu hao tổn độ bền là 75% ở cấp 1, 55% ở cấp 2, 40% ở cấp 3, 30% ở cấp 4 và chỉ 25% ở cấp 5."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:fireprimer",
+  "text": [
+    {
+      "text": "This is fine."
+    }
+  ],
+  "effects": [
+    "Increases the area of effect of flint and brick",
+    "Cấp đơn",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Lò luyện kim",
+  "subText": "Lò luyện kim Hùng vĩ nằm trong tay bạn điều khiển.",
+  "hidden": [
+    "structurereq",
+    "sgui2"
+  ],
+  "operations": [
+    {
+      "before": "features",
+      "action": "add_group",
+      "data": "Details"
+    },
+    {
+      "before": "seared_tanks",
+      "action": "column_break"
+    },
+    {
+      "before": "seared_tanks",
+      "action": "add_group",
+      "data": "Blocks"
+    }
+  ]
+}

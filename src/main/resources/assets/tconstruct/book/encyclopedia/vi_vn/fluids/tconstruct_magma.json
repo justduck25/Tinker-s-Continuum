@@ -1,0 +1,11 @@
+{
+  "text": "Đã bao giờ bạn ước mình là một con Ma địa ngục (Ghast)? Thứ này sẽ giúp bạn đạt được một phần ước mơ đó.",
+  "entity": [
+    "Power 1 explosion",
+    "Up to 2 Explosion Damage"
+  ],
+  "block": [
+    "Explosion breaks blocks",
+    "Explosion causes fires"
+  ]
+}

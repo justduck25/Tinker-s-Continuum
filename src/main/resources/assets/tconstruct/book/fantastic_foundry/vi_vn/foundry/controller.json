@@ -1,0 +1,11 @@
+{
+  "title": "Bộ điều khiển Lò đúc",
+  "image": {
+    "file": "tconstruct:book/images/fcontroller.png"
+  },
+  "text": [
+    {
+      "text": "Bộ điều khiển lò đúc là trái tim của cấu trúc. Khối này quản lý nhiệt độ, tiếp nhận nhiên liệu và hiển thị trạng thái của các vật liệu đang được nấu chảy bên trong."
+    }
+  ]
+}

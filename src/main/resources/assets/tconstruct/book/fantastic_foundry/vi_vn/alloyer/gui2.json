@@ -1,0 +1,20 @@
+{
+  "title": "Giao diện Lò luyện Hợp kim (2)",
+  "text": [
+    {
+      "text": "Đặt đúng tỷ lệ chất lỏng để phản ứng hợp kim diễn ra liên tục và thông suốt."
+    },
+    {
+      "text": "2: This is the area where your alloyed materials will show once they are finished working their magic.",
+      "paragraph": true
+    },
+    {
+      "text": "3: This area is where your fuel shows. Hotter fuels means you can melt more things.",
+      "paragraph": true
+    },
+    {
+      "text": "In both 1 and 3, left clicking with a fluid item will attempt to fill the item from the tank, while right clicking will attempt to dump the item into the tank.",
+      "paragraph": true
+    }
+  ]
+}

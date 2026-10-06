@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:fishing_rod",
+  "text": [
+    {
+      "text": "Cần câu là vũ khí tầm ngắn không cần đạn dược. Nó gây sát thương lên quái vật bị giật kéo về phía bạn, và rất hữu dụng để câu cá."
+    },
+    {
+      "text": "Khi gắn các cải tiến tương tác, mặc định cần câu sẽ kích hoạt bằng chuột trái, dù bạn có thể thay đổi điều này tại Bàn điều chỉnh cải tiến.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "2.0 Tốc độ tấn công",
+    "1.0 Tốc độ giương cung",
+    "1.00 Vận tốc phao câu",
+    "0.75 Độ chính xác",
+    "150% Bội số độ bền",
+    "Câu cá"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "title": "Bàn Chế tác",
+  "image": {
+    "file": "tconstruct:book/images/tinkerstation.png",
+    "width": 135,
+    "height": 72
+  },
+  "text": [
+    {
+      "text": "Đặt cái này vào đây, cái kia vào đó, ôi ngược rồi. Tốt hơn là cứ tiếp tục tỉ mỉ chế tác thôi.",
+      "paragraph": true
+    }
+  ]
+}

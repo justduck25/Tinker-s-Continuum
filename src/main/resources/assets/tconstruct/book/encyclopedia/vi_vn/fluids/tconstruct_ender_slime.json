@@ -1,0 +1,10 @@
+{
+  "text": "Dịch chuyển rắc rối của bạn tới một nơi ngẫu nhiên cũng là một cách hay ho để giải quyết chúng.",
+  "block": [
+    "Replaces hit block with held block"
+  ],
+  "entity": [
+    "+7 Seconds Returning",
+    "Teleports target if no current Returning"
+  ]
+}

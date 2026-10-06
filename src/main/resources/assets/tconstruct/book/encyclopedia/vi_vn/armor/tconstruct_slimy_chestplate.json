@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:slimy_chestplate",
+  "text": [
+    {
+      "text": "Khung sườn nhớt (Slimecage) là vũ khí tối thượng cho cận chiến tay không nhờ các đặc tính lồng ngực giúp gia tăng đòn đánh không vũ khí."
+    },
+    {
+      "text": " Được tạo ra bằng cách rót nhớt lên một khung xương sườn."
+    }
+  ],
+  "properties": [
+    "Phòng thủ thấp",
+    "75% Đòn đánh tay không",
+    "3 Ô nâng cấp",
+    "0 Ô phòng thủ",
+    "2 Ô năng lực",
+    "Đặc tính Nhớt & 2 Lồng ngực",
+    "Tầm với"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:offhanded",
+  "text": [
+    {
+      "text": "Ngăn sử dụng năng lực tương tác của tay chính nếu tay phụ đang cầm vật phẩm. Ví dụ: rìu sẽ không gọt vỏ gỗ nếu bạn đang cầm khiên ở tay phụ."
+    },
+    {
+      "text": "Cấp thứ hai sẽ vô hiệu hóa hoàn toàn năng lực tương tác của công cụ.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 2 cấp",
+    "Không tốn ô"
+  ]
+}

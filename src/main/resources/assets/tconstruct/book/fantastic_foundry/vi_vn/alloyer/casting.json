@@ -1,0 +1,13 @@
+{
+  "title": "Đúc Hợp kim",
+  "image": {
+    "file": "tconstruct:book/images/scorched_casting.png",
+    "width": 109,
+    "height": 75
+  },
+  "text": [
+    {
+      "text": "Chất lỏng hợp kim sau khi tạo ra có thể được dẫn trực tiếp sang bàn đúc hoặc chậu đúc để đổ khuôn."
+    }
+  ]
+}

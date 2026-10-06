@@ -1,0 +1,19 @@
+{
+  "tool": "tconstruct:throwing_axe",
+  "text": [
+    {
+      "text": "Rìu ném là loại vũ khí dùng một lần cự ly ngắn nhưng sát thương cực cao, có thể phóng đi mà không cần công cụ hỗ trợ."
+    },
+    {
+      "text": "Lựa chọn lý tưởng khi bạn muốn một đòn đánh uy lực mạnh mẽ hơn hẳn phi tiêu.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "0.75 Vận tốc",
+    "1.5 Sát thương đạn",
+    "300% Bội số sát thương",
+    "0.5 Độ chính xác",
+    "1 Đặc tính đầu, 1 Đặc tính cán"
+  ]
+}

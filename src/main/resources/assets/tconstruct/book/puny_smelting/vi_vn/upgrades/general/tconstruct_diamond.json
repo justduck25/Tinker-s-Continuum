@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:diamond",
+  "text": [
+    {
+      "text": "Kim cương là vĩnh cửu!"
+    }
+  ],
+  "effects": [
+    "Tăng độ bền, tốc độ đào, sát thương tấn công và giáp",
+    "Cấp đơn",
+    "Yêu cầu 1 ô nâng cấp"
+  ]
+}

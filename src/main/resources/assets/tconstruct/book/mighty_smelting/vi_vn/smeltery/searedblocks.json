@@ -1,0 +1,12 @@
+{
+  "title": "Khối Nung",
+  "item": {
+    "tag": "tconstruct:seared_blocks"
+  },
+  "text": [
+    {
+      "text": "Các khối đá nung tạo nên lớp vỏ chịu nhiệt kiên cố cho lò luyện kim.",
+      "paragraph": true
+    }
+  ]
+}

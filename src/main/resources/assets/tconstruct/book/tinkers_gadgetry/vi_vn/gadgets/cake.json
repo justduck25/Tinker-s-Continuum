@@ -1,0 +1,13 @@
+{
+  "title": "Bánh Nhớt",
+  "image": {
+    "file": "tconstruct:book/images/cake.png",
+    "width": 180,
+    "height": 67
+  },
+  "text": [
+    {
+      "text": "Bánh nhớt là món tráng miệng bổ dưỡng mang lại các hiệu ứng đặc biệt khi ăn, từ tăng lực nhảy cho đến kháng sát thương rơi."
+    }
+  ]
+}

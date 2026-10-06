@@ -1,0 +1,21 @@
+{
+  "title": "Chi tiết Giá Giáp",
+  "text": [
+    {
+      "text": "Bạn có thể khóa tư thế và trang bị bằng cách tương tác khi đang ngồi (sneak).",
+      "linebreak": true
+    },
+    {
+      "text": "• Bamboo: Smaller armor stand for compact armor storage.",
+      "linebreak": true
+    },
+    {
+      "text": "• Bone: Has arms, letting it be armed! Interact with the base to place items, and can hold shields in the offhand.",
+      "linebreak": true
+    },
+    {
+      "text": "• Necrotic Bone: Always appears fully lit, even in darkness.",
+      "linebreak": true
+    }
+  ]
+}

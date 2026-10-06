@@ -1,0 +1,16 @@
+{
+  "title": "Bình chứa Nung",
+  "item": {
+    "tag": "tconstruct:seared_tanks"
+  },
+  "text": [
+    {
+      "text": "Bình chứa nung chứa dung nham để cung cấp nhiệt lượng duy trì hoạt động cho lò luyện kim.",
+      "paragraph": true
+    },
+    {
+      "text": "Tanks can be filled from buckets, potions, and can also be poured into from faucets. They can also be used to cast without a smeltery. Pistons break them, and dispensers can place them.",
+      "paragraph": true
+    }
+  ]
+}

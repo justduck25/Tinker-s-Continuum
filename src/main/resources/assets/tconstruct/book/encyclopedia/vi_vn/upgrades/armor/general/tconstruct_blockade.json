@@ -1,0 +1,15 @@
+{
+  "modifier_id": "tconstruct:blockade",
+  "text": [
+    {
+      "text": "Tăng chỉ số đỡ đòn cơ bản của công cụ thêm +100% mỗi cấp, tối đa lên tới +300% ở cấp 3."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp",
+    "Yêu cầu có khả năng Chặn đòn hoặc Đỡ gạt"
+  ]
+}

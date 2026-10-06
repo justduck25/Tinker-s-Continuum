@@ -1,0 +1,16 @@
+{
+  "tool": "tconstruct:slime_helmet",
+  "text": [
+    {
+      "text": "Mũ nhớt có thể tích hợp với các loại sọ quái vật để nhận đặc tính của chúng."
+    },
+    {
+      "text": "Each skull grants a unique effect, covered in the next section.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "Tích hợp sọ quái vật",
+    "Tăng cường giác quan"
+  ]
+}

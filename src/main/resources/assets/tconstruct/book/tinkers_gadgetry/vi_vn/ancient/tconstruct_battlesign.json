@@ -1,0 +1,14 @@
+{
+  "tool": "tconstruct:battlesign",
+  "text": [
+    {
+      "text": "Biển báo chiến đấu là vũ khí cùn kiêm khiên đỡ kỳ lạ thời cổ đại."
+    }
+  ],
+  "properties": [
+    "Medium Damage",
+    "Medium Block Potential",
+    "3 Defense Slots",
+    "1 Ability Slot"
+  ]
+}

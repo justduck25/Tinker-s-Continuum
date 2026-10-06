@@ -1,0 +1,17 @@
+{
+  "tool": "tconstruct:travelers_helmet",
+  "text": [
+    {
+      "text": "Kính bảo hộ lữ hành là chiếc mũ cân bằng với độ bảo vệ thấp, số ô nâng cấp và phòng thủ ở mức trung bình."
+    }
+  ],
+  "properties": [
+    "75% Hệ số độ bền",
+    "75% Chỉ số giáp tấm",
+    "2 Ô nâng cấp",
+    "2 Ô phòng thủ",
+    "1 Ô năng lực",
+    "2 Đặc tính vật liệu",
+    "Cách nhiệt"
+  ]
+}

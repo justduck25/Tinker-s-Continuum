@@ -1,0 +1,17 @@
+{
+  "tool": "tconstruct:hand_axe",
+  "text": [
+    {
+      "text": "Rìu cầm tay là công cụ chặt đốn cơ bản. Nó rất hiệu quả với gỗ và lá cây. Dùng làm vũ khí hay công cụ khai thác, hoặc cả hai, tùy bạn lựa chọn."
+    },
+    {
+      "text": "\n"
+    }
+  ],
+  "properties": [
+    "Công cụ cơ bản",
+    "Hiệu quả trên gỗ",
+    "Phá lá cây cực nhanh",
+    "Gọt vỏ thân cây dễ dàng"
+  ]
+}

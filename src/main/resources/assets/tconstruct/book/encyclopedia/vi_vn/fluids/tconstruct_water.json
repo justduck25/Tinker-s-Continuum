@@ -1,0 +1,11 @@
+{
+  "title": "Nước",
+  "text": "Nước tuy không phải chất lỏng hữu dụng nhất, nhưng có thể bảo vệ bạn khỏi lửa trong những môi trường nóng rực.",
+  "entity": [
+    "2 Water Damage",
+    "Extinguishes Fire"
+  ],
+  "block": [
+    "Breaks blocks broken by water"
+  ]
+}

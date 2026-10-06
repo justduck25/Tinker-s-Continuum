@@ -1,0 +1,14 @@
+{
+  "title": "Bàn tạo Bộ phận",
+  "image": {
+    "file": "tconstruct:book/images/partbuilder.png",
+    "width": 170,
+    "height": 64
+  },
+  "text": [
+    {
+      "text": "Để tạo một bộ phận: chỉ cần lấy một bản mẫu trống, đặt vào ô bản mẫu, chọn bộ phận công cụ bạn muốn làm, đặt một vật liệu mềm có thể nắn tạo hình bằng tay, và nhận bộ phận của bạn. Bạn cũng có thể định hình lại một bộ phận mềm đã làm trước đó.",
+      "paragraph": true
+    }
+  ]
+}

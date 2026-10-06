@@ -1,0 +1,20 @@
+{
+  "tool": "tconstruct:longbow",
+  "text": [
+    {
+      "text": "Trường cung là vũ khí tầm xa uy lực bắn ra những mũi tên. Tên sẽ lập tức phóng đi ngay khi bạn thả dây cung."
+    },
+    {
+      "text": "Khi gắn các cải tiến tương tác, trường cung sẽ kích hoạt chúng qua nhấp chuột trái.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "1.0 Tốc độ tấn công",
+    "1.0 Tốc độ giương cung",
+    "1.00 Vận tốc mũi tên",
+    "0.75 Độ chính xác",
+    "Cộng dồn chỉ số từ hai cánh cung",
+    "150% Bội số độ bền"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Đá đỏ",
+  "text": "Đá đỏ rất tuyệt vời để sắp xếp quái vật vào đúng vị trí trật tự mà không làm chúng bị thương.",
+  "entity": [
+    "Power 1.5 explosion",
+    "0 Explosion Damage",
+    "Inverted explosion knockback"
+  ],
+  "block": [
+    "Explosion ignores blocks"
+  ]
+}

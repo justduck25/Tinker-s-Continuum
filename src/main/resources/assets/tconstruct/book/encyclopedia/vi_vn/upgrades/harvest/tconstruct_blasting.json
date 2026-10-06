@@ -1,0 +1,14 @@
+{
+  "modifier_id": "tconstruct:blasting",
+  "text": [
+    {
+      "text": "Gia tăng tốc độ đào trên các khối có độ kháng nổ thấp, tối đa lên tới +10 mỗi cấp trên các khối mềm nhất. Ví dụ: +1 tốc độ đào mỗi cấp trên đá, +3 trên đất nung, và +9 trên các khối quặng mềm."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Tối đa 5 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

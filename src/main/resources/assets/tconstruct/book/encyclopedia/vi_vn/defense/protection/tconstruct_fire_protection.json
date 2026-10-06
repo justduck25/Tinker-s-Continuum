@@ -1,0 +1,17 @@
+{
+  "modifier_id": "tconstruct:fire_protection",
+  "text": [
+    {
+      "text": "Tăng +10% kháng sát thương lửa (như từ dung nham hoặc Quỷ lửa/Blaze). Tối đa đạt 80% trên toàn bộ bộ giáp, tương đương 8 cấp."
+    },
+    {
+      "text": "Giảm thời gian bị thiêu đốt 15% mỗi cấp của mảnh giáp có cấp cao nhất.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Có thể áp dụng từng cấp một",
+    "Yêu cầu 1 ô phòng thủ mỗi cấp"
+  ]
+}

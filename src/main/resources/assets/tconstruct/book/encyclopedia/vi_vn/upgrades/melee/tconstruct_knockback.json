@@ -1,0 +1,18 @@
+{
+  "modifier_id": "tconstruct:knockback",
+  "text": [
+    {
+      "text": "Tăng 1 độ đẩy lùi mỗi cấp, hất tung mục tiêu ra xa khoảng 2 khối. Phần lớn công cụ khởi đầu với 0.4 độ đẩy lùi."
+    },
+    {
+      "text": "Các năng lực Hất văng, Bật nhảy và Đập choáng nhận thêm +0.5 uy lực hiệu quả mỗi cấp, được tính theo kháng đẩy lùi và độ nảy thay vì vận tốc.",
+      "paragraph": true
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/melee",
+  "effects": [
+    "Tối đa 3 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "tool": "tconstruct:earth_staff",
+  "text": [
+    {
+      "text": "Gậy phép nhớt đất điều khiển năng lượng mặt đất và bảo hộ người sử dụng."
+    }
+  ],
+  "properties": [
+    "Mid Durability",
+    "2 Upgrade Slots",
+    "3 Defense Slots",
+    "2 Ability Slots"
+  ]
+}

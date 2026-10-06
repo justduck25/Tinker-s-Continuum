@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:reach",
+  "text": [
+    {
+      "text": "Gia tăng khoảng cách tối đa từ người chơi mà công cụ này có thể đào, đặt khối và tấn công quái vật thêm 1 khối mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 2 cấp",
+    "Yêu cầu 1 ô năng lực mỗi cấp"
+  ]
+}

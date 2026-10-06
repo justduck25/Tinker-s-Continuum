@@ -1,0 +1,21 @@
+{
+  "tool": "tconstruct:war_pick",
+  "text": [
+    {
+      "text": "Cuốc chiến là vũ khí lai giữa cuốc chim và nỏ bắn, tìm thấy trong hầm mỏ bỏ hoang, đồn tiền tiêu Pillager, Kẻ báo thù (Vindicator), Dân làng thây ma, và là quà tặng từ thợ rèn vũ khí sau cuộc đột kích."
+    },
+    {
+      "text": "Khai thác các khối khi đã lên nỏ sẽ tăng thêm +0.01 vận tốc mỗi khối đào được, tối đa lên tới +0.25. Cải tiến Mở rộng gia tăng bán kính đào tròn.",
+      "paragraph": true
+    }
+  ],
+  "properties": [
+    "+0 Sát thương tấn công",
+    "1.2 Tốc độ tấn công",
+    "1.0 Tốc độ giương cung",
+    "1.00 Vận tốc mũi tên",
+    "0.75 Độ chính xác",
+    "3 Ô nâng cấp",
+    "1 Ô năng lực"
+  ]
+}

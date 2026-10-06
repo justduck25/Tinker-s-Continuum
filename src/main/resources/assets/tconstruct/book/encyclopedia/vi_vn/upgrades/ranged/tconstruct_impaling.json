@@ -1,0 +1,13 @@
+{
+  "modifier_id": "tconstruct:impaling",
+  "text": [
+    {
+      "text": "Cho phép mũi tên tiếp tục bay sau khi gây sát thương cho mục tiêu đầu tiên, có khả năng xuyên trúng nhiều mục tiêu. Có thể xuyên qua 1 thực thể mỗi cấp."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Tối đa 4 cấp",
+    "Yêu cầu 1 ô nâng cấp mỗi cấp"
+  ]
+}
