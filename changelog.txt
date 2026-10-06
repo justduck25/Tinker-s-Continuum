@@ -2,19 +2,24 @@ Continuum Construct 26.1.2-3.12.7
 
 Visuals & Armor
 - Elytra Wings: Restored 3D Elytra wings rendering for chestplates with the wings modifier on the player model, using NeoForge 26.1's EquipmentLayerRenderer with dedicated armor-specific textures (cuirass_wings, maille_wings, slime/wings) and automatic vanilla armor trim suppression on wings to prevent missing-texture checkerboards.
-- Armor modifier overlays: Added subtle worn 3D overlays for armor modifiers (e.g., golden trims, boots, plates, slime helmets).
+- Armor Modifier Overlays: Added subtle worn 3D overlays for armor modifiers (golden trims, boots, plates, slime helmets, moss overlays, etc.) across Plate, Slime, and Traveler's armor sets.
 - 3D Tools & Materials: Retained extrusion side quads in 3D tool models, fixing flat weapon models when thrown (fixes #17).
 - Connected Glass: Restored connected glass blockstate models and proper glass face occlusion.
-- Station UI & Variants: Fixed crafting station UI layout, layout icons, armor stand angle, and table variant fetching (fixes #45, fixes #46).
+
+User Interface & Stations
+- Crafting Station Screen: Brightened station and table container backgrounds, and added filled material icons for station slot layouts.
+- Fuel Module: Added hover tooltips for fuel flame indicators in GuiFuelModule.
+- Tool Table Screen: Fixed armor stand preview model clipping and pitch angle.
+- Station Block Variants: Fixed table variant resolution in TinkerTabsWidget and creative pick-block (getCloneItemStack) (fixes #45, fixes #46).
+
+Mechanics & Stability
+- Thread Safety (fixes #44): Fixed a severe thread-safety race condition in ToolEvents.livingWalk by replacing WeakHashMap with MapMaker.weakKeys() concurrent map, and guarding livingWalk against render thread, spectator, and dead entity execution to prevent infinite loops and server thread hangs.
+- Sound & Food: Restored cake eating mechanics and resolved hot fluid sizzle sound spam.
+- Tags: Updated glass block and item tags to NeoForge conventional formats (c:glass_blocks, etc.) (fixes #38).
 
 Localization
 - Complete Vietnamese (vi_vn) localization: Fully translated all 6 in-game guidebooks (Materials and You, Puny Smelting, Mighty Smelting, Tinkers' Gadgetry, Fantastic Foundry, Encyclopedia of Tinkering), modifiers, abilities, and tooltips.
 - Synchronized latest upstream community translations for 11 languages (zh_cn, ja_jp, ru_ru, es_mx, uk_ua, pt_br, fr_fr, de_de, ko_kr, it_it, lzh).
-
-Mechanics & Stability
-- Thread safety: Fixed a thread-safety race condition in ToolEvents.livingWalk causing random client/server freezes (fixes #44).
-- Food & Sizzle sounds: Restored cake eating mechanics and resolved hot fluid sizzle sound spam.
-- Tags: Updated glass block and item tags to NeoForge conventional formats (c:glass_blocks, etc.) (fixes #38).
 
 Compatibility
 - Requires Continuum Core 1.12.3.
