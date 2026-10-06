@@ -45,21 +45,31 @@ public class FoodCakeBlock extends CakeBlock {
   }
 
   @Override
-  public InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-    InteractionResult result = this.eatSlice(world, pos, state, player);
-    if (result.consumesAction()) {
-      return result;
-    }
+  protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, net.minecraft.world.InteractionHand hand, BlockHitResult hitResult) {
+    return InteractionResult.TRY_WITH_EMPTY_HAND;
+  }
+
+  @Override
+  protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
     if (world.isClientSide()) {
-      return InteractionResult.CONSUME;
+      if (this.eatSlice(world, pos, state, player).consumesAction()) {
+        return InteractionResult.SUCCESS;
+      }
+      if (player.getItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND).isEmpty()) {
+        return InteractionResult.CONSUME;
+      }
     }
-    return InteractionResult.PASS;
+    return this.eatSlice(world, pos, state, player);
   }
 
   private boolean hasAllEffects(Player player) {
+    if (effects.isEmpty()) {
+      return false;
+    }
     for (FoodEffect pair : effects) {
-      if (pair.effect() != null) {
-        MobEffectInstance current = player.getEffect(pair.effect().getEffect());
+      MobEffectInstance effect = pair.effect();
+      if (effect != null) {
+        MobEffectInstance current = player.getEffect(effect.getEffect());
         if (current == null || current.getDuration() < 100) {
           return false;
         }
@@ -69,7 +79,7 @@ public class FoodCakeBlock extends CakeBlock {
   }
 
   private InteractionResult eatSlice(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
-    if (!player.canEat(false) && !food.canAlwaysEat()) {
+    if (!player.canEat(food.canAlwaysEat())) {
       return InteractionResult.PASS;
     }
     if (combination == EffectCombination.BLOCK && hasAllEffects(player)) {
@@ -78,27 +88,41 @@ public class FoodCakeBlock extends CakeBlock {
     player.awardStat(Stats.EAT_CAKE_SLICE);
     player.getFoodData().eat(food.nutrition(), food.saturation());
     for (FoodEffect pair : effects) {
-      if (!world.isClientSide() && pair.effect() != null && world.getRandom().nextFloat() < pair.probability()) {
-        MobEffectInstance effect = new MobEffectInstance(pair.effect());
-        if (combination == EffectCombination.ADD) {
-          MobEffectInstance current = player.getEffect(effect.getEffect());
-          if (current != null && current.getAmplifier() == effect.getAmplifier()) {
-            effect = new MobEffectInstance(effect.getEffect(), (int)(effect.getDuration() + current.getDuration()), effect.getAmplifier());
+      if (!world.isClientSide()) {
+        MobEffectInstance baseEffect = pair.effect();
+        if (baseEffect != null && world.getRandom().nextFloat() < pair.probability()) {
+          MobEffectInstance effect = new MobEffectInstance(baseEffect);
+          if (combination == EffectCombination.ADD) {
+            MobEffectInstance current = player.getEffect(effect.getEffect());
+            if (current != null && current.getAmplifier() == effect.getAmplifier()) {
+              effect = new MobEffectInstance(effect.getEffect(), effect.getDuration() + current.getDuration(), effect.getAmplifier());
+            }
           }
+          player.addEffect(effect);
         }
-        player.addEffect(effect);
       }
     }
+    world.gameEvent(player, net.minecraft.world.level.gameevent.GameEvent.EAT, pos);
     int i = state.getValue(BITES);
     if (i < 6) {
       world.setBlock(pos, state.setValue(BITES, i + 1), 3);
     } else {
       world.removeBlock(pos, false);
+      world.gameEvent(player, net.minecraft.world.level.gameevent.GameEvent.BLOCK_DESTROY, pos);
     }
     return InteractionResult.SUCCESS;
   }
 
-  public record FoodEffect(MobEffectInstance effect, float probability) {}
+  public record FoodEffect(java.util.function.Supplier<MobEffectInstance> effectSupplier, float probability) {
+    public FoodEffect(MobEffectInstance effect, float probability) {
+      this(() -> effect, probability);
+    }
+
+    @javax.annotation.Nullable
+    public MobEffectInstance effect() {
+      return effectSupplier != null ? effectSupplier.get() : null;
+    }
+  }
 
   public enum EffectCombination {
     SET,
