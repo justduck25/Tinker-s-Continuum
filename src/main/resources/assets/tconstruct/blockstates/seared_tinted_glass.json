@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "tconstruct:block/smeltery/tinted_glass" }
+    "": {
+      "type": "mantle:connected_block",
+      "model": "tconstruct:block/smeltery/tinted_glass"
+    }
   }
 }

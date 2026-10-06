@@ -1,4 +1,4 @@
-// 26.1.2	2026-09-20T19:02:46.9225705	Continuum Construct item model provider
+// 26.1.2	2026-10-05T14:38:00.0871065	Continuum Construct item model provider
 3dfe19fdc1521868d13178dc421daf189eb6bac3 assets/tconstruct/items/adze_head.json
 960bb3a54ef50940eb2f85c27e1a1e7e597e4276 assets/tconstruct/items/adze_head_cast.json
 f7ba2e2eeab78b6821b983937551407bd2b51d62 assets/tconstruct/items/adze_head_red_sand_cast.json
@@ -106,7 +106,6 @@ cd25af694b109d97f6ae05162456d2fdf98ff7e0 assets/tconstruct/items/cobalt_platform
 db93849856d9624ab99e8beba09308b9e7125cce assets/tconstruct/items/coin_sand_cast.json
 2086530c35f8de137eceaa71318a8430889bef74 assets/tconstruct/items/copper_can.json
 d364c97f6ac46f1801b4def77cd7fd52f6cc0ea4 assets/tconstruct/items/copper_gauge.json
-cf7df091e7aec84653da5bd98b101759eb99de21 assets/tconstruct/items/copper_nugget.json
 8d0232feebc33e112b172e0bdf7de92cec8b7a35 assets/tconstruct/items/copper_platform.json
 ae9e6565dd1def703eb237a12a4999b402b8cd09 assets/tconstruct/items/crafting_station.json
 1ec407c68d16574ba004036c9c468835789a05b8 assets/tconstruct/items/creative_slot.json
